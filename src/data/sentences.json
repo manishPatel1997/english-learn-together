@@ -1,0 +1,3402 @@
+{
+  "_order": [
+    "who_section",
+    "what_section",
+    "where_section",
+    "whose_section",
+    "how_many_much_section",
+    "which_section"
+  ],
+  "who_section": [
+    {
+      "id": "who_1",
+      "gujarati": "ઓફિસમાં કોણ છે?",
+      "english": "Who is in the office?",
+      "answers": [
+        "The manager is in the office.",
+        "Rahul is in the office.",
+        "Our principal is present in the office."
+      ],
+      "topic": "Who",
+      "difficulty": "Easy",
+      "hint": "Start with 'Who is' for current person in location."
+    },
+    {
+      "id": "who_2",
+      "gujarati": "પેરેડાઈઝ માં કોણ છે?",
+      "english": "Who is in Paradise?",
+      "answers": [
+        "The English teacher is in Paradise.",
+        "Students are in Paradise.",
+        "Mr. Patel is in Paradise."
+      ],
+      "topic": "Who",
+      "difficulty": "Easy",
+      "hint": "Identify person present."
+    },
+    {
+      "id": "who_3",
+      "gujarati": "મંદિરમાં કોણ હતું?",
+      "english": "Who was in the temple?",
+      "answers": [
+        "The priest was in the temple.",
+        "My grandmother was in the temple.",
+        "A devotee was praying in the temple."
+      ],
+      "topic": "Who",
+      "difficulty": "Easy",
+      "hint": "Use 'Who was' for past person identity."
+    },
+    {
+      "id": "who_4",
+      "gujarati": "ભાવિકાના ઘરમાં કોણ હશે?",
+      "english": "Who will be at Bhavika's home?",
+      "answers": [
+        "Bhavika's mother will be at her home.",
+        "Her friends will be at Bhavika's home.",
+        "Her brother will be at home."
+      ],
+      "topic": "Who",
+      "difficulty": "Easy",
+      "hint": "Use 'Who will be' for future tense."
+    },
+    {
+      "id": "who_5",
+      "gujarati": "કોણ મોહિત ની બાજુમાં છે?",
+      "english": "Who is next to Mohit?",
+      "answers": [
+        "Suresh is next to Mohit.",
+        "His best friend is standing next to Mohit.",
+        "Priya is sitting next to Mohit."
+      ],
+      "topic": "Who",
+      "difficulty": "Easy",
+      "hint": "Identify adjacent person."
+    },
+    {
+      "id": "who_6",
+      "gujarati": "કોણ નીલમ ની સામે છે?",
+      "english": "Who is opposite Neelam?",
+      "answers": [
+        "Rohan is sitting opposite Neelam.",
+        "Her teacher is standing opposite Neelam.",
+        "Karan is facing opposite Neelam."
+      ],
+      "topic": "Who",
+      "difficulty": "Easy",
+      "hint": "Identify facing person."
+    },
+    {
+      "id": "who_7",
+      "gujarati": "કોણ પ્રિન્સીપલ ની ઓફિસ માં હતું?",
+      "english": "Who was in the principal's office?",
+      "answers": [
+        "A parent was in the principal's office.",
+        "The class teacher was in the principal's office.",
+        "A new student was in the principal's office."
+      ],
+      "topic": "Who",
+      "difficulty": "Medium",
+      "hint": "Past tense occupant query."
+    },
+    {
+      "id": "who_8",
+      "gujarati": "૨૦૧૦ માં કોણ લંડનમાં હતું?",
+      "english": "Who was in London in 2010?",
+      "answers": [
+        "My uncle was in London in 2010.",
+        "Dr. Shah was residing in London in 2010.",
+        "My cousin brother was studying in London in 2010."
+      ],
+      "topic": "Who",
+      "difficulty": "Medium",
+      "hint": "Past time specific person query."
+    },
+    {
+      "id": "who_9",
+      "gujarati": "રાહુલ-રાજ મોલ માં કોણ છે?",
+      "english": "Who is in Rahul Raj Mall?",
+      "answers": [
+        "My friends are in Rahul Raj Mall.",
+        "Many shoppers are in Rahul Raj Mall.",
+        "Ankit is watching a movie in Rahul Raj Mall."
+      ],
+      "topic": "Who",
+      "difficulty": "Easy",
+      "hint": "Location person check."
+    },
+    {
+      "id": "who_10",
+      "gujarati": "કોણ શાઈન બાઈક પર હશે?",
+      "english": "Who will be on the Shine bike?",
+      "answers": [
+        "Ramesh will be on the Shine bike.",
+        "My elder brother will be on the Shine bike.",
+        "The delivery boy will be on the Shine bike."
+      ],
+      "topic": "Who",
+      "difficulty": "Medium",
+      "hint": "Future rider identification."
+    },
+    {
+      "id": "who_11",
+      "gujarati": "કોણ રેલ્વે સ્ટેશન પર છે?",
+      "english": "Who is at the railway station?",
+      "answers": [
+        "My father is at the railway station.",
+        "The passengers are waiting at the railway station.",
+        "Pooja is at the railway station."
+      ],
+      "topic": "Who",
+      "difficulty": "Easy",
+      "hint": "Inquire about person at location."
+    },
+    {
+      "id": "who_12",
+      "gujarati": "સુરત એરપોર્ટ પર કોણ હતું?",
+      "english": "Who was at Surat Airport?",
+      "answers": [
+        "A VIP politician was at Surat Airport.",
+        "My uncle was at Surat Airport to catch a flight.",
+        "The pilot was at Surat Airport."
+      ],
+      "topic": "Who",
+      "difficulty": "Medium",
+      "hint": "Past location occupant query."
+    },
+    {
+      "id": "who_13",
+      "gujarati": "કિરીટ ના લગ્નમાં કોણ છે?",
+      "english": "Who is at Kirit's wedding?",
+      "answers": [
+        "All his relatives are at Kirit's wedding.",
+        "His college friends are at Kirit's wedding.",
+        "My family is at Kirit's wedding."
+      ],
+      "topic": "Who",
+      "difficulty": "Medium",
+      "hint": "Event attendance query."
+    },
+    {
+      "id": "who_14",
+      "gujarati": "સારિકાની બાજુમાં કોણ છે?",
+      "english": "Who is next to Sarika?",
+      "answers": [
+        "Neha is sitting next to Sarika.",
+        "Her sister is standing next to Sarika.",
+        "Priya is next to Sarika."
+      ],
+      "topic": "Who",
+      "difficulty": "Easy",
+      "hint": "Adjacent person inquiry."
+    },
+    {
+      "id": "who_15",
+      "gujarati": "જેઠાલાલ ની નજીક કોણ હતું?",
+      "english": "Who was near Jethalal?",
+      "answers": [
+        "Taarak Mehta was near Jethalal.",
+        "Bapuji was standing near Jethalal.",
+        "Bagha was standing near Jethalal."
+      ],
+      "topic": "Who",
+      "difficulty": "Medium",
+      "hint": "Past physical proximity question."
+    },
+    {
+      "id": "who_16",
+      "gujarati": "ગોકુલધામ માં કોણ છે?",
+      "english": "Who is in Gokuldham?",
+      "answers": [
+        "Atmaram Bhide is in Gokuldham.",
+        "All society members are in Gokuldham.",
+        "Popatlal is in Gokuldham."
+      ],
+      "topic": "Who",
+      "difficulty": "Easy",
+      "hint": "Society inhabitant check."
+    },
+    {
+      "id": "who_17",
+      "gujarati": "તારા પિતાની બાજુમાં કોણ છે?",
+      "english": "Who is next to your father?",
+      "answers": [
+        "My uncle is sitting next to my father.",
+        "Our manager is standing next to my father.",
+        "His friend is next to my father."
+      ],
+      "topic": "Who",
+      "difficulty": "Medium",
+      "hint": "Inquire companion next to family member."
+    },
+    {
+      "id": "who_18",
+      "gujarati": "મારી બહેન ની સામે કોણ હતું?",
+      "english": "Who was opposite my sister?",
+      "answers": [
+        "Her best friend was sitting opposite your sister.",
+        "An interviewer was sitting opposite your sister.",
+        "A doctor was sitting opposite your sister."
+      ],
+      "topic": "Who",
+      "difficulty": "Medium",
+      "hint": "Past position relative check."
+    },
+    {
+      "id": "who_19",
+      "gujarati": "ગઈકાલે ભાવેશની ઓફિસ નજીક કોણ હતું?",
+      "english": "Who was near Bhavesh's office yesterday?",
+      "answers": [
+        "A security guard was near Bhavesh's office yesterday.",
+        "His client was standing near Bhavesh's office yesterday.",
+        "The courier boy was near his office yesterday."
+      ],
+      "topic": "Who",
+      "difficulty": "Medium",
+      "hint": "Time-based past location inquiry."
+    },
+    {
+      "id": "who_20",
+      "gujarati": "શોલે ફિલ્મમાં ગબ્બરની બાજુમાં કોણ છે?",
+      "english": "Who is next to Gabbar in the movie Sholay?",
+      "answers": [
+        "Samba is sitting next to Gabbar in the movie Sholay.",
+        "Kalia is standing next to Gabbar.",
+        "His henchmen are next to Gabbar."
+      ],
+      "topic": "Who",
+      "difficulty": "Medium",
+      "hint": "Movie character placement query."
+    },
+    {
+      "id": "who_21",
+      "gujarati": "કોણ બગીચાના ગેટ સામે હતું?",
+      "english": "Who was in front of the garden gate?",
+      "answers": [
+        "An ice cream vendor was in front of the garden gate.",
+        "The watchman was standing in front of the garden gate.",
+        "A group of kids was near the garden gate."
+      ],
+      "topic": "Who",
+      "difficulty": "Medium",
+      "hint": "Gate position person check."
+    },
+    {
+      "id": "who_22",
+      "gujarati": "પાયલના ઘરની છત પર કોણ છે?",
+      "english": "Who is on the roof of Payal's house?",
+      "answers": [
+        "Payal's brother is on the roof of her house.",
+        "Some kids are flying kites on the roof.",
+        "A technician is repairing the dish on the roof."
+      ],
+      "topic": "Who",
+      "difficulty": "Medium",
+      "hint": "Rooftop occupant query."
+    },
+    {
+      "id": "who_23",
+      "gujarati": "ગઈકાલે પ્રિયાની બર્થડે પાર્ટીમાં કોણ હતું?",
+      "english": "Who was at Priya's birthday party yesterday?",
+      "answers": [
+        "All her classmates were at Priya's birthday party yesterday.",
+        "Rohan and Sneha were at her birthday party yesterday.",
+        "Her family and neighbors were at the party."
+      ],
+      "topic": "Who",
+      "difficulty": "Medium",
+      "hint": "Past event attendee query."
+    },
+    {
+      "id": "who_24",
+      "gujarati": "કોણ આવતા શનિવારે હનુમાનજીના મંદિર માં હશે?",
+      "english": "Who will be at the Hanumanji temple next Saturday?",
+      "answers": [
+        "My grandfather will be at the Hanumanji temple next Saturday.",
+        "Many devotees will be at the temple next Saturday.",
+        "Our family will be at the Hanumanji temple."
+      ],
+      "topic": "Who",
+      "difficulty": "Hard",
+      "hint": "Future date specific attendance."
+    },
+    {
+      "id": "who_25",
+      "gujarati": "૨૦૨૧ માં રિલાયન્સ કંપનીમાં કોણ હશે?",
+      "english": "Who will be in Reliance company in 2021?",
+      "answers": [
+        "Mukesh Ambani will be heading Reliance company in 2021.",
+        "My cousin brother will be working as an engineer in Reliance.",
+        "Top executives will be present in Reliance company."
+      ],
+      "topic": "Who",
+      "difficulty": "Hard",
+      "hint": "Future time frame query for job/person."
+    },
+    {
+      "id": "who_26",
+      "gujarati": "સારથી ફાર્મની સામે શીતલ ની બાજુમાં કોણ છે?",
+      "english": "Who is next to Sheetal opposite Sarthi Farm?",
+      "answers": [
+        "Anjali is sitting next to Sheetal opposite Sarthi Farm.",
+        "Her mother is standing next to Sheetal.",
+        "Pooja is next to Sheetal."
+      ],
+      "topic": "Who",
+      "difficulty": "Hard",
+      "hint": "Complex spatial location query."
+    },
+    {
+      "id": "who_27",
+      "gujarati": "તુલસી હોટેલમાં અત્યારે કોણ છે?",
+      "english": "Who is in Tulsi Hotel right now?",
+      "answers": [
+        "My uncle is staying in Tulsi Hotel right now.",
+        "The tourists are having lunch in Tulsi Hotel right now.",
+        "Manager Rohit is in Tulsi Hotel right now."
+      ],
+      "topic": "Who",
+      "difficulty": "Medium",
+      "hint": "Use 'right now' for present immediate moment."
+    },
+    {
+      "id": "who_28",
+      "gujarati": "દિલ્હીમાં મોદીની પાછળ કોણ હશે?",
+      "english": "Who will be behind Modi in Delhi?",
+      "answers": [
+        "His security commanders will be behind Modi in Delhi.",
+        "The party ministers will be standing behind Modi.",
+        "His personal assistant will be behind Modi."
+      ],
+      "topic": "Who",
+      "difficulty": "Hard",
+      "hint": "Future spatial alignment with person."
+    },
+    {
+      "id": "who_29",
+      "gujarati": "પેરેડાઈઝ માં સરની સાથે કોણ છે?",
+      "english": "Who is with Sir in Paradise?",
+      "answers": [
+        "The new administrator is with Sir in Paradise.",
+        "A student's parent is with Sir in Paradise.",
+        "Ankit Sir is sitting with Sir in Paradise."
+      ],
+      "topic": "Who",
+      "difficulty": "Medium",
+      "hint": "Use 'with' for companion identification."
+    },
+    {
+      "id": "who_30",
+      "gujarati": "આવતી કાલે કોણ દુબઈ માં હશે?",
+      "english": "Who will be in Dubai tomorrow?",
+      "answers": [
+        "My director will be in Dubai tomorrow.",
+        "Rahul is traveling and will be in Dubai tomorrow.",
+        "Our business client will be in Dubai tomorrow."
+      ],
+      "topic": "Who",
+      "difficulty": "Medium",
+      "hint": "Future travel placement question."
+    },
+    {
+      "id": "who_31",
+      "gujarati": "૨૦૧૭ માં કોણ USA(અમેરિકા) માં હતું?",
+      "english": "Who was in the USA in 2017?",
+      "answers": [
+        "Donald Trump was in office in the USA in 2017.",
+        "My elder sister was pursuing her studies in the USA in 2017.",
+        "Dr. Patel was in the USA in 2017."
+      ],
+      "topic": "Who",
+      "difficulty": "Hard",
+      "hint": "Past year location check."
+    },
+    {
+      "id": "who_32",
+      "gujarati": "કોણ ગૌતમની ફેક્ટરી માં છે?",
+      "english": "Who is in Gautam's factory?",
+      "answers": [
+        "The factory workers are in Gautam's factory.",
+        "The supervisor is managing inside Gautam's factory.",
+        "Gautam himself is in his factory."
+      ],
+      "topic": "Who",
+      "difficulty": "Medium",
+      "hint": "Occupant check for property owner."
+    },
+    {
+      "id": "who_33",
+      "gujarati": "કોણ મહારાણા પ્રતાપ ગાર્ડનમાં છે?",
+      "english": "Who is in Maharana Pratap Garden?",
+      "answers": [
+        "Senior citizens are walking in Maharana Pratap Garden.",
+        "Children are playing in Maharana Pratap Garden.",
+        "My uncle is taking a walk in Maharana Pratap Garden."
+      ],
+      "topic": "Who",
+      "difficulty": "Medium",
+      "hint": "Public park occupant inquiry."
+    },
+    {
+      "id": "who_34",
+      "gujarati": "કોણ છેલ્લી બેંચ પર હતું?",
+      "english": "Who was on the last bench?",
+      "answers": [
+        "Karan and Varun were sitting on the last bench.",
+        "The absent student's friend was on the last bench.",
+        "Rohan was on the last bench."
+      ],
+      "topic": "Who",
+      "difficulty": "Easy",
+      "hint": "Seating location in classroom past tense."
+    },
+    {
+      "id": "who_35",
+      "gujarati": "પેરેડાઈઝ માં કોણ બીજી બેંચ પર છે?",
+      "english": "Who is on the second bench in Paradise?",
+      "answers": [
+        "Priya and Riya are sitting on the second bench in Paradise.",
+        "Aman is sitting on the second bench in Paradise.",
+        "The new girl student is on the second bench in Paradise."
+      ],
+      "topic": "Who",
+      "difficulty": "Medium",
+      "hint": "Specific classroom seat identification."
+    }
+  ],
+  "what_section": [
+    {
+      "id": "what_1",
+      "gujarati": "ટેબલ પર શું છે?",
+      "english": "What is on the table?",
+      "answers": [
+        "A book is on the table.",
+        "There is a bottle on the table.",
+        "A laptop is kept on the table."
+      ],
+      "topic": "What",
+      "difficulty": "Easy",
+      "hint": "Start with 'What is' followed by the prepositions."
+    },
+    {
+      "id": "what_2",
+      "gujarati": "ખુરશી પર શું છે?",
+      "english": "What is on the chair?",
+      "answers": [
+        "A bag is on the chair.",
+        "There is a jacket on the chair.",
+        "A cushion is on the chair."
+      ],
+      "topic": "What",
+      "difficulty": "Easy",
+      "hint": "Inquire about objects placed on a chair."
+    },
+    {
+      "id": "what_3",
+      "gujarati": "વૃક્ષ પર શું હતું?",
+      "english": "What was on the tree?",
+      "answers": [
+        "A bird was on the tree.",
+        "There were many apples on the tree.",
+        "A monkey was on the tree."
+      ],
+      "topic": "What",
+      "difficulty": "Easy",
+      "hint": "Use 'was' for past state."
+    },
+    {
+      "id": "what_4",
+      "gujarati": "બેંચ પર શું હશે?",
+      "english": "What will be on the bench?",
+      "answers": [
+        "A school bag will be on the bench.",
+        "There will be books on the bench.",
+        "A newspaper will be on the bench."
+      ],
+      "topic": "What",
+      "difficulty": "Easy",
+      "hint": "Use 'will be' for future tense."
+    },
+    {
+      "id": "what_5",
+      "gujarati": "દીવાલ પર શું હતું?",
+      "english": "What was on the wall?",
+      "answers": [
+        "A clock was on the wall.",
+        "There was a painting on the wall.",
+        "A calendar was hanging on the wall."
+      ],
+      "topic": "What",
+      "difficulty": "Easy",
+      "hint": "Past tense question about item on wall surface."
+    },
+    {
+      "id": "what_6",
+      "gujarati": "નદી માં શું હશે?",
+      "english": "What will be in the river?",
+      "answers": [
+        "Water and fish will be in the river.",
+        "Boats will be in the river.",
+        "There will be clean water in the river."
+      ],
+      "topic": "What",
+      "difficulty": "Easy",
+      "hint": "Future location state question inside location."
+    },
+    {
+      "id": "what_7",
+      "gujarati": "જગમાં શું હતું?",
+      "english": "What was in the jug?",
+      "answers": [
+        "Water was in the jug.",
+        "There was fresh orange juice in the jug.",
+        "Milk was in the jug."
+      ],
+      "topic": "What",
+      "difficulty": "Easy",
+      "hint": "Inquire container contents in past tense."
+    },
+    {
+      "id": "what_8",
+      "gujarati": "D-Mart ની પાછળ શું છે?",
+      "english": "What is behind D-Mart?",
+      "answers": [
+        "A residential society is behind D-Mart.",
+        "There is a parking lot behind D-Mart.",
+        "A playground is behind D-Mart."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Use 'behind' for location relativity."
+    },
+    {
+      "id": "what_9",
+      "gujarati": "બગીચા ની સામે શું હતું?",
+      "english": "What was opposite the garden?",
+      "answers": [
+        "A school was opposite the garden.",
+        "There was a tea shop opposite the garden.",
+        "A library was opposite the garden."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Use 'opposite' or 'in front of' in past tense."
+    },
+    {
+      "id": "what_10",
+      "gujarati": "સવાણી માં શું છે?",
+      "english": "What is in Savani?",
+      "answers": [
+        "A hospital is in Savani.",
+        "There are shopping complexes in Savani.",
+        "A school is located in Savani."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Inquire about area features."
+    },
+    {
+      "id": "what_11",
+      "gujarati": "બરોડા માં શું છે?",
+      "english": "What is in Baroda?",
+      "answers": [
+        "Laxmi Vilas Palace is in Baroda.",
+        "There is Sayaji Garden in Baroda.",
+        "MS University is in Baroda."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Identify landmarks in a city."
+    },
+    {
+      "id": "what_12",
+      "gujarati": "બરોડાની સામે શું હતું?",
+      "english": "What was opposite Baroda?",
+      "answers": [
+        "An industrial area was situated opposite Baroda.",
+        "There was a highway junction opposite Baroda entrance.",
+        "A toll plaza was near opposite Baroda border."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Past spatial location query."
+    },
+    {
+      "id": "what_13",
+      "gujarati": "કર્મનાથ મંદિર ની પાછળ શું છે?",
+      "english": "What is behind Karmanath Temple?",
+      "answers": [
+        "A river bank is behind Karmanath Temple.",
+        "There is a quiet garden behind Karmanath Temple.",
+        "A community hall is behind Karmanath Temple."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Location behind landmark query."
+    },
+    {
+      "id": "what_14",
+      "gujarati": "કામરેજ માં શું છે?",
+      "english": "What is in Kamrej?",
+      "answers": [
+        "A sugar factory is in Kamrej.",
+        "There is a big toll plaza in Kamrej.",
+        "A river bridge is in Kamrej."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Inquire presence in a location."
+    },
+    {
+      "id": "what_15",
+      "gujarati": "પેરેડાઈઝ સ્પોકન ઈંગ્લીશ કલાસીસ ની સામે શું હશે?",
+      "english": "What will be opposite Paradise Spoken English Classes?",
+      "answers": [
+        "A new shopping complex will be opposite Paradise Spoken English Classes.",
+        "There will be a stationary store opposite it.",
+        "A bank branch will be opposite Paradise Spoken English Classes."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Future relative location query."
+    },
+    {
+      "id": "what_16",
+      "gujarati": "વનીતા વિશ્રામ ની સામે શું છે?",
+      "english": "What is opposite Vanita Vishram?",
+      "answers": [
+        "A science college is opposite Vanita Vishram.",
+        "There is a sports ground opposite Vanita Vishram.",
+        "A famous book stall is opposite Vanita Vishram."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Current landmark relative query."
+    },
+    {
+      "id": "what_17",
+      "gujarati": "ડુમસ રોડ પર શું હશે?",
+      "english": "What will be on Dumas Road?",
+      "answers": [
+        "Heavy traffic will be on Dumas Road in the evening.",
+        "There will be new food stalls on Dumas Road.",
+        "A marathon run will be held on Dumas Road."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Future event/state on road query."
+    },
+    {
+      "id": "what_18",
+      "gujarati": "V.R મોલ ની સામે શું હતું?",
+      "english": "What was opposite V.R. Mall?",
+      "answers": [
+        "An open ground was opposite V.R. Mall.",
+        "There was a car showroom opposite V.R. Mall.",
+        "A food truck court was opposite V.R. Mall."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Past location check."
+    },
+    {
+      "id": "what_19",
+      "gujarati": "રાહુલ-રાજ મોલની બાજુમાં શું હશે?",
+      "english": "What will be next to Rahul Raj Mall?",
+      "answers": [
+        "A luxury hotel will be next to Rahul Raj Mall.",
+        "There will be a metro station next to Rahul Raj Mall.",
+        "A new multiplex center will be constructed next to it."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Use 'next to' or 'beside' for future location."
+    },
+    {
+      "id": "what_20",
+      "gujarati": "કારગીલ ચોક ની બાજુમાં શું છે?",
+      "english": "What is next to Kargil Chowk?",
+      "answers": [
+        "A memorial garden is next to Kargil Chowk.",
+        "There is a popular restaurant next to Kargil Chowk.",
+        "A high-rise commercial building is next to Kargil Chowk."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Identify neighbor structure."
+    },
+    {
+      "id": "what_21",
+      "gujarati": "તિરુપતી સોસાયટી ની સામે શું છે?",
+      "english": "What is opposite Tirupati Society?",
+      "answers": [
+        "A vegetable market is opposite Tirupati Society.",
+        "There is a temple opposite Tirupati Society.",
+        "A municipal park is opposite Tirupati Society."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Inquire about opposite location."
+    },
+    {
+      "id": "what_22",
+      "gujarati": "યોગીચોક ની બાજુમાં શું હતું?",
+      "english": "What was next to Yogi Chowk?",
+      "answers": [
+        "A small tea stall was next to Yogi Chowk.",
+        "There was an open plot next to Yogi Chowk.",
+        "A bus stand was next to Yogi Chowk."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Past nearby location check."
+    },
+    {
+      "id": "what_23",
+      "gujarati": "સ્વસ્તિક પ્લાઝા માં શું હશે?",
+      "english": "What will be in Swastik Plaza?",
+      "answers": [
+        "Many computer institutes will be in Swastik Plaza.",
+        "There will be a new gym in Swastik Plaza.",
+        "Several offices will be in Swastik Plaza."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Future establishment query inside building."
+    },
+    {
+      "id": "what_24",
+      "gujarati": "નાનાવરાછાની ની નજીક શું છે?",
+      "english": "What is near Nana Varachha?",
+      "answers": [
+        "The Tapi riverfront is near Nana Varachha.",
+        "There is a famous diamond market near Nana Varachha.",
+        "A sports complex is near Nana Varachha."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Use 'near' or 'close to'."
+    },
+    {
+      "id": "what_25",
+      "gujarati": "નવજીવન હોટેલની સામે શું હતું?",
+      "english": "What was opposite Navjivan Hotel?",
+      "answers": [
+        "A petrol pump was opposite Navjivan Hotel.",
+        "There was a bus stop opposite Navjivan Hotel.",
+        "A travel agency office was opposite Navjivan Hotel."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Past spatial location query."
+    },
+    {
+      "id": "what_26",
+      "gujarati": "શ્યામ-ધામ મંદિરની નજીક શું છે?",
+      "english": "What is near Shyam Dham Temple?",
+      "answers": [
+        "A public garden is near Shyam Dham Temple.",
+        "There is a primary school near Shyam Dham Temple.",
+        "A community center is near Shyam Dham Temple."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Identify landmark surroundings."
+    },
+    {
+      "id": "what_27",
+      "gujarati": "મોટાવરાછા માં મહાદેવ ચોક માં શું છે?",
+      "english": "What is in Mahadev Chowk in Mota Varachha?",
+      "answers": [
+        "A famous Mahadev temple is in Mahadev Chowk.",
+        "There are popular street food stalls in Mahadev Chowk.",
+        "A fountain circle is in Mahadev Chowk."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Specific square feature query."
+    },
+    {
+      "id": "what_28",
+      "gujarati": "સુરત માં ભાગળ ચોક નજીક શું છે?",
+      "english": "What is near Bhagal Chowk in Surat?",
+      "answers": [
+        "The historical Old Fort is near Bhagal Chowk.",
+        "There is a famous textile market near Bhagal Chowk.",
+        "The main clock tower is near Bhagal Chowk."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "City center landmark question."
+    },
+    {
+      "id": "what_29",
+      "gujarati": "અમદાવાદમાં કાંકરિયા ની સામે શું હતું?",
+      "english": "What was opposite Kankaria in Ahmedabad?",
+      "answers": [
+        "A kids' city amusement zone was opposite Kankaria.",
+        "There was a zoo entrance opposite Kankaria lake front.",
+        "A heritage museum was opposite Kankaria."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Past landmark inquiry."
+    },
+    {
+      "id": "what_30",
+      "gujarati": "T.G.B હોટેલ ની પાછળ શું હશે?",
+      "english": "What will be behind T.G.B Hotel?",
+      "answers": [
+        "A large convention center will be behind T.G.B Hotel.",
+        "There will be a residential apartment tower behind T.G.B Hotel.",
+        "A private garden will be behind T.G.B Hotel."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Future spatial location question."
+    },
+    {
+      "id": "what_31",
+      "gujarati": "તુલસીદર્શન સોસાયટી ની સામે શું છે?",
+      "english": "What is opposite Tulsidarsan Society?",
+      "answers": [
+        "A shopping arcade is opposite Tulsidarsan Society.",
+        "There is a municipal garden opposite Tulsidarsan Society.",
+        "A doctor's clinic is opposite Tulsidarsan Society."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Landmark placement query."
+    },
+    {
+      "id": "what_32",
+      "gujarati": "તપોવન સર્કલની બાજુમાં શું હતું?",
+      "english": "What was next to Tapovan Circle?",
+      "answers": [
+        "A nursery garden was next to Tapovan Circle.",
+        "There was a tea lounge next to Tapovan Circle.",
+        "A petrol station was next to Tapovan Circle."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Past relative location check."
+    },
+    {
+      "id": "what_33",
+      "gujarati": "BMW મોટર શોરૂમ ની નજીક શું છે?",
+      "english": "What is near the BMW motor showroom?",
+      "answers": [
+        "An Audi showroom is near the BMW motor showroom.",
+        "There is a highway hotel near the BMW motor showroom.",
+        "A service center is near the BMW motor showroom."
+      ],
+      "topic": "What",
+      "difficulty": "Medium",
+      "hint": "Identify surrounding showroom/place."
+    },
+    {
+      "id": "what_34",
+      "gujarati": "વૃક્ષની નીચે શું હતું?",
+      "english": "What was under the tree?",
+      "answers": [
+        "A wooden bench was under the tree.",
+        "There was a bicycle kept under the tree.",
+        "A sleeping dog was under the tree."
+      ],
+      "topic": "What",
+      "difficulty": "Easy",
+      "hint": "Use 'under' with past tense."
+    },
+    {
+      "id": "what_35",
+      "gujarati": "રાહુલની બેગમાં શું છે?",
+      "english": "What is in Rahul's bag?",
+      "answers": [
+        "A notebook and pencil box are in Rahul's bag.",
+        "There is a lunchbox in Rahul's bag.",
+        "A water bottle is in Rahul's bag."
+      ],
+      "topic": "What",
+      "difficulty": "Easy",
+      "hint": "Possessive item check inside bag."
+    }
+  ],
+  "where_section": [
+    {
+      "id": "where_1",
+      "gujarati": "પેરેડાઈઝ કલાસીસ ક્યાં છે?",
+      "english": "Where is Paradise Classes?",
+      "answers": [
+        "Paradise Classes is in Swastik Plaza.",
+        "It is located on Varachha Road.",
+        "Paradise Classes is near Yogi Chowk."
+      ],
+      "topic": "Where",
+      "difficulty": "Easy",
+      "hint": "Inquire about location in present tense using 'Where is'."
+    },
+    {
+      "id": "where_2",
+      "gujarati": "આશાંતિપ શાળા ક્યાં છે?",
+      "english": "Where is Ashadeep School?",
+      "answers": [
+        "Ashadeep School is near Simada Naka.",
+        "It is located in Surat.",
+        "Ashadeep School is opposite the garden."
+      ],
+      "topic": "Where",
+      "difficulty": "Easy",
+      "hint": "Ask for school location."
+    },
+    {
+      "id": "where_3",
+      "gujarati": "યોગીરાજ સોસાયટી ક્યાં હશે?",
+      "english": "Where will Yogi Raj Society be?",
+      "answers": [
+        "Yogi Raj Society will be near Nana Varachha.",
+        "It will be opposite the main road.",
+        "Yogi Raj Society will be near the hospital."
+      ],
+      "topic": "Where",
+      "difficulty": "Easy",
+      "hint": "Use 'Where will... be' for future tense."
+    },
+    {
+      "id": "where_4",
+      "gujarati": "સ્વસ્તિક પ્લાઝા ક્યાં હતું?",
+      "english": "Where was Swastik Plaza?",
+      "answers": [
+        "Swastik Plaza was near Yogi Chowk.",
+        "It was in Varachha area.",
+        "Swastik Plaza was opposite the complex."
+      ],
+      "topic": "Where",
+      "difficulty": "Easy",
+      "hint": "Use 'Where was' for past tense."
+    },
+    {
+      "id": "where_5",
+      "gujarati": "TGB હોટેલ ક્યાં હશે?",
+      "english": "Where will TGB Hotel be?",
+      "answers": [
+        "TGB Hotel will be on Dumas Road.",
+        "It will be near the airport.",
+        "TGB Hotel will be in Surat."
+      ],
+      "topic": "Where",
+      "difficulty": "Easy",
+      "hint": "Ask about future location of hotel."
+    },
+    {
+      "id": "where_6",
+      "gujarati": "તારો ભાઈ અત્યારે ક્યાં છે?",
+      "english": "Where is your brother right now?",
+      "answers": [
+        "My brother is at home right now.",
+        "He is in his college right now.",
+        "My brother is at the office."
+      ],
+      "topic": "Where",
+      "difficulty": "Easy",
+      "hint": "Ask present location of a relative."
+    },
+    {
+      "id": "where_7",
+      "gujarati": "રાજહંસ થિયેટર ક્યાં છે?",
+      "english": "Where is Rajhans Theater?",
+      "answers": [
+        "Rajhans Theater is near Piplod.",
+        "It is located on Varachha Main Road.",
+        "Rajhans Theater is near VR Mall."
+      ],
+      "topic": "Where",
+      "difficulty": "Easy",
+      "hint": "Ask location of a cinema hall."
+    },
+    {
+      "id": "where_8",
+      "gujarati": "પી.પી.સવાણી શાળા ક્યાં હતી?",
+      "english": "Where was P.P. Savani School?",
+      "answers": [
+        "P.P. Savani School was in Hirabaug.",
+        "It was near the highway.",
+        "P.P. Savani School was located in Surat."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Past location query for school."
+    },
+    {
+      "id": "where_9",
+      "gujarati": "જલારામ લોચા શોપ ક્યાં છે?",
+      "english": "Where is Jalaram Locho Shop?",
+      "answers": [
+        "Jalaram Locho Shop is near Chowk Bazaar.",
+        "It is located opposite the station.",
+        "Jalaram Locho Shop is in Surat."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Inquire about shop location."
+    },
+    {
+      "id": "where_10",
+      "gujarati": "૨૦૧૧ માં તારા કાકા ક્યાં હતા?",
+      "english": "Where was your uncle in 2011?",
+      "answers": [
+        "My uncle was in Mumbai in 2011.",
+        "He was in the USA in 2011.",
+        "My uncle was living in Ahmedabad in 2011."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Past time frame location inquiry."
+    },
+    {
+      "id": "where_11",
+      "gujarati": "૨૦૨૨ માં જેનીલ ક્યાં હશે?",
+      "english": "Where will Jenil be in 2022?",
+      "answers": [
+        "Jenil will be in London in 2022.",
+        "He will be at university in 2022.",
+        "Jenil will be living in Canada."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Future year location question."
+    },
+    {
+      "id": "where_12",
+      "gujarati": "પટેલ ખાડી ભંડાર શોપ ક્યાં છે?",
+      "english": "Where is Patel Khadi Bhandar Shop?",
+      "answers": [
+        "Patel Khadi Bhandar Shop is in Station Road.",
+        "It is near Bhagal Chowk.",
+        "Patel Khadi Bhandar Shop is in the market."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Shop location check."
+    },
+    {
+      "id": "where_13",
+      "gujarati": "દીપકમલ મોલ ક્યાં છે?",
+      "english": "Where is Deepkamal Mall?",
+      "answers": [
+        "Deepkamal Mall is near Sarthana Jakatnaka.",
+        "It is located on Zoo Road.",
+        "Deepkamal Mall is in Surat."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Mall placement query."
+    },
+    {
+      "id": "where_14",
+      "gujarati": "સુરતમાં એરપોર્ટ ક્યાં હશે?",
+      "english": "Where will the airport be in Surat?",
+      "answers": [
+        "The airport will be on Dumas Road in Surat.",
+        "It will be near Magdalla.",
+        "The airport will be located in the outer city."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "City landmark future location."
+    },
+    {
+      "id": "where_15",
+      "gujarati": "કેયુર વડોદરા માં ક્યાં હશે?",
+      "english": "Where will Keyur be in Vadodara?",
+      "answers": [
+        "Keyur will be at MS University in Vadodara.",
+        "He will be at his friend's house in Vadodara.",
+        "Keyur will be at the railway station in Vadodara."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Future person location in city."
+    },
+    {
+      "id": "where_16",
+      "gujarati": "મેહુલ ના ભાઈ ની કોલેજ ક્યાં છે?",
+      "english": "Where is Mehul's brother's college?",
+      "answers": [
+        "Mehul's brother's college is in Ahmedabad.",
+        "It is near the university ground.",
+        "His college is on SVNIT campus."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Possessive location query."
+    },
+    {
+      "id": "where_17",
+      "gujarati": "કિરણ હોસ્પિટલ ક્યાં છે?",
+      "english": "Where is Kiran Hospital?",
+      "answers": [
+        "Kiran Hospital is in Katargam.",
+        "It is located near the main road.",
+        "Kiran Hospital is in Surat."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Hospital address query."
+    },
+    {
+      "id": "where_18",
+      "gujarati": "રેલ્વે સ્ટેશન ક્યાં છે?",
+      "english": "Where is the railway station?",
+      "answers": [
+        "The railway station is near Station Road.",
+        "It is in the center of the city.",
+        "The railway station is opposite the bus stand."
+      ],
+      "topic": "Where",
+      "difficulty": "Easy",
+      "hint": "Ask location of railway station."
+    },
+    {
+      "id": "where_19",
+      "gujarati": "મહાવીર કોલેજ ક્યાં હશે?",
+      "english": "Where will Mahavir College be?",
+      "answers": [
+        "Mahavir College will be on VIP Road.",
+        "It will be near Vesu area.",
+        "Mahavir College will be located in Surat."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Future college placement."
+    },
+    {
+      "id": "where_20",
+      "gujarati": "ભાવિન ના મમ્મી ગઈકાલે ક્યાં હતા?",
+      "english": "Where was Bhavin's mother yesterday?",
+      "answers": [
+        "Bhavin's mother was at the market yesterday.",
+        "She was at her relative's place yesterday.",
+        "Bhavin's mother was at the hospital yesterday."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Past location of person."
+    },
+    {
+      "id": "where_21",
+      "gujarati": "મોહિત નો ભાઈ આજે ક્યાં છે?",
+      "english": "Where is Mohit's brother today?",
+      "answers": [
+        "Mohit's brother is at school today.",
+        "He is at his workplace today.",
+        "Mohit's brother is at home today."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Time-based present location."
+    },
+    {
+      "id": "where_22",
+      "gujarati": "તારો મોબાઈલ ક્યાં છે?",
+      "english": "Where is your mobile?",
+      "answers": [
+        "My mobile is on the table.",
+        "It is in my pocket.",
+        "My mobile is charging on the shelf."
+      ],
+      "topic": "Where",
+      "difficulty": "Easy",
+      "hint": "Ask item placement."
+    },
+    {
+      "id": "where_23",
+      "gujarati": "મારી ઘડિયાળ ક્યાં છે?",
+      "english": "Where is my watch?",
+      "answers": [
+        "Your watch is on the bedside table.",
+        "It is inside your bag.",
+        "Your watch is on the cupboard shelf."
+      ],
+      "topic": "Where",
+      "difficulty": "Easy",
+      "hint": "Personal item location query."
+    },
+    {
+      "id": "where_24",
+      "gujarati": "મારી બેગ ક્યાં છે?",
+      "english": "Where is my bag?",
+      "answers": [
+        "Your bag is near the door.",
+        "It is on the chair.",
+        "Your bag is in the bedroom."
+      ],
+      "topic": "Where",
+      "difficulty": "Easy",
+      "hint": "Personal accessory location query."
+    },
+    {
+      "id": "where_25",
+      "gujarati": "મારા પૈસા ક્યાં છે?",
+      "english": "Where is my money?",
+      "answers": [
+        "Your money is inside the wallet.",
+        "It is in the drawer.",
+        "Your money is kept in the locker."
+      ],
+      "topic": "Where",
+      "difficulty": "Easy",
+      "hint": "Belonging placement question."
+    },
+    {
+      "id": "where_26",
+      "gujarati": "અમિતાભ બચ્ચન નો બંગલો ક્યાં હતો?",
+      "english": "Where was Amitabh Bachchan's bungalow?",
+      "answers": [
+        "Amitabh Bachchan's bungalow was in Juhu, Mumbai.",
+        "It was located near the beach.",
+        "His bungalow was in Mumbai."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Celebrity residence past query."
+    },
+    {
+      "id": "where_27",
+      "gujarati": "મારી કાર ક્યાં છે?",
+      "english": "Where is my car?",
+      "answers": [
+        "Your car is in the parking lot.",
+        "It is parked outside the gate.",
+        "Your car is at the garage."
+      ],
+      "topic": "Where",
+      "difficulty": "Easy",
+      "hint": "Vehicle location question."
+    },
+    {
+      "id": "where_28",
+      "gujarati": "દીપિકાનું ફાર્મહાઉસ ક્યાં હશે?",
+      "english": "Where will Deepika's farmhouse be?",
+      "answers": [
+        "Deepika's farmhouse will be in Lonavala.",
+        "It will be near Alibaug.",
+        "Her farmhouse will be in Goa."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Future residence location."
+    },
+    {
+      "id": "where_29",
+      "gujarati": "કાર્તિક ની બેગ ક્યાં છે?",
+      "english": "Where is Kartik's bag?",
+      "answers": [
+        "Kartik's bag is on his desk.",
+        "It is in the car.",
+        "Kartik's bag is on the sofa."
+      ],
+      "topic": "Where",
+      "difficulty": "Easy",
+      "hint": "Possessive item position."
+    },
+    {
+      "id": "where_30",
+      "gujarati": "ચિરાગ ની નવી ઓફિસ ક્યાં હશે?",
+      "english": "Where will Chirag's new office be?",
+      "answers": [
+        "Chirag's new office will be in Ring Road.",
+        "It will be inside Swastik Plaza.",
+        "His new office will be on VIP Road."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Future office location."
+    },
+    {
+      "id": "where_31",
+      "gujarati": "અત્યારે મોદી ક્યાં છે?",
+      "english": "Where is Modi right now?",
+      "answers": [
+        "Modi is in New Delhi right now.",
+        "He is at parliament right now.",
+        "Modi is on an official foreign tour right now."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Current presence of personality."
+    },
+    {
+      "id": "where_32",
+      "gujarati": "૨૦૧૫ માં તારા દાદા ક્યાં હતા?",
+      "english": "Where was your grandfather in 2015?",
+      "answers": [
+        "My grandfather was at our native village in 2015.",
+        "He was in Surat in 2015.",
+        "My grandfather was living with us in 2015."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Past timeframe family location."
+    },
+    {
+      "id": "where_33",
+      "gujarati": "યોગીચોક ક્યાં આવેલું છે?",
+      "english": "Where is Yogi Chowk located?",
+      "answers": [
+        "Yogi Chowk is located in Varachha area, Surat.",
+        "It is situated on the main ring road.",
+        "Yogi Chowk is located near Puna Simada Road."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Use 'located' or 'situated'."
+    },
+    {
+      "id": "where_34",
+      "gujarati": "પ્રાણી સંગ્રહાલય ક્યાં આવેલું છે?",
+      "english": "Where is the zoo located?",
+      "answers": [
+        "The zoo is located in Sarthana, Surat.",
+        "It is situated near the Nature Park.",
+        "The zoo is located near Kamrej Road."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Ask location of a zoo."
+    },
+    {
+      "id": "where_35",
+      "gujarati": "સરદાર સ્મૃતિભવન ક્યાં આવેલું હતું?",
+      "english": "Where was Sardar Smriti Bhavan located?",
+      "answers": [
+        "Sardar Smriti Bhavan was located in Varachha.",
+        "It was situated near the central square.",
+        "Sardar Smriti Bhavan was located in Surat city."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Past location of monument/building."
+    },
+    {
+      "id": "where_36",
+      "gujarati": "તાજ હોટેલ ક્યાં છે?",
+      "english": "Where is Taj Hotel?",
+      "answers": [
+        "Taj Hotel is near Gateway of India in Mumbai.",
+        "It is located in Mumbai.",
+        "Taj Hotel is near the sea shore."
+      ],
+      "topic": "Where",
+      "difficulty": "Easy",
+      "hint": "Famous hotel landmark location."
+    },
+    {
+      "id": "where_37",
+      "gujarati": "ઈન્ડિયા ગેટ ક્યાં છે?",
+      "english": "Where is India Gate?",
+      "answers": [
+        "India Gate is in New Delhi.",
+        "It is located at Rajpath, New Delhi.",
+        "India Gate is in the capital of India."
+      ],
+      "topic": "Where",
+      "difficulty": "Easy",
+      "hint": "National monument location."
+    },
+    {
+      "id": "where_38",
+      "gujarati": "માઉન્ટ આબુ ક્યાં છે?",
+      "english": "Where is Mount Abu?",
+      "answers": [
+        "Mount Abu is in Rajasthan.",
+        "It is located near the Gujarat-Rajasthan border.",
+        "Mount Abu is situated in the Aravalli range."
+      ],
+      "topic": "Where",
+      "difficulty": "Easy",
+      "hint": "Hill station location query."
+    },
+    {
+      "id": "where_39",
+      "gujarati": "ગોકુલધામ સોસાયટી ક્યાં આવેલી હશે?",
+      "english": "Where will Gokuldham Society be located?",
+      "answers": [
+        "Gokuldham Society will be located in Goregaon, Mumbai.",
+        "It will be situated near the film city.",
+        "Gokuldham Society will be located in Mumbai."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Future/fictional place location query."
+    },
+    {
+      "id": "where_40",
+      "gujarati": "જીગરની બેગ ક્યાં હતી?",
+      "english": "Where was Jigar's bag?",
+      "answers": [
+        "Jigar's bag was on his bench.",
+        "It was under the table.",
+        "Jigar's bag was in his room."
+      ],
+      "topic": "Where",
+      "difficulty": "Easy",
+      "hint": "Past item position query."
+    },
+    {
+      "id": "where_41",
+      "gujarati": "પ્રિન્સિપલ ની ઓફિસ ક્યાં છે?",
+      "english": "Where is the principal's office?",
+      "answers": [
+        "The principal's office is on the ground floor.",
+        "It is next to the staff room.",
+        "The principal's office is near the main entrance."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "School campus location check."
+    },
+    {
+      "id": "where_42",
+      "gujarati": "અમેજિયા વોટરપાર્ક ક્યાં આવેલો છે?",
+      "english": "Where is Amaazia Water Park located?",
+      "answers": [
+        "Amaazia Water Park is located in Dumbhal, Surat.",
+        "It is situated near Magob.",
+        "Amaazia Water Park is located in Surat."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Waterpark landmark location."
+    },
+    {
+      "id": "where_43",
+      "gujarati": "વ્હાઈટ હાઉસ ક્યાં છે?",
+      "english": "Where is the White House?",
+      "answers": [
+        "The White House is in Washington, D.C.",
+        "It is located in the USA.",
+        "The White House is on Pennsylvania Avenue."
+      ],
+      "topic": "Where",
+      "difficulty": "Easy",
+      "hint": "International landmark location."
+    },
+    {
+      "id": "where_44",
+      "gujarati": "અરવિંદ કેજરીવાલ નું ઘર ક્યાં છે?",
+      "english": "Where is Arvind Kejriwal's house?",
+      "answers": [
+        "Arvind Kejriwal's house is in New Delhi.",
+        "It is located in Civil Lines, Delhi.",
+        "His house is in Delhi."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Political figure residence."
+    },
+    {
+      "id": "where_45",
+      "gujarati": "ગુજરાત મોબાઈલ શોપ ક્યાં હતી?",
+      "english": "Where was Gujarat Mobile Shop?",
+      "answers": [
+        "Gujarat Mobile Shop was near Hirabaug Circle.",
+        "It was located on the main market road.",
+        "Gujarat Mobile Shop was opposite the plaza."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Past shop location query."
+    },
+    {
+      "id": "where_46",
+      "gujarati": "નિહારની બાઈક ક્યાં હતી?",
+      "english": "Where was Nihar's bike?",
+      "answers": [
+        "Nihar's bike was in the parking area.",
+        "It was parked outside his class.",
+        "Nihar's bike was near the garage."
+      ],
+      "topic": "Where",
+      "difficulty": "Easy",
+      "hint": "Past vehicle placement."
+    },
+    {
+      "id": "where_47",
+      "gujarati": "આલિયા આવતી કાલે ક્યાં હશે?",
+      "english": "Where will Alia be tomorrow?",
+      "answers": [
+        "Alia will be at the shoot tomorrow.",
+        "She will be in Mumbai tomorrow.",
+        "Alia will be at her studio tomorrow."
+      ],
+      "topic": "Where",
+      "difficulty": "Medium",
+      "hint": "Future location check for person."
+    },
+    {
+      "id": "where_48",
+      "gujarati": "જતીનનું લેપટોપ ક્યાં છે?",
+      "english": "Where is Jatin's laptop?",
+      "answers": [
+        "Jatin's laptop is on his study table.",
+        "It is inside his laptop bag.",
+        "Jatin's laptop is in his office."
+      ],
+      "topic": "Where",
+      "difficulty": "Easy",
+      "hint": "Electronic device placement query."
+    }
+  ],
+  "whose_section": [
+    {
+      "id": "whose_1",
+      "gujarati": "ટેબલ પર કોનું પર્સ છે?",
+      "english": "Whose purse is on the table?",
+      "answers": [
+        "It is Priya's purse.",
+        "That purse belongs to my sister.",
+        "I think it is the teacher's purse."
+      ],
+      "topic": "Whose",
+      "difficulty": "Easy",
+      "hint": "Identify ownership using 'Whose purse'."
+    },
+    {
+      "id": "whose_2",
+      "gujarati": "ટેબલ નીચે કોનો મોબાઈલ હતો?",
+      "english": "Whose mobile was under the table?",
+      "answers": [
+        "It was Rahul's mobile.",
+        "That mobile belonged to my brother.",
+        "It was the manager's phone."
+      ],
+      "topic": "Whose",
+      "difficulty": "Easy",
+      "hint": "Use past tense 'was' with 'Whose mobile'."
+    },
+    {
+      "id": "whose_3",
+      "gujarati": "પાર્કિંગ માં કોની કાર છે?",
+      "english": "Whose car is in the parking?",
+      "answers": [
+        "It is Mr. Sharma's car.",
+        "That car belongs to my neighbor.",
+        "It is our doctor's car."
+      ],
+      "topic": "Whose",
+      "difficulty": "Easy",
+      "hint": "Ask about vehicle ownership in location."
+    },
+    {
+      "id": "whose_4",
+      "gujarati": "રાહુલના ફાર્મ માં કોની બર્થડે પાર્ટી હશે?",
+      "english": "Whose birthday party will be at Rahul's farm?",
+      "answers": [
+        "It will be Anjali's birthday party.",
+        "It will be Rahul's son's birthday party.",
+        "It will be my best friend's party."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Use future tense 'will be' with 'Whose'."
+    },
+    {
+      "id": "whose_5",
+      "gujarati": "ગોવામાં કોનું ફાર્મ હાઉસ છે?",
+      "english": "Whose farmhouse is in Goa?",
+      "answers": [
+        "It is Sachin's farmhouse.",
+        "That farmhouse belongs to an actor.",
+        "It is my uncle's property."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Ask about real estate ownership."
+    },
+    {
+      "id": "whose_6",
+      "gujarati": "મહાબલેશ્વર માં કોની હોટેલ છે?",
+      "english": "Whose hotel is in Mahabaleshwar?",
+      "answers": [
+        "It is the Taj Group's hotel.",
+        "That hotel belongs to a local businessman.",
+        "It is my friend's family hotel."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Identify hotel owner using 'Whose hotel'."
+    },
+    {
+      "id": "whose_7",
+      "gujarati": "યોગીચોક માં કોનું કલાસીસ છે?",
+      "english": "Whose classes are in Yogichowk?",
+      "answers": [
+        "It is Patel Sir's classes.",
+        "Those are Paradise Spoken English Classes.",
+        "It belongs to a well-known institute."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Ask about institute/class ownership."
+    },
+    {
+      "id": "whose_8",
+      "gujarati": "એપલ શોપિંગ સેન્ટરમાં કોની દુકાન હતી?",
+      "english": "Whose shop was in Apple Shopping Center?",
+      "answers": [
+        "It was Suresh Bhai's shop.",
+        "That shop belonged to a tailor.",
+        "It was my uncle's garment shop."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Use past tense 'was' for shop ownership."
+    },
+    {
+      "id": "whose_9",
+      "gujarati": "પ્રિયાની ઘરે કોના પિતા હતા?",
+      "english": "Whose father was at Priya's home?",
+      "answers": [
+        "It was Rohan's father.",
+        "My friend's father was there.",
+        "It was the society chairman's father."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Ask about relationship/person's presence."
+    },
+    {
+      "id": "whose_10",
+      "gujarati": "ઓફિસમાં કોના કાકા છે?",
+      "english": "Whose uncle is in the office?",
+      "answers": [
+        "It is Amit's uncle.",
+        "My manager's uncle is visiting.",
+        "He is the CEO's uncle."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Identify family relation using 'Whose uncle'."
+    },
+    {
+      "id": "whose_11",
+      "gujarati": "દિલ્હીમાં કોની બહેન હશે?",
+      "english": "Whose sister will be in Delhi?",
+      "answers": [
+        "It will be Neha's sister.",
+        "My roommate's sister will be staying there.",
+        "It will be Vivek's elder sister."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Future continuous/simple future context with 'Whose sister'."
+    },
+    {
+      "id": "whose_12",
+      "gujarati": "૨૦૧૬ માં કોના પિતા USA માં હતા?",
+      "english": "Whose father was in the USA in 2016?",
+      "answers": [
+        "It was Hardik's father.",
+        "My colleague's father was working there in 2016.",
+        "It was Dr. Mehta's father."
+      ],
+      "topic": "Whose",
+      "difficulty": "Hard",
+      "hint": "Past tense with specific time frame (2016)."
+    },
+    {
+      "id": "whose_13",
+      "gujarati": "કોની BMW કાર પાર્કિંગ માં છે?",
+      "english": "Whose BMW car is in the parking?",
+      "answers": [
+        "It is the director's BMW car.",
+        "That BMW belongs to Mr. Kapadia.",
+        "I think it is the new client's car."
+      ],
+      "topic": "Whose",
+      "difficulty": "Easy",
+      "hint": "Specify brand name following 'Whose'."
+    },
+    {
+      "id": "whose_14",
+      "gujarati": "કોનું લેપટોપ યોગેશના ઘરમાં હતું?",
+      "english": "Whose laptop was in Yogesh's house?",
+      "answers": [
+        "It was Parth's laptop.",
+        "That laptop belonged to Yogesh's brother.",
+        "It was his office laptop."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Past tense query about item location."
+    },
+    {
+      "id": "whose_15",
+      "gujarati": "કોનું ઘર સ્કૂલ થી નજીક હશે?",
+      "english": "Whose house will be near the school?",
+      "answers": [
+        "It will be Sneha's house.",
+        "My cousin's house will be closest.",
+        "It will be the principal's residence."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Ask about relative distance with future tense."
+    },
+    {
+      "id": "whose_16",
+      "gujarati": "કોની ફાઈલ કબાટ માં છે?",
+      "english": "Whose file is in the cupboard?",
+      "answers": [
+        "It is the accountant's file.",
+        "That file belongs to the new project.",
+        "It is Mr. Shah's confidential file."
+      ],
+      "topic": "Whose",
+      "difficulty": "Easy",
+      "hint": "Identify file owner using 'Whose file'."
+    },
+    {
+      "id": "whose_17",
+      "gujarati": "કોનું સ્ટેચ્યુ સરદાર ડેમ પાસે છે?",
+      "english": "Whose statue is near the Sardar Dam?",
+      "answers": [
+        "Sardar Vallabhbhai Patel's statue is near the Sardar Dam.",
+        "It is the Statue of Unity representing Sardar Patel.",
+        "It belongs to India's Iron Man, Sardar Patel."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Factual question identifying famous monument personality."
+    },
+    {
+      "id": "whose_18",
+      "gujarati": "કોનો પુત્ર ૨૦૨૧ માં કેનેડામાં હશે?",
+      "english": "Whose son will be in Canada in 2021?",
+      "answers": [
+        "It will be Ramesh Bhai's son.",
+        "My neighbor's son will be studying there.",
+        "It will be Mr. Joshi's son."
+      ],
+      "topic": "Whose",
+      "difficulty": "Hard",
+      "hint": "Future context paired with past time marker/year."
+    },
+    {
+      "id": "whose_19",
+      "gujarati": "કોનું પર્સ નીલમ ની બેગમાં હતું?",
+      "english": "Whose purse was in Neelam's bag?",
+      "answers": [
+        "It was Pooja's purse.",
+        "That purse belonged to Neelam's mother.",
+        "It was her friend's purse."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Past location ownership question."
+    },
+    {
+      "id": "whose_20",
+      "gujarati": "કામરેજમાં કોનું મંદિર છે?",
+      "english": "Whose temple is in Kamrej?",
+      "answers": [
+        "It is Lord Shiva's temple.",
+        "That is Hanumanji's temple.",
+        "It is Goddess Amba's temple."
+      ],
+      "topic": "Whose",
+      "difficulty": "Easy",
+      "hint": "Identify deity using 'Whose temple'."
+    },
+    {
+      "id": "whose_21",
+      "gujarati": "દીપકમલ મોલ ની પાછળ કોનો બંગલો છે?",
+      "english": "Whose bungalow is behind Deepkamal Mall?",
+      "answers": [
+        "It is Mr. Ambani's bungalow.",
+        "That bungalow belongs to a famous builder.",
+        "It is my doctor's bungalow."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Inquire about property owner relative to landmark."
+    },
+    {
+      "id": "whose_22",
+      "gujarati": "કાપોદ્રા વિસ્તાર માં કોનું મંદિર છે?",
+      "english": "Whose temple is in Kapodra area?",
+      "answers": [
+        "It is Lord Swaminarayan's temple.",
+        "That is Goddess Gayatri's temple.",
+        "It is Lord Ram's temple."
+      ],
+      "topic": "Whose",
+      "difficulty": "Easy",
+      "hint": "Ask about deity temple in area."
+    },
+    {
+      "id": "whose_23",
+      "gujarati": "કોનો પિતા રેણુકા ની સાથે હતા?",
+      "english": "Whose father was with Renuka?",
+      "answers": [
+        "It was Priya's father.",
+        "My cousin's father was with her.",
+        "It was the school teacher's father."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Identify companion's parent using 'Whose father'."
+    },
+    {
+      "id": "whose_24",
+      "gujarati": "કોનો પતિ સલમાન ની સાથે હશે?",
+      "english": "Whose husband will be with Salman?",
+      "answers": [
+        "It will be Katrina's husband.",
+        "My aunt's husband will be meeting him.",
+        "It will be the producer's husband."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Future relationship query with 'Whose husband'."
+    },
+    {
+      "id": "whose_25",
+      "gujarati": "કોની ફ્રેન્ડ રોહન ની બર્થડે પાર્ટી માં છે?",
+      "english": "Whose friend is at Rohan's birthday party?",
+      "answers": [
+        "It is Kavya's friend.",
+        "My sister's friend is attending the party.",
+        "It is Rohan's college friend."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Present presence query using 'Whose friend'."
+    },
+    {
+      "id": "whose_26",
+      "gujarati": "આ કોનું પુસ્તક છે?",
+      "english": "Whose book is this?",
+      "answers": [
+        "This is Rahul's book.",
+        "It belongs to my teacher.",
+        "I think it is yours."
+      ],
+      "topic": "Whose",
+      "difficulty": "Easy",
+      "hint": "Start with 'Whose' followed by the noun and verb."
+    },
+    {
+      "id": "whose_27",
+      "gujarati": "પેલી કોની બહેન છે?",
+      "english": "Whose sister is she?",
+      "answers": [
+        "She is Aarav's sister.",
+        "That girl is my neighbor's sister.",
+        "She is standard 10th topper's sister."
+      ],
+      "topic": "Whose",
+      "difficulty": "Easy",
+      "hint": "Ask about female family relation."
+    },
+    {
+      "id": "whose_28",
+      "gujarati": "પેલા કોના કાકા છે?",
+      "english": "Whose uncle is he?",
+      "answers": [
+        "He is Mayur's uncle.",
+        "That gentleman is our landlord's uncle.",
+        "He is the shopkeeper's uncle."
+      ],
+      "topic": "Whose",
+      "difficulty": "Easy",
+      "hint": "Ask about male family relation."
+    },
+    {
+      "id": "whose_29",
+      "gujarati": "કોનો છોકરો આપણી કાર માં હતાં?",
+      "english": "Whose boy was in our car?",
+      "answers": [
+        "It was Mahesh Bhai's boy.",
+        "That was my friend's son.",
+        "It was the driver's boy."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Past location query about person."
+    },
+    {
+      "id": "whose_30",
+      "gujarati": "કોનું બેગ બેંચ પર છે?",
+      "english": "Whose bag is on the bench?",
+      "answers": [
+        "It is Bhavik's bag.",
+        "That bag belongs to the new student.",
+        "It is my classmate's backpack."
+      ],
+      "topic": "Whose",
+      "difficulty": "Easy",
+      "hint": "Identify owner of object on surface."
+    },
+    {
+      "id": "whose_31",
+      "gujarati": "કોના મમ્મી મોદીની સાથે હશે?",
+      "english": "Whose mother will be with Modi?",
+      "answers": [
+        "It will be the MP's mother.",
+        "The chief guest's mother will be present.",
+        "It will be the award winner's mother."
+      ],
+      "topic": "Whose",
+      "difficulty": "Hard",
+      "hint": "Future association query with public figure."
+    },
+    {
+      "id": "whose_32",
+      "gujarati": "કોનો ભાઈ કાલે ગોવા માં હશે?",
+      "english": "Whose brother will be in Goa tomorrow?",
+      "answers": [
+        "It will be Tapan's brother.",
+        "My friend's brother is traveling there tomorrow.",
+        "It will be the manager's brother."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Future location query using time word 'tomorrow'."
+    },
+    {
+      "id": "whose_33",
+      "gujarati": "કોનું મૅંગો નું ફાર્મ જૂનાગઢ માં છે?",
+      "english": "Whose mango farm is in Junagadh?",
+      "answers": [
+        "It is Patel Family's mango farm.",
+        "That orchard belongs to my grandfather.",
+        "It is a famous local farmer's mango farm."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Inquire about agricultural property owner."
+    },
+    {
+      "id": "whose_34",
+      "gujarati": "કોનો સોડા ની શોપ ગોકુલ ધામમાં છે?",
+      "english": "Whose soda shop is in Gokuldham?",
+      "answers": [
+        "Abdul's soda shop is in Gokuldham.",
+        "It is Abdul's famous shop.",
+        "That soda shop belongs to Abdul."
+      ],
+      "topic": "Whose",
+      "difficulty": "Easy",
+      "hint": "Identify fictional/TV shop owner."
+    },
+    {
+      "id": "whose_35",
+      "gujarati": "કોના ભાઈનું નામ કેવલ છે?",
+      "english": "Whose brother's name is Keval?",
+      "answers": [
+        "It is Nidhi's brother.",
+        "My classmate's brother is named Keval.",
+        "It is Darshan's younger brother."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Inquire about identity via family relationship."
+    },
+    {
+      "id": "whose_36",
+      "gujarati": "કોની બુક અધૂરી હતી?",
+      "english": "Whose book was incomplete?",
+      "answers": [
+        "It was Karan's book.",
+        "The backbencher's notebook was incomplete.",
+        "It was my friend's exercise book."
+      ],
+      "topic": "Whose",
+      "difficulty": "Easy",
+      "hint": "Past state ownership query."
+    },
+    {
+      "id": "whose_37",
+      "gujarati": "કોનો ભાઈ ડોક્ટર છે?",
+      "english": "Whose brother is a doctor?",
+      "answers": [
+        "It is Hiren's brother.",
+        "My roommate's brother works as a surgeon.",
+        "It is Priya's elder brother."
+      ],
+      "topic": "Whose",
+      "difficulty": "Easy",
+      "hint": "Ask about profession of someone's brother."
+    },
+    {
+      "id": "whose_38",
+      "gujarati": "કોના પિતા પોલીસ છે?",
+      "english": "Whose father is a policeman?",
+      "answers": [
+        "It is Jay's father.",
+        "My neighbor's father is a police inspector.",
+        "It is Varun's father."
+      ],
+      "topic": "Whose",
+      "difficulty": "Easy",
+      "hint": "Inquire about parent's occupation."
+    },
+    {
+      "id": "whose_39",
+      "gujarati": "કોની બહેન ગાયક છે?",
+      "english": "Whose sister is a singer?",
+      "answers": [
+        "It is Kinjal's sister.",
+        "My colleague's sister is a professional singer.",
+        "It is Harsh's sister."
+      ],
+      "topic": "Whose",
+      "difficulty": "Easy",
+      "hint": "Identify sister with specific talent/job."
+    },
+    {
+      "id": 40,
+      "gujarati": "કોના કાકા રિલાયન્સ માં હતા?",
+      "english": "Whose uncle was in Reliance?",
+      "answers": [
+        "It was Rohit's uncle.",
+        "My friend's uncle was an engineer at Reliance.",
+        "It was Chirag's uncle."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Past employment connection query."
+    },
+    {
+      "id": "whose_41",
+      "gujarati": "કોના પપ્પા જેઠાલાલ ના ભાઈ હતા?",
+      "english": "Whose father was Jethalal's brother?",
+      "answers": [
+        "It was Tapu's uncle's child / relative.",
+        "Daya's brother's kids.",
+        "It refers to Champaklal's family line."
+      ],
+      "topic": "Whose",
+      "difficulty": "Hard",
+      "hint": "TV show relationship query."
+    },
+    {
+      "id": "whose_42",
+      "gujarati": "કોની મમ્મી બબીતાની ફ્રેન્ડ છે?",
+      "english": "Whose mother is Babita's friend?",
+      "answers": [
+        "It is Goli's mother (Komal).",
+        "Pinku's mother is her friend.",
+        "Iyer's wife's neighbor friend."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Friendship relation query."
+    },
+    {
+      "id": "whose_43",
+      "gujarati": "કોનો તબેલો નવસારીમાં છે?",
+      "english": "Whose stable is in Navsari?",
+      "answers": [
+        "It is Kanu Bhai's dairy stable.",
+        "That stable belongs to a local farmer.",
+        "It is my uncle's horse stable."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Property ownership in specific city."
+    },
+    {
+      "id": "whose_44",
+      "gujarati": "કોનું લન્ચબોક્ષ ઓફિસ માં હતું?",
+      "english": "Whose lunchbox was in the office?",
+      "answers": [
+        "It was Mansi's lunchbox.",
+        "That lunchbox belonged to the manager.",
+        "It was the accountant's tiffin."
+      ],
+      "topic": "Whose",
+      "difficulty": "Easy",
+      "hint": "Item location query in past tense."
+    },
+    {
+      "id": "whose_45",
+      "gujarati": "કોનું ક્લાસીસ બોમ્બે માં હશે?",
+      "english": "Whose classes will be in Bombay?",
+      "answers": [
+        "It will be Professor Shah's classes.",
+        "A famous coaching institute's branch will be there.",
+        "It will be my mentor's classes."
+      ],
+      "topic": "Whose",
+      "difficulty": "Medium",
+      "hint": "Future expansion location query."
+    },
+    {
+      "id": "whose_46",
+      "gujarati": "કોનો ફોટો દીવાલ પર છે?",
+      "english": "Whose photo is on the wall?",
+      "answers": [
+        "It is Mahatma Gandhi's photo.",
+        "That is my grandfather's photo.",
+        "It is our founder's portrait."
+      ],
+      "topic": "Whose",
+      "difficulty": "Easy",
+      "hint": "Identify subject in picture/wall framing."
+    },
+    {
+      "id": "whose_47",
+      "gujarati": "કોનો આઈડિયા સારો હતો?",
+      "english": "Whose idea was good?",
+      "answers": [
+        "It was Riya's idea.",
+        "The team leader's idea was excellent.",
+        "It was my colleague's suggestion."
+      ],
+      "topic": "Whose",
+      "difficulty": "Easy",
+      "hint": "Abstract concept ownership query."
+    }
+  ],
+  "how_many_much_section": [
+    {
+      "id": "how_many_much_1",
+      "gujarati": "ક્લાસમાં કેટલા બોર્ડ હતા?",
+      "english": "How many boards were there in the class?",
+      "answers": [
+        "There were two green boards in the class.",
+        "There was only one whiteboard.",
+        "There were three digital boards."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Easy",
+      "hint": "Use 'How many' for countable items like boards."
+    },
+    {
+      "id": "how_many_much_2",
+      "gujarati": "વૃક્ષ નીચે કેટલા કુતરા છે?",
+      "english": "How many dogs are under the tree?",
+      "answers": [
+        "There are three dogs resting under the tree.",
+        "There is only one stray dog.",
+        "There are four puppies under the tree."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Easy",
+      "hint": "Countable noun query with 'How many'."
+    },
+    {
+      "id": "how_many_much_3",
+      "gujarati": "ટેબલ પર કેટલા પુસ્તકો હશે?",
+      "english": "How many books will be on the table?",
+      "answers": [
+        "There will be five books on the table.",
+        "There will be around ten reference books.",
+        "Only two textbooks will be placed there."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Easy",
+      "hint": "Future countable noun query."
+    },
+    {
+      "id": "how_many_much_4",
+      "gujarati": "બગીચામાં કેટલા વૃક્ષો છે?",
+      "english": "How many trees are there in the garden?",
+      "answers": [
+        "There are over fifty trees in the garden.",
+        "There are around twenty neem trees.",
+        "There are dozens of flowering trees."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Easy",
+      "hint": "Quantity question for countable objects."
+    },
+    {
+      "id": "how_many_much_5",
+      "gujarati": "સુરતમાં કેટલી 5 star હોટેલ છે?",
+      "english": "How many 5-star hotels are there in Surat?",
+      "answers": [
+        "There are around four major 5-star hotels in Surat.",
+        "There are several luxury hotels in the city.",
+        "Surat has about 3 to 5 premium 5-star properties."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Medium",
+      "hint": "Countable quantity query about city amenities."
+    },
+    {
+      "id": "how_many_much_6",
+      "gujarati": "અમદાવાદ માં કેટલા બીચ છે?",
+      "english": "How many beaches are there in Ahmedabad?",
+      "answers": [
+        "There are no sea beaches in Ahmedabad.",
+        "Ahmedabad has zero beaches as it is inland.",
+        "There are riverfront spots, but no sea beaches."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Medium",
+      "hint": "Countable question with zero quantity response."
+    },
+    {
+      "id": "how_many_much_7",
+      "gujarati": "સુરત માં કેટલા બ્રીજ છે?",
+      "english": "How many bridges are there in Surat?",
+      "answers": [
+        "There are over one hundred bridges in Surat.",
+        "Surat is known as the city of bridges with dozens of them.",
+        "There are many major flyovers and river bridges."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Medium",
+      "hint": "Large countable number query."
+    },
+    {
+      "id": "how_many_much_8",
+      "gujarati": "ફ્રીઝ માં કેટલી બોટલ હતી?",
+      "english": "How many bottles were in the fridge?",
+      "answers": [
+        "There were four water bottles in the fridge.",
+        "There were six milk and juice bottles.",
+        "Only two cold drink bottles were inside."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Easy",
+      "hint": "Past tense countable question."
+    },
+    {
+      "id": "how_many_much_9",
+      "gujarati": "મેદાનમાં કેટલા ખેલાડીઓ હશે?",
+      "english": "How many players will be on the ground?",
+      "answers": [
+        "There will be eleven players per team.",
+        "There will be twenty-two players in total.",
+        "About fifteen players will be practicing."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Easy",
+      "hint": "Future plural countable query."
+    },
+    {
+      "id": "how_many_much_10",
+      "gujarati": "કેટલા પુસ્તકો છેલ્લી બેંચ પર હતા?",
+      "english": "How many books were on the last bench?",
+      "answers": [
+        "There were three notebooks on the last bench.",
+        "About five library books were lying there.",
+        "There were no books on the last bench."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Easy",
+      "hint": "Position-based countable question."
+    },
+    {
+      "id": "how_many_much_11",
+      "gujarati": "કેટલા મંદિર વરાછા વિસ્તારમાં છે?",
+      "english": "How many temples are there in the Varachha area?",
+      "answers": [
+        "There are dozens of prominent temples in Varachha.",
+        "There are at least ten major temples in that area.",
+        "You can find many small and large temples there."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Medium",
+      "hint": "Countable noun query for geographical area."
+    },
+    {
+      "id": "how_many_much_12",
+      "gujarati": "કેટલા બાળકો યોગેશ ની છત પર હતા?",
+      "english": "How many children were on Yogesh's terrace?",
+      "answers": [
+        "There were six children flying kites.",
+        "About four kids were playing on the terrace.",
+        "There was only one child there."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Medium",
+      "hint": "Past countable people count."
+    },
+    {
+      "id": "how_many_much_13",
+      "gujarati": "કબાટ માં કેટલી ફાઈલો હતી?",
+      "english": "How many files were in the cupboard?",
+      "answers": [
+        "There were twelve office files in the cupboard.",
+        "There were around twenty tax files stored inside.",
+        "Only three project files were found."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Easy",
+      "hint": "Countable storage query."
+    },
+    {
+      "id": "how_many_much_14",
+      "gujarati": "લાઈબ્રેરી માં કેટલા કબાટ હતા?",
+      "english": "How many cupboards were there in the library?",
+      "answers": [
+        "There were fifteen large wooden cupboards.",
+        "There were ten steel cupboards in the reading room.",
+        "About eight cupboards were filled with novels."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Easy",
+      "hint": "Plural countable query in past tense."
+    },
+    {
+      "id": "how_many_much_15",
+      "gujarati": "યોગી ચોક નજીક કેટલી મોબાઈલ શોપ છે?",
+      "english": "How many mobile shops are near Yogi Chowk?",
+      "answers": [
+        "There are more than twenty mobile shops near Yogi Chowk.",
+        "There are around five big electronics stores.",
+        "You can find numerous mobile repair and sale shops."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Medium",
+      "hint": "Countable establishment query."
+    },
+    {
+      "id": "how_many_much_16",
+      "gujarati": "કિરણ હોસ્પિટલ માં કેટલા ડોક્ટર હશે?",
+      "english": "How many doctors will be at Kiran Hospital?",
+      "answers": [
+        "There will be over fifty specialist doctors.",
+        "About one hundred doctors work in shifts.",
+        "There will be many resident doctors on duty."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Medium",
+      "hint": "Future headcount estimate question."
+    },
+    {
+      "id": "how_many_much_17",
+      "gujarati": "આશાસ્દીપ શાળામાં કેટલા વિદ્યાર્થીઓ હતા?",
+      "english": "How many students were in Ashadeep School?",
+      "answers": [
+        "There were over two thousand students.",
+        "About fifteen hundred students were enrolled.",
+        "There were around fifty students per class."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Medium",
+      "hint": "Countable institution size question."
+    },
+    {
+      "id": "how_many_much_18",
+      "gujarati": "વનિતા વિશ્રામ સામે કેટલી કોલેજ છે?",
+      "english": "How many colleges are opposite Vanita Vishram?",
+      "answers": [
+        "There is two prominent college campuses opposite to it.",
+        "There is one major women's college right across.",
+        "There are a couple of educational institutes."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Medium",
+      "hint": "Landmark relative countable query."
+    },
+    {
+      "id": "how_many_much_19",
+      "gujarati": "સુરત માં કેટલી નદી છે?",
+      "english": "How many rivers are there in Surat?",
+      "answers": [
+        "The primary river passing through Surat is the Tapi.",
+        "There is one major river, the Tapi River.",
+        "Mainly one river flows through the heart of the city."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Easy",
+      "hint": "Geographical countable feature query."
+    },
+    {
+      "id": "how_many_much_20",
+      "gujarati": "નદીમાં કેટલું પાણી હશે?",
+      "english": "How much water will be in the river?",
+      "answers": [
+        "There will be a massive amount of water during monsoon.",
+        "There will be very little water in summer.",
+        "The water level will be around five meters."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Medium",
+      "hint": "Use 'How much' for uncountable liquids."
+    },
+    {
+      "id": "how_many_much_21",
+      "gujarati": "જગમાં કેટલું દૂધ હતું?",
+      "english": "How much milk was in the jug?",
+      "answers": [
+        "There was one liter of milk in the jug.",
+        "The jug was half full.",
+        "There was barely a cup of milk left."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Easy",
+      "hint": "Uncountable volume query in past tense."
+    },
+    {
+      "id": "how_many_much_22",
+      "gujarati": "ડબ્બામાં કેટલી ખાંડ છે?",
+      "english": "How much sugar is in the container?",
+      "answers": [
+        "There is two kilograms of sugar in the container.",
+        "The container is almost empty.",
+        "There is enough sugar for a month."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Easy",
+      "hint": "Use 'How much' for mass/uncountable nouns like sugar."
+    },
+    {
+      "id": "how_many_much_23",
+      "gujarati": "૨૦૧૯ માં સુરતમાં કેટલો વરસાદ હતો?",
+      "english": "How much rain was there in Surat in 2019?",
+      "answers": [
+        "There was over 2000 mm of rain in 2019.",
+        "Surat received heavy rainfall that year.",
+        "There was record-breaking rainfall during that season."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Hard",
+      "hint": "Uncountable weather phenomenon measurement."
+    },
+    {
+      "id": "how_many_much_24",
+      "gujarati": "ટોપલામાં કેટલી દ્રાક્ષ છે?",
+      "english": "How many grapes are in the basket?",
+      "answers": [
+        "There are about fifty grapes in the basket.",
+        "There is one whole bunch of grapes.",
+        "The basket is full of fresh grapes."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Easy",
+      "hint": "Countable small fruit unit query."
+    },
+    {
+      "id": "how_many_much_25",
+      "gujarati": "કેટલી કીટલીમાં ચા છે?",
+      "english": "How many kettles have tea in them?",
+      "answers": [
+        "There is tea in two kettles.",
+        "Only one kettle contains hot tea.",
+        "All three kettles are full of tea."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Medium",
+      "hint": "Countable container context."
+    },
+    {
+      "id": "how_many_much_26",
+      "gujarati": "ડીક્ષનરી માં કેટલા સ્પેલિંગ છે?",
+      "english": "How many words/spellings are in the dictionary?",
+      "answers": [
+        "There are over 100,000 words in a standard dictionary.",
+        "A comprehensive dictionary has hundreds of thousands of entries.",
+        "There are countless vocabulary words included."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Medium",
+      "hint": "Large scale countable noun query."
+    },
+    {
+      "id": "how_many_much_27",
+      "gujarati": "મોબાઈલ માં કેટલી સ્પેસ છે?",
+      "english": "How much space is in the mobile?",
+      "answers": [
+        "There is 128 GB of internal storage in the mobile.",
+        "About 20 GB of free space is available.",
+        "The mobile has plenty of storage capacity."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Medium",
+      "hint": "Use 'How much' for digital storage/uncountable space."
+    },
+    {
+      "id": "how_many_much_28",
+      "gujarati": "નદીમાં કેટલી માછલીઓ હશે?",
+      "english": "How many fish will be in the river?",
+      "answers": [
+        "There will be thousands of fish in the river.",
+        "Countless fish thrive in this freshwater river.",
+        "There are many local species of fish present."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Medium",
+      "hint": "Plural countable query for wildlife."
+    },
+    {
+      "id": "how_many_much_29",
+      "gujarati": "સુરત માં કેટલા રેલ્વે સ્ટેશન છે?",
+      "english": "How many railway stations are there in Surat?",
+      "answers": [
+        "There are several stations including Surat Main, Udhna, Bhestan, and Kosad.",
+        "Surat has around 4 to 5 major railway stations.",
+        "The main junction is Surat station along with smaller local stops."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Medium",
+      "hint": "Infrastructure countable query."
+    },
+    {
+      "id": "how_many_much_30",
+      "gujarati": "પાર્કિંગ માં કેટલી કાર હતી?",
+      "english": "How many cars were in the parking?",
+      "answers": [
+        "There were fifteen cars parked outside.",
+        "The basement parking had around thirty cars.",
+        "Only two cars were left in the lot."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Easy",
+      "hint": "Past countable vehicle count."
+    },
+    {
+      "id": "how_many_much_31",
+      "gujarati": "ગુજરાત માં કેટલા એરપોર્ટ છે?",
+      "english": "How many airports are in Gujarat?",
+      "answers": [
+        "Gujarat has around 10 operational commercial airports.",
+        "There are international airports in Ahmedabad and Surat, plus regional ones.",
+        "There are about ten major and minor airports."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Hard",
+      "hint": "State-level countable asset query."
+    },
+    {
+      "id": "how_many_much_32",
+      "gujarati": "વૃક્ષ પર ઉનાળા માં કેટલી કેરી હતી?",
+      "english": "How many mangoes were on the tree in summer?",
+      "answers": [
+        "There were hundreds of mangoes on the tree.",
+        "The tree yielded about fifty kilos of mangoes.",
+        "There were around forty ripe mangoes."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Medium",
+      "hint": "Past countable harvest query."
+    },
+    {
+      "id": "how_many_much_33",
+      "gujarati": "ઓફિસ માં કેટલા કોમ્પ્યુટર છે?",
+      "english": "How many computers are in the office?",
+      "answers": [
+        "There are twenty desktops in the office.",
+        "Every staff member has a laptop, making about thirty computers.",
+        "There are ten working systems present."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Easy",
+      "hint": "Countable tech equipment count."
+    },
+    {
+      "id": "how_many_much_34",
+      "gujarati": "વરાછા માં કેટલી શાળાઓ છે?",
+      "english": "How many schools are there in Varachha?",
+      "answers": [
+        "There are dozens of Gujarati and English medium schools.",
+        "There are more than thirty primary and secondary schools.",
+        "You can find many reputed private and government schools."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Medium",
+      "hint": "Local educational count query."
+    },
+    {
+      "id": "how_many_much_35",
+      "gujarati": "શોપ માં કેટલા ગ્રાહકો હતા ?",
+      "english": "How many customers were in the shop?",
+      "answers": [
+        "There were ten customers waiting in line.",
+        "The shop was crowded with over twenty buyers.",
+        "There were only two people shopping."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Easy",
+      "hint": "Past countable headcount."
+    },
+    {
+      "id": "how_many_much_36",
+      "gujarati": "સ્ટેશન પર કેટલી બસ હશે?",
+      "english": "How many buses will be at the station?",
+      "answers": [
+        "There will be around fifteen city buses.",
+        "Many interstate buses will arrive shortly.",
+        "There will be five buses waiting at the terminal."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Easy",
+      "hint": "Future countable transport question."
+    },
+    {
+      "id": "how_many_much_37",
+      "gujarati": "ઓફિસ માં કેટલા કર્મચારીઓ છે?",
+      "english": "How many employees are in the office?",
+      "answers": [
+        "There are fifty staff members working here.",
+        "Around twenty employees are present today.",
+        "The branch has a total of one hundred employees."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Easy",
+      "hint": "Present countable workplace headcount."
+    },
+    {
+      "id": "how_many_much_38",
+      "gujarati": "ઇન્ડિયા માં કેટલા મેગાસિટી છે?",
+      "english": "How many megacities are in India?",
+      "answers": [
+        "India has major megacities like Mumbai, Delhi, Bengaluru, Kolkata, Chennai, and Hyderabad.",
+        "There are around 5 to 6 officially recognized megacities.",
+        "Several primary urban hubs meet megacity criteria."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Hard",
+      "hint": "National scale statistical question."
+    },
+    {
+      "id": "how_many_much_39",
+      "gujarati": "ગુજરાત માં કેટલા હિલ સ્ટેશન છે?",
+      "english": "How many hill stations are there in Gujarat?",
+      "answers": [
+        "Saputara is the primary and official hill station in Gujarat.",
+        "Gujarat mainly features Saputara along with Wilson Hills.",
+        "There is one major hill station, Saputara."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Medium",
+      "hint": "Geographical destination count."
+    },
+    {
+      "id": "how_many_much_40",
+      "gujarati": "કુવા માં કેટલું પાણી છે?",
+      "english": "How much water is in the well?",
+      "answers": [
+        "The well is about twenty feet deep with water.",
+        "There is plenty of fresh water in the well.",
+        "It is almost dry during summer."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Easy",
+      "hint": "Uncountable liquid volume question."
+    },
+    {
+      "id": "how_many_much_41",
+      "gujarati": "ફુગ્ગા માં કેટલી હવા છે?",
+      "english": "How much air is in the balloon?",
+      "answers": [
+        "The balloon is inflated to full capacity.",
+        "There is just enough air to keep it floating.",
+        "It contains about two liters of air volume."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Easy",
+      "hint": "Uncountable gas volume query."
+    },
+    {
+      "id": "how_many_much_42",
+      "gujarati": "વિમાન માં કેટલા પેસેન્જરો હતા?",
+      "english": "How many passengers were in the airplane?",
+      "answers": [
+        "There were 180 passengers onboard.",
+        "The flight was fully booked with over two hundred people.",
+        "There were around fifty travelers."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Medium",
+      "hint": "Countable passenger count in past tense."
+    },
+    {
+      "id": "how_many_much_43",
+      "gujarati": "દૂધ માં કેટલું પ્રોટીન હોય છે?",
+      "english": "How much protein is in milk?",
+      "answers": [
+        "There is about 3.4 grams of protein per 100 ml of cow milk.",
+        "A glass of milk contains around 8 grams of protein.",
+        "Milk is a rich source with high protein concentration per serving."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Hard",
+      "hint": "Nutritional value question using 'How much'."
+    },
+    {
+      "id": "how_many_much_44",
+      "gujarati": "ZOO માં કેટલા પ્રાણીઓ હતા?",
+      "english": "How many animals were in the zoo?",
+      "answers": [
+        "There were over five hundred animals of various species.",
+        "The zoo housed around two hundred major mammals and birds.",
+        "There were dozens of wild animals."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Medium",
+      "hint": "Countable animal inventory query."
+    },
+    {
+      "id": "how_many_much_45",
+      "gujarati": "કંપની માં વિભાગો હશે?",
+      "english": "How many departments will be in the company?",
+      "answers": [
+        "There will be five core departments: HR, IT, Finance, Sales, and Marketing.",
+        "The organization will feature around eight operational divisions.",
+        "There will be three primary working units."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Medium",
+      "hint": "Future structural count query."
+    },
+    {
+      "id": "how_many_much_46",
+      "gujarati": "આકાશ માં કેટલા તારાઓ છે?",
+      "english": "How many stars are in the sky?",
+      "answers": [
+        "There are billions of stars in the observable universe.",
+        "You can see around two thousand stars with the naked eye at night.",
+        "The sky contains an infinite/countless number of stars."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Easy",
+      "hint": "Abstract countable quantity question."
+    },
+    {
+      "id": "how_many_much_47",
+      "gujarati": "ખેતર માં કેટલા શાકભાજી થશે?",
+      "english": "How many vegetables will grow in the field?",
+      "answers": [
+        "The farmer expects to harvest three types of vegetables.",
+        "Several tons of tomatoes and brinjal will yield.",
+        "We will plant around five distinct seasonal crops."
+      ],
+      "topic": "How Many / How Much",
+      "difficulty": "Medium",
+      "hint": "Agricultural yield count/variety query."
+    }
+  ],
+  "which_section": [
+    {
+      "id": "which_1",
+      "gujarati": "ટેબલ પર કયુ પુસ્તક છે?",
+      "english": "Which book is on the table?",
+      "answers": [
+        "The English grammar book is on the table.",
+        "My favorite science textbook is lying there.",
+        "It is the new Harry Potter novel."
+      ],
+      "topic": "Which",
+      "difficulty": "Easy",
+      "hint": "Use 'Which book' to choose among items on a table."
+    },
+    {
+      "id": "which_2",
+      "gujarati": "ટેબલ નીચે કયો મોબાઈલ છે?",
+      "english": "Which mobile is under the table?",
+      "answers": [
+        "The black Samsung phone is under the table.",
+        "It is the old iPhone model.",
+        "My brother's OnePlus phone fell under the table."
+      ],
+      "topic": "Which",
+      "difficulty": "Easy",
+      "hint": "Identify exact item choice with 'Which mobile'."
+    },
+    {
+      "id": "which_3",
+      "gujarati": "પાર્કિંગ માં કઈ કાર હતી?",
+      "english": "Which car was in the parking?",
+      "answers": [
+        "The white Hyundai Creta was in the parking.",
+        "It was the red Honda City car.",
+        "Our neighbor's Maruti Suzuki was parked there."
+      ],
+      "topic": "Which",
+      "difficulty": "Easy",
+      "hint": "Identify vehicle model/color choice."
+    },
+    {
+      "id": "which_4",
+      "gujarati": "વરાછામાં કયુ થીયેટર હશે?",
+      "english": "Which theater will be in Varachha?",
+      "answers": [
+        "Inox multiplex will be opening in Varachha.",
+        "PVR Cinemas will be constructed there.",
+        "It will be the local Rajhans Cinema."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Select specific entertainment place using 'Which'."
+    },
+    {
+      "id": "which_5",
+      "gujarati": "ઓફિસમાં કયુ કોમ્પ્યુટર હતું?",
+      "english": "Which computer was in the office?",
+      "answers": [
+        "The Dell desktop was set up in the office.",
+        "It was the new Apple iMac system.",
+        "The HP workstation was being used."
+      ],
+      "topic": "Which",
+      "difficulty": "Easy",
+      "hint": "Identify tech item specification."
+    },
+    {
+      "id": "which_6",
+      "gujarati": "વૃક્ષ નીચે કઈ ગાડી હતી?",
+      "english": "Which vehicle/car was under the tree?",
+      "answers": [
+        "The Royal Enfield motorbike was parked under the tree.",
+        "It was a blue Maruti Swift.",
+        "A delivery van was stationed under the shade."
+      ],
+      "topic": "Which",
+      "difficulty": "Easy",
+      "hint": "Identify specific vehicle type."
+    },
+    {
+      "id": "which_7",
+      "gujarati": "વૃક્ષ નીચે કયુ પ્રાણી હતું?",
+      "english": "Which animal was under the tree?",
+      "answers": [
+        "A black dog was resting under the tree.",
+        "It was a stray cow sitting in the shade.",
+        "A small brown cat was under the tree."
+      ],
+      "topic": "Which",
+      "difficulty": "Easy",
+      "hint": "Selection of animal species."
+    },
+    {
+      "id": "which_8",
+      "gujarati": "યોગી ચોક નજીક કઈ સોસાયટી છે?",
+      "english": "Which society is near Yogi Chowk?",
+      "answers": [
+        "Vijay Nagar Society is right near Yogi Chowk.",
+        "It is the Tulsi Shyam Residency.",
+        "Gokuldham Residency is located close by."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Identify specific residential colony."
+    },
+    {
+      "id": "which_9",
+      "gujarati": "D mart મોલની સામે કયુ મંદિર છે?",
+      "english": "Which temple is opposite D-Mart Mall?",
+      "answers": [
+        "The Hanumanji temple is opposite D-Mart Mall.",
+        "It is the Shiv Mandir across the road.",
+        "The Swaminarayan Temple is located right opposite."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Location relative landmark selection."
+    },
+    {
+      "id": "which_10",
+      "gujarati": "જકાતનાકા નજીક કયો મોલ હતો?",
+      "english": "Which mall was near Jakatnaka?",
+      "answers": [
+        "Deepkamal Mall was situated near Jakatnaka.",
+        "It was the Central Shopping Mall.",
+        "VR Mall was located further down that road."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Past structural option choice."
+    },
+    {
+      "id": "which_11",
+      "gujarati": "ગુજરાત માં મોટી દુધની ડેરી કઈ છે?",
+      "english": "Which is the large milk dairy in Gujarat?",
+      "answers": [
+        "Amul Dairy (GCMMF) is the largest milk dairy in Gujarat.",
+        "Sumul Dairy is the key major cooperative dairy in Surat region.",
+        "Dudhsagar Dairy is another huge dairy in North Gujarat."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Inquire about top choice/brand."
+    },
+    {
+      "id": "which_12",
+      "gujarati": "પેરેડાઈઝ કલાસીસ માં કઈ કંપની નું એ.સી છે?",
+      "english": "Which company's AC is in Paradise Classes?",
+      "answers": [
+        "A Voltas split AC is installed in Paradise Classes.",
+        "It is a Daikin inverter air conditioner.",
+        "The classroom uses a Blue Star AC unit."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Brand identification query."
+    },
+    {
+      "id": "which_13",
+      "gujarati": "કયો હીરો બાહુબલી ફિલ્મમાં હતો?",
+      "english": "Which hero was in the movie Bahubali?",
+      "answers": [
+        "Prabhas played the lead role of Bahubali.",
+        "Rana Daggubati played the antagonist Bhallaladeva.",
+        "Actor Prabhas starred as Amarendra Bahubali."
+      ],
+      "topic": "Which",
+      "difficulty": "Easy",
+      "hint": "Select specific actor/person from movie cast."
+    },
+    {
+      "id": "which_14",
+      "gujarati": "કયું કલાસીસ સ્વસ્તિક પ્લાઝામા છે?",
+      "english": "Which class is in Swastik Plaza?",
+      "answers": [
+        "Paradise Spoken English Classes is located in Swastik Plaza.",
+        "A famous IIT coaching center is in that complex.",
+        "Ideal Commerce Classes operates on the second floor."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Building occupant selection."
+    },
+    {
+      "id": "which_15",
+      "gujarati": "કઈ શાળા ચીકુવાડી વિસ્તાર માં છે?",
+      "english": "Which school is in the Chikuwadi area?",
+      "answers": [
+        "P. P. Savani School is in Chikuwadi.",
+        "Sadhana Vidyalaya is located nearby.",
+        "Gajera International School operates in that sector."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Locality-specific school inquiry."
+    },
+    {
+      "id": "which_16",
+      "gujarati": "કયું દવાખાનું યોગીચોક માં છે?",
+      "english": "Which clinic/dispensary is in Yogichowk?",
+      "answers": [
+        "Care Clinic is located right at Yogichowk.",
+        "Sanjivani General Hospital and Clinic is situated there.",
+        "Dr. Patel's Homeopathy Clinic operates in that area."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Healthcare facility selection."
+    },
+    {
+      "id": "which_17",
+      "gujarati": "કઈ હોસ્પિટલ યોગીચોક માં છે?",
+      "english": "Which hospital is in Yogichowk?",
+      "answers": [
+        "Diamond Hospital is near Yogichowk.",
+        "Punam Multispeciality Hospital is situated there.",
+        "LifeCare Hospital is located right at the square."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Hospital selection in specific area."
+    },
+    {
+      "id": "which_18",
+      "gujarati": "કયું ફળ ડીશમાં હતું?",
+      "english": "Which fruit was in the dish?",
+      "answers": [
+        "Sliced apple was in the dish.",
+        "Fresh mango pieces were served in the plate.",
+        "A bunch of sweet grapes was in the bowl."
+      ],
+      "topic": "Which",
+      "difficulty": "Easy",
+      "hint": "Identify food/fruit item among choices."
+    },
+    {
+      "id": "which_19",
+      "gujarati": "સુરત માં કઈ નદી છે?",
+      "english": "Which river is in Surat?",
+      "answers": [
+        "The Tapi River flows through Surat.",
+        "Surat is located on the banks of the River Tapi.",
+        "It is the famous Tapi (Tapti) River."
+      ],
+      "topic": "Which",
+      "difficulty": "Easy",
+      "hint": "Identify specific natural geographic feature."
+    },
+    {
+      "id": "which_20",
+      "gujarati": "અમદાવાદમાં કઈ નદી છે?",
+      "english": "Which river is in Ahmedabad?",
+      "answers": [
+        "The Sabarmati River flows through Ahmedabad.",
+        "Sabarmati River is the main river in Ahmedabad.",
+        "It is the Sabarmati, known for its riverfront."
+      ],
+      "topic": "Which",
+      "difficulty": "Easy",
+      "hint": "City river identification."
+    },
+    {
+      "id": "which_21",
+      "gujarati": "ગુજરાતમાં કયું હિલ-સ્ટેશન છે?",
+      "english": "Which hill station is in Gujarat?",
+      "answers": [
+        "Saputara is the primary hill station of Gujarat.",
+        "Wilson Hills in Valsad district is another hill station.",
+        "Saputara, located in the Dang district, is Gujarat's famous hill retreat."
+      ],
+      "topic": "Which",
+      "difficulty": "Easy",
+      "hint": "Identify primary tourist destination."
+    },
+    {
+      "id": "which_22",
+      "gujarati": "રાજસ્થાનમાં કયું હિલ-સ્ટેશન છે?",
+      "english": "Which hill station is in Rajasthan?",
+      "answers": [
+        "Mount Abu is the premier hill station in Rajasthan.",
+        "Mount Abu, situated in the Aravalli range, is in Rajasthan.",
+        "It is the popular Mount Abu hill resort."
+      ],
+      "topic": "Which",
+      "difficulty": "Easy",
+      "hint": "State geography query."
+    },
+    {
+      "id": "which_23",
+      "gujarati": "સુરતમાં કયો દરિયાકીનારો હતો?",
+      "english": "Which beach/coast was in Surat?",
+      "answers": [
+        "Dumas Beach is the most famous coast in Surat.",
+        "Suvali Beach is another popular coastal spot.",
+        "Ubharat Beach is located near the Surat coastal belt."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Coastal spot identification."
+    },
+    {
+      "id": "which_24",
+      "gujarati": "રાજહંસ થીયેટર ની સામે કયો મોલ હશે?",
+      "english": "Which mall will be opposite Rajhans Theater?",
+      "answers": [
+        "Iscon Mall will be built opposite Rajhans Theater.",
+        "A new Reliance Smart Mall will open there.",
+        "VR Mall branch will be situated across the street."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Future landmark placement question."
+    },
+    {
+      "id": "which_25",
+      "gujarati": "સુરતમાં કયું એરપોર્ટ હશે?",
+      "english": "Which airport will be in Surat?",
+      "answers": [
+        "Surat International Airport serves the city.",
+        "It is the newly expanded Surat Airport at Magdalla.",
+        "The international terminal will handle foreign flights."
+      ],
+      "topic": "Which",
+      "difficulty": "Easy",
+      "hint": "City airport identification."
+    },
+    {
+      "id": "which_26",
+      "gujarati": "નાનાવરાછા માં કઈ હોટેલ છે?",
+      "english": "Which hotel is in Nana Varachha?",
+      "answers": [
+        "Hotel Sadguru is located in Nana Varachha.",
+        "Hotel Royal Residency operates in that area.",
+        "A popular local dining hotel, Bhagat Tarachand, is situated there."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Local business spot choice."
+    },
+    {
+      "id": "which_27",
+      "gujarati": "વનિતા વિશ્રામ ની સામે કઈ કોલેજ છે?",
+      "english": "Which college is opposite Vanita Vishram?",
+      "answers": [
+        "Sir P. T. Sarvajanik College of Science is nearby.",
+        "MTB Arts College is situated in that educational zone.",
+        "VT Choksi Law College is located right in that stretch."
+      ],
+      "topic": "Which",
+      "difficulty": "Hard",
+      "hint": "Campus location relative choice."
+    },
+    {
+      "id": "which_28",
+      "gujarati": "આવતી કાલે કયો વાર હશે?",
+      "english": "Which day will it be tomorrow?",
+      "answers": [
+        "Tomorrow will be Tuesday.",
+        "It will be a Sunday, so we have a holiday.",
+        "Tomorrow will be Friday."
+      ],
+      "topic": "Which",
+      "difficulty": "Easy",
+      "hint": "Days of the week identification."
+    },
+    {
+      "id": "which_29",
+      "gujarati": "આજે કયો વાર છે?",
+      "english": "Which day is it today?",
+      "answers": [
+        "Today is Monday.",
+        "It is Wednesday today.",
+        "Today is Saturday."
+      ],
+      "topic": "Which",
+      "difficulty": "Easy",
+      "hint": "Current day selection."
+    },
+    {
+      "id": "which_30",
+      "gujarati": "ગઈકાલે કયો વાર હતો?",
+      "english": "Which day was it yesterday?",
+      "answers": [
+        "Yesterday was Sunday.",
+        "It was Thursday yesterday.",
+        "Yesterday was national holiday / Wednesday."
+      ],
+      "topic": "Which",
+      "difficulty": "Easy",
+      "hint": "Past day identification."
+    },
+    {
+      "id": "which_31",
+      "gujarati": "સ્વસ્તિક પ્લાઝા માં કયું કલાસીસ હશે?",
+      "english": "Which class will be in Swastik Plaza?",
+      "answers": [
+        "Paradise English Spoken Classes will open a branch there.",
+        "A new Allen Career Institute branch will open.",
+        "Mahesh Tutorials will conduct classes in Swastik Plaza."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Future establishment query."
+    },
+    {
+      "id": "which_32",
+      "gujarati": "કઈ હિરોઈન ગૂડ ન્યુઝ ફિલ્મ માં હતી",
+      "english": "Which actress was in the movie Good Newwz?",
+      "answers": [
+        "Kareena Kapoor Khan starred in Good Newwz.",
+        "Kiara Advani played one of the lead roles.",
+        "Both Kareena Kapoor and Kiara Advani acted in the film."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Movie cast female lead identification."
+    },
+    {
+      "id": "which_33",
+      "gujarati": "કઈ કંપની ની ઘડિયાળ દીવાલ પર છે?",
+      "english": "Which company's clock is on the wall?",
+      "answers": [
+        "An Ajanta wall clock is hanging on the wall.",
+        "It is a Titan analog wall clock.",
+        "An Orpat digital clock is mounted on the wall."
+      ],
+      "topic": "Which",
+      "difficulty": "Easy",
+      "hint": "Product brand identification."
+    },
+    {
+      "id": "which_34",
+      "gujarati": "કઈ શાળા મોટા વરાછામાં છે?",
+      "english": "Which school is in Mota Varachha?",
+      "answers": [
+        "Santi Asian School is situated in Mota Varachha.",
+        "Swarrnim International School operates there.",
+        "PP Savani Cambridge School is in Mota Varachha."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Area specific school choice."
+    },
+    {
+      "id": "which_35",
+      "gujarati": "કામરેજ માં કયું મંદિર છે?",
+      "english": "Which temple is in Kamrej?",
+      "answers": [
+        "Kashi Vishwanath Mahadev Temple is in Kamrej.",
+        "The Dada Bhagwan Trimandir is located near Kamrej.",
+        "A ancient Hanuman Temple sits on the highway at Kamrej."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Town landmark identification."
+    },
+    {
+      "id": "which_36",
+      "gujarati": "અત્યારે આઈનોક્સ માં કયું ફિલ્મ છે?",
+      "english": "Which movie is currently running in INOX?",
+      "answers": [
+        "The latest Marvel superhero film is playing in INOX.",
+        "A blockbuster Gujarati movie is currently running.",
+        "The new Shah Rukh Khan movie is showing in INOX."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Current showtime query."
+    },
+    {
+      "id": "which_37",
+      "gujarati": "તારો ભાઈ કઈ કંપનીમાં હતો?",
+      "english": "Which company was your brother in?",
+      "answers": [
+        "My brother was working at Tata Consultancy Services (TCS).",
+        "He was employed at Infosys.",
+        "My brother was with Larsen & Toubro (L&T)."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Past employer query."
+    },
+    {
+      "id": "which_38",
+      "gujarati": "તારી બહેન કઈ કોલેજ માં છે?",
+      "english": "Which college is your sister in?",
+      "answers": [
+        "My sister studies at SVNIT Surat.",
+        "She is enrolled in Surat Medical College.",
+        "My sister attends Navyug Commerce College."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Academic institution choice."
+    },
+    {
+      "id": "which_39",
+      "gujarati": "કયો પર્વત મહારાષ્ટ્ર માં છે?",
+      "english": "Which mountain is in Maharashtra?",
+      "answers": [
+        "Kalsubai Peak is the highest mountain peak in Maharashtra.",
+        "The Western Ghats (Sahyadri Range) run through Maharashtra.",
+        "Mahabaleshwar's Wilson Point mountain is in Maharashtra."
+      ],
+      "topic": "Which",
+      "difficulty": "Hard",
+      "hint": "Geographical terrain question."
+    },
+    {
+      "id": "which_40",
+      "gujarati": "પાર્કિંગ ની સામે કઈ કાર છે?",
+      "english": "Which car is opposite the parking?",
+      "answers": [
+        "The blue Honda Amaze is opposite the parking.",
+        "A Mahindra Thar is parked directly opposite.",
+        "It is the white Tata Nexon."
+      ],
+      "topic": "Which",
+      "difficulty": "Easy",
+      "hint": "Relative location vehicle check."
+    },
+    {
+      "id": "which_41",
+      "gujarati": "પ્રાણી સંગ્રાહલય માં ક્યાં પ્રાણીઓ હતા?",
+      "english": "Which animals were in the zoo?",
+      "answers": [
+        "Lions, tigers, and Asiatic elephants were in the zoo.",
+        "There were leopards, bears, and exotic birds.",
+        "Crocodiles and spotted deer were kept in the enclosures."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Plural category query using 'Which'."
+    },
+    {
+      "id": "which_42",
+      "gujarati": "કયું પક્ષી યોગેશના ખેતરમાં હતું?",
+      "english": "Which bird was in Yogesh's field?",
+      "answers": [
+        "A colorful peacock was in Yogesh's field.",
+        "A flock of green parrots was feeding there.",
+        "It was a white kingfisher near the pond."
+      ],
+      "topic": "Which",
+      "difficulty": "Easy",
+      "hint": "Species choice question."
+    },
+    {
+      "id": "which_43",
+      "gujarati": "અડાજણમાં કયું થીયેટર હતું?",
+      "english": "Which theater was in Adajan?",
+      "answers": [
+        "PVR Cinema in Rahul Raj Mall was in Adajan.",
+        "Star Cinema was operating in Adajan.",
+        "Inox Adajan was the popular movie hall."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Historical/past venue choice."
+    },
+    {
+      "id": "which_44",
+      "gujarati": "જામનગરમાં કઈ મોટી કંપની હશે?",
+      "english": "Which large company is in Jamnagar?",
+      "answers": [
+        "Reliance Industries operates the world's largest oil refinery in Jamnagar.",
+        "Nayara Energy (formerly Essar) has a massive complex there.",
+        "GSFC and heavy brass industry manufacturing units operate in Jamnagar."
+      ],
+      "topic": "Which",
+      "difficulty": "Hard",
+      "hint": "Industrial hub company identification."
+    },
+    {
+      "id": "which_45",
+      "gujarati": "પેરેડાઈઝ કલાસીસ માં કયું કોમ્પ્યુટર છે?",
+      "english": "Which computer is in Paradise Classes?",
+      "answers": [
+        "An HP All-in-One desktop is used at the front desk.",
+        "They have a Lenovo Core i5 system for administrative work.",
+        "An Asus i7 high-performance PC is present."
+      ],
+      "topic": "Which",
+      "difficulty": "Easy",
+      "hint": "Specific system hardware query."
+    },
+    {
+      "id": "which_46",
+      "gujarati": "કિરણચોક નજીક કયું શોપિંગ સેન્ટર છે?",
+      "english": "Which shopping center is near Kiran Chowk?",
+      "answers": [
+        "Kiran Shopping Center is right at the junction.",
+        "Shyam Dham Complex is located nearby.",
+        "Maruti Plaza shopping arcade is situated close to Kiran Chowk."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Commercial plaza selection."
+    },
+    {
+      "id": "which_47",
+      "gujarati": "ધ્રાફા કોલેજની બાજુમાં કઈ શાળા છે?",
+      "english": "Which school is next to Dhrafa College?",
+      "answers": [
+        "Government Higher Secondary School is next to Dhrafa College.",
+        "Saraswati High School is situated adjacent to the campus.",
+        "Vivekananda Vidhyalay stands right next door."
+      ],
+      "topic": "Which",
+      "difficulty": "Hard",
+      "hint": "Adjacent property identification."
+    },
+    {
+      "id": "which_48",
+      "gujarati": "ભાવેશ ના ઘરની પાછળ કઈ લાઈબ્રેરી છે?",
+      "english": "Which library is behind Bhavesh's house?",
+      "answers": [
+        "The Swami Vivekananda Public Library is behind his house.",
+        "A municipal reading room library is located there.",
+        "Sardar Patel City Library is situated right at the back."
+      ],
+      "topic": "Which",
+      "difficulty": "Medium",
+      "hint": "Location-based facility choice."
+    }
+  ]
+}

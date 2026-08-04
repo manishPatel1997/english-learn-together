@@ -1,0 +1,2642 @@
+[
+  {
+    "id": 1,
+    "gujarati": "આ",
+    "english": "This",
+    "phonetic": "Aa",
+    "english_pronunciation": "This",
+    "category": "Pronouns",
+    "difficulty": "Easy",
+    "example": "આ મારી ચોપડી છે. (This is my book.)"
+  },
+  {
+    "id": 2,
+    "gujarati": "પેેલું",
+    "english": "That",
+    "phonetic": "Pelu",
+    "english_pronunciation": "That",
+    "category": "Pronouns",
+    "difficulty": "Easy",
+    "example": "પેલું મારું ઘર છે. (That is my house.)"
+  },
+  {
+    "id": 3,
+    "gujarati": "હું",
+    "english": "I",
+    "phonetic": "Hu",
+    "english_pronunciation": "Aye",
+    "category": "Pronouns",
+    "difficulty": "Easy",
+    "example": "હું એક વિદ્યાર્થી છું. (I am a student.)"
+  },
+  {
+    "id": 4,
+    "gujarati": "અમે",
+    "english": "We",
+    "phonetic": "Ame",
+    "english_pronunciation": "Wee",
+    "category": "Pronouns",
+    "difficulty": "Easy",
+    "example": "અમે રમી રહ્યા છીએ. (We are playing.)"
+  },
+  {
+    "id": 5,
+    "gujarati": "તું, તમે",
+    "english": "You",
+    "phonetic": "Tu, Tame",
+    "english_pronunciation": "Yoo",
+    "category": "Pronouns",
+    "difficulty": "Easy",
+    "example": "તમે કેમ છો? (How are you?)"
+  },
+  {
+    "id": 6,
+    "gujarati": "તે (પુરુષ) માટે",
+    "english": "He",
+    "phonetic": "Te (Purush)",
+    "english_pronunciation": "Hee",
+    "category": "Pronouns",
+    "difficulty": "Easy",
+    "example": "તે ડૉક્ટર છે. (He is a doctor.)"
+  },
+  {
+    "id": 7,
+    "gujarati": "તે (સ્ત્રી)માટે",
+    "english": "She",
+    "phonetic": "Te (Stri)",
+    "english_pronunciation": "Shee",
+    "category": "Pronouns",
+    "difficulty": "Easy",
+    "example": "તે શિક્ષિકા છે. (She is a teacher.)"
+  },
+  {
+    "id": 8,
+    "gujarati": "તે (પ્રાણી,વસ્તુ)",
+    "english": "It",
+    "phonetic": "Te (Prani, Vastu)",
+    "english_pronunciation": "It",
+    "category": "Pronouns",
+    "difficulty": "Easy",
+    "example": "તે એક કૂતરો છે. (It is a dog.)"
+  },
+  {
+    "id": 9,
+    "gujarati": "તેઓ",
+    "english": "They",
+    "phonetic": "Teo",
+    "english_pronunciation": "Thay",
+    "category": "Pronouns",
+    "difficulty": "Easy",
+    "example": "તેઓ અહીં આવે છે. (They are coming here.)"
+  },
+  {
+    "id": 10,
+    "gujarati": "મારું",
+    "english": "My",
+    "phonetic": "Maru",
+    "english_pronunciation": "Maye",
+    "category": "Possessives",
+    "difficulty": "Easy",
+    "example": "આ મારું નામ છે. (This is my name.)"
+  },
+  {
+    "id": 11,
+    "gujarati": "તારું",
+    "english": "Your",
+    "phonetic": "Taru",
+    "english_pronunciation": "Yor",
+    "category": "Possessives",
+    "difficulty": "Easy",
+    "example": "આ તારું પેન છે? (Is this your pen?)"
+  },
+  {
+    "id": 12,
+    "gujarati": "પણ",
+    "english": "but",
+    "phonetic": "Pan",
+    "english_pronunciation": "Buht",
+    "category": "Conjunctions",
+    "difficulty": "Easy",
+    "example": "હું આવ્યો પણ તે ન હતો. (I came but he was not there.)"
+  },
+  {
+    "id": 13,
+    "gujarati": "પણ",
+    "english": "too",
+    "phonetic": "Pan",
+    "english_pronunciation": "Too",
+    "category": "Adverbs",
+    "difficulty": "Easy",
+    "example": "હું પણ આવીશ. (I will come too.)"
+  },
+  {
+    "id": 14,
+    "gujarati": "પછી",
+    "english": "next",
+    "phonetic": "Pachhi",
+    "english_pronunciation": "Nekst",
+    "category": "Time & Sequence",
+    "difficulty": "Easy",
+    "example": "પછીનો વારો કોનો છે? (Whose turn is next?)"
+  },
+  {
+    "id": 15,
+    "gujarati": "અને",
+    "english": "and",
+    "phonetic": "Ane",
+    "english_pronunciation": "And",
+    "category": "Conjunctions",
+    "difficulty": "Easy",
+    "example": "રામ અને શ્યામ મિત્રો છે. (Ram and Shyam are friends.)"
+  },
+  {
+    "id": 16,
+    "gujarati": "જો",
+    "english": "if",
+    "phonetic": "Jo",
+    "english_pronunciation": "If",
+    "category": "Conjunctions",
+    "difficulty": "Easy",
+    "example": "જો વરસાદ આવશે તો હું નહીં આવું. (If it rains, I will not come.)"
+  },
+  {
+    "id": 17,
+    "gujarati": "તેથી",
+    "english": "so",
+    "phonetic": "Tethi",
+    "english_pronunciation": "Soh",
+    "category": "Conjunctions",
+    "difficulty": "Easy",
+    "example": "હું બીમાર હતો તેથી ન આવ્યો. (I was sick so I didn't come.)"
+  },
+  {
+    "id": 18,
+    "gujarati": "જેથી કરીને",
+    "english": "so that",
+    "phonetic": "Jethi Karine",
+    "english_pronunciation": "Soh That",
+    "category": "Conjunctions",
+    "difficulty": "Medium",
+    "example": "મહેનત કરો જેથી કરીને પાસ થવાય. (Work hard so that you pass.)"
+  },
+  {
+    "id": 19,
+    "gujarati": "કારણકે",
+    "english": "because",
+    "phonetic": "Karan ke",
+    "english_pronunciation": "Bih-koz",
+    "category": "Conjunctions",
+    "difficulty": "Easy",
+    "example": "હું મોડો પડ્યો કારણકે ટ્રાફિક હતો. (I was late because there was traffic.)"
+  },
+  {
+    "id": 20,
+    "gujarati": "નહિતર",
+    "english": "otherwise",
+    "phonetic": "Nahitar",
+    "english_pronunciation": "Uh-thuh-wize",
+    "category": "Conjunctions",
+    "difficulty": "Medium",
+    "example": "ઝડપથી ચાલો નહિતર ટ્રેન છૂટી જશે. (Walk fast otherwise you will miss the train.)"
+  },
+  {
+    "id": 21,
+    "gujarati": "અથવા",
+    "english": "or",
+    "phonetic": "Athva",
+    "english_pronunciation": "Or",
+    "category": "Conjunctions",
+    "difficulty": "Easy",
+    "example": "ચાય અથવા કોફી લેશો? (Will you take tea or coffee?)"
+  },
+  {
+    "id": 22,
+    "gujarati": "પહેલા",
+    "english": "before",
+    "phonetic": "Pahela",
+    "english_pronunciation": "Bih-for",
+    "category": "Prepositions",
+    "difficulty": "Easy",
+    "example": "જમતા પહેલા હાથ ધોવો. (Wash hands before eating.)"
+  },
+  {
+    "id": 23,
+    "gujarati": "પછી",
+    "english": "after",
+    "phonetic": "Pachhi",
+    "english_pronunciation": "Aaf-ter",
+    "category": "Prepositions",
+    "difficulty": "Easy",
+    "example": "કામ પછી મળીએ. (Let's meet after work.)"
+  },
+  {
+    "id": 24,
+    "gujarati": "જ્યારે",
+    "english": "while",
+    "phonetic": "Jyaare",
+    "english_pronunciation": "Wile",
+    "category": "Conjunctions",
+    "difficulty": "Medium",
+    "example": "વાંચતી વખતે અવાજ ન કરો. (Do not make noise while reading.)"
+  },
+  {
+    "id": 25,
+    "gujarati": "વહેલા",
+    "english": "early",
+    "phonetic": "Vahela",
+    "english_pronunciation": "Ur-lee",
+    "category": "Time",
+    "difficulty": "Easy",
+    "example": "સવારે વહેલા ઉઠવું જોઈએ. (One should wake up early in the morning.)"
+  },
+  {
+    "id": 26,
+    "gujarati": "મોડું",
+    "english": "late",
+    "phonetic": "Modu",
+    "english_pronunciation": "Layt",
+    "category": "Time",
+    "difficulty": "Easy",
+    "example": "આજે મને મોડું થઈ ગયું. (I got late today.)"
+  },
+  {
+    "id": 27,
+    "gujarati": "મહાન",
+    "english": "great",
+    "phonetic": "Mahan",
+    "english_pronunciation": "Grayt",
+    "category": "Adjectives",
+    "difficulty": "Easy",
+    "example": "તેઓ એક મહાન નેતા હતા. (He was a great leader.)"
+  },
+  {
+    "id": 28,
+    "gujarati": "હવા",
+    "english": "Air",
+    "phonetic": "Hava",
+    "english_pronunciation": "Ehr",
+    "category": "Nature",
+    "difficulty": "Easy",
+    "example": "તાજી હવા સ્વાસ્થ્ય માટે સારી છે. (Fresh air is good for health.)"
+  },
+  {
+    "id": 29,
+    "gujarati": "ઉમેરવું",
+    "english": "Add",
+    "phonetic": "Umervu",
+    "english_pronunciation": "Ad",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "ચામાં ખાંડ ઉમેરો. (Add sugar to the tea.)"
+  },
+  {
+    "id": 30,
+    "gujarati": "બેટ",
+    "english": "Bat",
+    "phonetic": "Bat",
+    "english_pronunciation": "Bat",
+    "category": "Sports & Objects",
+    "difficulty": "Easy",
+    "example": "આ નવું ક્રિકેટ બેટ છે. (This is a new cricket bat.)"
+  },
+  {
+    "id": 31,
+    "gujarati": "ખરાબ",
+    "english": "Bad",
+    "phonetic": "Kharab",
+    "english_pronunciation": "Bad",
+    "category": "Adjectives",
+    "difficulty": "Easy",
+    "example": "ખરાબ આદતો છોડી દો. (Give up bad habits.)"
+  },
+  {
+    "id": 32,
+    "gujarati": "પથારી",
+    "english": "Bed",
+    "phonetic": "Pathari",
+    "english_pronunciation": "Bed",
+    "category": "Household",
+    "difficulty": "Easy",
+    "example": "પથારી તૈયાર છે. (The bed is ready.)"
+  },
+  {
+    "id": 33,
+    "gujarati": "ઘંટ",
+    "english": "Bell",
+    "phonetic": "Ghant",
+    "english_pronunciation": "Bel",
+    "category": "Objects",
+    "difficulty": "Easy",
+    "example": "શાળાનો ઘંટ વાગ્યો. (The school bell rang.)"
+  },
+  {
+    "id": 34,
+    "gujarati": "નાનું",
+    "english": "Small",
+    "phonetic": "Nanu",
+    "english_pronunciation": "Smol",
+    "category": "Adjectives",
+    "difficulty": "Easy",
+    "example": "આ એક નાનું ઘર છે. (This is a small house.)"
+  },
+  {
+    "id": 35,
+    "gujarati": "મોટું",
+    "english": "Big",
+    "phonetic": "Motu",
+    "english_pronunciation": "Big",
+    "category": "Adjectives",
+    "difficulty": "Easy",
+    "example": "સુરત મોટું શહેર છે. (Surat is a big city.)"
+  },
+  {
+    "id": 36,
+    "gujarati": "ચોખ્ખું",
+    "english": "Clean",
+    "phonetic": "Chokkhu",
+    "english_pronunciation": "Kleen",
+    "category": "Adjectives",
+    "difficulty": "Easy",
+    "example": "ઓરડો ચોખ્ખો રાખો. (Keep the room clean.)"
+  },
+  {
+    "id": 37,
+    "gujarati": "ગંદુ",
+    "english": "Dirty",
+    "phonetic": "Gandu",
+    "english_pronunciation": "Dur-tee",
+    "category": "Adjectives",
+    "difficulty": "Easy",
+    "example": "તમારા કપડાં ગંદા છે. (Your clothes are dirty.)"
+  },
+  {
+    "id": 38,
+    "gujarati": "હોશિયાર",
+    "english": "Clever",
+    "phonetic": "Hoshiyar",
+    "english_pronunciation": "Kleh-ver",
+    "category": "Adjectives",
+    "difficulty": "Easy",
+    "example": "તે બહુ હોશિયાર છોકરો છે. (He is a very clever boy.)"
+  },
+  {
+    "id": 39,
+    "gujarati": "છોકરો",
+    "english": "Boy",
+    "phonetic": "Chokro",
+    "english_pronunciation": "Boi",
+    "category": "People",
+    "difficulty": "Easy",
+    "example": "પેલો છોકરો રમે છે. (That boy is playing.)"
+  },
+  {
+    "id": 40,
+    "gujarati": "છોકરી",
+    "english": "Girl",
+    "phonetic": "Chokri",
+    "english_pronunciation": "Gurl",
+    "category": "People",
+    "difficulty": "Easy",
+    "example": "છોકરી ગીત ગાઈ રહી છે. (The girl is singing a song.)"
+  },
+  {
+    "id": 41,
+    "gujarati": "બારી",
+    "english": "Window",
+    "phonetic": "Bari",
+    "english_pronunciation": "Win-doh",
+    "category": "Household",
+    "difficulty": "Easy",
+    "example": "કૃપા કરીને બારી ખોલો. (Please open the window.)"
+  },
+  {
+    "id": 42,
+    "gujarati": "દરવાજો",
+    "english": "Door",
+    "phonetic": "Darvajo",
+    "english_pronunciation": "Dor",
+    "category": "Household",
+    "difficulty": "Easy",
+    "example": "દરવાજો બંધ કરો. (Close the door.)"
+  },
+  {
+    "id": 43,
+    "gujarati": "રસોડું",
+    "english": "Kitchen",
+    "phonetic": "Rasodu",
+    "english_pronunciation": "Kich-en",
+    "category": "Household",
+    "difficulty": "Easy",
+    "example": "મમ્મી રસોડામાં છે. (Mom is in the kitchen.)"
+  },
+  {
+    "id": 44,
+    "gujarati": "મેદાન",
+    "english": "Ground",
+    "phonetic": "Medaana",
+    "english_pronunciation": "Ground",
+    "category": "Places",
+    "difficulty": "Easy",
+    "example": "બાળકો મેદાનમાં રમે છે. (Children are playing in the ground.)"
+  },
+  {
+    "id": 45,
+    "gujarati": "ટ્રેઇન",
+    "english": "Train",
+    "phonetic": "Train",
+    "english_pronunciation": "Trayn",
+    "category": "Travel",
+    "difficulty": "Easy",
+    "example": "ટ્રેન સમયસર આવી. (The train arrived on time.)"
+  },
+  {
+    "id": 46,
+    "gujarati": "રોડ",
+    "english": "Road",
+    "phonetic": "Road",
+    "english_pronunciation": "Rohd",
+    "category": "Travel",
+    "difficulty": "Easy",
+    "example": "રોડ સાફ છે. (The road is clean.)"
+  },
+  {
+    "id": 47,
+    "gujarati": "ખાવું",
+    "english": "Eat",
+    "phonetic": "Khaavu",
+    "english_pronunciation": "Eet",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "ફળો ખાવા સ્વાસ્થ્યવર્ધક છે. (Eating fruits is healthy.)"
+  },
+  {
+    "id": 48,
+    "gujarati": "પીવું",
+    "english": "Drink",
+    "phonetic": "Peevu",
+    "english_pronunciation": "Drink",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "દરરોજ પુષ્કળ પાણી પીવો. (Drink plenty of water every day.)"
+  },
+  {
+    "id": 49,
+    "gujarati": "ક્લાસ",
+    "english": "Class",
+    "phonetic": "Klaas",
+    "english_pronunciation": "Klas",
+    "category": "Education",
+    "difficulty": "Easy",
+    "example": "વિદ્યાર્થીઓ ક્લાસમાં છે. (Students are in the class.)"
+  },
+  {
+    "id": 50,
+    "gujarati": "દવાખાનું",
+    "english": "Hospital",
+    "phonetic": "Davakhanu",
+    "english_pronunciation": "Hos-pi-tuhl",
+    "category": "Places",
+    "difficulty": "Easy",
+    "example": "તે દવાખાને ગયો છે. (He has gone to the hospital.)"
+  },
+  {
+    "id": 51,
+    "gujarati": "દરિયો",
+    "english": "Sea",
+    "phonetic": "Dariyo",
+    "english_pronunciation": "See",
+    "category": "Nature",
+    "difficulty": "Easy",
+    "example": "દરિયો ખૂબ ઊંડો છે. (The sea is very deep.)"
+  },
+  {
+    "id": 52,
+    "gujarati": "કિનારો",
+    "english": "Beach",
+    "phonetic": "Kinaro",
+    "english_pronunciation": "Beech",
+    "category": "Nature",
+    "difficulty": "Easy",
+    "example": "અમે દરિયા કિનારે ગયા હતા. (We went to the beach.)"
+  },
+  {
+    "id": 53,
+    "gujarati": "નદી",
+    "english": "River",
+    "phonetic": "Nadi",
+    "english_pronunciation": "Riv-er",
+    "category": "Nature",
+    "difficulty": "Easy",
+    "example": "તાપી સુરતની મુખ્ય નદી છે. (Tapi is the main river of Surat.)"
+  },
+  {
+    "id": 54,
+    "gujarati": "બ્રીજ, પુલ",
+    "english": "Bridge",
+    "phonetic": "Bridge, Pul",
+    "english_pronunciation": "Brij",
+    "category": "Places",
+    "difficulty": "Easy",
+    "example": "નદી પર મોટો બ્રિજ છે. (There is a big bridge over the river.)"
+  },
+  {
+    "id": 55,
+    "gujarati": "મોલ",
+    "english": "Mall",
+    "phonetic": "Mall",
+    "english_pronunciation": "Mol",
+    "category": "Places",
+    "difficulty": "Easy",
+    "example": "અમે મોલમાં શોપિંગ કરી. (We shopped at the mall.)"
+  },
+  {
+    "id": 56,
+    "gujarati": "કાર",
+    "english": "Car",
+    "phonetic": "Car",
+    "english_pronunciation": "Kahr",
+    "category": "Vehicles",
+    "difficulty": "Easy",
+    "example": "તેમની પાસે નવી કાર છે. (They have a new car.)"
+  },
+  {
+    "id": 57,
+    "gujarati": "બાઇક",
+    "english": "Bike",
+    "phonetic": "Bike",
+    "english_pronunciation": "Bike",
+    "category": "Vehicles",
+    "difficulty": "Easy",
+    "example": "હું બાઇક ચલાવું છું. (I drive a bike.)"
+  },
+  {
+    "id": 58,
+    "gujarati": "કોફી",
+    "english": "Coffee",
+    "phonetic": "Coffee",
+    "english_pronunciation": "Kof-ee",
+    "category": "Beverages",
+    "difficulty": "Easy",
+    "example": "મને ગરમ કોફી ગમે છે. (I like hot coffee.)"
+  },
+  {
+    "id": 59,
+    "gujarati": "ચા",
+    "english": "Tea",
+    "phonetic": "Chaa",
+    "english_pronunciation": "Tee",
+    "category": "Beverages",
+    "difficulty": "Easy",
+    "example": "સવારે ચા પીવી ગમે છે. (I like drinking tea in the morning.)"
+  },
+  {
+    "id": 60,
+    "gujarati": "દૂધ",
+    "english": "Milk",
+    "phonetic": "Doodh",
+    "english_pronunciation": "Milk",
+    "category": "Beverages",
+    "difficulty": "Easy",
+    "example": "દૂધ સ્વાસ્થ્ય માટે સારું છે. (Milk is good for health.)"
+  },
+  {
+    "id": 61,
+    "gujarati": "પાણી",
+    "english": "Water",
+    "phonetic": "Paani",
+    "english_pronunciation": "Wah-ter",
+    "category": "Beverages",
+    "difficulty": "Easy",
+    "example": "મને થોડું પાણી આપો. (Give me some water.)"
+  },
+  {
+    "id": 62,
+    "gujarati": "જંગલ",
+    "english": "Jungle",
+    "phonetic": "Jangal",
+    "english_pronunciation": "Juhng-guhl",
+    "category": "Nature",
+    "difficulty": "Easy",
+    "example": "જંગલમાં ઘણા પ્રાણીઓ છે. (There are many animals in the jungle.)"
+  },
+  {
+    "id": 63,
+    "gujarati": "જંગલ",
+    "english": "Forest",
+    "phonetic": "Jangal",
+    "english_pronunciation": "For-ist",
+    "category": "Nature",
+    "difficulty": "Easy",
+    "example": "ગીરનું જંગલ પ્રખ્યાત છે. (Gir forest is famous.)"
+  },
+  {
+    "id": 64,
+    "gujarati": "પાંદડું",
+    "english": "Leaf",
+    "phonetic": "Paanddu",
+    "english_pronunciation": "Leef",
+    "category": "Nature",
+    "difficulty": "Easy",
+    "example": "વૃક્ષનું પાંદડું લીલું છે. (The leaf of the tree is green.)"
+  },
+  {
+    "id": 65,
+    "gujarati": "વૃક્ષ",
+    "english": "Tree",
+    "phonetic": "Vruksh",
+    "english_pronunciation": "Tree",
+    "category": "Nature",
+    "difficulty": "Easy",
+    "example": "વૃક્ષો આપણને છાંયો આપે છે. (Trees give us shade.)"
+  },
+  {
+    "id": 66,
+    "gujarati": "એજન્ટ",
+    "english": "Agent",
+    "phonetic": "Agent",
+    "english_pronunciation": "Ay-juhnt",
+    "category": "Professions",
+    "difficulty": "Medium",
+    "example": "તે રિયલ એસ્ટેટ એજન્ટ છે. (He is a real estate agent.)"
+  },
+  {
+    "id": 67,
+    "gujarati": "ગ્રાહક",
+    "english": "customer",
+    "phonetic": "Grahak",
+    "english_pronunciation": "Kuhs-tuh-mer",
+    "category": "Business",
+    "difficulty": "Easy",
+    "example": "ગ્રાહક દુકાનમાં છે. (The customer is in the shop.)"
+  },
+  {
+    "id": 68,
+    "gujarati": "જેલ",
+    "english": "Prison",
+    "phonetic": "Jail",
+    "english_pronunciation": "Priz-uhn",
+    "category": "Places",
+    "difficulty": "Medium",
+    "example": "ચોરને જેલમાં મોકલવામાં આવ્યો. (The thief was sent to prison.)"
+  },
+  {
+    "id": 69,
+    "gujarati": "હડતાલ",
+    "english": "Strike",
+    "phonetic": "Hadtal",
+    "english_pronunciation": "Stryke",
+    "category": "General",
+    "difficulty": "Medium",
+    "example": "કામદારો આજે હડતાલ પર છે. (Workers are on strike today.)"
+  },
+  {
+    "id": 70,
+    "gujarati": "ચોર",
+    "english": "Thief",
+    "phonetic": "Chor",
+    "english_pronunciation": "Theef",
+    "category": "People",
+    "difficulty": "Easy",
+    "example": "ચોર પોલીસને જોઈને ભાગી ગયો. (The thief ran away seeing the police.)"
+  },
+  {
+    "id": 71,
+    "gujarati": "પોલીસ",
+    "english": "Police",
+    "phonetic": "Police",
+    "english_pronunciation": "Puh-lees",
+    "category": "Professions",
+    "difficulty": "Easy",
+    "example": "પોલીસે ચોરને પકડ્યો. (The police caught the thief.)"
+  },
+  {
+    "id": 72,
+    "gujarati": "હવાલદાર",
+    "english": "Constable",
+    "phonetic": "Havaldar",
+    "english_pronunciation": "Kon-stuh-buhl",
+    "category": "Professions",
+    "difficulty": "Medium",
+    "example": "હવાલદારે ટ્રાફિક નિયંત્રિત કર્યો. (The constable controlled the traffic.)"
+  },
+  {
+    "id": 73,
+    "gujarati": "લારી",
+    "english": "Lorry",
+    "phonetic": "Laari",
+    "english_pronunciation": "Lor-ee",
+    "category": "Vehicles",
+    "difficulty": "Medium",
+    "example": "લારીમાં માલસામાન ભરેલો છે. (The lorry is loaded with goods.)"
+  },
+  {
+    "id": 74,
+    "gujarati": "બિલ્ડીંગ",
+    "english": "Building",
+    "phonetic": "Building",
+    "english_pronunciation": "Bil-ding",
+    "category": "Places",
+    "difficulty": "Easy",
+    "example": "આ ઊંચી બિલ્ડીંગ છે. (This is a tall building.)"
+  },
+  {
+    "id": 75,
+    "gujarati": "અગાશી",
+    "english": "Terrace",
+    "phonetic": "Agashi",
+    "english_pronunciation": "Teh-ruhs",
+    "category": "Household",
+    "difficulty": "Medium",
+    "example": "બાળકો અગાશી પર પતંગ ઉડાડે છે. (Children fly kites on the terrace.)"
+  },
+  {
+    "id": 76,
+    "gujarati": "છત",
+    "english": "ceiling",
+    "phonetic": "Chhat",
+    "english_pronunciation": "See-ling",
+    "category": "Household",
+    "difficulty": "Medium",
+    "example": "ઓરડાની છત પર પંખો ફરે છે. (The fan is spinning on the ceiling.)"
+  },
+  {
+    "id": 77,
+    "gujarati": "થીયેટર",
+    "english": "Theatre",
+    "phonetic": "Theater",
+    "english_pronunciation": "Thee-uh-ter",
+    "category": "Places",
+    "difficulty": "Easy",
+    "example": "અમે થિયેટરમાં પિક્ચર જોયું. (We watched a movie in the theatre.)"
+  },
+  {
+    "id": 78,
+    "gujarati": "કપ",
+    "english": "Cup",
+    "phonetic": "Cup",
+    "english_pronunciation": "Kuhp",
+    "category": "Household",
+    "difficulty": "Easy",
+    "example": "કપમાં ચા છે. (There is tea in the cup.)"
+  },
+  {
+    "id": 79,
+    "gujarati": "થાળી",
+    "english": "Plate",
+    "phonetic": "Thaali",
+    "english_pronunciation": "Playt",
+    "category": "Household",
+    "difficulty": "Easy",
+    "example": "થાળીમાં ભોજન પીરસો. (Serve food in the plate.)"
+  },
+  {
+    "id": 80,
+    "gujarati": "ભોજન",
+    "english": "Meal",
+    "phonetic": "Bhojan",
+    "english_pronunciation": "Meel",
+    "category": "Food",
+    "difficulty": "Easy",
+    "example": "સાંજનું ભોજન તૈયાર છે. (Evening meal is ready.)"
+  },
+  {
+    "id": 81,
+    "gujarati": "ખોરાક",
+    "english": "Food",
+    "phonetic": "Khorak",
+    "english_pronunciation": "Food",
+    "category": "Food",
+    "difficulty": "Easy",
+    "example": "તાજો ખોરાક ખાવો જોઈએ. (One should eat fresh food.)"
+  },
+  {
+    "id": 82,
+    "gujarati": "શાળા",
+    "english": "School",
+    "phonetic": "Shaala",
+    "english_pronunciation": "Skool",
+    "category": "Education",
+    "difficulty": "Easy",
+    "example": "બાળકો શાળાએ જાય છે. (Children go to school.)"
+  },
+  {
+    "id": 83,
+    "gujarati": "વિભાગ",
+    "english": "Division",
+    "phonetic": "Vibhag",
+    "english_pronunciation": "Dih-vizh-uhn",
+    "category": "General",
+    "difficulty": "Medium",
+    "example": "આ કયો વિભાગ છે? (Which division is this?)"
+  },
+  {
+    "id": 84,
+    "gujarati": "પટ્ટાવાળા",
+    "english": "Peon",
+    "phonetic": "Pattawala",
+    "english_pronunciation": "Pee-ohn",
+    "category": "Professions",
+    "difficulty": "Medium",
+    "example": "પટ્ટાવાળાએ ફાઇલ આપી. (The peon delivered the file.)"
+  },
+  {
+    "id": 85,
+    "gujarati": "ક્લાર્ક",
+    "english": "Clerk",
+    "phonetic": "Clerk",
+    "english_pronunciation": "Klurk",
+    "category": "Professions",
+    "difficulty": "Medium",
+    "example": "ક્લાર્ક ઓફિસમાં કામ કરે છે. (The clerk works in the office.)"
+  },
+  {
+    "id": 86,
+    "gujarati": "સરોવર",
+    "english": "Lake",
+    "phonetic": "Sarovar",
+    "english_pronunciation": "Layk",
+    "category": "Nature",
+    "difficulty": "Easy",
+    "example": "કાંકરિયા મોટું સરોવર છે. (Kankaria is a big lake.)"
+  },
+  {
+    "id": 87,
+    "gujarati": "તળાવ",
+    "english": "Pond",
+    "phonetic": "Talav",
+    "english_pronunciation": "Pond",
+    "category": "Nature",
+    "difficulty": "Easy",
+    "example": "ગામમાં એક નાનું તળાવ છે. (There is a small pond in the village.)"
+  },
+  {
+    "id": 88,
+    "gujarati": "મંદિર",
+    "english": "Temple",
+    "phonetic": "Mandir",
+    "english_pronunciation": "Tem-puhl",
+    "category": "Places",
+    "difficulty": "Easy",
+    "example": "લોકો મંદિરે દર્શન માટે જાય છે. (People go to the temple for worship.)"
+  },
+  {
+    "id": 89,
+    "gujarati": "ટેબલ",
+    "english": "Table",
+    "phonetic": "Table",
+    "english_pronunciation": "Tay-buhl",
+    "category": "Household",
+    "difficulty": "Easy",
+    "example": "ચોપડી ટેબલ પર છે. (The book is on the table.)"
+  },
+  {
+    "id": 90,
+    "gujarati": "ખુરસી",
+    "english": "Chair",
+    "phonetic": "Khursi",
+    "english_pronunciation": "Chair",
+    "category": "Household",
+    "difficulty": "Easy",
+    "example": "ખુરસી પર બેસો. (Sit on the chair.)"
+  },
+  {
+    "id": 91,
+    "gujarati": "ખાનું",
+    "english": "Drawer",
+    "phonetic": "Khanu",
+    "english_pronunciation": "Dror",
+    "category": "Household",
+    "difficulty": "Medium",
+    "example": "ચાવી ખાનામાં છે. (The key is in the drawer.)"
+  },
+  {
+    "id": 92,
+    "gujarati": "ખેતર",
+    "english": "Farm",
+    "phonetic": "Khetar",
+    "english_pronunciation": "Fahrm",
+    "category": "Places",
+    "difficulty": "Easy",
+    "example": "ખેડૂત ખેતરમાં કામ કરે છે. (The farmer works in the farm.)"
+  },
+  {
+    "id": 93,
+    "gujarati": "ઘડો",
+    "english": "Pot",
+    "phonetic": "Ghado",
+    "english_pronunciation": "Pot",
+    "category": "Household",
+    "difficulty": "Easy",
+    "example": "માટીના ઘડામાં પાણી ઠંડું રહે છે. (Water stays cool in an earthen pot.)"
+  },
+  {
+    "id": 94,
+    "gujarati": "પહાડ",
+    "english": "Mountain",
+    "phonetic": "Pahad",
+    "english_pronunciation": "Moun-tuhn",
+    "category": "Nature",
+    "difficulty": "Easy",
+    "example": "ગિરનાર ઊંચો પહાડ છે. (Girnar is a high mountain.)"
+  },
+  {
+    "id": 95,
+    "gujarati": "જોડાવું",
+    "english": "Join",
+    "phonetic": "Jodavu",
+    "english_pronunciation": "Join",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "અમારી ટીમમાં જોડાયા બદલ આભાર. (Thanks for joining our team.)"
+  },
+  {
+    "id": 96,
+    "gujarati": "છોડવું, નીકળવું",
+    "english": "Leave",
+    "phonetic": "Chhodvu, Nikalvu",
+    "english_pronunciation": "Leev",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "હું ૫ વાગ્યે નીકળીશ. (I will leave at 5 o'clock.)"
+  },
+  {
+    "id": 97,
+    "gujarati": "દુકાન",
+    "english": "Shop",
+    "phonetic": "Dukan",
+    "english_pronunciation": "Shop",
+    "category": "Places",
+    "difficulty": "Easy",
+    "example": "આ દુકાન સવારે ખુલે છે. (This shop opens in the morning.)"
+  },
+  {
+    "id": 98,
+    "gujarati": "સાબુ",
+    "english": "Soap",
+    "phonetic": "Sabu",
+    "english_pronunciation": "Sohp",
+    "category": "Household",
+    "difficulty": "Easy",
+    "example": "સાબુથી હાથ ધોવો. (Wash hands with soap.)"
+  },
+  {
+    "id": 99,
+    "gujarati": "આકાશ",
+    "english": "Sky",
+    "phonetic": "Aakash",
+    "english_pronunciation": "Skaye",
+    "category": "Nature",
+    "difficulty": "Easy",
+    "example": "આકાશ વાદળી છે. (The sky is blue.)"
+  },
+  {
+    "id": 100,
+    "gujarati": "ચંદ્ર",
+    "english": "Moon",
+    "phonetic": "Chandra",
+    "english_pronunciation": "Moon",
+    "category": "Nature",
+    "difficulty": "Easy",
+    "example": "ચંદ્ર રાત્રે પ્રકાશે છે. (The moon shines at night.)"
+  },
+  {
+    "id": 101,
+    "gujarati": "સૂર્ય",
+    "english": "Sun",
+    "phonetic": "Surya",
+    "english_pronunciation": "Suhn",
+    "category": "Nature",
+    "difficulty": "Easy",
+    "example": "સૂર્ય પૂર્વમાં ઉગે છે. (The sun rises in the east.)"
+  },
+  {
+    "id": 102,
+    "gujarati": "નર્સ",
+    "english": "Nurse",
+    "phonetic": "Nurse",
+    "english_pronunciation": "Nurs",
+    "category": "Professions",
+    "difficulty": "Easy",
+    "example": "નર્સ દર્દીની સંભાળ રાખે છે. (The nurse takes care of the patient.)"
+  },
+  {
+    "id": 103,
+    "gujarati": "તારો",
+    "english": "Star",
+    "phonetic": "Taro",
+    "english_pronunciation": "Stahr",
+    "category": "Nature",
+    "difficulty": "Easy",
+    "example": "આકાશમાં તારા ચમકે છે. (Stars shine in the sky.)"
+  },
+  {
+    "id": 104,
+    "gujarati": "ઈરેઝર",
+    "english": "Eraser",
+    "phonetic": "Eraser",
+    "english_pronunciation": "Ih-ray-ser",
+    "category": "Education",
+    "difficulty": "Easy",
+    "example": "મને લખાણ ભૂંસવા ઈરેઝર આપો. (Give me an eraser to erase the text.)"
+  },
+  {
+    "id": 105,
+    "gujarati": "પેન્સિલ નો સંંચો",
+    "english": "Sharpener",
+    "phonetic": "Pencil no sancho",
+    "english_pronunciation": "Shahr-puh-ner",
+    "category": "Education",
+    "difficulty": "Easy",
+    "example": "પેન્સિલ ની અણી કાઢવા સંચો વાપરો. (Use a sharpener to sharpen the pencil.)"
+  },
+  {
+    "id": 106,
+    "gujarati": "એસી",
+    "english": "A.C",
+    "phonetic": "AC",
+    "english_pronunciation": "Ay-See",
+    "category": "Household",
+    "difficulty": "Easy",
+    "example": "ઓરડામાં એસી ચાલુ કરો. (Turn on the A.C. in the room.)"
+  },
+  {
+    "id": 107,
+    "gujarati": "ફ્રીઝ",
+    "english": "Fridge",
+    "phonetic": "Fridge",
+    "english_pronunciation": "Frij",
+    "category": "Household",
+    "difficulty": "Easy",
+    "example": "પાણીની બોટલ ફ્રીઝમાં મૂકો. (Put the water bottle in the fridge.)"
+  },
+  {
+    "id": 108,
+    "gujarati": "પક્ષી",
+    "english": "Bird",
+    "phonetic": "Pakshi",
+    "english_pronunciation": "Burd",
+    "category": "Animals & Birds",
+    "difficulty": "Easy",
+    "example": "પક્ષી આકાશમાં ઊડે છે. (The bird flies in the sky.)"
+  },
+  {
+    "id": 109,
+    "gujarati": "પ્રાણી",
+    "english": "Animal",
+    "phonetic": "Prani",
+    "english_pronunciation": "An-uh-muhl",
+    "category": "Animals & Birds",
+    "difficulty": "Easy",
+    "example": "સિંહ જંગલી પ્રાણી છે. (Lion is a wild animal.)"
+  },
+  {
+    "id": 110,
+    "gujarati": "ગાય",
+    "english": "Cow",
+    "phonetic": "Gaay",
+    "english_pronunciation": "Kow",
+    "category": "Animals & Birds",
+    "difficulty": "Easy",
+    "example": "ગાય આપણને દૂધ આપે છે. (The cow gives us milk.)"
+  },
+  {
+    "id": 111,
+    "gujarati": "ભેંસ",
+    "english": "Buffalo",
+    "phonetic": "Bhens",
+    "english_pronunciation": "Buf-uh-loh",
+    "category": "Animals & Birds",
+    "difficulty": "Easy",
+    "example": "ભેંસ કાળા રંગની હોય છે. (Buffalo is black in color.)"
+  },
+  {
+    "id": 112,
+    "gujarati": "સવારનું ભોજન",
+    "english": "Breakfast",
+    "phonetic": "Savar nu bhojan",
+    "english_pronunciation": "Brek-fuhst",
+    "category": "Food",
+    "difficulty": "Easy",
+    "example": "હું ૮ વાગ્યે સવારનું ભોજન કરું છું. (I eat breakfast at 8 AM.)"
+  },
+  {
+    "id": 113,
+    "gujarati": "સાંજનું ભોજન",
+    "english": "Dinner",
+    "phonetic": "Sanj nu bhojan",
+    "english_pronunciation": "Din-er",
+    "category": "Food",
+    "difficulty": "Easy",
+    "example": "અમે ૮:૩૦ વાગ્યે સાંજનું ભોજન લઈએ છીએ. (We have dinner at 8:30 PM.)"
+  },
+  {
+    "id": 114,
+    "gujarati": "બપોરનું ભોજન",
+    "english": "Lunch",
+    "phonetic": "Bapor nu bhojan",
+    "english_pronunciation": "Luhnch",
+    "category": "Food",
+    "difficulty": "Easy",
+    "example": "બપોરનું ભોજન તૈયાર છે. (Lunch is ready.)"
+  },
+  {
+    "id": 115,
+    "gujarati": "ઉપર",
+    "english": "On",
+    "phonetic": "Upar",
+    "english_pronunciation": "On",
+    "category": "Prepositions",
+    "difficulty": "Easy",
+    "example": "ચોપડી ટેબલ પર છે. (The book is on the table.)"
+  },
+  {
+    "id": 116,
+    "gujarati": "નીચે",
+    "english": "Under",
+    "phonetic": "Niche",
+    "english_pronunciation": "Uhn-der",
+    "category": "Prepositions",
+    "difficulty": "Easy",
+    "example": "બિલાડી ટેબલ નીચે છે. (The cat is under the table.)"
+  },
+  {
+    "id": 117,
+    "gujarati": "નજીક",
+    "english": "Near",
+    "phonetic": "Najik",
+    "english_pronunciation": "Neer",
+    "category": "Prepositions",
+    "difficulty": "Easy",
+    "example": "મારું ઘર શાળા નજીક છે. (My house is near the school.)"
+  },
+  {
+    "id": 118,
+    "gujarati": "પાછળ",
+    "english": "Behind",
+    "phonetic": "Pachhal",
+    "english_pronunciation": "Bih-hynd",
+    "category": "Prepositions",
+    "difficulty": "Easy",
+    "example": "ઘરની પાછળ બગીચો છે. (There is a garden behind the house.)"
+  },
+  {
+    "id": 119,
+    "gujarati": "સામે",
+    "english": "In front of",
+    "phonetic": "Same",
+    "english_pronunciation": "In fruhnt ov",
+    "category": "Prepositions",
+    "difficulty": "Medium",
+    "example": "શાળાની સામે મંદિર છે. (There is a temple in front of the school.)"
+  },
+  {
+    "id": 120,
+    "gujarati": "બાજુમાં",
+    "english": "Beside",
+    "phonetic": "Bajuma",
+    "english_pronunciation": "Bih-syde",
+    "category": "Prepositions",
+    "difficulty": "Easy",
+    "example": "મારી બાજુમાં બેસો. (Sit beside me.)"
+  },
+  {
+    "id": 121,
+    "gujarati": "અંદર",
+    "english": "in",
+    "phonetic": "Andar",
+    "english_pronunciation": "In",
+    "category": "Prepositions",
+    "difficulty": "Easy",
+    "example": "પાણી બોટલની અંદર છે. (Water is in the bottle.)"
+  },
+  {
+    "id": 122,
+    "gujarati": "વચ્ચે",
+    "english": "Between",
+    "phonetic": "Vachche",
+    "english_pronunciation": "Bih-tween",
+    "category": "Prepositions",
+    "difficulty": "Medium",
+    "example": "બે ઘરો વચ્ચે રસ્તો છે. (There is a road between two houses.)"
+  },
+  {
+    "id": 123,
+    "gujarati": "ટ્યુબ-લાઈટ",
+    "english": "Tube light",
+    "phonetic": "Tube light",
+    "english_pronunciation": "Toob lyte",
+    "category": "Household",
+    "difficulty": "Easy",
+    "example": "ટ્યુબ-લાઈટ ચાલુ કરો. (Switch on the tube light.)"
+  },
+  {
+    "id": 124,
+    "gujarati": "લેમ્પ",
+    "english": "Lamp",
+    "phonetic": "Lamp",
+    "english_pronunciation": "Lamp",
+    "category": "Household",
+    "difficulty": "Easy",
+    "example": "ટેબલ લેમ્પ ચાલુ કરો. (Turn on the table lamp.)"
+  },
+  {
+    "id": 125,
+    "gujarati": "પંખો",
+    "english": "Fan",
+    "phonetic": "Pankho",
+    "english_pronunciation": "Fan",
+    "category": "Household",
+    "difficulty": "Easy",
+    "example": "પંખો ચાલુ કરો. (Turn on the fan.)"
+  },
+  {
+    "id": 126,
+    "gujarati": "લગ્ન",
+    "english": "Marriage",
+    "phonetic": "Lagna",
+    "english_pronunciation": "Mair-ij",
+    "category": "Events",
+    "difficulty": "Medium",
+    "example": "તેમના લગ્ન આવતા મહિને છે. (Their marriage is next month.)"
+  },
+  {
+    "id": 127,
+    "gujarati": "કબુતર",
+    "english": "Dove",
+    "phonetic": "Kabutar",
+    "english_pronunciation": "Duhv",
+    "category": "Animals & Birds",
+    "difficulty": "Easy",
+    "example": "સફેદ કબૂતર શાંતિનું પ્રતીક છે. (A white dove is a symbol of peace.)"
+  },
+  {
+    "id": 128,
+    "gujarati": "ચકલી",
+    "english": "Sparrow",
+    "phonetic": "Chakli",
+    "english_pronunciation": "Spair-oh",
+    "category": "Animals & Birds",
+    "difficulty": "Easy",
+    "example": "ચકલી માળો બાંધે છે. (The sparrow builds a nest.)"
+  },
+  {
+    "id": 129,
+    "gujarati": "સાંકળ",
+    "english": "Chain",
+    "phonetic": "Sankal",
+    "english_pronunciation": "Chayn",
+    "category": "Objects",
+    "difficulty": "Medium",
+    "example": "દરવાજાને સાંકળ લગાવો. (Put the chain on the door.)"
+  },
+  {
+    "id": 130,
+    "gujarati": "ચર્ચ",
+    "english": "Church",
+    "phonetic": "Church",
+    "english_pronunciation": "Church",
+    "category": "Places",
+    "difficulty": "Easy",
+    "example": "લોકો રવિવારે ચર્ચમાં જાય છે. (People go to church on Sundays.)"
+  },
+  {
+    "id": 131,
+    "gujarati": "દિવસ",
+    "english": "Day",
+    "phonetic": "Divas",
+    "english_pronunciation": "Day",
+    "category": "Time",
+    "difficulty": "Easy",
+    "example": "આજે સારો દિવસ છે. (Today is a good day.)"
+  },
+  {
+    "id": 132,
+    "gujarati": "રાત્રી",
+    "english": "Night",
+    "phonetic": "Ratri",
+    "english_pronunciation": "Nyte",
+    "category": "Time",
+    "difficulty": "Easy",
+    "example": "રાત્રે આકાશમાં ચંદ્ર દેખાય છે. (The moon is visible at night.)"
+  },
+  {
+    "id": 133,
+    "gujarati": "બપોર",
+    "english": "Afternoon",
+    "phonetic": "Bapor",
+    "english_pronunciation": "Af-ter-noon",
+    "category": "Time",
+    "difficulty": "Easy",
+    "example": "બપોરે ગરમી હોય છે. (It is hot in the afternoon.)"
+  },
+  {
+    "id": 134,
+    "gujarati": "તાળી પાડવી",
+    "english": "Clap",
+    "phonetic": "Tali padvi",
+    "english_pronunciation": "Klap",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "બાળકોએ તાળી પાડી. (The children clapped.)"
+  },
+  {
+    "id": 135,
+    "gujarati": "ટોપી",
+    "english": "Cap",
+    "phonetic": "Topi",
+    "english_pronunciation": "Kap",
+    "category": "Clothing",
+    "difficulty": "Easy",
+    "example": "તેણે લાલ ટોપી પહેરી છે. (He is wearing a red cap.)"
+  },
+  {
+    "id": 136,
+    "gujarati": "ચશ્માં",
+    "english": "Goggles",
+    "phonetic": "Chashma",
+    "english_pronunciation": "Gog-uhlz",
+    "category": "Clothing",
+    "difficulty": "Easy",
+    "example": "તડકામાં ચશ્માં પહેરો. (Wear goggles in the sun.)"
+  },
+  {
+    "id": 137,
+    "gujarati": "રૂમાલ",
+    "english": "Towel",
+    "phonetic": "Rumal",
+    "english_pronunciation": "Tow-uhl",
+    "category": "Household",
+    "difficulty": "Easy",
+    "example": "હાથ લૂછવા રૂમાલ વાપરો. (Use a towel to wipe hands.)"
+  },
+  {
+    "id": 138,
+    "gujarati": "નેપકીન",
+    "english": "napkin",
+    "phonetic": "Napkin",
+    "english_pronunciation": "Nap-kin",
+    "category": "Household",
+    "difficulty": "Easy",
+    "example": "જમ્યા પછી નેપકીન વાપરો. (Use a napkin after eating.)"
+  },
+  {
+    "id": 139,
+    "gujarati": "ગણવેશ",
+    "english": "Uniform",
+    "phonetic": "Ganvesh",
+    "english_pronunciation": "Yoo-nuh-form",
+    "category": "Clothing",
+    "difficulty": "Medium",
+    "example": "શાળાનો ગણવેશ પહેરો. (Wear school uniform.)"
+  },
+  {
+    "id": 140,
+    "gujarati": "કપડા",
+    "english": "Clothes",
+    "phonetic": "Kapda",
+    "english_pronunciation": "Klohz",
+    "category": "Clothing",
+    "difficulty": "Easy",
+    "example": "નવા કપડાં ખરીદો. (Buy new clothes.)"
+  },
+  {
+    "id": 141,
+    "gujarati": "શર્ટ",
+    "english": "Shirt",
+    "phonetic": "Shirt",
+    "english_pronunciation": "Shurt",
+    "category": "Clothing",
+    "difficulty": "Easy",
+    "example": "આ સફેદ શર્ટ છે. (This is a white shirt.)"
+  },
+  {
+    "id": 142,
+    "gujarati": "ટી-શર્ટ",
+    "english": "T-shirt",
+    "phonetic": "T-shirt",
+    "english_pronunciation": "Tee-shurt",
+    "category": "Clothing",
+    "difficulty": "Easy",
+    "example": "તેણે વાદળી ટી-શર્ટ પહેર્યું છે. (He is wearing a blue T-shirt.)"
+  },
+  {
+    "id": 143,
+    "gujarati": "વાંક કાઢવો",
+    "english": "Blame",
+    "phonetic": "Vank kadhvo",
+    "english_pronunciation": "Blaym",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "બીજાનો વાંક ન કાઢો. (Do not blame others.)"
+  },
+  {
+    "id": 144,
+    "gujarati": "ભીખ માંગવી",
+    "english": "Beg",
+    "phonetic": "Bhikh mangvi",
+    "english_pronunciation": "Beg",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "ભીખ માંગવી ખરાબ બાબત છે. (To beg is a bad thing.)"
+  },
+  {
+    "id": 145,
+    "gujarati": "રમવું",
+    "english": "Play",
+    "phonetic": "Ramvu",
+    "english_pronunciation": "Play",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "બાળકો બહાર રમે છે. (Children play outside.)"
+  },
+  {
+    "id": 146,
+    "gujarati": "બનાવવું",
+    "english": "Make",
+    "phonetic": "Banavvu",
+    "english_pronunciation": "Mayk",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "મમ્મી રસોઈ બનાવે છે. (Mom makes food.)"
+  },
+  {
+    "id": 147,
+    "gujarati": "લખવું",
+    "english": "Write",
+    "phonetic": "Lakhvu",
+    "english_pronunciation": "Ryte",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "તમારું નામ લખો. (Write your name.)"
+  },
+  {
+    "id": 148,
+    "gujarati": "વાંચવું",
+    "english": "Read",
+    "phonetic": "Vanchvu",
+    "english_pronunciation": "Reed",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "દરરોજ ચોપડી વાંચો. (Read books daily.)"
+  },
+  {
+    "id": 149,
+    "gujarati": "બોલવું",
+    "english": "Speak",
+    "phonetic": "Bolvu",
+    "english_pronunciation": "Speek",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "સાચું બોલો. (Speak the truth.)"
+  },
+  {
+    "id": 150,
+    "gujarati": "આવવું",
+    "english": "Come",
+    "phonetic": "Aavvu",
+    "english_pronunciation": "Kuhm",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "અહીં આવો. (Come here.)"
+  },
+  {
+    "id": 151,
+    "gujarati": "જવું",
+    "english": "Go",
+    "phonetic": "Javu",
+    "english_pronunciation": "Goh",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "તમે ઘરે જઈ શકો છો. (You may go home.)"
+  },
+  {
+    "id": 152,
+    "gujarati": "દોડવું",
+    "english": "Run",
+    "phonetic": "Dodvu",
+    "english_pronunciation": "Ruhn",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "ઝડપથી દોડો. (Run fast.)"
+  },
+  {
+    "id": 153,
+    "gujarati": "જોવું",
+    "english": "Look",
+    "phonetic": "Jovu",
+    "english_pronunciation": "Look",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "અહીં જુઓ. (Look here.)"
+  },
+  {
+    "id": 154,
+    "gujarati": "જોવું",
+    "english": "See",
+    "phonetic": "Jovu",
+    "english_pronunciation": "See",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "હું તને જોઈ શકું છું. (I can see you.)"
+  },
+  {
+    "id": 155,
+    "gujarati": "જોવું",
+    "english": "Watch",
+    "phonetic": "Jovu",
+    "english_pronunciation": "Woch",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "અમે ટીવી જોઈએ છીએ. (We watch TV.)"
+  },
+  {
+    "id": 156,
+    "gujarati": "ખોલવું",
+    "english": "Open",
+    "phonetic": "Kholvu",
+    "english_pronunciation": "Oh-puhn",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "દરવાજો ખોલો. (Open the door.)"
+  },
+  {
+    "id": 157,
+    "gujarati": "બંધ કરવું",
+    "english": "Close",
+    "phonetic": "Bandh karvu",
+    "english_pronunciation": "Klohz",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "બારી બંધ કરો. (Close the window.)"
+  },
+  {
+    "id": 158,
+    "gujarati": "સાફ કરવું",
+    "english": "Clean",
+    "phonetic": "Saaf karvu",
+    "english_pronunciation": "Kleen",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "તમારો ઓરડો સાફ કરો. (Clean your room.)"
+  },
+  {
+    "id": 159,
+    "gujarati": "પીવું",
+    "english": "Drink",
+    "phonetic": "Peevu",
+    "english_pronunciation": "Drink",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "પાણી પીવો. (Drink water.)"
+  },
+  {
+    "id": 160,
+    "gujarati": "પાણી પાવવું",
+    "english": "Water",
+    "phonetic": "Paani paavvu",
+    "english_pronunciation": "Wah-ter",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "છોડને પાણી પાવો. (Water the plants.)"
+  },
+  {
+    "id": 161,
+    "gujarati": "ખીજાવવું",
+    "english": "Scold",
+    "phonetic": "Khijaavvu",
+    "english_pronunciation": "Skohld",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "બાળકોને ખીજાવો નહીં. (Do not scold the children.)"
+  },
+  {
+    "id": 162,
+    "gujarati": "મશ્કરી કરવી",
+    "english": "Tease",
+    "phonetic": "Mashkari karvi",
+    "english_pronunciation": "Teez",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "કોઈની મશ્કરી ન કરો. (Do not tease anyone.)"
+  },
+  {
+    "id": 163,
+    "gujarati": "તોડવું",
+    "english": "Break",
+    "phonetic": "Todvu",
+    "english_pronunciation": "Brayk",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "કાચ ના તોડો. (Do not break glass.)"
+  },
+  {
+    "id": 164,
+    "gujarati": "બતાવવું",
+    "english": "Show",
+    "phonetic": "Batavvu",
+    "english_pronunciation": "Shoh",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "તમારું આઈડી બતાવો. (Show your ID.)"
+  },
+  {
+    "id": 165,
+    "gujarati": "ખરીદવું",
+    "english": "Buy",
+    "phonetic": "Kharidvu",
+    "english_pronunciation": "Bye",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "હું નવી ચોપડી ખરીદીશ. (I will buy a new book.)"
+  },
+  {
+    "id": 166,
+    "gujarati": "વેચવું",
+    "english": "Sell",
+    "phonetic": "Vechvu",
+    "english_pronunciation": "Sel",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "તે જૂની કાર વેચે છે. (He sells old cars.)"
+  },
+  {
+    "id": 167,
+    "gujarati": "આપવું",
+    "english": "Give",
+    "phonetic": "Aapvu",
+    "english_pronunciation": "Giv",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "મને પેન આપો. (Give me a pen.)"
+  },
+  {
+    "id": 168,
+    "gujarati": "લેવું",
+    "english": "Take",
+    "phonetic": "Levu",
+    "english_pronunciation": "Tayk",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "આ દવા લો. (Take this medicine.)"
+  },
+  {
+    "id": 169,
+    "gujarati": "બૂમ પાડવી",
+    "english": "Shout",
+    "phonetic": "Boom padvi",
+    "english_pronunciation": "Shout",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "બૂમો ન પાડો. (Do not shout.)"
+  },
+  {
+    "id": 170,
+    "gujarati": "કહેવું",
+    "english": "Say",
+    "phonetic": "Kahevu",
+    "english_pronunciation": "Say",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "તમારું શું કહેવું છે? (What do you say?)"
+  },
+  {
+    "id": 171,
+    "gujarati": "પૂછવું",
+    "english": "Ask",
+    "phonetic": "Puchhvu",
+    "english_pronunciation": "Ask",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "મને પ્રશ્ન પૂછો. (Ask me a question.)"
+  },
+  {
+    "id": 172,
+    "gujarati": "શણગારવું",
+    "english": "Decorate",
+    "phonetic": "Shangarvu",
+    "english_pronunciation": "Dek-uh-rayt",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "ઘરને શણગારો. (Decorate the house.)"
+  },
+  {
+    "id": 173,
+    "gujarati": "કામ કરવું",
+    "english": "Work",
+    "phonetic": "Kaam karvu",
+    "english_pronunciation": "Wurk",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "હું ઓફિસમાં કામ કરું છું. (I work in an office.)"
+  },
+  {
+    "id": 174,
+    "gujarati": "બાંધવું",
+    "english": "Tide",
+    "phonetic": "Bandhvu",
+    "english_pronunciation": "Tyd",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "દોરડું બાંધો. (Tie the rope.)"
+  },
+  {
+    "id": 175,
+    "gujarati": "મકાન બાંધવું",
+    "english": "Build",
+    "phonetic": "Makan bandhvu",
+    "english_pronunciation": "Bild",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "તેઓ નવું મકાન બાંધે છે. (They build a new house.)"
+  },
+  {
+    "id": 176,
+    "gujarati": "ગાવું",
+    "english": "Sing",
+    "phonetic": "Gaavu",
+    "english_pronunciation": "Sing",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "તે સરસ ગીત ગાય છે. (She sings a nice song.)"
+  },
+  {
+    "id": 177,
+    "gujarati": "યંત્ર વગાડવું",
+    "english": "Play",
+    "phonetic": "Yantra vagadvu",
+    "english_pronunciation": "Play",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "તે ગિટાર વગાડે છે. (He plays the guitar.)"
+  },
+  {
+    "id": 178,
+    "gujarati": "દોરવું",
+    "english": "Draw",
+    "phonetic": "Dorvu",
+    "english_pronunciation": "Droh",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "ચિત્ર દોરો. (Draw a picture.)"
+  },
+  {
+    "id": 179,
+    "gujarati": "ભાગ લેવો",
+    "english": "Take part",
+    "phonetic": "Bhag levo",
+    "english_pronunciation": "Tayk pahrt",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "સ્પર્ધામાં ભાગ લો. (Take part in the competition.)"
+  },
+  {
+    "id": 180,
+    "gujarati": "ભાગ લેવો",
+    "english": "Participate",
+    "phonetic": "Bhag levo",
+    "english_pronunciation": "Pahr-tis-uh-payt",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "બધાએ ભાગ લેવો જોઈએ. (Everyone should participate.)"
+  },
+  {
+    "id": 181,
+    "gujarati": "ફેંકવું",
+    "english": "Throw",
+    "phonetic": "Fenkvu",
+    "english_pronunciation": "Throh",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "દડો મારી તરફ ફેંકો. (Throw the ball towards me.)"
+  },
+  {
+    "id": 182,
+    "gujarati": "વેડફવું",
+    "english": "Waste",
+    "phonetic": "Vedfvu",
+    "english_pronunciation": "Wayst",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "સમય ન વેડફો. (Do not waste time.)"
+  },
+  {
+    "id": 183,
+    "gujarati": "બચાવવું",
+    "english": "Save",
+    "phonetic": "Bachavvu",
+    "english_pronunciation": "Sayv",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "પાણી બચાવો. (Save water.)"
+  },
+  {
+    "id": 184,
+    "gujarati": "આયાત કરવી",
+    "english": "Import",
+    "phonetic": "Aayat karvi",
+    "english_pronunciation": "Im-port",
+    "category": "Business",
+    "difficulty": "Hard",
+    "example": "અમે માલની આયાત કરીએ છીએ. (We import goods.)"
+  },
+  {
+    "id": 185,
+    "gujarati": "વાતો કરવી",
+    "english": "Talk",
+    "phonetic": "Vaato karvi",
+    "english_pronunciation": "Tok",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "મારી સાથે વાતો કરો. (Talk to me.)"
+  },
+  {
+    "id": 186,
+    "gujarati": "જાગવું",
+    "english": "Get up",
+    "phonetic": "Jaagvu",
+    "english_pronunciation": "Get uhp",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "હું સવારે ૬ વાગ્યે જાગું છું. (I get up at 6 AM.)"
+  },
+  {
+    "id": 187,
+    "gujarati": "ઉઠવું, જાગવું",
+    "english": "Awake",
+    "phonetic": "Uthvu, Jaagvu",
+    "english_pronunciation": "Uh-wayk",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "તે હજુ જાગે છે. (He is still awake.)"
+  },
+  {
+    "id": 188,
+    "gujarati": "સૂવું",
+    "english": "Sleep",
+    "phonetic": "Suvu",
+    "english_pronunciation": "Sleep",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "સમયસર સૂઈ જાઓ. (Sleep on time.)"
+  },
+  {
+    "id": 189,
+    "gujarati": "ભણવું, શીખવું",
+    "english": "Learn",
+    "phonetic": "Bhanvu, Shikhvu",
+    "english_pronunciation": "Lurn",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "અમે અંગ્રેજી શીખીએ છીએ. (We learn English.)"
+  },
+  {
+    "id": 190,
+    "gujarati": "ભણાવવું, શીખવડાવવું",
+    "english": "Teach",
+    "phonetic": "Bhanavvu, Shikhvadavvu",
+    "english_pronunciation": "Teech",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "શિક્ષક આપણને ભણાવે છે. (The teacher teaches us.)"
+  },
+  {
+    "id": 191,
+    "gujarati": "રાખવું",
+    "english": "Keep",
+    "phonetic": "Rakhvu",
+    "english_pronunciation": "Keep",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "આ ચોપડી અહીં રાખો. (Keep this book here.)"
+  },
+  {
+    "id": 192,
+    "gujarati": "મારવું",
+    "english": "Hit",
+    "phonetic": "Marvu",
+    "english_pronunciation": "Hit",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "દડાને જોરથી મારો. (Hit the ball hard.)"
+  },
+  {
+    "id": 193,
+    "gujarati": "લડવું",
+    "english": "Fight",
+    "phonetic": "Ladvu",
+    "english_pronunciation": "Fyte",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "આપસમાં ન લડો. (Do not fight with each other.)"
+  },
+  {
+    "id": 194,
+    "gujarati": "છેતરવું",
+    "english": "Cheat",
+    "phonetic": "Chetarvu",
+    "english_pronunciation": "Cheet",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "કોઈને છેતરશો નહીં. (Do not cheat anyone.)"
+  },
+  {
+    "id": 195,
+    "gujarati": "રસોઈ કરવી, રાંધવું",
+    "english": "Cook",
+    "phonetic": "Rasoi karvi, Randhvu",
+    "english_pronunciation": "Kook",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "હું ભોજન રાંધું છું. (I cook food.)"
+  },
+  {
+    "id": 196,
+    "gujarati": "બાળવું, ઉકાળવું",
+    "english": "Boil",
+    "phonetic": "Balvu, Ukalvu",
+    "english_pronunciation": "Boyl",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "દૂધ ઉકાળો. (Boil the milk.)"
+  },
+  {
+    "id": 197,
+    "gujarati": "શેકવું",
+    "english": "Bake",
+    "phonetic": "Shekvu",
+    "english_pronunciation": "Bayk",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "બ્રેડ શેકો. (Bake the bread.)"
+  },
+  {
+    "id": 198,
+    "gujarati": "તળવું",
+    "english": "Fry",
+    "phonetic": "Talvu",
+    "english_pronunciation": "Frye",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "પૂરી તળો. (Fry the puris.)"
+  },
+  {
+    "id": 199,
+    "gujarati": "ટીકા કરવી",
+    "english": "Criticize",
+    "phonetic": "Tika karvi",
+    "english_pronunciation": "Krit-uh-size",
+    "category": "Verbs",
+    "difficulty": "Hard",
+    "example": "કોઈની ટીકા ન કરો. (Do not criticize anyone.)"
+  },
+  {
+    "id": 200,
+    "gujarati": "વખાણ કરવા",
+    "english": "Praise",
+    "phonetic": "Vakhan karva",
+    "english_pronunciation": "Prayz",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "સારા કામના વખાણ કરો. (Praise good work.)"
+  },
+  {
+    "id": 201,
+    "gujarati": "ઉજવવું",
+    "english": "Celebrate",
+    "phonetic": "Ujavvu",
+    "english_pronunciation": "Sel-uh-brayt",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "અમે તહેવાર ઉજવીએ છીએ. (We celebrate the festival.)"
+  },
+  {
+    "id": 202,
+    "gujarati": "ગણવું",
+    "english": "Count",
+    "phonetic": "Ganvu",
+    "english_pronunciation": "Kownt",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "પૈસા ગણો. (Count the money.)"
+  },
+  {
+    "id": 203,
+    "gujarati": "ઉમેરવું",
+    "english": "Add",
+    "phonetic": "Umervu",
+    "english_pronunciation": "Ad",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "નંબર ઉમેરો. (Add the numbers.)"
+  },
+  {
+    "id": 204,
+    "gujarati": "કરડવું",
+    "english": "Bite",
+    "phonetic": "Karadvu",
+    "english_pronunciation": "Byte",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "કૂતરાથી બચો, કરડશે. (Beware of the dog, it will bite.)"
+  },
+  {
+    "id": 205,
+    "gujarati": "કાળજી લેવી",
+    "english": "Care",
+    "phonetic": "Kalji levi",
+    "english_pronunciation": "Kair",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "તમારા સ્વાસ્થ્યની કાળજી લો. (Take care of your health.)"
+  },
+  {
+    "id": 206,
+    "gujarati": "નકલ કરવી",
+    "english": "Copy",
+    "phonetic": "Nakal karvi",
+    "english_pronunciation": "Kop-ee",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "પરીક્ષામાં નકલ ન કરો. (Do not copy in the exam.)"
+  },
+  {
+    "id": 207,
+    "gujarati": "સૂકવવું",
+    "english": "Dry",
+    "phonetic": "Sukavvu",
+    "english_pronunciation": "Drye",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "કપડાં તડકામાં સૂકવો. (Dry clothes in the sun.)"
+  },
+  {
+    "id": 208,
+    "gujarati": "ભીનું કરવું",
+    "english": "Wet",
+    "phonetic": "Bhinu karvu",
+    "english_pronunciation": "Wet",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "રૂમાલ ભીનો કરો. (Wet the towel.)"
+  },
+  {
+    "id": 209,
+    "gujarati": "ચાલવું",
+    "english": "walk",
+    "phonetic": "Chalvu",
+    "english_pronunciation": "Wok",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "દરરોજ સવારે ચાલો. (Walk every morning.)"
+  },
+  {
+    "id": 210,
+    "gujarati": "ચલાવવું, હંકારવું",
+    "english": "Drive",
+    "phonetic": "Chalavvu, Hankarvu",
+    "english_pronunciation": "Dryv",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "ધીમેથી કાર ચલાવો. (Drive the car slowly.)"
+  },
+  {
+    "id": 211,
+    "gujarati": "કોઈક વસ્તુ ચલાવવી",
+    "english": "Run, operate",
+    "phonetic": "Koik vastu chalavvi",
+    "english_pronunciation": "Ruhn, Op-uh-rayt",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "મશીન ચલાવો. (Operate the machine.)"
+  },
+  {
+    "id": 212,
+    "gujarati": "કમાવવું",
+    "english": "Earn",
+    "phonetic": "Kamavvu",
+    "english_pronunciation": "Urn",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "તે મહેનત કરીને પૈસા કમાય છે. (He earns money by working hard.)"
+  },
+  {
+    "id": 213,
+    "gujarati": "ખર્ચવું",
+    "english": "Spend",
+    "phonetic": "Kharchvu",
+    "english_pronunciation": "Spend",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "વિચારીને પૈસા ખર્ચો. (Spend money wisely.)"
+  },
+  {
+    "id": 214,
+    "gujarati": "ઉડાડવું",
+    "english": "Fly",
+    "phonetic": "Udadvu",
+    "english_pronunciation": "Flye",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "બાળકો પતંગ ઉડાડે છે. (Children fly kites.)"
+  },
+  {
+    "id": 215,
+    "gujarati": "પહેરેવું",
+    "english": "Wear",
+    "phonetic": "Paharevu",
+    "english_pronunciation": "Wair",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "નવા કપડાં પહેરો. (Wear new clothes.)"
+  },
+  {
+    "id": 216,
+    "gujarati": "સાંભળવું",
+    "english": "Listen",
+    "phonetic": "Sambhalvu",
+    "english_pronunciation": "Lis-uhn",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "ધ્યાનથી સાંભળો. (Listen carefully.)"
+  },
+  {
+    "id": 217,
+    "gujarati": "સાંભળવું",
+    "english": "Hear",
+    "phonetic": "Sambhalvu",
+    "english_pronunciation": "Heer",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "હું તમારો અવાજ સાંભળી શકું છું. (I can hear your voice.)"
+  },
+  {
+    "id": 218,
+    "gujarati": "રડવું",
+    "english": "Cry",
+    "phonetic": "Radvu",
+    "english_pronunciation": "Krye",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "નાનું બાળક રડે છે. (The small child is crying.)"
+  },
+  {
+    "id": 219,
+    "gujarati": "ધોવું",
+    "english": "Wash",
+    "phonetic": "Dhovu",
+    "english_pronunciation": "Wosh",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "હાથ સાબુથી ધોવો. (Wash hands with soap.)"
+  },
+  {
+    "id": 220,
+    "gujarati": "વાપરવું",
+    "english": "Use",
+    "phonetic": "Vaparvu",
+    "english_pronunciation": "Yooz",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "પેનનો ઉપયોગ કરો. (Use the pen.)"
+  },
+  {
+    "id": 221,
+    "gujarati": "નિકાસ કરવી",
+    "english": "Export",
+    "phonetic": "Nikas karvi",
+    "english_pronunciation": "Eks-port",
+    "category": "Business",
+    "difficulty": "Hard",
+    "example": "ભારત મસાલાની નિકાસ કરે છે. (India exports spices.)"
+  },
+  {
+    "id": 222,
+    "gujarati": "ધુમ્રપાન કરવું",
+    "english": "Smoke",
+    "phonetic": "Dhumrapan karvu",
+    "english_pronunciation": "Smohk",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "ધૂમ્રપાન સ્વાસ્થ્ય માટે હાનિકારક છે. (Smoking is harmful to health.)"
+  },
+  {
+    "id": 223,
+    "gujarati": "મેળવવું",
+    "english": "Get",
+    "phonetic": "Melavvu",
+    "english_pronunciation": "Get",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "મને મારો સંદેશ મળ્યો. (I got my message.)"
+  },
+  {
+    "id": 224,
+    "gujarati": "મેળવવું",
+    "english": "Achieve",
+    "phonetic": "Melavvu",
+    "english_pronunciation": "Uh-cheev",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "તમારા લક્ષ્યો પ્રાપ્ત કરો. (Achieve your goals.)"
+  },
+  {
+    "id": 225,
+    "gujarati": "ચોપડવું",
+    "english": "Apply",
+    "phonetic": "Chopadvu",
+    "english_pronunciation": "Uh-plye",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "ઘા પર ક્રીમ ચોપડો. (Apply cream on the wound.)"
+  },
+  {
+    "id": 226,
+    "gujarati": "ચઢવું",
+    "english": "Climb",
+    "phonetic": "Chadhvu",
+    "english_pronunciation": "Klyme",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "ઝાડ પર ન ચઢો. (Do not climb the tree.)"
+  },
+  {
+    "id": 227,
+    "gujarati": "પસંદ કરવું",
+    "english": "Choose",
+    "phonetic": "Pasand karvu",
+    "english_pronunciation": "Chooz",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "સાચો વિકલ્પ પસંદ કરો. (Choose the correct option.)"
+  },
+  {
+    "id": 228,
+    "gujarati": "પસંદ કરવું",
+    "english": "Select",
+    "phonetic": "Pasand karvu",
+    "english_pronunciation": "Suh-lekt",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "સારી ચોપડી પસંદ કરો. (Select a good book.)"
+  },
+  {
+    "id": 229,
+    "gujarati": "ચાહવું,",
+    "english": "Love",
+    "phonetic": "Chahvu",
+    "english_pronunciation": "Luhv",
+    "category": "Emotions",
+    "difficulty": "Easy",
+    "example": "માતાપિતા બાળકોને ચાહે છે. (Parents love their children.)"
+  },
+  {
+    "id": 230,
+    "gujarati": "પડવું",
+    "english": "Fall",
+    "phonetic": "Padvu",
+    "english_phonunciation": "Fol",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "ઝાડ પરથી પાંદડાં પડે છે. (Leaves fall from the tree.)"
+  },
+  {
+    "id": 231,
+    "gujarati": "કોગળા કરવા",
+    "english": "Gargle",
+    "phonetic": "Kogla karva",
+    "english_pronunciation": "Gahr-guhl",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "મીઠાના પાણીથી કોગળા કરો. (Gargle with salt water.)"
+  },
+  {
+    "id": 232,
+    "gujarati": "સળગાવવું",
+    "english": "To light",
+    "phonetic": "Salagavvu",
+    "english_pronunciation": "to light",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "મીણબત્તી સળગાવો. (Light the candle.)"
+  },
+  {
+    "id": 233,
+    "gujarati": "આમંત્રિત કરવું",
+    "english": "Invite",
+    "phonetic": "Aamantrit karvu",
+    "english_pronunciation": "In-vyte",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "તેણે મિત્રોને આમંત્રિત કર્યા. (He invited his friends.)"
+  },
+  {
+    "id": 234,
+    "gujarati": "દોહવું",
+    "english": "To milk",
+    "phonetic": "Dohvu",
+    "english_pronunciation": "to milk",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "ખેડૂત ગાય દોહે છે. (The farmer milks the cow.)"
+  },
+  {
+    "id": 235,
+    "gujarati": "ઢોર ચરાવવું",
+    "english": "Graze",
+    "phonetic": "Dhor charavvu",
+    "english_pronunciation": "Grayz",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "ગાયો ખેતરમાં ચરે છે. (Cows graze in the field.)"
+  },
+  {
+    "id": 236,
+    "gujarati": "પ્રેરણા આપવી",
+    "english": "Inspire",
+    "phonetic": "Prerna aapvi",
+    "english_pronunciation": "In-spyre",
+    "category": "Verbs",
+    "difficulty": "Hard",
+    "example": "મહાન લોકો આપણને પ્રેરણા આપે છે. (Great people inspire us.)"
+  },
+  {
+    "id": 237,
+    "gujarati": "મળવું",
+    "english": "Visit",
+    "phonetic": "Malvu",
+    "english_pronunciation": "Viz-it",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "અમે મંદિરે દર્શન કરવા ગયા. (We visited the temple.)"
+  },
+  {
+    "id": 238,
+    "gujarati": "જરૂર હોવી",
+    "english": "Need",
+    "phonetic": "Jarur hovi",
+    "english_pronunciation": "Need",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "મને તમારી મદદની જરૂર છે. (I need your help.)"
+  },
+  {
+    "id": 239,
+    "gujarati": "ખેંચવું",
+    "english": "Pull",
+    "phonetic": "Khenchvu",
+    "english_pronunciation": "Puhl",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "દરવાજો ખેંચો. (Pull the door.)"
+  },
+  {
+    "id": 240,
+    "gujarati": "ધક્કો મારવો",
+    "english": "Push",
+    "phonetic": "Dhakko maarvo",
+    "english_pronunciation": "Poosh",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "દરવાજાને ધક્કો મારો. (Push the door.)"
+  },
+  {
+    "id": 241,
+    "gujarati": "થૂંકવું",
+    "english": "Spit",
+    "phonetic": "Thunkvu",
+    "english_pronunciation": "Spit",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "અહીં થૂંકશો નહીં. (Do not spit here.)"
+  },
+  {
+    "id": 242,
+    "gujarati": "ગોળી મારવી",
+    "english": "Shoot",
+    "phonetic": "Goli maarvi",
+    "english_pronunciation": "Shoot",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "પોલીસે બંદૂક ચલાવી. (The police shot the gun.)"
+  },
+  {
+    "id": 243,
+    "gujarati": "ચુકવવું",
+    "english": "Pay",
+    "phonetic": "Chukavvu",
+    "english_pronunciation": "Pay",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "બિલ ચુકવો. (Pay the bill.)"
+  },
+  {
+    "id": 244,
+    "gujarati": "તરવું",
+    "english": "Swim",
+    "phonetic": "Tarvu",
+    "english_pronunciation": "Swim",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "બાળકો તળાવમાં તરે છે. (Children swim in the pond.)"
+  },
+  {
+    "id": 245,
+    "gujarati": "ડૂબવું",
+    "english": "Sink",
+    "phonetic": "Dubvu",
+    "english_pronunciation": "Sink",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "ભારે વસ્તુઓ પાણીમાં ડૂબે છે. (Heavy objects sink in water.)"
+  },
+  {
+    "id": 246,
+    "gujarati": "કોશિશ કરવી",
+    "english": "Try",
+    "phonetic": "Koshish karvi",
+    "english_pronunciation": "Trye",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "ફરીથી કોશિશ કરો. (Try again.)"
+  },
+  {
+    "id": 247,
+    "gujarati": "બોલાવવું",
+    "english": "Call",
+    "phonetic": "Bolavvu",
+    "english_pronunciation": "Kol",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "તેને અહીં બોલાવો. (Call him here.)"
+  },
+  {
+    "id": 248,
+    "gujarati": "ચોરવું",
+    "english": "Steal",
+    "phonetic": "Chorvu",
+    "english_pronunciation": "Steel",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "વસ્તુઓ ચોરવી ગુનો છે. (To steal items is a crime.)"
+  },
+  {
+    "id": 249,
+    "gujarati": "પૂછપરછ કરવી",
+    "english": "Inquire",
+    "phonetic": "Puchparach karvi",
+    "english_pronunciation": "In-kwyre",
+    "category": "Verbs",
+    "difficulty": "Hard",
+    "example": "ઓફિસમાં પૂછપરછ કરો. (Inquire at the office.)"
+  },
+  {
+    "id": 250,
+    "gujarati": "લાત મારવી",
+    "english": "Kick",
+    "phonetic": "Laat maarvi",
+    "english_pronunciation": "Kik",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "દડાને લાત મારો. (Kick the ball.)"
+  },
+  {
+    "id": 251,
+    "gujarati": "ભેગા થવું",
+    "english": "Gather",
+    "phonetic": "Bhega thavu",
+    "english_pronunciation": "Gath-er",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "બધા હોલમાં ભેગા થયા. (Everyone gathered in the hall.)"
+  },
+  {
+    "id": 252,
+    "gujarati": "અનુસરવું",
+    "english": "Follow",
+    "phonetic": "Anusarvu",
+    "english_pronunciation": "Fol-oh",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "નિયમોનું અનુસરણ કરો. (Follow the rules.)"
+  },
+  {
+    "id": 253,
+    "gujarati": "જોડાવું",
+    "english": "Join",
+    "phonetic": "Jodavu",
+    "english_pronunciation": "Join",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "અમારી સાથે જોડાઓ. (Join with us.)"
+  },
+  {
+    "id": 254,
+    "gujarati": "લાવવું",
+    "english": "Bring",
+    "phonetic": "Laavvu",
+    "english_pronunciation": "Bring",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "એક ગ્લાસ પાણી લાવો. (Bring a glass of water.)"
+  },
+  {
+    "id": 255,
+    "gujarati": "લઇ જવું",
+    "english": "Carry",
+    "phonetic": "Lai javu",
+    "english_pronunciation": "Kair-ee",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "આ બેગ સાથે લઈ જાઓ. (Carry this bag with you.)"
+  },
+  {
+    "id": 256,
+    "gujarati": "ફોન કરવો",
+    "english": "Phone",
+    "phonetic": "Phone karvo",
+    "english_pronunciation": "Fohn",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "મને સાંજે ફોન કરજો. (Phone me in the evening.)"
+  },
+  {
+    "id": 257,
+    "gujarati": "પ્રાર્થના કરવી",
+    "english": "Pray",
+    "phonetic": "Prarthana karvi",
+    "english_pronunciation": "Pray",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "દરરોજ ભગવાનને પ્રાર્થના કરો. (Pray to God every day.)"
+  },
+  {
+    "id": 258,
+    "gujarati": "પુરૂં પાડવું",
+    "english": "Provide",
+    "phonetic": "Puru padvu",
+    "english_pronunciation": "Pruh-vyde",
+    "category": "Verbs",
+    "difficulty": "Medium",
+    "example": "અમે પૂરતી માહિતી પૂરી પાડીએ છીએ. (We provide full information.)"
+  },
+  {
+    "id": 259,
+    "gujarati": "વાવવું",
+    "english": "Plant, grow",
+    "phonetic": "Vaavvu",
+    "english_phonunciation": "Plant, Groh",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "બગીચામાં છોડ વાવો. (Plant trees in the garden.)"
+  },
+  {
+    "id": 260,
+    "gujarati": "ચાખવું",
+    "english": "Test",
+    "phonetic": "Chakhvu",
+    "english_pronunciation": "Test",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "રસોઈ ચાખી જુઓ. (Taste/Test the food.)"
+  },
+  {
+    "id": 261,
+    "gujarati": "મદદ કરવી",
+    "english": "Help",
+    "phonetic": "Madad karvi",
+    "english_pronunciation": "Help",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "ગરીબોને મદદ કરો. (Help the poor.)"
+  },
+  {
+    "id": 262,
+    "gujarati": "લાફો મારવો",
+    "english": "Slap",
+    "phonetic": "Laafo maarvo",
+    "english_pronunciation": "Slap",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "કોઈને લાફો ન મારો. (Do not slap anyone.)"
+  },
+  {
+    "id": 263,
+    "gujarati": "વિચારવું",
+    "english": "Think",
+    "phonetic": "Vicharvu",
+    "english_pronunciation": "Thingk",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "બોલતા પહેલા વિચારો. (Think before you speak.)"
+  },
+  {
+    "id": 264,
+    "gujarati": "તૈયાર કરવું",
+    "english": "Ready",
+    "phonetic": "Taiyar karvu",
+    "english_pronunciation": "Red-ee",
+    "category": "Verbs",
+    "difficulty": "Easy",
+    "example": "તમારું લેસન તૈયાર કરો. (Get your lesson ready.)"
+  }
+]
