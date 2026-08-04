@@ -11,7 +11,7 @@
   },
   {
     "id": 2,
-    "gujarati": "પેેલું",
+    "gujarati": "પેલું",
     "english": "That",
     "phonetic": "Pelu",
     "english_pronunciation": "That",
@@ -51,7 +51,7 @@
   },
   {
     "id": 6,
-    "gujarati": "તે (પુરુષ) માટે",
+    "gujarati": "તે (પુરુષ)",
     "english": "He",
     "phonetic": "Te (Purush)",
     "english_pronunciation": "Hee",
@@ -61,7 +61,7 @@
   },
   {
     "id": 7,
-    "gujarati": "તે (સ્ત્રી)માટે",
+    "gujarati": "તે (સ્ત્રી)",
     "english": "She",
     "phonetic": "Te (Stri)",
     "english_pronunciation": "Shee",
@@ -1041,7 +1041,7 @@
   },
   {
     "id": 105,
-    "gujarati": "પેન્સિલ નો સંંચો",
+    "gujarati": "પેન્સિલ નો સંચો",
     "english": "Sharpener",
     "phonetic": "Pencil no sancho",
     "english_pronunciation": "Shahr-puh-ner",
@@ -1362,7 +1362,7 @@
   {
     "id": 137,
     "gujarati": "રૂમાલ",
-    "english": "Towel",
+    "english": "Handkerchief",
     "phonetic": "Rumal",
     "english_pronunciation": "Tow-uhl",
     "category": "Household",
@@ -1732,7 +1732,7 @@
   {
     "id": 174,
     "gujarati": "બાંધવું",
-    "english": "Tide",
+    "english": "Tie",
     "phonetic": "Bandhvu",
     "english_pronunciation": "Tyd",
     "category": "Verbs",
@@ -2141,7 +2141,7 @@
   },
   {
     "id": 215,
-    "gujarati": "પહેરેવું",
+    "gujarati": "પહેરવું",
     "english": "Wear",
     "phonetic": "Paharevu",
     "english_pronunciation": "Wair",
@@ -2281,7 +2281,7 @@
   },
   {
     "id": 229,
-    "gujarati": "ચાહવું,",
+    "gujarati": "ચાહવું",
     "english": "Love",
     "phonetic": "Chahvu",
     "english_pronunciation": "Luhv",
@@ -2294,7 +2294,7 @@
     "gujarati": "પડવું",
     "english": "Fall",
     "phonetic": "Padvu",
-    "english_phonunciation": "Fol",
+    "english_pronunciation": "Fol",
     "category": "Verbs",
     "difficulty": "Easy",
     "example": "ઝાડ પરથી પાંદડાં પડે છે. (Leaves fall from the tree.)"
@@ -2584,7 +2584,7 @@
     "gujarati": "વાવવું",
     "english": "Plant, grow",
     "phonetic": "Vaavvu",
-    "english_phonunciation": "Plant, Groh",
+    "english_pronunciation": "Plant, Groh",
     "category": "Verbs",
     "difficulty": "Easy",
     "example": "બગીચામાં છોડ વાવો. (Plant trees in the garden.)"
@@ -2592,12 +2592,12 @@
   {
     "id": 260,
     "gujarati": "ચાખવું",
-    "english": "Test",
+    "english": "Taste",
     "phonetic": "Chakhvu",
     "english_pronunciation": "Test",
     "category": "Verbs",
     "difficulty": "Easy",
-    "example": "રસોઈ ચાખી જુઓ. (Taste/Test the food.)"
+    "example": "રસોઈ ચાખી જુઓ. (Taste the food.)"
   },
   {
     "id": 261,
