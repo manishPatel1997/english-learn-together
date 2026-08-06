@@ -21,8 +21,8 @@ import { MistakesView } from "@/components/views/mistakes-view";
 import { FavoritesView } from "@/components/views/favorites-view";
 import { SettingsView } from "@/components/views/settings-view";
 
-// Import Static JSON Data
-import vocabularyData from "@/data/vocabulary.json";
+// Import Data Helpers
+import { getVocabularyQuestions, getStoredVocabSectionId, ALL_VOCABULARY_QUESTIONS } from "@/lib/vocabulary-data";
 import sentenceData from "@/data/sentences.json";
 
 export function AppLayout() {
@@ -96,7 +96,7 @@ export function AppLayout() {
     setActivePracticeType(mode);
 
     if (mode === "vocabulary") {
-      setCurrentQuestions(vocabularyData);
+      setCurrentQuestions(getVocabularyQuestions(getStoredVocabSectionId()));
       setPracticeStep("in_practice");
       setCurrentNav("vocabulary");
     } else if (mode === "sentence") {
@@ -104,7 +104,7 @@ export function AppLayout() {
       setCurrentNav("sentence");
     } else if (mode === "mixed") {
       // Mix vocabulary and sentences
-      const vocabItems = [...vocabularyData].map((v) => ({ ...v, type: "vocabulary" }));
+      const vocabItems = [...ALL_VOCABULARY_QUESTIONS].map((v) => ({ ...v, type: "vocabulary" }));
       const sentenceItems = Object.values(sentenceData)
         .flat()
         .map((s: any) => ({ ...s, type: "sentence" }));

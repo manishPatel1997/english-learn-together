@@ -15,7 +15,7 @@ import {
   Sparkles,
   ArrowRight,
 } from "lucide-react";
-import vocabularyData from "@/data/vocabulary.json";
+import { ALL_VOCABULARY_QUESTIONS } from "@/lib/vocabulary-data";
 import sentenceData from "@/data/sentences.json";
 import { type NavItem } from "./bounce-sidebar";
 import { cn } from "@/lib/utils";
@@ -65,11 +65,11 @@ export function CommandPalette({
     : navCommands;
 
   const filteredVocab = query
-    ? vocabularyData.filter(
+    ? ALL_VOCABULARY_QUESTIONS.filter(
         (v) =>
           v.gujarati.includes(query) ||
           v.english.toLowerCase().includes(query.toLowerCase()) ||
-          v.category.toLowerCase().includes(query.toLowerCase())
+          (v.category || "").toLowerCase().includes(query.toLowerCase())
       )
     : [];
 

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { VocabularyPracticeView } from "@/components/views/vocabulary-practice-view";
 import { ResultView } from "@/components/views/result-view";
-import vocabularyData from "@/data/vocabulary.json";
+import { ALL_VOCABULARY_QUESTIONS } from "@/lib/vocabulary-data";
 import sentenceData from "@/data/sentences.json";
 import { NAV_ROUTES } from "@/components/layout/app-shell";
 import { type NavItem } from "@/components/beui/bounce-sidebar";
@@ -21,7 +21,7 @@ export default function MixedPage() {
   });
 
   const startNewSession = () => {
-    const vocabItems = [...vocabularyData].map((v) => ({ ...v, type: "vocabulary" }));
+    const vocabItems = [...ALL_VOCABULARY_QUESTIONS].map((v) => ({ ...v, type: "vocabulary" }));
     const sentenceItems = Object.values(sentenceData)
       .flat()
       .map((s: any) => ({ ...s, type: "sentence" }));

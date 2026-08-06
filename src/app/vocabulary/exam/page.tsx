@@ -4,17 +4,31 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { VocabularySubNav } from "@/components/layout/vocabulary-sub-nav";
 import { VocabularyPracticeView } from "@/components/views/vocabulary-practice-view";
-import vocabularyData from "@/data/vocabulary.json";
+import {
+  getVocabularyQuestions,
+  getStoredVocabSectionId,
+  setStoredVocabSectionId,
+  VocabQuestion,
+} from "@/lib/vocabulary-data";
 
 export default function VocabularyExamPage() {
   const router = useRouter();
-  const [questions, setQuestions] = useState<any[]>([]);
+  const [activeSectionId, setActiveSectionId] = useState<string>("section1");
+  const [questions, setQuestions] = useState<VocabQuestion[]>([]);
 
   useEffect(() => {
-    // Shuffle vocabulary data for exam mode
-    const shuffled = [...vocabularyData].sort(() => 0.5 - Math.random());
-    setQuestions(shuffled);
+    const savedSection = getStoredVocabSectionId();
+    setActiveSectionId(savedSection);
+    const data = getVocabularyQuestions(savedSection);
+    setQuestions(data);
   }, []);
+
+  const handleSectionChange = (newSectionId: string) => {
+    setActiveSectionId(newSectionId);
+    setStoredVocabSectionId(newSectionId);
+    const data = getVocabularyQuestions(newSectionId);
+    setQuestions(data);
+  };
 
   const handlePracticeComplete = (score: number, accuracy: number, xp: number, mistakes: any[]) => {
     const params = new URLSearchParams({
@@ -32,6 +46,8 @@ export default function VocabularyExamPage() {
         <VocabularyPracticeView
           questions={questions}
           initialPageMode="exam"
+          activeSectionId={activeSectionId}
+          onSectionChange={handleSectionChange}
           onComplete={handlePracticeComplete}
         />
       ) : (

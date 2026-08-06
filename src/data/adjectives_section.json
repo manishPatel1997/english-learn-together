@@ -1,0 +1,764 @@
+{
+  "adjectives_section": [
+    {
+      "english": "New",
+      "pronunciation_gujarati": "ન્યુ",
+      "meaning_gujarati": "નવું"
+    },
+    {
+      "english": "Lucky",
+      "pronunciation_gujarati": "લકી",
+      "meaning_gujarati": "નસીબદાર"
+    },
+    {
+      "english": "Wide",
+      "pronunciation_gujarati": "વાઇડ",
+      "meaning_gujarati": "પહોળું"
+    },
+    {
+      "english": "Brave",
+      "pronunciation_gujarati": "બ્રેવ",
+      "meaning_gujarati": "બહાદુર"
+    },
+    {
+      "english": "Grand",
+      "pronunciation_gujarati": "ગ્રાન્ડ",
+      "meaning_gujarati": "ભવ્ય"
+    },
+    {
+      "english": "Wet",
+      "pronunciation_gujarati": "વેટ",
+      "meaning_gujarati": "ભીનું"
+    },
+    {
+      "english": "Great",
+      "pronunciation_gujarati": "ગ્રેટ",
+      "meaning_gujarati": "મહાન"
+    },
+    {
+      "english": "Ill/Sick",
+      "pronunciation_gujarati": "ઈલ/સીક",
+      "meaning_gujarati": "માંદુ/બિમાર"
+    },
+    {
+      "english": "Friendly",
+      "pronunciation_gujarati": "ફ્રેન્ડલી",
+      "meaning_gujarati": "મિત્રતાથી"
+    },
+    {
+      "english": "Difficult",
+      "pronunciation_gujarati": "ડીફીકલ્ટ",
+      "meaning_gujarati": "મુશ્કેલ/અઘરું"
+    },
+    {
+      "english": "Big",
+      "pronunciation_gujarati": "બીગ",
+      "meaning_gujarati": "મોટું"
+    },
+    {
+      "english": "Late",
+      "pronunciation_gujarati": "લેટ",
+      "meaning_gujarati": "મોડું"
+    },
+    {
+      "english": "Long",
+      "pronunciation_gujarati": "લોંગ",
+      "meaning_gujarati": "લાંબુ"
+    },
+    {
+      "english": "Early",
+      "pronunciation_gujarati": "અર્લી",
+      "meaning_gujarati": "વહેલું"
+    },
+    {
+      "english": "Curve",
+      "pronunciation_gujarati": "કર્વ",
+      "meaning_gujarati": "વળાંક"
+    },
+    {
+      "english": "Few",
+      "pronunciation_gujarati": "ફયુ",
+      "meaning_gujarati": "થોડુક"
+    },
+    {
+      "english": "Sad",
+      "pronunciation_gujarati": "સેડ",
+      "meaning_gujarati": "દુઃખી"
+    },
+    {
+      "english": "Helpless",
+      "pronunciation_gujarati": "હેલ્પલેસ",
+      "meaning_gujarati": "લાચાર, બિચારું"
+    },
+    {
+      "english": "Extra",
+      "pronunciation_gujarati": "એક્સ્ટ્રા",
+      "meaning_gujarati": "વધારાનું"
+    },
+    {
+      "english": "Busy",
+      "pronunciation_gujarati": "બીઝી",
+      "meaning_gujarati": "વ્યસ્ત"
+    },
+    {
+      "english": "Doubtful",
+      "pronunciation_gujarati": "ડાઉટફૂલ",
+      "meaning_gujarati": "શંકાસ્પદ"
+    },
+    {
+      "english": "Shy",
+      "pronunciation_gujarati": "શાય",
+      "meaning_gujarati": "શરમાળ"
+    },
+    {
+      "english": "Super",
+      "pronunciation_gujarati": "સુપર",
+      "meaning_gujarati": "શ્રેષ્ઠ"
+    },
+    {
+      "english": "Safe",
+      "pronunciation_gujarati": "સેફ",
+      "meaning_gujarati": "સલામત"
+    },
+    {
+      "english": "Narrow",
+      "pronunciation_gujarati": "નેરો",
+      "meaning_gujarati": "સાંકડું"
+    },
+    {
+      "english": "Correct",
+      "pronunciation_gujarati": "કરેક્ટ",
+      "meaning_gujarati": "સાચું"
+    },
+    {
+      "english": "Right",
+      "pronunciation_gujarati": "રાઈટ",
+      "meaning_gujarati": "સાચું/જમણું"
+    },
+    {
+      "english": "Plain",
+      "pronunciation_gujarati": "પ્લેઇન",
+      "meaning_gujarati": "સાદુ"
+    },
+    {
+      "english": "Local",
+      "pronunciation_gujarati": "લોકલ",
+      "meaning_gujarati": "સ્થાનિક"
+    },
+    {
+      "english": "Clear",
+      "pronunciation_gujarati": "ક્લીઅર",
+      "meaning_gujarati": "સ્વચ્છ"
+    },
+    {
+      "english": "Clever",
+      "pronunciation_gujarati": "ક્લેવર",
+      "meaning_gujarati": "હોશિયાર"
+    },
+    {
+      "english": "Stale",
+      "pronunciation_gujarati": "સ્ટેલ",
+      "meaning_gujarati": "વાસી"
+    },
+    {
+      "english": "Silent",
+      "pronunciation_gujarati": "સાઈલેંટ",
+      "meaning_gujarati": "શાંત"
+    },
+    {
+      "english": "Pure",
+      "pronunciation_gujarati": "પ્યોર",
+      "meaning_gujarati": "શુદ્ધ"
+    },
+    {
+      "english": "Hard",
+      "pronunciation_gujarati": "હાર્ડ",
+      "meaning_gujarati": "સખત"
+    },
+    {
+      "english": "Alert",
+      "pronunciation_gujarati": "અલર્ટ",
+      "meaning_gujarati": "સતર્ક"
+    },
+    {
+      "english": "Average",
+      "pronunciation_gujarati": "એવરેજ",
+      "meaning_gujarati": "સરેરાશ"
+    },
+    {
+      "english": "Cheap",
+      "pronunciation_gujarati": "ચીપ",
+      "meaning_gujarati": "સસ્તું"
+    },
+    {
+      "english": "Crazy",
+      "pronunciation_gujarati": "ક્રેઝી",
+      "meaning_gujarati": "પાગલ"
+    },
+    {
+      "english": "Thin",
+      "pronunciation_gujarati": "થીન",
+      "meaning_gujarati": "પાતળું"
+    },
+    {
+      "english": "Popular",
+      "pronunciation_gujarati": "પોપ્યુલર",
+      "meaning_gujarati": "પ્રખ્યાત"
+    },
+    {
+      "english": "Stupid",
+      "pronunciation_gujarati": "સ્ટુપિડ",
+      "meaning_gujarati": "બેવકૂફ"
+    },
+    {
+      "english": "Horrible",
+      "pronunciation_gujarati": "હોરીબલ",
+      "meaning_gujarati": "ભયાનક"
+    },
+    {
+      "english": "Full",
+      "pronunciation_gujarati": "ફુલ",
+      "meaning_gujarati": "ભરેલું"
+    },
+    {
+      "english": "Heavy",
+      "pronunciation_gujarati": "હેવી",
+      "meaning_gujarati": "ભારે"
+    },
+    {
+      "english": "Honorable",
+      "pronunciation_gujarati": "ઓનોરેબલ",
+      "meaning_gujarati": "માનનીય"
+    },
+    {
+      "english": "Free",
+      "pronunciation_gujarati": "ફ્રિ",
+      "meaning_gujarati": "મુક્ત"
+    },
+    {
+      "english": "Wandering",
+      "pronunciation_gujarati": "વંડરીંગ",
+      "meaning_gujarati": "રખડું"
+    },
+    {
+      "english": "Loose",
+      "pronunciation_gujarati": "લુઝ",
+      "meaning_gujarati": "ઢીલું"
+    },
+    {
+      "english": "Fresh",
+      "pronunciation_gujarati": "ફ્રેશ",
+      "meaning_gujarati": "તાજું"
+    },
+    {
+      "english": "Naughty",
+      "pronunciation_gujarati": "નોટી",
+      "meaning_gujarati": "તોફાની"
+    },
+    {
+      "english": "Handsome",
+      "pronunciation_gujarati": "હેન્ડસમ",
+      "meaning_gujarati": "દેખાવડું"
+    },
+    {
+      "english": "Smooth",
+      "pronunciation_gujarati": "સ્મૂથ",
+      "meaning_gujarati": "નરમ"
+    },
+    {
+      "english": "Deaf",
+      "pronunciation_gujarati": "ડીફ",
+      "meaning_gujarati": "બહેરૂં"
+    },
+    {
+      "english": "Fat/ Thick",
+      "pronunciation_gujarati": "ફેટ/થીક",
+      "meaning_gujarati": "જાડુ"
+    },
+    {
+      "english": "Short",
+      "pronunciation_gujarati": "શોર્ટ",
+      "meaning_gujarati": "ટુંકું"
+    },
+    {
+      "english": "Healthy",
+      "pronunciation_gujarati": "હેલ્થી",
+      "meaning_gujarati": "તંદુરસ્ત"
+    },
+    {
+      "english": "Wooden",
+      "pronunciation_gujarati": "વુડન",
+      "meaning_gujarati": "લાકડાનું"
+    },
+    {
+      "english": "Young",
+      "pronunciation_gujarati": "યંગ",
+      "meaning_gujarati": "યુવાન"
+    },
+    {
+      "english": "Colorful",
+      "pronunciation_gujarati": "કલરફૂલ",
+      "meaning_gujarati": "રંગબેરંગી"
+    },
+    {
+      "english": "Costly",
+      "pronunciation_gujarati": "કોસ્ટલી",
+      "meaning_gujarati": "મોંઘુ"
+    },
+    {
+      "english": "Loud",
+      "pronunciation_gujarati": "લાઉડ",
+      "meaning_gujarati": "મોટેથી"
+    },
+    {
+      "english": "Various",
+      "pronunciation_gujarati": "વેરિયસ",
+      "meaning_gujarati": "વિવિધ"
+    },
+    {
+      "english": "Calm",
+      "pronunciation_gujarati": "કામ",
+      "meaning_gujarati": "શાંત"
+    },
+    {
+      "english": "Perfect",
+      "pronunciation_gujarati": "પરફેક્ટ",
+      "meaning_gujarati": "સંપૂર્ણ"
+    },
+    {
+      "english": "Same",
+      "pronunciation_gujarati": "સેમ",
+      "meaning_gujarati": "સરખું, સમાન"
+    },
+    {
+      "english": "Easy",
+      "pronunciation_gujarati": "ઈઝી",
+      "meaning_gujarati": "સહેલું"
+    },
+    {
+      "english": "Real",
+      "pronunciation_gujarati": "રીઅલ",
+      "meaning_gujarati": "સાચું /ખરેખર"
+    },
+    {
+      "english": "General",
+      "pronunciation_gujarati": "જનરલ",
+      "meaning_gujarati": "સામાન્ય"
+    },
+    {
+      "english": "Straight",
+      "pronunciation_gujarati": "સ્ટ્રેટ",
+      "meaning_gujarati": "સીધું"
+    },
+    {
+      "english": "Beautiful",
+      "pronunciation_gujarati": "બ્યુટીફૂલ",
+      "meaning_gujarati": "સુંદર"
+    },
+    {
+      "english": "Dry",
+      "pronunciation_gujarati": "ડ્રાય",
+      "meaning_gujarati": "સુકુ"
+    },
+    {
+      "english": "Present",
+      "pronunciation_gujarati": "પ્રેઝન્ટ",
+      "meaning_gujarati": "હાજર"
+    },
+    {
+      "english": "Courageous",
+      "pronunciation_gujarati": "કરેજિયસ",
+      "meaning_gujarati": "હિમ્મતવાળુ"
+    },
+    {
+      "english": "Illiterate",
+      "pronunciation_gujarati": "ઇલિટ્રેટ",
+      "meaning_gujarati": "અભણ"
+    },
+    {
+      "english": "Unusual",
+      "pronunciation_gujarati": "અનયુઝ્યુઅલ",
+      "meaning_gujarati": "અસાધારણ"
+    },
+    {
+      "english": "Sleepy",
+      "pronunciation_gujarati": "સ્લીપી",
+      "meaning_gujarati": "નિદ્રાણું"
+    },
+    {
+      "english": "Attractive",
+      "pronunciation_gujarati": "અટરેક્ટીવ",
+      "meaning_gujarati": "આકર્ષક"
+    },
+    {
+      "english": "Modern",
+      "pronunciation_gujarati": "મોડર્ન",
+      "meaning_gujarati": "આધુનિક"
+    },
+    {
+      "english": "Lonely",
+      "pronunciation_gujarati": "લોનલી",
+      "meaning_gujarati": "એકલું, એકાંત"
+    },
+    {
+      "english": "Muddy",
+      "pronunciation_gujarati": "મડી",
+      "meaning_gujarati": "કાદવવાળું"
+    },
+    {
+      "english": "Precious",
+      "pronunciation_gujarati": "પ્રેશીસીયસ",
+      "meaning_gujarati": "કિંમતી"
+    },
+    {
+      "english": "Dangerous",
+      "pronunciation_gujarati": "ડેન્જરસ",
+      "meaning_gujarati": "ખતરનાક"
+    },
+    {
+      "english": "Dirty",
+      "pronunciation_gujarati": "ડર્ટી",
+      "meaning_gujarati": "ખરાબ"
+    },
+    {
+      "english": "Empty",
+      "pronunciation_gujarati": "એમ્પ્ટી",
+      "meaning_gujarati": "ખાલી"
+    },
+    {
+      "english": "Special",
+      "pronunciation_gujarati": "સ્પેશીઅલ",
+      "meaning_gujarati": "ખાસ"
+    },
+    {
+      "english": "False",
+      "pronunciation_gujarati": "ફોલ્સ",
+      "meaning_gujarati": "ખોટું"
+    },
+    {
+      "english": "Wrong",
+      "pronunciation_gujarati": "રોંગ",
+      "meaning_gujarati": "ખોટું"
+    },
+    {
+      "english": "Hot",
+      "pronunciation_gujarati": "હોટ",
+      "meaning_gujarati": "ગરમ"
+    },
+    {
+      "english": "Confused",
+      "pronunciation_gujarati": "કન્ફ્યુઝ્ડ",
+      "meaning_gujarati": "ગૂંચવાયેલું"
+    },
+    {
+      "english": "Cruel",
+      "pronunciation_gujarati": "ક્રુઅલ",
+      "meaning_gujarati": "ઘાતકી"
+    },
+    {
+      "english": "Shiny",
+      "pronunciation_gujarati": "શાકની",
+      "meaning_gujarati": "ચમકતું"
+    },
+    {
+      "english": "Nervous",
+      "pronunciation_gujarati": "નર્વસ",
+      "meaning_gujarati": "ચિંતિત"
+    },
+    {
+      "english": "Particular",
+      "pronunciation_gujarati": "પર્ટીક્યુલર",
+      "meaning_gujarati": "ચોક્કસ"
+    },
+    {
+      "english": "Clean",
+      "pronunciation_gujarati": "ક્લીન",
+      "meaning_gujarati": "ચોખ્ખું"
+    },
+    {
+      "english": "Wild",
+      "pronunciation_gujarati": "વાઇલ્ડ",
+      "meaning_gujarati": "જંગલી"
+    },
+    {
+      "english": "Pointed",
+      "pronunciation_gujarati": "પોઇન્ટેડ",
+      "meaning_gujarati": "અણીદાર"
+    },
+    {
+      "english": "Wonderful",
+      "pronunciation_gujarati": "વંડરફૂલ",
+      "meaning_gujarati": "અદભુત"
+    },
+    {
+      "english": "Different",
+      "pronunciation_gujarati": "ડિફરન્ટ",
+      "meaning_gujarati": "અલગ-અલગ"
+    },
+    {
+      "english": "Original",
+      "pronunciation_gujarati": "ઓરીજનલ",
+      "meaning_gujarati": "અસલી"
+    },
+    {
+      "english": "Obedient",
+      "pronunciation_gujarati": "ઓબેડીયન્ટ",
+      "meaning_gujarati": "આજ્ઞાંકિત"
+    },
+    {
+      "english": "Jolly",
+      "pronunciation_gujarati": "જોલી",
+      "meaning_gujarati": "આનંદી"
+    },
+    {
+      "english": "Thankful",
+      "pronunciation_gujarati": "થેન્કફુલ",
+      "meaning_gujarati": "આભારી"
+    },
+    {
+      "english": "Comfortable",
+      "pronunciation_gujarati": "કમફર્ટેબલ",
+      "meaning_gujarati": "આરામદાયક"
+    },
+    {
+      "english": "Excited",
+      "pronunciation_gujarati": "એક્સાઈટેડ",
+      "meaning_gujarati": "ઉતેજિત"
+    },
+    {
+      "english": "Upset",
+      "pronunciation_gujarati": "અપસેટ",
+      "meaning_gujarati": "ઉદાસ"
+    },
+    {
+      "english": "Tall",
+      "pronunciation_gujarati": "ટોલ",
+      "meaning_gujarati": "ઊંચું"
+    },
+    {
+      "english": "Deep",
+      "pronunciation_gujarati": "ડીપ",
+      "meaning_gujarati": "ઊંડું"
+    },
+    {
+      "english": "Ugly",
+      "pronunciation_gujarati": "અગ્લી",
+      "meaning_gujarati": "કદરૂપું"
+    },
+    {
+      "english": "Raw",
+      "pronunciation_gujarati": "રો",
+      "meaning_gujarati": "કાચું"
+    },
+    {
+      "english": "Bad",
+      "pronunciation_gujarati": "બેડ",
+      "meaning_gujarati": "ખરાબ"
+    },
+    {
+      "english": "Private",
+      "pronunciation_gujarati": "પ્રાઇવેટ",
+      "meaning_gujarati": "ખાનગી"
+    },
+    {
+      "english": "Eatable",
+      "pronunciation_gujarati": "ઈટેબલ",
+      "meaning_gujarati": "ખાવાલાયક"
+    },
+    {
+      "english": "Happy",
+      "pronunciation_gujarati": "હેપી",
+      "meaning_gujarati": "ખુશ"
+    },
+    {
+      "english": "Strange",
+      "pronunciation_gujarati": "સ્ટ્રેન્જ",
+      "meaning_gujarati": "અજાણ્યું"
+    },
+    {
+      "english": "Social",
+      "pronunciation_gujarati": "સોશિયલ",
+      "meaning_gujarati": "સામાજિક"
+    },
+    {
+      "english": "Dusty",
+      "pronunciation_gujarati": "ડસ્ટી",
+      "meaning_gujarati": "ધૂળવાળુ"
+    },
+    {
+      "english": "Duplicate",
+      "pronunciation_gujarati": "ડુપ્લીકેટ",
+      "meaning_gujarati": "નકલી"
+    },
+    {
+      "english": "Shallow",
+      "pronunciation_gujarati": "શેલો",
+      "meaning_gujarati": "છીછરું"
+    },
+    {
+      "english": "Old",
+      "pronunciation_gujarati": "ઓલ્ડ",
+      "meaning_gujarati": "જુનું"
+    },
+    {
+      "english": "Zealous",
+      "pronunciation_gujarati": "ઝેલસ",
+      "meaning_gujarati": "ઝનૂની"
+    },
+    {
+      "english": "Voiceless",
+      "pronunciation_gujarati": "વોઇસલેસ",
+      "meaning_gujarati": "અવાજવગરનું"
+    },
+    {
+      "english": "Impure",
+      "pronunciation_gujarati": "ઈમ્પોર",
+      "meaning_gujarati": "અશુદ્ધ"
+    },
+    {
+      "english": "Boiling",
+      "pronunciation_gujarati": "બોઈલીંગ",
+      "meaning_gujarati": "ઉકળતું"
+    },
+    {
+      "english": "Alone",
+      "pronunciation_gujarati": "અલોન",
+      "meaning_gujarati": "એકલું"
+    },
+    {
+      "english": "Melted",
+      "pronunciation_gujarati": "મેલ્ટેડ",
+      "meaning_gujarati": "ઓગળેલું"
+    },
+    {
+      "english": "Tough",
+      "pronunciation_gujarati": "ટફ",
+      "meaning_gujarati": "કઠિન"
+    },
+    {
+      "english": "Bitter",
+      "pronunciation_gujarati": "બીટર",
+      "meaning_gujarati": "કડવું"
+    },
+    {
+      "english": "Natural",
+      "pronunciation_gujarati": "નેચરલ",
+      "meaning_gujarati": "કુદરતી"
+    },
+    {
+      "english": "Artificial",
+      "pronunciation_gujarati": "આર્ટીફીશીઅલ",
+      "meaning_gujarati": "કૃત્રિમ"
+    },
+    {
+      "english": "Rough",
+      "pronunciation_gujarati": "રફ",
+      "meaning_gujarati": "ખરબચડું"
+    },
+    {
+      "english": "Many",
+      "pronunciation_gujarati": "મેની",
+      "meaning_gujarati": "ઘણુંબધું"
+    },
+    {
+      "english": "Lot of",
+      "pronunciation_gujarati": "લોટ ઓફ",
+      "meaning_gujarati": "ઘણુંબધું"
+    },
+    {
+      "english": "Noisy",
+      "pronunciation_gujarati": "નોઈઝી",
+      "meaning_gujarati": "ઘોંઘાટિયું"
+    },
+    {
+      "english": "Bright",
+      "pronunciation_gujarati": "બ્રાઈટ",
+      "meaning_gujarati": "ચળકતું"
+    },
+    {
+      "english": "Mute",
+      "pronunciation_gujarati": "મ્યુટ",
+      "meaning_gujarati": "ચુપ"
+    },
+    {
+      "english": "Quick",
+      "pronunciation_gujarati": "ક્વિક",
+      "meaning_gujarati": "ઝડપી"
+    },
+    {
+      "english": "Poor",
+      "pronunciation_gujarati": "પુઅર",
+      "meaning_gujarati": "ગરીબ"
+    },
+    {
+      "english": "Proud",
+      "pronunciation_gujarati": "પ્રાઉડ",
+      "meaning_gujarati": "ગર્વ"
+    },
+    {
+      "english": "Absent",
+      "pronunciation_gujarati": "એબસન્ટ",
+      "meaning_gujarati": "ગેરહાજર"
+    },
+    {
+      "english": "Square",
+      "pronunciation_gujarati": "સ્ક્વેર",
+      "meaning_gujarati": "ચોરસ"
+    },
+    {
+      "english": "Old-fashioned",
+      "pronunciation_gujarati": "ઓલ્ડ ફેશનડ",
+      "meaning_gujarati": "જુના રીતરિવાજ"
+    },
+    {
+      "english": "Cold/ Cool",
+      "pronunciation_gujarati": "કોલ્ડ/કુલ",
+      "meaning_gujarati": "ઠંડુ"
+    },
+    {
+      "english": "Dull",
+      "pronunciation_gujarati": "ડલ",
+      "meaning_gujarati": "ડફોળ"
+    },
+    {
+      "english": "Awful",
+      "pronunciation_gujarati": "અવફૂલ",
+      "meaning_gujarati": "ડરામણું"
+    },
+    {
+      "english": "Broken",
+      "pronunciation_gujarati": "બ્રોકન",
+      "meaning_gujarati": "તૂટેલું"
+    },
+    {
+      "english": "Talented",
+      "pronunciation_gujarati": "ટેલેન્ટેડ",
+      "meaning_gujarati": "તેજસ્વી"
+    },
+    {
+      "english": "Breakable",
+      "pronunciation_gujarati": "બ્રેકેબલ",
+      "meaning_gujarati": "તોડીશકાય તેવું"
+    },
+    {
+      "english": "Nasty",
+      "pronunciation_gujarati": "નેસ્ટી",
+      "meaning_gujarati": "ત્રાસદાયક"
+    },
+    {
+      "english": "Little",
+      "pronunciation_gujarati": "લીટલ",
+      "meaning_gujarati": "થોડું"
+    },
+    {
+      "english": "Hurt",
+      "pronunciation_gujarati": "હર્ટ",
+      "meaning_gujarati": "દુઃખ"
+    },
+    {
+      "english": "Innocent",
+      "pronunciation_gujarati": "ઈનોસેન્ટ",
+      "meaning_gujarati": "નિર્દોષ"
+    }
+  ]
+}
