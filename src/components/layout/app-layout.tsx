@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { BounceSidebar, type NavItem } from "@/components/beui/bounce-sidebar";
 import { TopNavbar } from "@/components/layout/top-navbar";
 import { CommandPalette } from "@/components/beui/command-palette";
@@ -29,6 +30,10 @@ export function AppLayout() {
   const [currentNav, setCurrentNav] = useState<NavItem>("dashboard");
   const [stats, setStats] = useState<UserStats>(storage.getStats());
 
+  // Sidebar collapse & mobile menu state
+  const [collapsed, setCollapsed] = useState<boolean>(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   // Command palette & AI Tutor state
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
   const [aiTutorOpen, setAiTutorOpen] = useState(false);
@@ -51,6 +56,25 @@ export function AppLayout() {
   const [previewWord, setPreviewWord] = useState<any | null>(null);
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("sidebar_collapsed");
+      if (saved !== null) {
+        setCollapsed(saved === "true");
+      }
+    }
+  }, []);
+
+  const handleToggleCollapse = () => {
+    setCollapsed((prev) => {
+      const next = !prev;
+      if (typeof window !== "undefined") {
+        localStorage.setItem("sidebar_collapsed", String(next));
+      }
+      return next;
+    });
+  };
+
+  useEffect(() => {
     // Sync localStorage stats after client mount
     setStats(storage.getStats());
   }, [currentNav, practiceStep]);
@@ -58,6 +82,7 @@ export function AppLayout() {
   const handleNavigate = (nav: NavItem) => {
     setCurrentNav(nav);
     setPracticeStep("idle");
+    setMobileMenuOpen(false);
   };
 
   useEffect(() => {
@@ -211,28 +236,68 @@ export function AppLayout() {
   return (
     <ToastProvider>
       <div className="flex h-screen w-full overflow-hidden bg-background text-foreground">
-        {/* Left Bounce Sidebar */}
-        <BounceSidebar
-          currentNav={currentNav}
-          onNavigate={handleNavigate}
-          streak={stats.streak}
-          xp={stats.xp}
-          accuracy={stats.accuracy}
-          todayCompleted={stats.todayCompleted}
-          dailyGoal={stats.dailyGoal}
-        />
+        {/* Desktop Sidebar (hidden on screens < lg) */}
+        <div className="hidden lg:flex shrink-0">
+          <BounceSidebar
+            currentNav={currentNav}
+            onNavigate={handleNavigate}
+            streak={stats.streak}
+            xp={stats.xp}
+            accuracy={stats.accuracy}
+            todayCompleted={stats.todayCompleted}
+            dailyGoal={stats.dailyGoal}
+            collapsed={collapsed}
+            onToggleCollapse={handleToggleCollapse}
+          />
+        </div>
+
+        {/* Mobile Navigation Drawer Overlay */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setMobileMenuOpen(false)}
+                className="fixed inset-0 z-40 bg-black/60 backdrop-blur-xs lg:hidden"
+              />
+              <motion.div
+                initial={{ x: "-100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "-100%" }}
+                transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                className="fixed inset-y-0 left-0 z-50 w-72 sm:w-80 bg-card lg:hidden shadow-2xl"
+              >
+                <BounceSidebar
+                  currentNav={currentNav}
+                  onNavigate={handleNavigate}
+                  streak={stats.streak}
+                  xp={stats.xp}
+                  accuracy={stats.accuracy}
+                  todayCompleted={stats.todayCompleted}
+                  dailyGoal={stats.dailyGoal}
+                  collapsed={false}
+                  isMobile={true}
+                  onCloseMobile={() => setMobileMenuOpen(false)}
+                />
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
 
         {/* Main Content Area */}
-        <div className="flex flex-1 flex-col overflow-hidden">
+        <div className="flex flex-1 flex-col overflow-hidden min-w-0">
           {/* Top Navbar */}
           <TopNavbar
             currentNav={currentNav}
             onOpenCommandPalette={() => setCommandPaletteOpen(true)}
             onOpenAiTutor={() => setAiTutorOpen(true)}
+            onToggleMobileMenu={() => setMobileMenuOpen((prev) => !prev)}
           />
 
           {/* Scrollable View Container */}
-          <main className="flex-1 overflow-y-auto p-6 sm:p-8">
+          <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
             {renderMainContent()}
           </main>
         </div>
@@ -266,3 +331,4 @@ export function AppLayout() {
     </ToastProvider>
   );
 }
+

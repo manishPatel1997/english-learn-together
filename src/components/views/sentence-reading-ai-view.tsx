@@ -271,7 +271,7 @@ export function SentenceReadingAIView({ initialSentence }: SentenceReadingAIView
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden rounded-[28px] bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-800 p-8 text-white shadow-2xl shadow-purple-600/20"
+        className="relative overflow-hidden rounded-2xl sm:rounded-[28px] bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-800 p-5 sm:p-8 text-white shadow-2xl shadow-purple-600/20"
       >
         <div className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-indigo-400/20 blur-3xl animate-pulse-glow" />
 

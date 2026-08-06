@@ -218,26 +218,26 @@ export function TopicSelectView({ onStartSelectedTopics }: TopicSelectViewProps)
       </div>
 
       {/* Sticky Bottom Summary Bar */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 w-full max-w-4xl px-4">
+      <div className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-40 w-full max-w-4xl px-3 sm:px-4">
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="flex flex-col sm:flex-row items-center justify-between gap-4 rounded-[24px] border border-border bg-slate-950/90 p-4 px-6 text-white shadow-2xl backdrop-blur-xl"
+          className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 rounded-2xl sm:rounded-[24px] border border-border bg-slate-950/95 p-3.5 sm:p-4 px-4 sm:px-6 text-white shadow-2xl backdrop-blur-xl"
         >
-          <div className="flex items-center gap-6 text-xs sm:text-sm">
-            <div>
-              <span className="text-[10px] text-slate-400 font-bold block uppercase">Topics Selected</span>
-              <span className="font-extrabold text-amber-400 text-base">{selectedKeys.length} Modules</span>
+          <div className="flex items-center justify-between w-full sm:w-auto gap-3 sm:gap-6 text-xs sm:text-sm">
+            <div className="text-center sm:text-left">
+              <span className="text-[9px] sm:text-[10px] text-slate-400 font-bold block uppercase">Topics</span>
+              <span className="font-extrabold text-amber-400 text-xs sm:text-base">{selectedKeys.length} Modules</span>
             </div>
-            <div className="h-8 w-[1px] bg-slate-800" />
-            <div>
-              <span className="text-[10px] text-slate-400 font-bold block uppercase">Total Questions</span>
-              <span className="font-extrabold text-indigo-300 text-base">{totalQuestions} Questions</span>
+            <div className="h-6 sm:h-8 w-[1px] bg-slate-800" />
+            <div className="text-center sm:text-left">
+              <span className="text-[9px] sm:text-[10px] text-slate-400 font-bold block uppercase">Questions</span>
+              <span className="font-extrabold text-indigo-300 text-xs sm:text-base">{totalQuestions} Qs</span>
             </div>
-            <div className="h-8 w-[1px] bg-slate-800" />
-            <div>
-              <span className="text-[10px] text-slate-400 font-bold block uppercase">Est. Duration</span>
-              <span className="font-extrabold text-emerald-400 text-base">~{totalTime} Mins</span>
+            <div className="h-6 sm:h-8 w-[1px] bg-slate-800" />
+            <div className="text-center sm:text-left">
+              <span className="text-[9px] sm:text-[10px] text-slate-400 font-bold block uppercase">Duration</span>
+              <span className="font-extrabold text-emerald-400 text-xs sm:text-base">~{totalTime} Mins</span>
             </div>
           </div>
 
@@ -245,7 +245,7 @@ export function TopicSelectView({ onStartSelectedTopics }: TopicSelectViewProps)
             type="button"
             disabled={selectedKeys.length === 0}
             onClick={() => onStartSelectedTopics(selectedKeys)}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 px-8 py-3.5 text-sm font-extrabold text-white shadow-xl shadow-purple-600/30 hover:from-purple-700 hover:to-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl sm:rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 px-6 sm:px-8 py-3 text-xs sm:text-sm font-extrabold text-white shadow-xl shadow-purple-600/30 hover:from-purple-700 hover:to-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
           >
             <span>{selectedKeys.length === 0 ? "Select at least 1 topic" : "Start Practice"}</span>
             <ArrowRight className="h-4 w-4" />
