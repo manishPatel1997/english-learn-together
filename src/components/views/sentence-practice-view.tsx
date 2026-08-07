@@ -700,99 +700,97 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
 
   if (pageMode === "selection") {
     return (
-      <div className="space-y-8 max-w-4xl mx-auto py-8 select-none">
-        <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} className="text-center space-y-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-purple-500/10 px-4 py-1 text-xs font-extrabold text-purple-600 dark:text-purple-400">
-            <Sparkles className="h-3.5 w-3.5" /> Sentence Practice Hub
-          </span>
-          <h2 className="text-3xl font-black text-foreground tracking-tight sm:text-4xl">
-            Choose Sentence Mode
+      <div className="space-y-4 max-w-3xl mx-auto py-2 select-none">
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-center space-y-1.5">
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-purple-500/10 px-3 py-0.5 text-[11px] font-extrabold text-purple-600 dark:text-purple-400">
+            <Sparkles className="h-3 w-3" /> Sentence Hub
+          </div>
+          <h2 className="text-2xl font-black text-foreground tracking-tight sm:text-3xl">
+            Select Sentence Practice Mode
           </h2>
-          <p className="text-sm text-muted-foreground max-w-lg mx-auto">
-            Read and study Gujarati sentence translations first or jump straight into the practice exam.
-          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+        {/* Compact Mode Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+          {/* Card 1: Read & Study Sentences */}
           <div
             onClick={() => setPageMode("study")}
-            className="cursor-pointer rounded-[32px] border border-indigo-500/30 bg-card p-8 shadow-xl hover:border-indigo-500 hover:shadow-2xl transition-all space-y-6 group flex flex-col justify-between"
+            className="group cursor-pointer rounded-2xl border border-indigo-500/30 bg-card p-4 shadow-sm hover:border-indigo-500 hover:shadow-md transition-all flex flex-col justify-between space-y-3"
           >
-            <div className="space-y-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-600 text-white shadow-lg group-hover:scale-110 transition-transform">
-                <BookOpen className="h-7 w-7" />
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-600 text-white shadow-xs group-hover:scale-105 transition-transform">
+                  <BookOpen className="h-4.5 w-4.5" />
+                </div>
+                <span className="rounded-full bg-indigo-500/10 px-2.5 py-0.5 text-[10px] font-black text-indigo-600 dark:text-indigo-400">
+                  Study Mode
+                </span>
               </div>
-              <span className="rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-extrabold text-indigo-600 dark:text-indigo-400 inline-block">
-                Page 1 • Study Mode
-              </span>
-              <h3 className="text-2xl font-black text-foreground group-hover:text-indigo-600 transition-colors">
-                📖 Read & Study Sentences
-              </h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Read Gujarati sentences, listen to audio pronunciations, and study sentence structure formulas at your own pace.
-              </p>
-              <ul className="space-y-2 text-xs text-muted-foreground">
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                  <span>Grammar Structure Formula Guide</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                  <span>Gujarati & English Audio 🔊</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                  <span>All Accepted Answer Variants</span>
-                </li>
-              </ul>
+              <div>
+                <h3 className="text-base font-black text-foreground group-hover:text-indigo-600 transition-colors flex items-center gap-1.5">
+                  📖 Read & Study Sentences
+                </h3>
+                <p className="text-xs text-muted-foreground line-clamp-2 mt-0.5">
+                  Read Gujarati sentences, listen to audio, and review grammar structure formulas.
+                </p>
+              </div>
+              <div className="flex items-center gap-1.5 pt-0.5 flex-wrap">
+                <span className="inline-flex items-center gap-1 rounded-md bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
+                  <CheckCircle2 className="h-3 w-3" /> Grammar Formulas
+                </span>
+                <span className="inline-flex items-center gap-1 rounded-md bg-indigo-500/10 px-2 py-0.5 text-[10px] font-bold text-indigo-600 dark:text-indigo-400">
+                  <CheckCircle2 className="h-3 w-3" /> Audio Pronunciation
+                </span>
+              </div>
             </div>
+
             <button
               type="button"
-              className="w-full rounded-2xl bg-indigo-600 py-3.5 text-xs font-extrabold text-white group-hover:bg-indigo-700 shadow-md transition-colors flex items-center justify-center gap-2"
+              className="w-full rounded-xl bg-indigo-600 py-2.5 text-xs font-black text-white group-hover:bg-indigo-700 shadow-xs transition-colors flex items-center justify-center gap-1.5 mt-1"
             >
-              <span>Open Study Page</span>
-              <ArrowRight className="h-4 w-4" />
+              <span>Start Study</span>
+              <ArrowRight className="h-3.5 w-3.5" />
             </button>
           </div>
 
+          {/* Card 2: Take Sentence Exam */}
           <div
             onClick={() => setPageMode("exam")}
-            className="cursor-pointer rounded-[32px] border border-purple-500/30 bg-card p-8 shadow-xl hover:border-purple-500 hover:shadow-2xl transition-all space-y-6 group flex flex-col justify-between"
+            className="group cursor-pointer rounded-2xl border border-purple-500/30 bg-card p-4 shadow-sm hover:border-purple-500 hover:shadow-md transition-all flex flex-col justify-between space-y-3"
           >
-            <div className="space-y-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-purple-600 text-white shadow-lg group-hover:scale-110 transition-transform">
-                <Star className="h-7 w-7" />
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-600 text-white shadow-xs group-hover:scale-105 transition-transform">
+                  <Star className="h-4.5 w-4.5" />
+                </div>
+                <span className="rounded-full bg-purple-500/10 px-2.5 py-0.5 text-[10px] font-black text-purple-600 dark:text-purple-400">
+                  Exam Mode
+                </span>
               </div>
-              <span className="rounded-full bg-purple-500/10 px-3 py-1 text-xs font-extrabold text-purple-600 dark:text-purple-400 inline-block">
-                Page 2 • Practice Exam Mode
-              </span>
-              <h3 className="text-2xl font-black text-foreground group-hover:text-purple-600 transition-colors">
-                ✍️ Take Sentence Exam
-              </h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Test your sentence translation! Type English sentences to earn +25 XP, build streaks, and get instant Gemini AI feedback.
-              </p>
-              <ul className="space-y-2 text-xs text-muted-foreground">
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                  <span>Sentence Typing & Word Diff Analysis</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                  <span>Gemini AI Tutor Explanations</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                  <span>+25 XP per Correct Translation</span>
-                </li>
-              </ul>
+              <div>
+                <h3 className="text-base font-black text-foreground group-hover:text-purple-600 transition-colors flex items-center gap-1.5">
+                  ✍️ Take Sentence Exam
+                </h3>
+                <p className="text-xs text-muted-foreground line-clamp-2 mt-0.5">
+                  Type English sentence translations to earn +25 XP, build streaks, and get AI feedback.
+                </p>
+              </div>
+              <div className="flex items-center gap-1.5 pt-0.5 flex-wrap">
+                <span className="inline-flex items-center gap-1 rounded-md bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
+                  <CheckCircle2 className="h-3 w-3" /> Diff Analysis
+                </span>
+                <span className="inline-flex items-center gap-1 rounded-md bg-purple-500/10 px-2 py-0.5 text-[10px] font-bold text-purple-600 dark:text-purple-400">
+                  <CheckCircle2 className="h-3 w-3" /> Gemini AI Tutor
+                </span>
+              </div>
             </div>
+
             <button
               type="button"
-              className="w-full rounded-2xl bg-purple-600 py-3.5 text-xs font-extrabold text-white group-hover:bg-purple-700 shadow-md transition-colors flex items-center justify-center gap-2"
+              className="w-full rounded-xl bg-purple-600 py-2.5 text-xs font-black text-white group-hover:bg-purple-700 shadow-xs transition-colors flex items-center justify-center gap-1.5 mt-1"
             >
-              <span>Start Exam Page</span>
-              <ArrowRight className="h-4 w-4" />
+              <span>Start Exam</span>
+              <ArrowRight className="h-3.5 w-3.5" />
             </button>
           </div>
         </div>

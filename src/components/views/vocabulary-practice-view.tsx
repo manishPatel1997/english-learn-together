@@ -192,7 +192,7 @@ export function VocabularyPracticeView({
     }
   }, [currentIndex, status, pageMode, examViewMode]);
 
-  const handleListCheckAnswer = (index: number) => {
+  const handleListCheckAnswer = (index: number, autoAdvance: boolean = true) => {
     const question = examQuestions[index];
     if (!question) return;
 
@@ -214,17 +214,19 @@ export function VocabularyPracticeView({
         storage.addXP(15, true);
       }
 
-      // Auto jump to next field
-      const nextIdx = index + 1;
-      if (nextIdx < examQuestions.length) {
-        setTimeout(() => {
-          if (listInputRefs.current[nextIdx]) {
-            listInputRefs.current[nextIdx]?.focus();
-            listInputRefs.current[nextIdx]?.scrollIntoView({ behavior: "smooth", block: "center" });
-          }
-        }, 100);
-      } else {
-        fireConfetti();
+      // Auto jump to next field if requested
+      if (autoAdvance) {
+        const nextIdx = index + 1;
+        if (nextIdx < examQuestions.length) {
+          setTimeout(() => {
+            if (listInputRefs.current[nextIdx]) {
+              listInputRefs.current[nextIdx]?.focus();
+              listInputRefs.current[nextIdx]?.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+          }, 100);
+        } else {
+          fireConfetti();
+        }
       }
     } else {
       // Wrong answer
@@ -250,13 +252,34 @@ export function VocabularyPracticeView({
       setTimeout(() => {
         setBlinkingIndices((prev) => ({ ...prev, [index]: false }));
       }, 700);
+
+      // Auto jump to next field on wrong answer as well when hitting Enter
+      if (autoAdvance) {
+        const nextIdx = index + 1;
+        if (nextIdx < examQuestions.length) {
+          setTimeout(() => {
+            if (listInputRefs.current[nextIdx]) {
+              listInputRefs.current[nextIdx]?.focus();
+              listInputRefs.current[nextIdx]?.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+          }, 100);
+        }
+      }
     }
   };
 
   const handleListKeyDown = (e: React.KeyboardEvent, index: number) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      handleListCheckAnswer(index);
+      handleListCheckAnswer(index, true);
+    }
+  };
+
+  const handleListBlur = (index: number) => {
+    const rawUser = listUserAnswers[index] || "";
+    const currentStatus = listStatuses[index];
+    if (rawUser.trim() && (!currentStatus || currentStatus === "idle")) {
+      handleListCheckAnswer(index, false);
     }
   };
 
@@ -430,40 +453,41 @@ export function VocabularyPracticeView({
 
   const progressPct = Math.round(((currentIndex + 1) / examQuestions.length) * 100);
 
-  // SELECTION PAGE: Choose Page 1 (Read & Study) OR Page 2 (Take Exam)
+  // SELECTION PAGE: Choose Vocabulary Section & Mode (Compact High-Efficiency UI)
   if (pageMode === "selection") {
     return (
-      <div className="space-y-8 max-w-4xl mx-auto py-8 select-none">
-        <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} className="text-center space-y-3">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-indigo-500/10 px-4 py-1 text-xs font-extrabold text-indigo-600 dark:text-indigo-400">
-            <Sparkles className="h-3.5 w-3.5" /> Vocabulary Learning Center
-          </span>
-          <h2 className="text-3xl font-black text-foreground tracking-tight sm:text-4xl">
-            Choose Vocabulary Section & Mode
+      <div className="space-y-4 max-w-3xl mx-auto py-2 select-none">
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-center space-y-1.5">
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-indigo-500/10 px-3 py-0.5 text-[11px] font-extrabold text-indigo-600 dark:text-indigo-400">
+            <Sparkles className="h-3 w-3" /> Vocabulary Hub
+          </div>
+          <h2 className="text-2xl font-black text-foreground tracking-tight sm:text-3xl">
+            Select Vocabulary Section & Mode
           </h2>
-          <p className="text-sm text-muted-foreground max-w-lg mx-auto">
-            Select your vocabulary section first, then choose whether to read & study spellings or take the exam directly.
-          </p>
+        </motion.div>
 
-          {/* Section Selection Bar */}
-          <div className="pt-4 flex flex-wrap items-center justify-center gap-2.5 max-w-xl mx-auto">
+        {/* Compact Segmented Section Selector */}
+        <div className="rounded-2xl border border-border/80 bg-card p-1.5 shadow-xs">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5">
             {VOCABULARY_SECTIONS.map((sec) => (
               <button
                 key={sec.id}
                 type="button"
                 onClick={() => onSectionChange && onSectionChange(sec.id)}
                 className={cn(
-                  "flex items-center gap-2 rounded-2xl px-4 py-2.5 text-xs font-extrabold transition-all border shadow-sm",
+                  "flex items-center justify-between gap-2 rounded-xl px-3 py-2 text-xs font-bold transition-all",
                   activeSectionId === sec.id
-                    ? "bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-500/25 scale-105"
-                    : "bg-card text-muted-foreground hover:text-foreground border-border hover:bg-muted"
+                    ? "bg-indigo-600 text-white shadow-md shadow-indigo-500/20"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/70"
                 )}
               >
-                <span className="text-sm">{sec.icon}</span>
-                <span>{sec.name}</span>
+                <div className="flex items-center gap-1.5 min-w-0">
+                  <span className="text-sm shrink-0">{sec.icon}</span>
+                  <span className="truncate font-black">{sec.shortName || sec.name}</span>
+                </div>
                 <span
                   className={cn(
-                    "rounded-full px-2 py-0.5 text-[10px] font-black",
+                    "rounded-full px-2 py-0.5 text-[10px] font-extrabold shrink-0",
                     activeSectionId === sec.id ? "bg-white/20 text-white" : "bg-muted text-muted-foreground"
                   )}
                 >
@@ -472,90 +496,89 @@ export function VocabularyPracticeView({
               </button>
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
-          {/* Page 1: Read & Study Page Card */}
+        {/* Compact Mode Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+          {/* Card 1: Read & Study Mode */}
           <div
             onClick={() => switchPageMode("study")}
-            className="cursor-pointer rounded-[32px] border border-indigo-500/30 bg-card p-8 shadow-xl hover:border-indigo-500 hover:shadow-2xl transition-all space-y-6 group flex flex-col justify-between"
+            className="group cursor-pointer rounded-2xl border border-indigo-500/30 bg-card p-4 shadow-sm hover:border-indigo-500 hover:shadow-md transition-all flex flex-col justify-between space-y-3"
           >
-            <div className="space-y-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-600 text-white shadow-lg group-hover:scale-110 transition-transform">
-                <BookOpen className="h-7 w-7" />
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-600 text-white shadow-xs group-hover:scale-105 transition-transform">
+                  <BookOpen className="h-4.5 w-4.5" />
+                </div>
+                <span className="rounded-full bg-indigo-500/10 px-2.5 py-0.5 text-[10px] font-black text-indigo-600 dark:text-indigo-400">
+                  Study Mode
+                </span>
               </div>
-              <span className="rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-extrabold text-indigo-600 dark:text-indigo-400 inline-block">
-                Page 1 • Study Mode
-              </span>
-              <h3 className="text-2xl font-black text-foreground group-hover:text-indigo-600 transition-colors">
-                📖 Read & Study Spellings
-              </h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Read, listen to audio pronunciations, and review all Gujarati to English spellings at your own pace before taking the exam.
-              </p>
-              <ul className="space-y-2 text-xs text-muted-foreground">
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                  <span>Audio Pronunciation 🔊</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                  <span>Flashcards & Example Sentences</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                  <span>Full Session Overview List</span>
-                </li>
-              </ul>
+              <div>
+                <h3 className="text-base font-black text-foreground group-hover:text-indigo-600 transition-colors flex items-center gap-1.5">
+                  📖 Read & Study
+                </h3>
+                <p className="text-xs text-muted-foreground line-clamp-2 mt-0.5">
+                  Review flashcards, listen to pronunciations, and learn spellings at your own pace.
+                </p>
+              </div>
+              <div className="flex items-center gap-1.5 pt-0.5 flex-wrap">
+                <span className="inline-flex items-center gap-1 rounded-md bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
+                  <CheckCircle2 className="h-3 w-3" /> Audio & Cards
+                </span>
+                <span className="inline-flex items-center gap-1 rounded-md bg-indigo-500/10 px-2 py-0.5 text-[10px] font-bold text-indigo-600 dark:text-indigo-400">
+                  <CheckCircle2 className="h-3 w-3" /> Overview List
+                </span>
+              </div>
             </div>
+
             <button
               type="button"
-              className="w-full rounded-2xl bg-indigo-600 py-3.5 text-xs font-extrabold text-white group-hover:bg-indigo-700 shadow-md transition-colors flex items-center justify-center gap-2"
+              className="w-full rounded-xl bg-indigo-600 py-2.5 text-xs font-black text-white group-hover:bg-indigo-700 shadow-xs transition-colors flex items-center justify-center gap-1.5 mt-1"
             >
-              <span>Open Study Page</span>
-              <ArrowRight className="h-4 w-4" />
+              <span>Start Study</span>
+              <ArrowRight className="h-3.5 w-3.5" />
             </button>
           </div>
 
-          {/* Page 2: Take Exam Card */}
+          {/* Card 2: Take Exam Mode */}
           <div
             onClick={() => switchPageMode("exam")}
-            className="cursor-pointer rounded-[32px] border border-purple-500/30 bg-card p-8 shadow-xl hover:border-purple-500 hover:shadow-2xl transition-all space-y-6 group flex flex-col justify-between"
+            className="group cursor-pointer rounded-2xl border border-purple-500/30 bg-card p-4 shadow-sm hover:border-purple-500 hover:shadow-md transition-all flex flex-col justify-between space-y-3"
           >
-            <div className="space-y-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-purple-600 text-white shadow-lg group-hover:scale-110 transition-transform">
-                <Star className="h-7 w-7" />
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-600 text-white shadow-xs group-hover:scale-105 transition-transform">
+                  <Star className="h-4.5 w-4.5" />
+                </div>
+                <span className="rounded-full bg-purple-500/10 px-2.5 py-0.5 text-[10px] font-black text-purple-600 dark:text-purple-400">
+                  Exam Mode
+                </span>
               </div>
-              <span className="rounded-full bg-purple-500/10 px-3 py-1 text-xs font-extrabold text-purple-600 dark:text-purple-400 inline-block">
-                Page 2 • Exam Mode
-              </span>
-              <h3 className="text-2xl font-black text-foreground group-hover:text-purple-600 transition-colors">
-                ✍️ Take Vocabulary Exam
-              </h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Test your spelling memory! Type English translations under exam conditions to earn XP, maintain streaks, and track accuracy.
-              </p>
-              <ul className="space-y-2 text-xs text-muted-foreground">
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                  <span>Typing Exam & Auto-Check</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                  <span>XP & Streak Counter</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                  <span>Instant Feedback & Confetti</span>
-                </li>
-              </ul>
+              <div>
+                <h3 className="text-base font-black text-foreground group-hover:text-purple-600 transition-colors flex items-center gap-1.5">
+                  ✍️ Take Exam
+                </h3>
+                <p className="text-xs text-muted-foreground line-clamp-2 mt-0.5">
+                  Test your spelling accuracy with instant checks, XP rewards, and streak tracking.
+                </p>
+              </div>
+              <div className="flex items-center gap-1.5 pt-0.5 flex-wrap">
+                <span className="inline-flex items-center gap-1 rounded-md bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
+                  <CheckCircle2 className="h-3 w-3" /> Auto-Check
+                </span>
+                <span className="inline-flex items-center gap-1 rounded-md bg-purple-500/10 px-2 py-0.5 text-[10px] font-bold text-purple-600 dark:text-purple-400">
+                  <CheckCircle2 className="h-3 w-3" /> XP & Streaks
+                </span>
+              </div>
             </div>
+
             <button
               type="button"
-              className="w-full rounded-2xl bg-purple-600 py-3.5 text-xs font-extrabold text-white group-hover:bg-purple-700 shadow-md transition-colors flex items-center justify-center gap-2"
+              className="w-full rounded-xl bg-purple-600 py-2.5 text-xs font-black text-white group-hover:bg-purple-700 shadow-xs transition-colors flex items-center justify-center gap-1.5 mt-1"
             >
-              <span>Start Exam Page</span>
-              <ArrowRight className="h-4 w-4" />
+              <span>Start Exam</span>
+              <ArrowRight className="h-3.5 w-3.5" />
             </button>
           </div>
         </div>
@@ -1112,9 +1135,14 @@ export function VocabularyPracticeView({
                                 listInputRefs.current[idx] = el;
                               }}
                               type="text"
+                              enterKeyHint="next"
+                              autoCapitalize="off"
+                              autoCorrect="off"
+                              spellCheck={false}
                               value={currentAnswer}
                               onChange={(e) => handleListInputChange(idx, e.target.value)}
                               onKeyDown={(e) => handleListKeyDown(e, idx)}
+                              onBlur={() => handleListBlur(idx)}
                               placeholder={
                                 itemStatus === "correct"
                                   ? "✓ Correct Answer!"
