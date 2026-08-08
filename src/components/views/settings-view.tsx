@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { Settings, Target, Volume2, Clock, Trash2, Moon, Sun, RefreshCw, Sparkles } from "lucide-react";
 import { Select } from "@/components/beui/select";
@@ -10,13 +10,17 @@ import { useToast } from "@/components/beui/animated-toast-stack";
 import { storage, type UserStats } from "@/lib/storage";
 import { getStoredGeminiKey, saveStoredGeminiKey } from "@/lib/gemini-client";
 
+import { apiClient } from "@/lib/api-client";
+import { useAuth } from "@/context/auth-context";
+
 interface SettingsViewProps {
   stats: UserStats;
   onUpdateStats: (newStats: UserStats) => void;
 }
 
 export function SettingsView({ stats, onUpdateStats }: SettingsViewProps) {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { isLoggedIn } = useAuth();
   const [dailyGoal, setDailyGoal] = useState(stats.dailyGoal.toString());
   const [autoAdvance, setAutoAdvance] = useState("700");
   const [soundEnabled, setSoundEnabled] = useState("true");
@@ -25,21 +29,52 @@ export function SettingsView({ stats, onUpdateStats }: SettingsViewProps) {
 
   const { toast } = useToast();
 
-  const handleSaveGeminiKey = () => {
+  useEffect(() => {
+    if (isLoggedIn) {
+      apiClient.settings
+        .getSettings()
+        .then((res) => {
+          if (res.success && res.settings) {
+            if (res.settings.dailyGoal) setDailyGoal(res.settings.dailyGoal.toString());
+            if (res.settings.autoAdvanceMs) setAutoAdvance(res.settings.autoAdvanceMs.toString());
+            if (res.settings.soundEnabled !== undefined) setSoundEnabled(res.settings.soundEnabled ? "true" : "false");
+            if (res.settings.geminiKey) {
+              setGeminiKey(res.settings.geminiKey);
+              saveStoredGeminiKey(res.settings.geminiKey);
+            }
+          }
+        })
+        .catch(() => {});
+    }
+  }, [isLoggedIn]);
+
+  const handleSaveGeminiKey = async () => {
     saveStoredGeminiKey(geminiKey);
+    if (isLoggedIn) {
+      try {
+        await apiClient.settings.saveSettings({ geminiKey });
+      } catch (e) {}
+    }
     toast({
       title: "Gemini API Key Saved ✨",
-      description: "Your free Google Gemini API key has been stored locally.",
+      description: "Your free Google Gemini API key has been stored locally and synced to your cloud profile.",
       type: "success",
     });
   };
 
-  const handleGoalChange = (val: string) => {
+  const handleGoalChange = async (val: string) => {
     setDailyGoal(val);
     const num = parseInt(val, 10);
     const updated = { ...stats, dailyGoal: num };
     storage.saveStats(updated);
     onUpdateStats(updated);
+
+    if (isLoggedIn) {
+      try {
+        await apiClient.settings.saveSettings({ dailyGoal: num });
+      } catch (e) {}
+    }
+
     toast({
       title: "Daily Goal Updated",
       description: `Target set to ${num} questions per day.`,
@@ -105,7 +140,7 @@ export function SettingsView({ stats, onUpdateStats }: SettingsViewProps) {
         <div className="flex items-center justify-between rounded-[22px] border border-border bg-card p-6 shadow-sm">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              {theme === "dark" ? <Moon className="h-5 w-5 text-indigo-400" /> : <Sun className="h-5 w-5 text-amber-500" />}
+              {resolvedTheme === "dark" ? <Moon className="h-5 w-5 text-indigo-400" /> : <Sun className="h-5 w-5 text-amber-500" />}
               <span className="text-base font-bold text-foreground">Appearance Theme</span>
             </div>
             <p className="text-xs text-muted-foreground">
@@ -115,7 +150,7 @@ export function SettingsView({ stats, onUpdateStats }: SettingsViewProps) {
 
           <div className="w-44">
             <Select
-              value={theme || "light"}
+              value={theme || "system"}
               onChange={(val) => setTheme(val)}
               options={[
                 { value: "light", label: "☀️ Light Mode" },

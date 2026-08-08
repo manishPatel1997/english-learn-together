@@ -16,10 +16,12 @@ import {
   GraduationCap,
   Volume2,
   X,
+  ShieldCheck,
 } from "lucide-react";
 import { TodaysGoalCard } from "./todays-goal-card";
 import { cn } from "@/lib/utils";
 import { storage } from "@/lib/storage";
+import { useAuth } from "@/context/auth-context";
 
 export type NavItem =
   | "dashboard"
@@ -30,7 +32,8 @@ export type NavItem =
   | "progress"
   | "mistakes"
   | "favorites"
-  | "settings";
+  | "settings"
+  | "admin";
 
 interface BounceSidebarProps {
   currentNav: NavItem;
@@ -94,6 +97,8 @@ export function BounceSidebar({
     return () => window.removeEventListener("focus", updateCount);
   }, [currentNav]);
 
+  const { user } = useAuth();
+
   const navItems = [
     { id: "dashboard", label: "Dashboard", icon: LayoutDashboard, shortcut: "1" },
     { id: "vocabulary", label: "Vocabulary Practice", icon: BookOpen, shortcut: "2" },
@@ -104,6 +109,9 @@ export function BounceSidebar({
     { id: "mistakes", label: "Mistakes", icon: AlertCircle, badge: mistakesCount > 0 ? String(mistakesCount) : undefined, shortcut: "7" },
     { id: "favorites", label: "Favorites", icon: Star, shortcut: "8" },
     { id: "settings", label: "Settings", icon: Settings, shortcut: "9" },
+    ...(user?.role === "admin"
+      ? [{ id: "admin", label: "Admin Panel", icon: ShieldCheck, badge: "Admin", shortcut: "0" }]
+      : []),
   ];
 
   return (

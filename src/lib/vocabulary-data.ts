@@ -210,6 +210,22 @@ export function getVocabularyQuestions(sectionId: string = "section1"): VocabQue
   return section1Items;
 }
 
+export async function fetchVocabularyFromApi(sectionId: string = "section1"): Promise<VocabQuestion[]> {
+  try {
+    const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+    const res = await fetch(`${API_BASE}/content/vocabulary?sectionId=${sectionId}`);
+    if (res.ok) {
+      const data = await res.json();
+      if (data.success && Array.isArray(data.data) && data.data.length > 0) {
+        return data.data;
+      }
+    }
+  } catch (err) {
+    console.warn("API fetch error, falling back to static dataset:", err);
+  }
+  return getVocabularyQuestions(sectionId);
+}
+
 const STORAGE_KEY = "selected_vocab_section_id";
 
 export function getStoredVocabSectionId(): string {

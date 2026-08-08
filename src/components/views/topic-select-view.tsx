@@ -10,10 +10,13 @@ import {
   ArrowRight,
   SlidersHorizontal,
   X,
+  Lock,
 } from "lucide-react";
 import { StatefulButton } from "@/components/beui/stateful-button";
 import sentenceData from "@/data/sentences.json";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/context/auth-context";
+import { useToast } from "@/components/beui/animated-toast-stack";
 
 export interface TopicConfig {
   key: string;
@@ -84,13 +87,30 @@ interface TopicSelectViewProps {
 }
 
 export function TopicSelectView({ onStartSelectedTopics }: TopicSelectViewProps) {
+  const { toast } = useToast();
+  const { user, unlockedSections } = useAuth();
   const topicList = getDynamicTopicList();
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
-  // const [selectedKeys, setSelectedKeys] = useState<string[]>(() =>
-  //   topicList.slice(0, 3).map((t) => t.key)
-  // );
+
+  const isTopicUnlocked = (key: string) => {
+    if (key === "who_section") return true;
+    return (
+      unlockedSections.includes(key) ||
+      unlockedSections.includes("sentence_all") ||
+      unlockedSections.includes("all")
+    );
+  };
 
   const toggleTopic = (key: string) => {
+    if (!isTopicUnlocked(key)) {
+      toast({
+        title: "Sentence Module Locked 🔒",
+        description: "Your administrator has not unlocked this sentence module yet, or complete previous practice to unlock!",
+        type: "info",
+      });
+      return;
+    }
+
     if (selectedKeys.includes(key)) {
       setSelectedKeys(selectedKeys.filter((k) => k !== key));
     } else {
@@ -155,38 +175,47 @@ export function TopicSelectView({ onStartSelectedTopics }: TopicSelectViewProps)
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {topicList.map((topic) => {
           const isSelected = selectedKeys.includes(topic.key);
+          const isUnlocked = isTopicUnlocked(topic.key);
           const questionsCount = ((sentenceData as any)[topic.key] || []).length;
 
           return (
             <motion.div
               key={topic.key}
               onClick={() => toggleTopic(topic.key)}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={{ scale: isUnlocked ? 1.02 : 1 }}
+              whileTap={{ scale: isUnlocked ? 0.98 : 1 }}
               className={cn(
                 "relative flex flex-col justify-between rounded-[22px] border p-5 cursor-pointer transition-all shadow-sm select-none",
-                isSelected
+                !isUnlocked
+                  ? "border-border/60 bg-card/40 opacity-70"
+                  : isSelected
                   ? "border-purple-500 bg-purple-500/10 shadow-lg shadow-purple-500/15"
                   : "border-border bg-card hover:border-border/80"
               )}
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-2xl">{topic.icon}</span>
-                  <div
-                    className={cn(
-                      "flex h-6 w-6 items-center justify-center rounded-full border transition-all",
-                      isSelected
-                        ? "border-purple-600 bg-purple-600 text-white"
-                        : "border-border bg-background text-transparent"
-                    )}
-                  >
-                    <Check className="h-3.5 w-3.5 stroke-[3]" />
-                  </div>
+                  <span className={cn("text-2xl", !isUnlocked && "grayscale opacity-50")}>{topic.icon}</span>
+                  {!isUnlocked ? (
+                    <span className="inline-flex items-center gap-1 rounded-full bg-rose-500/10 border border-rose-500/20 px-2.5 py-0.5 text-[10px] font-black text-rose-600 dark:text-rose-400">
+                      <Lock className="h-3 w-3" /> Locked
+                    </span>
+                  ) : (
+                    <div
+                      className={cn(
+                        "flex h-6 w-6 items-center justify-center rounded-full border transition-all",
+                        isSelected
+                          ? "border-purple-600 bg-purple-600 text-white"
+                          : "border-border bg-background text-transparent"
+                      )}
+                    >
+                      <Check className="h-3.5 w-3.5 stroke-[3]" />
+                    </div>
+                  )}
                 </div>
 
                 <h4 className="text-lg font-black text-foreground mb-1">
-                  {isSelected ? `✓ ${topic.name}` : topic.name}
+                  {!isUnlocked ? `🔒 ${topic.name}` : isSelected ? `✓ ${topic.name}` : topic.name}
                 </h4>
 
                 <p className="text-xs text-indigo-600 dark:text-indigo-400 font-medium mb-4 italic">

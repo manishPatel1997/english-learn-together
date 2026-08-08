@@ -11,6 +11,11 @@ import { ToastProvider } from "@/components/beui/animated-toast-stack";
 import { AITutorModal } from "@/components/beui/ai-tutor-modal";
 import { storage, type UserStats } from "@/lib/storage";
 
+import { ThemeLoader } from "@/components/beui/loader";
+import { ShieldCheck } from "lucide-react";
+import { useAuth } from "@/context/auth-context";
+import { AuthLandingGate } from "@/components/auth/auth-landing-gate";
+
 export const NAV_ROUTES: Record<NavItem, string> = {
   dashboard: "/",
   vocabulary: "/vocabulary",
@@ -21,9 +26,11 @@ export const NAV_ROUTES: Record<NavItem, string> = {
   mistakes: "/mistakes",
   favorites: "/favorites",
   settings: "/settings",
+  admin: "/admin",
 };
 
 export function getNavFromPathname(pathname: string): NavItem {
+  if (pathname.startsWith("/admin")) return "admin";
   if (pathname.startsWith("/vocabulary")) return "vocabulary";
   if (pathname.startsWith("/sentence-reading")) return "sentence-reading";
   if (pathname.startsWith("/sentence")) return "sentence";
@@ -42,6 +49,7 @@ interface AppShellProps {
 export function AppShell({ children }: AppShellProps) {
   const pathname = usePathname();
   const router = useRouter();
+  const { isLoggedIn, isLoading } = useAuth();
 
   const currentNav = getNavFromPathname(pathname);
   const [stats, setStats] = useState<UserStats>(storage.getStats());
@@ -114,6 +122,21 @@ export function AppShell({ children }: AppShellProps) {
     window.addEventListener("keydown", handleGlobalShortcuts);
     return () => window.removeEventListener("keydown", handleGlobalShortcuts);
   }, [router]);
+
+  if (isLoading) {
+    return (
+      <ThemeLoader
+        variant="fullscreen"
+        title="Verifying Account Authentication"
+        subtitle="Syncing profile data, streak counters, and unlocked sections..."
+        icon={<ShieldCheck className="h-3.5 w-3.5 text-indigo-500" />}
+      />
+    );
+  }
+
+  if (!isLoggedIn) {
+    return <AuthLandingGate />;
+  }
 
   return (
     <ToastProvider>

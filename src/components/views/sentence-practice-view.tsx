@@ -15,6 +15,7 @@ import {
   Bot,
   Loader2,
   Volume2,
+  RotateCcw,
 } from "lucide-react";
 import { FormattedMarkdown } from "@/components/beui/formatted-markdown";
 import { StatefulButton, type ButtonState } from "@/components/beui/stateful-button";
@@ -22,6 +23,21 @@ import { DynamicIsland } from "@/components/beui/dynamic-island";
 import { Drawer } from "@/components/beui/drawer";
 import { storage, type FavoriteItem } from "@/lib/storage";
 import { requestGeminiAI } from "@/lib/gemini-client";
+import { MotionSpinner } from "@/components/beui/loader";
+import { useToast } from "@/components/beui/animated-toast-stack";
+
+function formatRelativeTime(dateStr: string): string {
+  if (!dateStr) return "";
+  const diff = Date.now() - new Date(dateStr).getTime();
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return "Just now";
+  if (mins < 60) return `${mins}m ago`;
+  const hours = Math.floor(mins / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  if (days === 1) return "Yesterday";
+  return `${days}d ago`;
+}
 
 export interface SentenceQuestion {
   id: string | number;
@@ -459,6 +475,7 @@ export const getTopicFormula = (topicNameOrKey?: string): TopicFormula => {
 };
 
 export function SentencePracticeView({ questions, onComplete, initialPageMode }: SentencePracticeViewProps) {
+  const { toast } = useToast();
   const [pageMode, setPageMode] = useState<"selection" | "study" | "exam">(initialPageMode || "selection");
   const [studyIndex, setStudyIndex] = useState(0);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -482,6 +499,62 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
   const [loadingAi, setLoadingAi] = useState(false);
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const examId = `sentence_${questions[0]?.topic || 'all'}`;
+  const [activeDraft, setActiveDraft] = useState<any | null>(null);
+
+  useEffect(() => {
+    if (pageMode === "exam") {
+      const draft = storage.getExamDraft(examId);
+      if (draft && draft.currentIndex > 0) {
+        setActiveDraft(draft);
+      }
+    }
+  }, [pageMode, examId]);
+
+  const handleResumeExamDraft = () => {
+    if (!activeDraft) return;
+    setCurrentIndex(activeDraft.currentIndex || 0);
+    setCorrectCount(activeDraft.correctCount || 0);
+    setSessionXP(activeDraft.sessionXP || 0);
+    if (activeDraft.mistakesList) setMistakesList(activeDraft.mistakesList);
+    setActiveDraft(null);
+    toast({
+      title: "Sentence Practice Resumed 🚀",
+      description: `Restored your practice session on question ${activeDraft.currentIndex + 1}.`,
+      type: "success",
+    });
+  };
+
+  const handleStartFreshExam = () => {
+    storage.clearExamDraft(examId);
+    setActiveDraft(null);
+    setCurrentIndex(0);
+    setUserAnswer("");
+    setStatus("idle");
+    setBtnState("idle");
+    setCorrectCount(0);
+    setSessionXP(0);
+    setMistakesList([]);
+    toast({
+      title: "Fresh Exam Started 🔄",
+      description: "Cleared previous sentence practice session.",
+      type: "info",
+    });
+  };
+
+  useEffect(() => {
+    if (pageMode === "exam" && !activeDraft && currentIndex > 0) {
+      storage.saveExamDraft({
+        examId,
+        examType: "sentence",
+        currentIndex,
+        correctCount,
+        sessionXP,
+        mistakesList,
+      });
+    }
+  }, [pageMode, examId, currentIndex, correctCount, sessionXP, mistakesList, activeDraft]);
 
   const currentQuestion = questions[currentIndex] || questions[0];
   const studyQuestion = questions[studyIndex] || questions[0];
@@ -671,6 +744,7 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
     if (currentIndex + 1 >= questions.length) {
       const total = questions.length;
       const acc = Math.round((correctCount / total) * 100);
+      storage.clearExamDraft(examId);
       onComplete(correctCount, acc, sessionXP, mistakesList);
     } else {
       setCurrentIndex((prev) => prev + 1);
@@ -1113,12 +1187,62 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
           </Drawer>
         </div>
       ) : (
-        <div>
+        <div className="space-y-6">
+          {/* Resume Saved Exam Banner */}
+          {activeDraft && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="rounded-2xl border border-indigo-500/40 bg-indigo-500/10 p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg backdrop-blur-md"
+            >
+              <div className="flex items-center gap-3.5">
+                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-600 text-white shadow-md shrink-0 font-bold">
+                  <RotateCcw className="h-5 w-5" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-black text-foreground">Unfinished Sentence Session Found!</h4>
+                  <p className="text-xs text-muted-foreground font-medium">
+                    You were on Question {activeDraft.currentIndex + 1} of {questions.length} ({formatRelativeTime(new Date(activeDraft.timestamp).toISOString())}).
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2.5 w-full sm:w-auto shrink-0">
+                <button
+                  type="button"
+                  onClick={handleStartFreshExam}
+                  className="flex-1 sm:flex-none h-10 rounded-xl border border-border bg-card hover:bg-muted px-4 text-xs font-extrabold text-foreground transition-all shadow-xs"
+                >
+                  Start Fresh Exam 🔄
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleResumeExamDraft}
+                  className="flex-1 sm:flex-none h-10 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white px-5 text-xs font-black shadow-md shadow-indigo-600/30 transition-all"
+                >
+                  Resume Saved Session 🚀
+                </button>
+              </div>
+            </motion.div>
+          )}
+
           <div className="space-y-2 mb-6">
             <div className="flex items-center justify-between text-xs font-bold text-muted-foreground">
-              <span>
-                Sentence {currentIndex + 1} of {questions.length}
-              </span>
+              <div className="flex items-center gap-2">
+                <span>
+                  Sentence {currentIndex + 1} of {questions.length}
+                </span>
+                <button
+                  type="button"
+                  onClick={handleStartFreshExam}
+                  className="inline-flex items-center gap-1 rounded-lg border border-border bg-card hover:bg-rose-500/10 hover:border-rose-500/30 px-2.5 py-1 text-[11px] font-extrabold text-muted-foreground hover:text-rose-600 dark:hover:text-rose-400 transition-all shadow-xs"
+                  title="Restart exam from Question 1"
+                >
+                  <RotateCcw className="h-3 w-3" />
+                  <span>Start Fresh</span>
+                </button>
+              </div>
               <span>{progressPct}% Complete</span>
             </div>
             <div className="h-2.5 w-full overflow-hidden rounded-full bg-muted">
@@ -1270,7 +1394,7 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
                         >
                           {loadingAi ? (
                             <>
-                              <Loader2 className="h-4 w-4 animate-spin text-purple-500" />
+                              <MotionSpinner size="sm" />
                               <span>Gemini AI is analyzing your mistake...</span>
                             </>
                           ) : (

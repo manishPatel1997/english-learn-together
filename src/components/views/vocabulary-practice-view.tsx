@@ -29,9 +29,24 @@ import { useToast } from "@/components/beui/animated-toast-stack";
 import { storage, type FavoriteItem } from "@/lib/storage";
 import { cn } from "@/lib/utils";
 import { VOCABULARY_SECTIONS } from "@/lib/vocabulary-data";
-import { Layers } from "lucide-react";
+import { Layers, Lock } from "lucide-react";
+import { useAuth } from "@/context/auth-context";
+import { apiClient } from "@/lib/api-client";
 
 import { useRouter } from "next/navigation";
+
+function formatRelativeTime(dateStr: string): string {
+  if (!dateStr) return "";
+  const diff = Date.now() - new Date(dateStr).getTime();
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return "Just now";
+  if (mins < 60) return `${mins}m ago`;
+  const hours = Math.floor(mins / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  if (days === 1) return "Yesterday";
+  return `${days}d ago`;
+}
 
 export interface VocabQuestion {
   id: string | number;
@@ -66,6 +81,7 @@ export function VocabularyPracticeView({
 }: VocabularyPracticeViewProps) {
   const router = useRouter();
   const { toast } = useToast();
+  const { user, unlockedSections, updateUnlockedSections } = useAuth();
   const [pageMode, setPageMode] = useState<"selection" | "study" | "exam">(initialPageMode);
   const [hideEnglishOnStudy, setHideEnglishOnStudy] = useState(false);
   const [hidePronunciationInExam, setHidePronunciationInExam] = useState(true);
@@ -148,6 +164,9 @@ export function VocabularyPracticeView({
   const [listStatuses, setListStatuses] = useState<Record<number, "idle" | "correct" | "wrong" | "revealed">>({});
   const [blinkingIndices, setBlinkingIndices] = useState<Record<number, boolean>>({});
   const listInputRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const registerInputRef = React.useCallback((idx: number, el: HTMLInputElement | null) => {
+    listInputRefs.current[idx] = el;
+  }, []);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userAnswer, setUserAnswer] = useState("");
@@ -169,6 +188,77 @@ export function VocabularyPracticeView({
   const [isFav, setIsFav] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const examId = `vocab_${activeSectionId}`;
+  const [activeDraft, setActiveDraft] = useState<any | null>(null);
+
+  // Check for saved exam draft when pageMode is set to exam
+  useEffect(() => {
+    if (pageMode === "exam") {
+      const draft = storage.getExamDraft(examId);
+      if (draft && (draft.currentIndex > 0 || (draft.listUserAnswers && Object.keys(draft.listUserAnswers).length > 0))) {
+        setActiveDraft(draft);
+      }
+    }
+  }, [pageMode, activeSectionId, examId]);
+
+  const handleResumeExamDraft = () => {
+    if (!activeDraft) return;
+    setCurrentIndex(activeDraft.currentIndex || 0);
+    if (activeDraft.listUserAnswers) setListUserAnswers(activeDraft.listUserAnswers);
+    if (activeDraft.listStatuses) setListStatuses(activeDraft.listStatuses);
+    setCorrectCount(activeDraft.correctCount || 0);
+    setSessionXP(activeDraft.sessionXP || 0);
+    if (activeDraft.mistakesList) setMistakesList(activeDraft.mistakesList);
+    setActiveDraft(null);
+    toast({
+      title: "Exam Progress Resumed 🚀",
+      description: `Restored your session for section ${activeSectionId.toUpperCase()}.`,
+      type: "success",
+    });
+  };
+
+  const handleStartFreshExam = () => {
+    storage.clearExamDraft(examId);
+    setActiveDraft(null);
+    setCurrentIndex(0);
+    setUserAnswer("");
+    setStatus("idle");
+    setBtnState("idle");
+    setListUserAnswers({});
+    setListStatuses({});
+    setCorrectCount(0);
+    setSessionXP(0);
+    setMistakesList([]);
+    toast({
+      title: "Fresh Exam Started 🔄",
+      description: "Cleared previous session. Good luck on your attempt!",
+      type: "info",
+    });
+  };
+
+  // Auto-save exam draft as user answers questions (debounced by 1s to prevent typing lag)
+  useEffect(() => {
+    if (pageMode === "exam" && !activeDraft) {
+      const hasAnswered = currentIndex > 0 || Object.keys(listUserAnswers).length > 0;
+      if (hasAnswered) {
+        const timer = setTimeout(() => {
+          storage.saveExamDraft({
+            examId,
+            examType: "vocabulary",
+            sectionId: activeSectionId,
+            currentIndex,
+            listUserAnswers,
+            listStatuses,
+            correctCount,
+            sessionXP,
+            mistakesList,
+          });
+        }, 1000);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [pageMode, activeSectionId, examId, currentIndex, listUserAnswers, listStatuses, correctCount, sessionXP, mistakesList, activeDraft]);
 
   // Auto focus first item on list mode load
   useEffect(() => {
@@ -209,26 +299,26 @@ export function VocabularyPracticeView({
     ];
   }, [categoriesList, studyQuestions]);
 
-  // Group study questions consecutively by category preserving 100% exact original JSON array sequence
+  // Group study questions by category (combining items of the same category under one section)
   const groupedQuestions = React.useMemo(() => {
     const filtered =
       selectedCategoryFilter === "all"
         ? studyQuestions
         : studyQuestions.filter((q) => q.category === selectedCategoryFilter);
 
-    const groups: { category: string; items: VocabQuestion[] }[] = [];
-    let currentGroup: { category: string; items: VocabQuestion[] } | null = null;
-
+    const groupsMap = new Map<string, VocabQuestion[]>();
     filtered.forEach((q) => {
       const cat = q.category || "General Vocabulary";
-      if (!currentGroup || currentGroup.category !== cat) {
-        currentGroup = { category: cat, items: [] };
-        groups.push(currentGroup);
+      if (!groupsMap.has(cat)) {
+        groupsMap.set(cat, []);
       }
-      currentGroup.items.push(q);
+      groupsMap.get(cat)!.push(q);
     });
 
-    return groups;
+    return Array.from(groupsMap.entries()).map(([category, items]) => ({
+      category,
+      items,
+    }));
   }, [studyQuestions, selectedCategoryFilter]);
 
   const currentQuestion = examQuestions[currentIndex] || examQuestions[0];
@@ -241,121 +331,163 @@ export function VocabularyPracticeView({
     }
   }, [currentIndex, status, pageMode, examViewMode]);
 
-  const handleListCheckAnswer = (index: number, autoAdvance: boolean = true) => {
-    const question = examQuestions[index];
-    if (!question) return;
+  const handleListCheckAnswer = React.useCallback(
+    (index: number, autoAdvance: boolean = true) => {
+      const question = examQuestions[index];
+      if (!question) return;
 
-    const rawUser = listUserAnswers[index] || "";
-    if (!rawUser.trim()) return;
+      const rawUser = listUserAnswers[index] || "";
+      if (!rawUser.trim()) return;
 
-    const formattedUser = rawUser.trim().toLowerCase();
-    const formattedCorrect = question.english.trim().toLowerCase();
+      const formattedUser = rawUser.trim().toLowerCase();
+      const formattedCorrect = question.english.trim().toLowerCase();
 
-    if (formattedUser === formattedCorrect) {
-      const isAlreadyCorrect = listStatuses[index] === "correct";
+      if (formattedUser === formattedCorrect) {
+        const isAlreadyCorrect = listStatuses[index] === "correct";
 
-      setListStatuses((prev) => ({ ...prev, [index]: "correct" }));
+        setListStatuses((prev) => ({ ...prev, [index]: "correct" }));
 
-      if (!isAlreadyCorrect) {
-        setCorrectCount((prev) => prev + 1);
-        setSessionXP((prev) => prev + 15);
-        setSessionStreak((prev) => prev + 1);
-        storage.addXP(15, true);
-      }
-
-      // Auto jump to next field if requested
-      if (autoAdvance) {
-        const nextIdx = index + 1;
-        if (nextIdx < examQuestions.length) {
+        if (!isAlreadyCorrect) {
+          setCorrectCount((prev) => prev + 1);
+          setSessionXP((prev) => prev + 15);
+          setSessionStreak((prev) => prev + 1);
           setTimeout(() => {
-            if (listInputRefs.current[nextIdx]) {
-              listInputRefs.current[nextIdx]?.focus();
-              listInputRefs.current[nextIdx]?.scrollIntoView({ behavior: "smooth", block: "center" });
-            }
-          }, 100);
-        } else {
-          fireConfetti();
+            storage.addXP(15, true);
+          }, 0);
+        }
+
+        // Auto jump to next field if requested
+        if (autoAdvance) {
+          const nextIdx = index + 1;
+          if (nextIdx < examQuestions.length) {
+            setTimeout(() => {
+              if (listInputRefs.current[nextIdx]) {
+                listInputRefs.current[nextIdx]?.focus();
+                listInputRefs.current[nextIdx]?.scrollIntoView({ behavior: "smooth", block: "center" });
+              }
+            }, 80);
+          } else {
+            fireConfetti();
+          }
+        }
+      } else {
+        // Wrong answer
+        setListStatuses((prev) => ({ ...prev, [index]: "wrong" }));
+        setBlinkingIndices((prev) => ({ ...prev, [index]: true }));
+
+        const existing = mistakesList.find((m) => m.id === question.id);
+        if (!existing) {
+          const mistake = {
+            id: question.id,
+            gujarati: question.gujarati,
+            correctEnglish: question.english,
+            userAnswer: rawUser.trim(),
+            topic: question.category || "Vocabulary",
+            type: "vocabulary",
+            timestamp: Date.now(),
+          };
+          setMistakesList((prev) => [...prev, mistake]);
+          setTimeout(() => {
+            storage.addMistake(mistake as any);
+            storage.addXP(0, false);
+          }, 0);
+        }
+
+        setTimeout(() => {
+          setBlinkingIndices((prev) => ({ ...prev, [index]: false }));
+        }, 700);
+
+        // Auto jump to next field on wrong answer as well when hitting Enter
+        if (autoAdvance) {
+          const nextIdx = index + 1;
+          if (nextIdx < examQuestions.length) {
+            setTimeout(() => {
+              if (listInputRefs.current[nextIdx]) {
+                listInputRefs.current[nextIdx]?.focus();
+                listInputRefs.current[nextIdx]?.scrollIntoView({ behavior: "smooth", block: "center" });
+              }
+            }, 80);
+          }
         }
       }
-    } else {
-      // Wrong answer
-      setListStatuses((prev) => ({ ...prev, [index]: "wrong" }));
-      setBlinkingIndices((prev) => ({ ...prev, [index]: true }));
+    },
+    [examQuestions, listUserAnswers, listStatuses, mistakesList]
+  );
 
-      const existing = mistakesList.find((m) => m.id === question.id);
-      if (!existing) {
-        const mistake = {
-          id: question.id,
-          gujarati: question.gujarati,
-          correctEnglish: question.english,
-          userAnswer: rawUser.trim(),
-          topic: question.category || "Vocabulary",
-          type: "vocabulary",
-          timestamp: Date.now(),
-        };
-        storage.addMistake(mistake as any);
-        setMistakesList((prev) => [...prev, mistake]);
-        storage.addXP(0, false);
+  const handleListKeyDown = React.useCallback(
+    (e: React.KeyboardEvent, index: number) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        handleListCheckAnswer(index, true);
       }
+    },
+    [handleListCheckAnswer]
+  );
 
-      setTimeout(() => {
-        setBlinkingIndices((prev) => ({ ...prev, [index]: false }));
-      }, 700);
-
-      // Auto jump to next field on wrong answer as well when hitting Enter
-      if (autoAdvance) {
-        const nextIdx = index + 1;
-        if (nextIdx < examQuestions.length) {
-          setTimeout(() => {
-            if (listInputRefs.current[nextIdx]) {
-              listInputRefs.current[nextIdx]?.focus();
-              listInputRefs.current[nextIdx]?.scrollIntoView({ behavior: "smooth", block: "center" });
-            }
-          }, 100);
-        }
+  const handleListBlur = React.useCallback(
+    (index: number) => {
+      const rawUser = listUserAnswers[index] || "";
+      const currentStatus = listStatuses[index];
+      if (rawUser.trim() && (!currentStatus || currentStatus === "idle")) {
+        handleListCheckAnswer(index, false);
       }
-    }
-  };
+    },
+    [listUserAnswers, listStatuses, handleListCheckAnswer]
+  );
 
-  const handleListKeyDown = (e: React.KeyboardEvent, index: number) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      handleListCheckAnswer(index, true);
-    }
-  };
-
-  const handleListBlur = (index: number) => {
-    const rawUser = listUserAnswers[index] || "";
-    const currentStatus = listStatuses[index];
-    if (rawUser.trim() && (!currentStatus || currentStatus === "idle")) {
-      handleListCheckAnswer(index, false);
-    }
-  };
-
-  const handleListInputChange = (index: number, val: string) => {
+  const handleListInputChange = React.useCallback((index: number, val: string) => {
     setListUserAnswers((prev) => ({ ...prev, [index]: val }));
-    if (listStatuses[index] === "wrong") {
-      setListStatuses((prev) => ({ ...prev, [index]: "idle" }));
-    }
-  };
+    setListStatuses((prev) => {
+      if (prev[index] === "wrong") {
+        return { ...prev, [index]: "idle" };
+      }
+      return prev;
+    });
+  }, []);
 
-  const handleListShowAnswer = (index: number) => {
-    const question = examQuestions[index];
-    if (!question) return;
-    setListUserAnswers((prev) => ({ ...prev, [index]: question.english }));
-    setListStatuses((prev) => ({ ...prev, [index]: "revealed" }));
+  const handleListShowAnswer = React.useCallback(
+    (index: number) => {
+      const question = examQuestions[index];
+      if (!question) return;
+      setListUserAnswers((prev) => ({ ...prev, [index]: question.english }));
+      setListStatuses((prev) => ({ ...prev, [index]: "revealed" }));
 
-    const nextIdx = index + 1;
-    if (nextIdx < examQuestions.length && listInputRefs.current[nextIdx]) {
-      listInputRefs.current[nextIdx]?.focus();
-      listInputRefs.current[nextIdx]?.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-  };
+      const nextIdx = index + 1;
+      if (nextIdx < examQuestions.length && listInputRefs.current[nextIdx]) {
+        listInputRefs.current[nextIdx]?.focus();
+        listInputRefs.current[nextIdx]?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    },
+    [examQuestions]
+  );
 
-  const handleFinishListExam = () => {
+  const handleFinishListExam = async () => {
     const total = examQuestions.length;
     const answeredCorrect = Object.values(listStatuses).filter((s) => s === "correct").length;
     const acc = Math.round((answeredCorrect / total) * 100);
+
+    try {
+      const res = await apiClient.user.recordProgress({
+        sectionId: activeSectionId,
+        examType: "vocabulary",
+        totalQuestions: total,
+        correctAnswers: answeredCorrect,
+        xpEarned: sessionXP,
+      });
+
+      if (res.success && res.newlyUnlockedSection) {
+        updateUnlockedSections(res.unlockedSections);
+        toast({
+          title: "🎉 New Section Unlocked!",
+          description: res.message,
+          type: "success",
+        });
+      }
+    } catch (err) {
+      console.warn("Could not sync exam progress to backend:", err);
+    }
+
+    storage.clearExamDraft(examId);
     onComplete(answeredCorrect, acc, sessionXP, mistakesList);
   };
 
@@ -471,11 +603,34 @@ export function VocabularyPracticeView({
     setUserAnswer(currentQuestion.english);
   };
 
-  const nextQuestion = () => {
+  const nextQuestion = async () => {
     if (currentIndex + 1 >= examQuestions.length) {
       // Finished! Calculate final scores
       const total = examQuestions.length;
       const acc = Math.round((correctCount / total) * 100);
+
+      try {
+        const res = await apiClient.user.recordProgress({
+          sectionId: activeSectionId,
+          examType: "vocabulary",
+          totalQuestions: total,
+          correctAnswers: correctCount,
+          xpEarned: sessionXP,
+        });
+
+        if (res.success && res.newlyUnlockedSection) {
+          updateUnlockedSections(res.unlockedSections);
+          toast({
+            title: "🎉 New Section Unlocked!",
+            description: res.message,
+            type: "success",
+          });
+        }
+      } catch (err) {
+        console.warn("Could not sync exam progress to backend:", err);
+      }
+
+      storage.clearExamDraft(examId);
       onComplete(correctCount, acc, sessionXP, mistakesList);
     } else {
       setCurrentIndex((prev) => prev + 1);
@@ -533,15 +688,32 @@ export function VocabularyPracticeView({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {VOCABULARY_SECTIONS.map((sec) => {
             const isSelected = activeSectionId === sec.id;
+            const isUnlocked =
+              sec.id === "section1" ||
+              unlockedSections.includes(sec.id) ||
+              unlockedSections.includes("all");
+
             return (
               <motion.div
                 key={sec.id}
-                whileHover={{ scale: 1.01 }}
-                whileTap={{ scale: 0.99 }}
-                onClick={() => onSectionChange && onSectionChange(sec.id)}
+                whileHover={{ scale: isUnlocked ? 1.01 : 1 }}
+                whileTap={{ scale: isUnlocked ? 0.99 : 1 }}
+                onClick={() => {
+                  if (!isUnlocked) {
+                    toast({
+                      title: "Section Locked 🔒",
+                      description: "Achieve an 80% or higher exam score on the previous section to unlock this next section!",
+                      type: "info",
+                    });
+                    return;
+                  }
+                  if (onSectionChange) onSectionChange(sec.id);
+                }}
                 className={cn(
                   "relative cursor-pointer rounded-3xl border p-5 transition-all shadow-md flex flex-col justify-between space-y-4",
-                  isSelected
+                  !isUnlocked
+                    ? "border-border/60 bg-card/40 opacity-80"
+                    : isSelected
                     ? "border-indigo-500 bg-card ring-2 ring-indigo-500/30 shadow-xl"
                     : "border-border bg-card/60 hover:border-indigo-500/50 hover:bg-card"
                 )}
@@ -550,7 +722,12 @@ export function VocabularyPracticeView({
                 <div className="space-y-3">
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-3 min-w-0">
-                      <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-indigo-500/10 text-2xl shrink-0 shadow-xs">
+                      <span
+                        className={cn(
+                          "flex h-11 w-11 items-center justify-center rounded-2xl text-2xl shrink-0 shadow-xs",
+                          isUnlocked ? "bg-indigo-500/10" : "bg-slate-500/10 grayscale"
+                        )}
+                      >
                         {sec.icon}
                       </span>
                       <div className="min-w-0">
@@ -563,16 +740,22 @@ export function VocabularyPracticeView({
                       </div>
                     </div>
 
-                    <span
-                      className={cn(
-                        "rounded-full px-3 py-1 text-[11px] font-black shrink-0 border",
-                        isSelected
-                          ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
-                          : "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20"
-                      )}
-                    >
-                      {sec.badge}
-                    </span>
+                    {!isUnlocked ? (
+                      <span className="inline-flex items-center gap-1 rounded-full bg-rose-500/10 border border-rose-500/20 px-3 py-1 text-[11px] font-black text-rose-600 dark:text-rose-400 shrink-0">
+                        <Lock className="h-3 w-3" /> Locked
+                      </span>
+                    ) : (
+                      <span
+                        className={cn(
+                          "rounded-full px-3 py-1 text-[11px] font-black shrink-0 border",
+                          isSelected
+                            ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
+                            : "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20"
+                        )}
+                      >
+                        {sec.badge}
+                      </span>
+                    )}
                   </div>
 
                   <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
@@ -584,51 +767,73 @@ export function VocabularyPracticeView({
                       <BookOpen className="h-4 w-4 text-indigo-500" />
                       <span>{sec.count} Words</span>
                     </span>
-                    {isSelected && (
+                    {!isUnlocked ? (
+                      <span className="text-[11px] text-amber-600 dark:text-amber-400 font-bold">
+                        Requires Score ≥ 80%
+                      </span>
+                    ) : isSelected ? (
                       <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-black text-[11px]">
                         <CheckCircle2 className="h-4 w-4" /> Active Section
                       </span>
-                    )}
+                    ) : null}
                   </div>
                 </div>
 
                 {/* Direct Action Buttons Inside Section Card */}
                 <div className="pt-2 border-t border-border/60">
-                  <div className="grid grid-cols-2 gap-2.5">
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (onSectionChange) onSectionChange(sec.id);
-                        switchPageMode("study");
-                      }}
-                      className={cn(
-                        "w-full rounded-xl py-2.5 px-3 text-xs font-black transition-all flex items-center justify-center gap-1.5 shadow-sm",
-                        isSelected
-                          ? "bg-indigo-600 text-white hover:bg-indigo-700"
-                          : "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600 hover:text-white"
-                      )}
-                    >
-                      <span>📖 Start Study</span>
-                    </button>
+                  {isUnlocked ? (
+                    <div className="grid grid-cols-2 gap-2.5">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (onSectionChange) onSectionChange(sec.id);
+                          switchPageMode("study");
+                        }}
+                        className={cn(
+                          "w-full rounded-xl py-2.5 px-3 text-xs font-black transition-all flex items-center justify-center gap-1.5 shadow-sm",
+                          isSelected
+                            ? "bg-indigo-600 text-white hover:bg-indigo-700"
+                            : "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600 hover:text-white"
+                        )}
+                      >
+                        <span>📖 Start Study</span>
+                      </button>
 
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (onSectionChange) onSectionChange(sec.id);
+                          switchPageMode("exam");
+                        }}
+                        className={cn(
+                          "w-full rounded-xl py-2.5 px-3 text-xs font-black transition-all flex items-center justify-center gap-1.5 shadow-sm",
+                          isSelected
+                            ? "bg-purple-600 text-white hover:bg-purple-700"
+                            : "bg-purple-500/10 text-purple-600 dark:text-purple-400 hover:bg-purple-600 hover:text-white"
+                        )}
+                      >
+                        <span>✍️ Start Exam</span>
+                      </button>
+                    </div>
+                  ) : (
                     <button
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
-                        if (onSectionChange) onSectionChange(sec.id);
-                        switchPageMode("exam");
+                        toast({
+                          title: "Section Locked 🔒",
+                          description: "Score 80%+ on previous section to unlock!",
+                          type: "info",
+                        });
                       }}
-                      className={cn(
-                        "w-full rounded-xl py-2.5 px-3 text-xs font-black transition-all flex items-center justify-center gap-1.5 shadow-sm",
-                        isSelected
-                          ? "bg-purple-600 text-white hover:bg-purple-700"
-                          : "bg-purple-500/10 text-purple-600 dark:text-purple-400 hover:bg-purple-600 hover:text-white"
-                      )}
+                      className="w-full rounded-xl py-2.5 px-3 text-xs font-black bg-muted text-muted-foreground transition-all flex items-center justify-center gap-1.5 cursor-not-allowed"
                     >
-                      <span>✍️ Start Exam</span>
+                      <Lock className="h-3.5 w-3.5" />
+                      <span>Locked Section</span>
                     </button>
-                  </div>
+                  )}
                 </div>
               </motion.div>
             );
@@ -806,7 +1011,7 @@ export function VocabularyPracticeView({
           {/* Grouped Category Sections (Single Dark Header Banner per Category) */}
           <div className="space-y-6">
             {groupedQuestions.map((group, groupIdx) => (
-              <div key={group.category || groupIdx} className="rounded-[28px] border border-border bg-card p-5 sm:p-6 shadow-xl space-y-4">
+              <div key={`group-${groupIdx}-${group.category}`} className="rounded-[28px] border border-border bg-card p-5 sm:p-6 shadow-xl space-y-4">
                 {/* Single Dark Textbook Category Header Box */}
                 <div className="flex items-center justify-between rounded-2xl bg-zinc-900 text-white dark:bg-zinc-950 border border-zinc-800 px-4 py-3 shadow-lg">
                   <div className="flex items-center gap-3 min-w-0">
@@ -824,12 +1029,12 @@ export function VocabularyPracticeView({
 
                 {/* Words Grid under this Category Header */}
                 <div className={cn("grid gap-3 transition-all", studyColumns === 1 ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2")}>
-                  {group.items.map((q) => {
+                  {group.items.map((q, itemSubIdx) => {
                     const originalIdx = studyQuestions.findIndex((item) => item.id === q.id);
                     const itemIdx = originalIdx >= 0 ? originalIdx : 0;
                     return (
                       <div
-                        key={q.id !== undefined && q.id !== null ? `vocab-q-${q.id}` : `vocab-item-${q.english}`}
+                        key={`vocab-q-${q.id || q.english}-${itemIdx}-${itemSubIdx}`}
                         onClick={() => {
                           setStudyIndex(itemIdx);
                           setRevealSpelling(true);
@@ -1037,6 +1242,45 @@ export function VocabularyPracticeView({
       ) : (
         /* MODE 2: EXAM / QUIZ MODE */
         <div className="space-y-6">
+          {/* Resume Saved Exam Banner */}
+          {activeDraft && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="rounded-2xl border border-indigo-500/40 bg-indigo-500/10 p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg backdrop-blur-md"
+            >
+              <div className="flex items-center gap-3.5">
+                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-600 text-white shadow-md shrink-0 font-bold">
+                  <RotateCcw className="h-5 w-5" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-black text-foreground">Unfinished Exam Session Found!</h4>
+                  <p className="text-xs text-muted-foreground font-medium">
+                    You answered {Object.keys(activeDraft.listUserAnswers || {}).length} questions in this session ({formatRelativeTime(new Date(activeDraft.timestamp).toISOString())}).
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2.5 w-full sm:w-auto shrink-0">
+                <button
+                  type="button"
+                  onClick={handleStartFreshExam}
+                  className="flex-1 sm:flex-none h-10 rounded-xl border border-border bg-card hover:bg-muted px-4 text-xs font-extrabold text-foreground transition-all shadow-xs"
+                >
+                  Start Fresh Exam 🔄
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleResumeExamDraft}
+                  className="flex-1 sm:flex-none h-10 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white px-5 text-xs font-black shadow-md shadow-indigo-600/30 transition-all"
+                >
+                  Resume Saved Exam 🚀
+                </button>
+              </div>
+            </motion.div>
+          )}
+
           {/* Exam Header & Layout Selector Bar */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-card border border-border p-4 rounded-2xl shadow-sm">
             <div className="flex items-center gap-3">
@@ -1054,6 +1298,16 @@ export function VocabularyPracticeView({
             </div>
 
             <div className="flex flex-wrap items-center gap-2">
+              {/* Start Fresh Exam Button */}
+              <button
+                type="button"
+                onClick={handleStartFreshExam}
+                className="flex items-center gap-1.5 rounded-xl border border-border bg-background hover:bg-rose-500/10 hover:border-rose-500/30 px-3 py-2 text-xs font-extrabold text-muted-foreground hover:text-rose-600 dark:hover:text-rose-400 transition-all shadow-xs"
+                title="Clear current progress and restart exam from Question 1"
+              >
+                <RotateCcw className="h-3.5 w-3.5" />
+                <span>Start Fresh</span>
+              </button>
               {/* Order Mode Switcher */}
               <div className="flex items-center gap-1 rounded-xl border border-border bg-background p-1 select-none">
                 <button
@@ -1170,159 +1424,24 @@ export function VocabularyPracticeView({
 
               {/* Multi-Row List */}
               <div className="rounded-[28px] border border-border bg-card p-4 sm:p-6 shadow-xl space-y-3">
-                {examQuestions.map((q, idx) => {
-                  const itemStatus = listStatuses[idx] || "idle";
-                  const isBlinking = blinkingIndices[idx] || false;
-                  const currentAnswer = listUserAnswers[idx] || "";
-
-                  return (
-                    <motion.div
-                      key={q.id !== undefined ? `exam-item-${q.id}-${idx}` : `exam-item-${idx}`}
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className={cn(
-                        "rounded-2xl border p-4 sm:p-5 transition-all shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4",
-                        itemStatus === "correct"
-                          ? "border-emerald-500/50 bg-emerald-500/5 dark:bg-emerald-500/10"
-                          : isBlinking
-                          ? "animate-wrong-blink border-rose-500 bg-rose-500/10"
-                          : itemStatus === "wrong"
-                          ? "border-rose-500/40 bg-rose-500/5"
-                          : itemStatus === "revealed"
-                          ? "border-indigo-500/40 bg-indigo-500/5"
-                          : "border-border bg-background hover:border-indigo-500/30"
-                      )}
-                    >
-                      {/* Left Side: Index Badge, Gujarati Word, Audio Button */}
-                      <div className="flex items-center gap-3.5 flex-1 min-w-0">
-                        <div
-                          className={cn(
-                            "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl font-extrabold text-xs transition-colors",
-                            itemStatus === "correct"
-                              ? "bg-emerald-500 text-white"
-                              : itemStatus === "wrong" || isBlinking
-                              ? "bg-rose-500 text-white"
-                              : "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
-                          )}
-                        >
-                          #{idx + 1}
-                        </div>
-
-                        <div className="space-y-0.5 flex-1 min-w-0">
-                          <div className="flex items-center gap-2 flex-wrap">
-                            <span className="text-xl sm:text-2xl font-black text-foreground tracking-wide block">
-                              {q.gujarati}
-                            </span>
-                            {q.category && (
-                              <span className="inline-flex items-center gap-1 rounded-md bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 text-[11px] font-black text-amber-700 dark:text-amber-300">
-                                🏷️ {q.category}
-                              </span>
-                            )}
-                            {q.pronunciation_gujarati && (!hidePronunciationInExam || itemStatus === "correct" || itemStatus === "revealed") && (
-                              <span className="inline-flex items-center rounded-md bg-purple-500/10 border border-purple-500/20 px-2 py-0.5 text-[11px] font-extrabold text-purple-600 dark:text-purple-400">
-                                🗣️ {q.pronunciation_gujarati}
-                              </span>
-                            )}
-                            <button
-                              type="button"
-                              onClick={() => speakWord(q.english)}
-                              title="Listen Pronunciation"
-                              className="h-7 w-7 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-all shrink-0"
-                            >
-                              <Volume2 className="h-3.5 w-3.5" />
-                            </button>
-                          </div>
-                          {q.phonetic && q.phonetic !== q.pronunciation_gujarati && (!hidePronunciationInExam || itemStatus === "correct" || itemStatus === "revealed") && (
-                            <span className="text-xs italic text-muted-foreground block">
-                              Phonetic: "{q.phonetic}"
-                            </span>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Right Side: Answer Input & Controls */}
-                      <div className="w-full sm:w-80 space-y-1.5 shrink-0">
-                        <div className="relative flex items-center gap-2">
-                          <div className="relative flex-1">
-                            <input
-                              ref={(el) => {
-                                listInputRefs.current[idx] = el;
-                              }}
-                              type="text"
-                              enterKeyHint="next"
-                              autoCapitalize="off"
-                              autoCorrect="off"
-                              spellCheck={false}
-                              value={currentAnswer}
-                              onChange={(e) => handleListInputChange(idx, e.target.value)}
-                              onKeyDown={(e) => handleListKeyDown(e, idx)}
-                              onBlur={() => handleListBlur(idx)}
-                              placeholder={
-                                itemStatus === "correct"
-                                  ? "✓ Correct Answer!"
-                                  : "Type English & hit Enter..."
-                              }
-                              disabled={itemStatus === "correct"}
-                              className={cn(
-                                "w-full rounded-xl border px-4 py-2.5 text-sm font-bold outline-none transition-all shadow-inner pr-9",
-                                itemStatus === "correct"
-                                  ? "border-emerald-500 bg-emerald-500/15 text-emerald-700 dark:text-emerald-300"
-                                  : isBlinking || itemStatus === "wrong"
-                                  ? "border-rose-500 bg-rose-500/15 text-rose-700 dark:text-rose-300"
-                                  : "border-border bg-background focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20"
-                              )}
-                            />
-
-                            {itemStatus === "correct" && (
-                              <CheckCircle2 className="absolute right-2.5 top-1/2 -translate-y-1/2 h-5 w-5 text-emerald-500" />
-                            )}
-                            {(isBlinking || itemStatus === "wrong") && (
-                              <XCircle className="absolute right-2.5 top-1/2 -translate-y-1/2 h-5 w-5 text-rose-500" />
-                            )}
-                          </div>
-
-                          {itemStatus !== "correct" && (
-                            <div className="flex items-center gap-1">
-                              <button
-                                type="button"
-                                onClick={() => handleListCheckAnswer(idx)}
-                                className="rounded-xl bg-indigo-600 px-3 py-2 text-xs font-extrabold text-white hover:bg-indigo-700 transition-colors shadow-sm"
-                                title="Check Answer"
-                              >
-                                Check
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => handleListShowAnswer(idx)}
-                                className="rounded-xl border border-border bg-card p-2 text-xs font-bold text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-                                title="Show Correct Answer"
-                              >
-                                <HelpCircle className="h-4 w-4 text-indigo-500" />
-                              </button>
-                            </div>
-                          )}
-                        </div>
-
-                        {/* Subtitle / Feedback */}
-                        {itemStatus === "correct" && (
-                          <span className="text-[11px] font-extrabold text-emerald-600 dark:text-emerald-400 block pl-1">
-                            ✓ Correct! Jumped to next word.
-                          </span>
-                        )}
-                        {itemStatus === "wrong" && !isBlinking && (
-                          <span className="text-[11px] font-extrabold text-rose-500 block pl-1">
-                            ✕ Incorrect spelling. Try again & hit Enter!
-                          </span>
-                        )}
-                        {itemStatus === "revealed" && (
-                          <span className="text-[11px] font-extrabold text-indigo-600 dark:text-indigo-400 block pl-1">
-                            Answer: {q.english}
-                          </span>
-                        )}
-                      </div>
-                    </motion.div>
-                  );
-                })}
+                {examQuestions.map((q, idx) => (
+                  <VocabExamListItem
+                    key={q.id !== undefined ? `exam-item-${q.id}-${idx}` : `exam-item-${idx}`}
+                    q={q}
+                    idx={idx}
+                    itemStatus={listStatuses[idx] || "idle"}
+                    isBlinking={blinkingIndices[idx] || false}
+                    currentAnswer={listUserAnswers[idx] || ""}
+                    hidePronunciationInExam={hidePronunciationInExam}
+                    registerInputRef={registerInputRef}
+                    onInputChange={handleListInputChange}
+                    onKeyDown={handleListKeyDown}
+                    onBlur={handleListBlur}
+                    onCheckAnswer={handleListCheckAnswer}
+                    onShowAnswer={handleListShowAnswer}
+                    onSpeak={speakWord}
+                  />
+                ))}
               </div>
 
               {/* Finish Exam Button at Bottom */}
@@ -1542,3 +1661,205 @@ export function VocabularyPracticeView({
     </div>
   );
 }
+
+interface VocabExamListItemProps {
+  q: VocabQuestion;
+  idx: number;
+  itemStatus: "idle" | "correct" | "wrong" | "revealed";
+  isBlinking: boolean;
+  currentAnswer: string;
+  hidePronunciationInExam: boolean;
+  registerInputRef: (idx: number, el: HTMLInputElement | null) => void;
+  onInputChange: (index: number, val: string) => void;
+  onKeyDown: (e: React.KeyboardEvent, index: number) => void;
+  onBlur: (index: number) => void;
+  onCheckAnswer: (index: number, autoAdvance?: boolean) => void;
+  onShowAnswer: (index: number) => void;
+  onSpeak: (word: string) => void;
+}
+
+const VocabExamListItem = React.memo(
+  function VocabExamListItem({
+    q,
+    idx,
+    itemStatus,
+    isBlinking,
+    currentAnswer,
+    hidePronunciationInExam,
+    registerInputRef,
+    onInputChange,
+    onKeyDown,
+    onBlur,
+    onCheckAnswer,
+    onShowAnswer,
+    onSpeak,
+  }: VocabExamListItemProps) {
+    const [localValue, setLocalValue] = React.useState(currentAnswer);
+
+    // Sync when currentAnswer changes externally (e.g. show answer or draft restore)
+    React.useEffect(() => {
+      setLocalValue(currentAnswer);
+    }, [currentAnswer]);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const val = e.target.value;
+      setLocalValue(val);
+      onInputChange(idx, val);
+    };
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 5 }}
+        animate={{ opacity: 1, y: 0 }}
+        className={cn(
+          "rounded-2xl border p-4 sm:p-5 transition-all shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4",
+          itemStatus === "correct"
+            ? "border-emerald-500/50 bg-emerald-500/5 dark:bg-emerald-500/10"
+            : isBlinking
+            ? "animate-wrong-blink border-rose-500 bg-rose-500/10"
+            : itemStatus === "wrong"
+            ? "border-rose-500/40 bg-rose-500/5"
+            : itemStatus === "revealed"
+            ? "border-indigo-500/40 bg-indigo-500/5"
+            : "border-border bg-background hover:border-indigo-500/30"
+        )}
+      >
+        {/* Left Side: Index Badge, Gujarati Word, Audio Button */}
+        <div className="flex items-center gap-3.5 flex-1 min-w-0">
+          <div
+            className={cn(
+              "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl font-extrabold text-xs transition-colors",
+              itemStatus === "correct"
+                ? "bg-emerald-500 text-white"
+                : itemStatus === "wrong" || isBlinking
+                ? "bg-rose-500 text-white"
+                : "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
+            )}
+          >
+            #{idx + 1}
+          </div>
+
+          <div className="space-y-0.5 flex-1 min-w-0">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-xl sm:text-2xl font-black text-foreground tracking-wide block">
+                {q.gujarati}
+              </span>
+              {q.category && (
+                <span className="inline-flex items-center gap-1 rounded-md bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 text-[11px] font-black text-amber-700 dark:text-amber-300">
+                  🏷️ {q.category}
+                </span>
+              )}
+              {q.pronunciation_gujarati && (!hidePronunciationInExam || itemStatus === "correct" || itemStatus === "revealed") && (
+                <span className="inline-flex items-center rounded-md bg-purple-500/10 border border-purple-500/20 px-2 py-0.5 text-[11px] font-extrabold text-purple-600 dark:text-purple-400">
+                  🗣️ {q.pronunciation_gujarati}
+                </span>
+              )}
+              <button
+                type="button"
+                onClick={() => onSpeak(q.english)}
+                title="Listen Pronunciation"
+                className="h-7 w-7 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-all shrink-0"
+              >
+                <Volume2 className="h-3.5 w-3.5" />
+              </button>
+            </div>
+            {q.phonetic && q.phonetic !== q.pronunciation_gujarati && (!hidePronunciationInExam || itemStatus === "correct" || itemStatus === "revealed") && (
+              <span className="text-xs italic text-muted-foreground block">
+                Phonetic: "{q.phonetic}"
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Right Side: Answer Input & Controls */}
+        <div className="w-full sm:w-80 space-y-1.5 shrink-0">
+          <div className="relative flex items-center gap-2">
+            <div className="relative flex-1">
+              <input
+                ref={(el) => registerInputRef(idx, el)}
+                type="text"
+                enterKeyHint="next"
+                autoCapitalize="off"
+                autoCorrect="off"
+                spellCheck={false}
+                value={localValue}
+                onChange={handleChange}
+                onKeyDown={(e) => onKeyDown(e, idx)}
+                onBlur={() => onBlur(idx)}
+                placeholder={
+                  itemStatus === "correct"
+                    ? "✓ Correct Answer!"
+                    : "Type English & hit Enter..."
+                }
+                disabled={itemStatus === "correct"}
+                className={cn(
+                  "w-full rounded-xl border px-4 py-2.5 text-sm font-bold outline-none transition-all shadow-inner pr-9",
+                  itemStatus === "correct"
+                    ? "border-emerald-500 bg-emerald-500/15 text-emerald-700 dark:text-emerald-300"
+                    : isBlinking || itemStatus === "wrong"
+                    ? "border-rose-500 bg-rose-500/15 text-rose-700 dark:text-rose-300"
+                    : "border-border bg-background focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20"
+                )}
+              />
+
+              {itemStatus === "correct" && (
+                <CheckCircle2 className="absolute right-2.5 top-1/2 -translate-y-1/2 h-5 w-5 text-emerald-500" />
+              )}
+              {(isBlinking || itemStatus === "wrong") && (
+                <XCircle className="absolute right-2.5 top-1/2 -translate-y-1/2 h-5 w-5 text-rose-500" />
+              )}
+            </div>
+
+            {itemStatus !== "correct" && (
+              <div className="flex items-center gap-1">
+                <button
+                  type="button"
+                  onClick={() => onCheckAnswer(idx)}
+                  className="rounded-xl bg-indigo-600 px-3 py-2 text-xs font-extrabold text-white hover:bg-indigo-700 transition-colors shadow-sm"
+                  title="Check Answer"
+                >
+                  Check
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onShowAnswer(idx)}
+                  className="rounded-xl border border-border bg-card p-2 text-xs font-bold text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                  title="Show Correct Answer"
+                >
+                  <HelpCircle className="h-4 w-4 text-indigo-500" />
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Subtitle / Feedback */}
+          {itemStatus === "correct" && (
+            <span className="text-[11px] font-extrabold text-emerald-600 dark:text-emerald-400 block pl-1">
+              ✓ Correct! Jumped to next word.
+            </span>
+          )}
+          {itemStatus === "wrong" && !isBlinking && (
+            <span className="text-[11px] font-extrabold text-rose-500 block pl-1">
+              ✕ Incorrect spelling. Try again & hit Enter!
+            </span>
+          )}
+          {itemStatus === "revealed" && (
+            <span className="text-[11px] font-extrabold text-indigo-600 dark:text-indigo-400 block pl-1">
+              Answer: {q.english}
+            </span>
+          )}
+        </div>
+      </motion.div>
+    );
+  },
+  (prev, next) => {
+    return (
+      prev.idx === next.idx &&
+      prev.itemStatus === next.itemStatus &&
+      prev.isBlinking === next.isBlinking &&
+      prev.currentAnswer === next.currentAnswer &&
+      prev.hidePronunciationInExam === next.hidePronunciationInExam &&
+      prev.q === next.q
+    );
+  }
+);

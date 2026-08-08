@@ -23,6 +23,7 @@ import {
 import { SentenceSubNav } from "@/components/layout/sentence-sub-nav";
 import { StatefulButton, type ButtonState } from "@/components/beui/stateful-button";
 import { FormattedMarkdown } from "@/components/beui/formatted-markdown";
+import { ThemeLoader } from "@/components/beui/loader";
 import { storage, type FavoriteItem } from "@/lib/storage";
 import { requestGeminiAI, getStoredGeminiKey } from "@/lib/gemini-client";
 import { useToast } from "@/components/beui/animated-toast-stack";
@@ -474,13 +475,11 @@ export function SentenceReadingAIView({ initialSentence }: SentenceReadingAIView
 
       {/* Gemini AI Detailed Markdown Breakdown */}
       {loadingAI && (
-        <div className="flex flex-col items-center justify-center p-12 rounded-[28px] border border-purple-500/20 bg-card space-y-4 text-center">
-          <Loader2 className="h-10 w-10 text-purple-600 animate-spin" />
-          <div>
-            <h4 className="text-base font-bold text-foreground">Analyzing Sentence Structure...</h4>
-            <p className="text-xs text-muted-foreground">Preparing word-by-word phonetics & grammar tips</p>
-          </div>
-        </div>
+        <ThemeLoader
+          variant="card"
+          title="Analyzing Sentence Structure with AI..."
+          subtitle="Preparing word-by-word phonetics & grammar tips..."
+        />
       )}
 
       {aiAnalysis && !loadingAI && (

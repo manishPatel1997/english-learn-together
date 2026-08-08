@@ -38,6 +38,19 @@ export interface DailyActivity {
   xp: number;
 }
 
+export interface ExamDraft {
+  examId: string;
+  examType: "vocabulary" | "sentence" | "mixed";
+  sectionId?: string;
+  currentIndex: number;
+  listUserAnswers?: Record<number, string>;
+  listStatuses?: Record<number, "idle" | "correct" | "wrong" | "revealed">;
+  correctCount: number;
+  sessionXP: number;
+  mistakesList: any[];
+  timestamp: number;
+}
+
 const DEFAULT_STATS: UserStats = {
   xp: 0,
   streak: 0,
@@ -152,6 +165,37 @@ export const storage = {
     if (typeof window === "undefined") return [];
     const data = localStorage.getItem("gem_activity");
     return data ? JSON.parse(data) : [];
+  },
+
+  // Exam Draft Auto-Save & Resume Methods
+  getExamDraft: (examId: string): ExamDraft | null => {
+    if (typeof window === "undefined") return null;
+    const data = localStorage.getItem(`gem_exam_draft_${examId}`);
+    if (!data) return null;
+    try {
+      const parsed: ExamDraft = JSON.parse(data);
+      if (Date.now() - parsed.timestamp > 48 * 3600 * 1000) {
+        localStorage.removeItem(`gem_exam_draft_${examId}`);
+        return null;
+      }
+      return parsed;
+    } catch {
+      return null;
+    }
+  },
+
+  saveExamDraft: (draft: Omit<ExamDraft, "timestamp">) => {
+    if (typeof window === "undefined") return;
+    const payload: ExamDraft = {
+      ...draft,
+      timestamp: Date.now(),
+    };
+    localStorage.setItem(`gem_exam_draft_${draft.examId}`, JSON.stringify(payload));
+  },
+
+  clearExamDraft: (examId: string) => {
+    if (typeof window === "undefined") return;
+    localStorage.removeItem(`gem_exam_draft_${examId}`);
   },
 
   clearAllData: () => {

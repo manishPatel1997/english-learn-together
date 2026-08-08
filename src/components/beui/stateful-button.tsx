@@ -2,8 +2,9 @@
 
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Loader2, Check, X } from "lucide-react";
+import { Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { MotionSpinner } from "@/components/beui/loader";
 
 export type ButtonState = "idle" | "loading" | "success" | "error";
 
@@ -60,7 +61,7 @@ export function StatefulButton({
             exit={{ opacity: 0, scale: 0.8 }}
             className="flex items-center gap-2"
           >
-            <Loader2 className="h-4 w-4 animate-spin" />
+            <MotionSpinner size="sm" />
             <span>Processing...</span>
           </motion.span>
         )}

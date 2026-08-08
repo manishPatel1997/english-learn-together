@@ -22,6 +22,9 @@ import { NumberAnimation } from "@/components/beui/number-animation";
 import { StatefulButton } from "@/components/beui/stateful-button";
 import { type NavItem } from "@/components/beui/bounce-sidebar";
 import { type UserStats } from "@/lib/storage";
+import { apiClient } from "@/lib/api-client";
+import { MotionSpinner } from "@/components/beui/loader";
+import { cn } from "@/lib/utils";
 
 interface DashboardViewProps {
   stats: UserStats;
@@ -29,8 +32,45 @@ interface DashboardViewProps {
   onStartPractice: (type: "vocabulary" | "sentence" | "mixed") => void;
 }
 
+function formatRelativeTime(dateStr: string): string {
+  if (!dateStr) return "";
+  const diff = Date.now() - new Date(dateStr).getTime();
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return "Just now";
+  if (mins < 60) return `${mins}m ago`;
+  const hours = Math.floor(mins / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  if (days === 1) return "Yesterday";
+  return `${days}d ago`;
+}
+
 export function DashboardView({ stats, onNavigate, onStartPractice }: DashboardViewProps) {
   const goalPercentage = Math.min(100, Math.round((stats.todayCompleted / stats.dailyGoal) * 100));
+
+  const [activities, setActivities] = React.useState<any[]>([]);
+  const [loadingActivities, setLoadingActivities] = React.useState(false);
+
+  React.useEffect(() => {
+    let isMounted = true;
+    async function loadRecentActivity() {
+      try {
+        setLoadingActivities(true);
+        const res = await apiClient.user.getProgress();
+        if (res.success && res.history && isMounted) {
+          setActivities(res.history.slice(0, 5));
+        }
+      } catch (err) {
+        console.warn("Could not load backend activity history:", err);
+      } finally {
+        if (isMounted) setLoadingActivities(false);
+      }
+    }
+    loadRecentActivity();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <div className="space-y-6 sm:space-y-8 pb-10">
@@ -324,44 +364,56 @@ export function DashboardView({ stats, onNavigate, onStartPractice }: DashboardV
           </div>
 
           <div className="rounded-[20px] border border-border bg-card p-4 sm:p-5 space-y-4">
-            <div className="flex items-start gap-3 border-b border-border pb-3">
-              <div className="rounded-full bg-emerald-500/10 p-2 text-emerald-600 dark:text-emerald-400 mt-0.5 shrink-0">
-                <CheckCircle2 className="h-4 w-4" />
+            {loadingActivities ? (
+              <div className="flex flex-col items-center justify-center py-6 space-y-2">
+                <MotionSpinner size="sm" />
+                <span className="text-xs font-bold text-muted-foreground">Loading recent activities...</span>
               </div>
-              <div className="flex-1 min-w-0">
-                <span className="text-xs font-bold text-foreground block truncate">Completed 10 Vocabulary Questions</span>
-                <span className="text-[11px] text-muted-foreground">Scored 100% accuracy • +50 XP</span>
+            ) : activities.length === 0 ? (
+              <div className="flex flex-col items-center justify-center py-8 text-center space-y-2">
+                <div className="rounded-full bg-indigo-500/10 p-3 text-indigo-500">
+                  <Clock className="h-5 w-5" />
+                </div>
+                <p className="text-xs font-extrabold text-foreground">No Recent Activity Yet</p>
+                <p className="text-[11px] text-muted-foreground max-w-xs leading-relaxed">
+                  Complete your first vocabulary or sentence module exam to start tracking your learning history here!
+                </p>
               </div>
-              <span className="text-[10px] text-muted-foreground flex items-center gap-1 shrink-0">
-                <Clock className="h-3 w-3" /> 15m ago
-              </span>
-            </div>
-
-            <div className="flex items-start gap-3 border-b border-border pb-3">
-              <div className="rounded-full bg-indigo-500/10 p-2 text-indigo-600 dark:text-indigo-400 mt-0.5 shrink-0">
-                <MessageSquare className="h-4 w-4" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <span className="text-xs font-bold text-foreground block truncate">Practiced "Whose" & "Which" Topics</span>
-                <span className="text-[11px] text-muted-foreground">Scored 88% accuracy • +40 XP</span>
-              </div>
-              <span className="text-[10px] text-muted-foreground flex items-center gap-1 shrink-0">
-                <Clock className="h-3 w-3" /> 2h ago
-              </span>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <div className="rounded-full bg-amber-500/10 p-2 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0">
-                <Flame className="h-4 w-4" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <span className="text-xs font-bold text-foreground block truncate">Reached 5-Day Practice Streak</span>
-                <span className="text-[11px] text-muted-foreground">Streak Bonus Unlocked • +30 XP</span>
-              </div>
-              <span className="text-[10px] text-muted-foreground flex items-center gap-1 shrink-0">
-                <Clock className="h-3 w-3" /> Yesterday
-              </span>
-            </div>
+            ) : (
+              activities.map((act) => {
+                const secName = act.sectionId ? act.sectionId.toUpperCase() : "EXAM";
+                const typeLabel = act.examType === "sentence" ? "Sentence Module" : "Vocabulary Section";
+                return (
+                  <div key={act.id} className="flex items-start gap-3 border-b border-border/60 last:border-0 pb-3 last:pb-0">
+                    <div
+                      className={cn(
+                        "rounded-full p-2 mt-0.5 shrink-0",
+                        act.passed
+                          ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+                          : "bg-purple-500/10 text-purple-600 dark:text-purple-400"
+                      )}
+                    >
+                      {act.examType === "sentence" ? (
+                        <MessageSquare className="h-4 w-4" />
+                      ) : (
+                        <CheckCircle2 className="h-4 w-4" />
+                      )}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <span className="text-xs font-bold text-foreground block truncate">
+                        Completed {secName} {typeLabel}
+                      </span>
+                      <span className="text-[11px] font-medium text-muted-foreground">
+                        Scored {act.scorePercentage}% accuracy ({act.correctAnswers}/{act.totalQuestions}) • +{act.correctAnswers * 10} XP
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-bold text-muted-foreground flex items-center gap-1 shrink-0">
+                      <Clock className="h-3 w-3" /> {formatRelativeTime(act.timestamp)}
+                    </span>
+                  </div>
+                );
+              })
+            )}
           </div>
         </div>
       </div>

@@ -2,9 +2,10 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, X, Send, Bot, User, Loader2, Key } from "lucide-react";
+import { Sparkles, X, Send, Bot, User, Key } from "lucide-react";
 import { requestGeminiAI, getStoredGeminiKey, saveStoredGeminiKey } from "@/lib/gemini-client";
 import { FormattedMarkdown } from "./formatted-markdown";
+import { MotionSpinner } from "./loader";
 
 interface Message {
   role: "user" | "ai";
@@ -192,8 +193,8 @@ export function AITutorModal({ isOpen, onClose, initialQuestion }: AITutorModalP
             ))}
 
             {loading && (
-              <div className="flex items-center gap-2 text-xs font-bold text-purple-700 dark:text-purple-300 bg-purple-500/20 p-3 rounded-xl border border-purple-500/30 max-w-fit shadow-sm">
-                <Loader2 className="h-4 w-4 animate-spin text-purple-600 dark:text-purple-400" /> Gemini AI is thinking...
+              <div className="flex items-center gap-2.5 text-xs font-bold text-purple-700 dark:text-purple-300 bg-purple-500/20 p-3 rounded-xl border border-purple-500/30 max-w-fit shadow-sm">
+                <MotionSpinner size="sm" /> <span>Gemini AI is thinking...</span>
               </div>
             )}
           </div>
