@@ -63,7 +63,18 @@ router.post('/register', async (req: Request, res: Response) => {
 
     const allUsers = db.getUsers();
     const isFirstUser = allUsers.length === 0;
-    const role = isFirstUser ? 'admin' : 'user';
+
+    // Admin bootstrap: prefer explicit ADMIN_EMAIL env var over first-user heuristic.
+    // In production, set ADMIN_EMAIL=you@example.com in your environment.
+    const adminEmail = (process.env.ADMIN_EMAIL || '').trim().toLowerCase();
+    const isAdminByEmail = adminEmail !== '' && email.toLowerCase() === adminEmail;
+    const isAdminByFirstUser = isFirstUser && adminEmail === '';
+
+    if (isFirstUser && adminEmail === '') {
+      console.warn('[SECURITY] ADMIN_EMAIL is not set. First registered user will become admin. Set ADMIN_EMAIL in production.');
+    }
+
+    const role = (isAdminByEmail || isAdminByFirstUser) ? 'admin' : 'user';
 
     const newUser: UserEntity = {
       id: `user_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,

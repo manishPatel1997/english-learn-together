@@ -25,19 +25,8 @@ import { storage, type FavoriteItem } from "@/lib/storage";
 import { requestGeminiAI } from "@/lib/gemini-client";
 import { MotionSpinner } from "@/components/beui/loader";
 import { useToast } from "@/components/beui/animated-toast-stack";
-
-function formatRelativeTime(dateStr: string): string {
-  if (!dateStr) return "";
-  const diff = Date.now() - new Date(dateStr).getTime();
-  const mins = Math.floor(diff / 60000);
-  if (mins < 1) return "Just now";
-  if (mins < 60) return `${mins}m ago`;
-  const hours = Math.floor(mins / 60);
-  if (hours < 24) return `${hours}h ago`;
-  const days = Math.floor(hours / 24);
-  if (days === 1) return "Yesterday";
-  return `${days}d ago`;
-}
+import { formatRelativeTime } from "@/lib/utils";
+import { XP_PER_SENTENCE_CORRECT } from "@/lib/constants";
 
 export interface SentenceQuestion {
   id: string | number;
@@ -452,8 +441,9 @@ const getBestMatchingAnswer = (user: string, validAnswers: string[]): string => 
   return best;
 };
 
-// Derive formula helper for current question topic
-export const getTopicFormula = (topicNameOrKey?: string): TopicFormula => {
+// Derive formula helper for current question topic.
+// Returns null for unknown topics — callers must handle null gracefully.
+export const getTopicFormula = (topicNameOrKey?: string): TopicFormula | null => {
   const name = (topicNameOrKey || "").toLowerCase();
   if (name.includes("who_section") || name === "who" || name.includes("who ")) return SENTENCE_FORMULAS.who_section;
   if (name.includes("what_section") || name === "what" || name.includes("what ")) return SENTENCE_FORMULAS.what_section;
@@ -461,17 +451,18 @@ export const getTopicFormula = (topicNameOrKey?: string): TopicFormula => {
   if (name.includes("where_section") || name === "where" || name.includes("where ")) return SENTENCE_FORMULAS.where_section;
   if (name.includes("which_section") || name === "which" || name.includes("which ")) return SENTENCE_FORMULAS.which_section;
   if (name.includes("how_many") || name.includes("how_much") || name.includes("how many") || name.includes("how much")) return SENTENCE_FORMULAS.how_many_much_section;
-  if (name.includes("when")) return SENTENCE_FORMULAS.when_section || SENTENCE_FORMULAS.who_section;
-  if (name.includes("why")) return SENTENCE_FORMULAS.why_section || SENTENCE_FORMULAS.who_section;
-  if (name.includes("how")) return SENTENCE_FORMULAS.how_section || SENTENCE_FORMULAS.who_section;
-  if (name.includes("can")) return SENTENCE_FORMULAS.can_section || SENTENCE_FORMULAS.who_section;
-  if (name.includes("could")) return SENTENCE_FORMULAS.could_section || SENTENCE_FORMULAS.who_section;
-  if (name.includes("will")) return SENTENCE_FORMULAS.will_section || SENTENCE_FORMULAS.who_section;
-  if (name.includes("would")) return SENTENCE_FORMULAS.would_section || SENTENCE_FORMULAS.who_section;
-  if (name.includes("should")) return SENTENCE_FORMULAS.should_section || SENTENCE_FORMULAS.who_section;
-  if (name.includes("must")) return SENTENCE_FORMULAS.must_section || SENTENCE_FORMULAS.who_section;
-  if (name.includes("has") || name.includes("have") || name.includes("had")) return SENTENCE_FORMULAS.has_have_had_section || SENTENCE_FORMULAS.who_section;
-  return SENTENCE_FORMULAS.who_section;
+  if (name.includes("when")) return SENTENCE_FORMULAS.when_section ?? null;
+  if (name.includes("why")) return SENTENCE_FORMULAS.why_section ?? null;
+  if (name.includes("how")) return SENTENCE_FORMULAS.how_section ?? null;
+  if (name.includes("can")) return SENTENCE_FORMULAS.can_section ?? null;
+  if (name.includes("could")) return SENTENCE_FORMULAS.could_section ?? null;
+  if (name.includes("will")) return SENTENCE_FORMULAS.will_section ?? null;
+  if (name.includes("would")) return SENTENCE_FORMULAS.would_section ?? null;
+  if (name.includes("should")) return SENTENCE_FORMULAS.should_section ?? null;
+  if (name.includes("must")) return SENTENCE_FORMULAS.must_section ?? null;
+  if (name.includes("has") || name.includes("have") || name.includes("had")) return SENTENCE_FORMULAS.has_have_had_section ?? null;
+  // Unknown topic — return null so callers do not silently show an unrelated formula
+  return null;
 };
 
 export function SentencePracticeView({ questions, onComplete, initialPageMode }: SentencePracticeViewProps) {
@@ -545,14 +536,19 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
 
   useEffect(() => {
     if (pageMode === "exam" && !activeDraft && currentIndex > 0) {
-      storage.saveExamDraft({
-        examId,
-        examType: "sentence",
-        currentIndex,
-        correctCount,
-        sessionXP,
-        mistakesList,
-      });
+      // Debounce: wait 1000ms after the last state change before writing to localStorage
+      // This prevents typing lag caused by synchronous writes on every keystroke
+      const timer = setTimeout(() => {
+        storage.saveExamDraft({
+          examId,
+          examType: "sentence",
+          currentIndex,
+          correctCount,
+          sessionXP,
+          mistakesList,
+        });
+      }, 1000);
+      return () => clearTimeout(timer);
     }
   }, [pageMode, examId, currentIndex, correctCount, sessionXP, mistakesList, activeDraft]);
 
@@ -561,7 +557,7 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
   const validAnswers = getValidAnswers(currentQuestion);
   const studyValidAnswers = getValidAnswers(studyQuestion);
 
-  // Gather ALL unique formulas for all selected topic questions
+  // Gather ALL unique formulas for all selected topic questions (skip nulls for unknown topics)
   const allActiveTopicFormulas = React.useMemo(() => {
     const map = new Map<string, TopicFormula>();
     questions.forEach((q) => {
@@ -580,13 +576,19 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
     const currentTopic = pageMode === "study" ? studyQuestion?.topic : currentQuestion?.topic;
     if (currentTopic) {
       const formula = getTopicFormula(currentTopic);
-      setActiveFormulaKey(formula.topicKey);
+      // Only update if a known formula exists; leave null for unknown topics
+      if (formula) {
+        setActiveFormulaKey(formula.topicKey);
+      } else {
+        setActiveFormulaKey(null);
+      }
     }
   }, [studyIndex, currentIndex, pageMode, studyQuestion, currentQuestion]);
 
+  // activeTopicFormula is null for unknown topics — the JSX already guards with {activeTopicFormula && ...}
   const activeTopicFormula = (activeFormulaKey && SENTENCE_FORMULAS[activeFormulaKey])
     ? SENTENCE_FORMULAS[activeFormulaKey]
-    : (allActiveTopicFormulas[0] || SENTENCE_FORMULAS.who_section);
+    : allActiveTopicFormulas[0] ?? null;
 
   const handleGetAiExplanation = async () => {
     setLoadingAi(true);
@@ -685,13 +687,13 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
       setBtnState("success");
       setCorrectCount((prev) => prev + 1);
 
-      const gainedXP = 25;
+      const gainedXP = XP_PER_SENTENCE_CORRECT;
       setSessionXP((prev) => prev + gainedXP);
       setSessionStreak((prev) => prev + 1);
 
       storage.addXP(gainedXP, true);
       fireConfetti();
-      setIslandMsg("Flawless Sentence Translation! +25 XP 🌟");
+      setIslandMsg(`Flawless Sentence Translation! +${XP_PER_SENTENCE_CORRECT} XP 🌟`);
 
       setTimeout(() => {
         setIslandMsg(null);

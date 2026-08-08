@@ -10,8 +10,19 @@ import notificationsRouter from './routes/notifications';
 
 dotenv.config();
 
-const app = express();
+// --- Startup security check ---
+// JWT_SECRET must be explicitly set. We never fall back to a hardcoded value.
+if (!process.env.JWT_SECRET) {
+  if (process.env.NODE_ENV === 'production') {
+    console.error('[FATAL] JWT_SECRET environment variable is not set. Refusing to start in production.');
+    process.exit(1);
+  } else {
+    console.warn('[WARNING] JWT_SECRET is not set. Authentication will fail for all requests. Set JWT_SECRET in your .env file.');
+  }
+}
+
 const PORT = process.env.PORT || 5000;
+const app = express();
 
 // Universal CORS configuration supporting localhost:3000, Vercel, and mobile/network IPs
 app.use(

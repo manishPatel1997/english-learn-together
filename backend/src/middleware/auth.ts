@@ -6,7 +6,9 @@ export interface AuthenticatedRequest extends Request {
   user?: UserEntity;
 }
 
-const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_jwt_key_english_learn_2026_change_in_production';
+// JWT_SECRET must be set via environment variable. No hardcoded fallback.
+// The server.ts startup check enforces this in production.
+const JWT_SECRET = process.env.JWT_SECRET || '';
 
 export function authenticateToken(req: AuthenticatedRequest, res: Response, next: NextFunction) {
   const authHeader = req.headers['authorization'];

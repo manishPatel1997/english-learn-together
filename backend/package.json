@@ -9,7 +9,13 @@
     "start": "node dist/server.js",
     "seed": "tsx src/scripts/seed.ts"
   },
-  "keywords": ["english", "learning", "api", "express", "auth"],
+  "keywords": [
+    "english",
+    "learning",
+    "api",
+    "express",
+    "auth"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
@@ -23,7 +29,6 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.3.0",
     "typescript": "^5.4.5",
     "zod": "^3.22.4"
   },

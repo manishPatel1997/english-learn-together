@@ -27,26 +27,14 @@ import { Drawer } from "@/components/beui/drawer";
 import { Select, type SelectOption } from "@/components/beui/select";
 import { useToast } from "@/components/beui/animated-toast-stack";
 import { storage, type FavoriteItem } from "@/lib/storage";
-import { cn } from "@/lib/utils";
+import { cn, formatRelativeTime } from "@/lib/utils";
+import { XP_PER_VOCAB_CORRECT } from "@/lib/constants";
 import { VOCABULARY_SECTIONS } from "@/lib/vocabulary-data";
 import { Layers, Lock } from "lucide-react";
 import { useAuth } from "@/context/auth-context";
 import { apiClient } from "@/lib/api-client";
 
 import { useRouter } from "next/navigation";
-
-function formatRelativeTime(dateStr: string): string {
-  if (!dateStr) return "";
-  const diff = Date.now() - new Date(dateStr).getTime();
-  const mins = Math.floor(diff / 60000);
-  if (mins < 1) return "Just now";
-  if (mins < 60) return `${mins}m ago`;
-  const hours = Math.floor(mins / 60);
-  if (hours < 24) return `${hours}h ago`;
-  const days = Math.floor(hours / 24);
-  if (days === 1) return "Yesterday";
-  return `${days}d ago`;
-}
 
 export interface VocabQuestion {
   id: string | number;
@@ -484,6 +472,11 @@ export function VocabularyPracticeView({
         });
       }
     } catch (err) {
+      toast({
+        title: "⚠️ Progress Not Saved",
+        description: "Could not sync your exam score to the server. Please check your connection and try again.",
+        type: "error",
+      });
       console.warn("Could not sync exam progress to backend:", err);
     }
 
@@ -544,9 +537,11 @@ export function VocabularyPracticeView({
       // Correct!
       setStatus("correct");
       setBtnState("success");
-      setCorrectCount((prev) => prev + 1);
+      // Compute the next correct count locally to avoid stale state on the final question
+      const nextCorrectCount = correctCount + 1;
+      setCorrectCount(nextCorrectCount);
 
-      const gainedXP = 15;
+      const gainedXP = XP_PER_VOCAB_CORRECT;
       setSessionXP((prev) => prev + gainedXP);
       setSessionStreak((prev) => prev + 1);
 
@@ -554,12 +549,12 @@ export function VocabularyPracticeView({
       storage.addXP(gainedXP, true);
 
       fireConfetti();
-      setIslandMsg("Correct! +15 XP 🎉");
+      setIslandMsg(`Correct! +${XP_PER_VOCAB_CORRECT} XP 🎉`);
 
-      // Auto advance after 700ms
+      // Auto advance after 700ms — pass the locally-computed count to avoid stale closure
       setTimeout(() => {
         setIslandMsg(null);
-        nextQuestion();
+        nextQuestion(nextCorrectCount);
       }, 700);
     } else {
       // Wrong!
@@ -568,18 +563,21 @@ export function VocabularyPracticeView({
       setShake(true);
       setSessionStreak(0);
 
-      // Record mistake
-      const mistake = {
-        id: currentQuestion.id,
-        gujarati: currentQuestion.gujarati,
-        correctEnglish: currentQuestion.english,
-        userAnswer: userAnswer.trim(),
-        topic: currentQuestion.category || "Vocabulary",
-        type: "vocabulary",
-        timestamp: Date.now(),
-      };
-      storage.addMistake(mistake as any);
-      setMistakesList((prev) => [...prev, mistake]);
+      // Record mistake — only if this question is not already in the mistakes list
+      const alreadyInMistakes = mistakesList.some((m) => m.id === currentQuestion.id);
+      if (!alreadyInMistakes) {
+        const mistake = {
+          id: currentQuestion.id,
+          gujarati: currentQuestion.gujarati,
+          correctEnglish: currentQuestion.english,
+          userAnswer: userAnswer.trim(),
+          topic: currentQuestion.category || "Vocabulary",
+          type: "vocabulary",
+          timestamp: Date.now(),
+        };
+        storage.addMistake(mistake as any);
+        setMistakesList((prev) => [...prev, mistake]);
+      }
       storage.addXP(0, false);
 
       setIslandMsg("Incorrect spelling. Try again!");
@@ -603,18 +601,19 @@ export function VocabularyPracticeView({
     setUserAnswer(currentQuestion.english);
   };
 
-  const nextQuestion = async () => {
+  const nextQuestion = async (finalCorrectCount?: number) => {
     if (currentIndex + 1 >= examQuestions.length) {
-      // Finished! Calculate final scores
+      // Finished! Use the passed-in finalCorrectCount if provided (avoids stale state on last question)
       const total = examQuestions.length;
-      const acc = Math.round((correctCount / total) * 100);
+      const resolvedCorrect = finalCorrectCount !== undefined ? finalCorrectCount : correctCount;
+      const acc = Math.round((resolvedCorrect / total) * 100);
 
       try {
         const res = await apiClient.user.recordProgress({
           sectionId: activeSectionId,
           examType: "vocabulary",
           totalQuestions: total,
-          correctAnswers: correctCount,
+          correctAnswers: resolvedCorrect,
           xpEarned: sessionXP,
         });
 
@@ -627,11 +626,16 @@ export function VocabularyPracticeView({
           });
         }
       } catch (err) {
+        toast({
+          title: "⚠️ Progress Not Saved",
+          description: "Could not sync your exam score to the server. Please check your connection and try again.",
+          type: "error",
+        });
         console.warn("Could not sync exam progress to backend:", err);
       }
 
       storage.clearExamDraft(examId);
-      onComplete(correctCount, acc, sessionXP, mistakesList);
+      onComplete(resolvedCorrect, acc, sessionXP, mistakesList);
     } else {
       setCurrentIndex((prev) => prev + 1);
       setUserAnswer("");
@@ -714,8 +718,8 @@ export function VocabularyPracticeView({
                   !isUnlocked
                     ? "border-border/60 bg-card/40 opacity-80"
                     : isSelected
-                    ? "border-indigo-500 bg-card ring-2 ring-indigo-500/30 shadow-xl"
-                    : "border-border bg-card/60 hover:border-indigo-500/50 hover:bg-card"
+                      ? "border-indigo-500 bg-card ring-2 ring-indigo-500/30 shadow-xl"
+                      : "border-border bg-card/60 hover:border-indigo-500/50 hover:bg-card"
                 )}
               >
                 {/* Card Header & Badge */}
@@ -1142,11 +1146,10 @@ export function VocabularyPracticeView({
                 <button
                   type="button"
                   onClick={() => handleFavorite(studyQuestion)}
-                  className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors ${
-                    isFav
+                  className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors ${isFav
                       ? "bg-amber-500/20 border-amber-500 text-amber-500"
                       : "border-border bg-background text-muted-foreground hover:bg-muted"
-                  }`}
+                    }`}
                 >
                   <Star className={`h-4 w-4 ${isFav ? "fill-amber-500" : ""}`} />
                 </button>
@@ -1480,13 +1483,12 @@ export function VocabularyPracticeView({
               <motion.div
                 animate={shake ? { x: [-12, 12, -8, 8, -4, 4, 0] } : {}}
                 transition={{ duration: 0.4 }}
-                className={`relative my-4 rounded-[32px] border p-8 sm:p-12 shadow-2xl transition-colors bg-card ${
-                  status === "correct"
+                className={`relative my-4 rounded-[32px] border p-8 sm:p-12 shadow-2xl transition-colors bg-card ${status === "correct"
                     ? "border-emerald-500 bg-emerald-500/5 shadow-emerald-500/20"
                     : status === "wrong"
-                    ? "border-rose-500 bg-rose-500/5 shadow-rose-500/20"
-                    : "border-border"
-                }`}
+                      ? "border-rose-500 bg-rose-500/5 shadow-rose-500/20"
+                      : "border-border"
+                  }`}
               >
                 {/* Card Header: Category & Favorite */}
                 <div className="flex items-center justify-between mb-8">
@@ -1497,11 +1499,10 @@ export function VocabularyPracticeView({
                   <button
                     type="button"
                     onClick={() => handleFavorite(currentQuestion)}
-                    className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors ${
-                      isFav
+                    className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors ${isFav
                         ? "bg-amber-500/20 border-amber-500 text-amber-500"
                         : "border-border bg-background text-muted-foreground hover:bg-muted"
-                    }`}
+                      }`}
                   >
                     <Star className={`h-4 w-4 ${isFav ? "fill-amber-500" : ""}`} />
                   </button>
@@ -1555,13 +1556,12 @@ export function VocabularyPracticeView({
                       onKeyDown={handleKeyDown}
                       placeholder="Type English spelling... (Press Enter)"
                       disabled={status === "correct"}
-                      className={`w-full rounded-2xl border px-6 py-4 text-center text-xl font-bold text-foreground placeholder:text-muted-foreground/60 outline-none transition-all shadow-inner ${
-                        status === "correct"
+                      className={`w-full rounded-2xl border px-6 py-4 text-center text-xl font-bold text-foreground placeholder:text-muted-foreground/60 outline-none transition-all shadow-inner ${status === "correct"
                           ? "border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
                           : status === "wrong"
-                          ? "border-rose-500 bg-rose-500/10 text-rose-600 dark:text-rose-400"
-                          : "border-border bg-background focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
-                      }`}
+                            ? "border-rose-500 bg-rose-500/10 text-rose-600 dark:text-rose-400"
+                            : "border-border bg-background focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+                        }`}
                     />
 
                     {status === "correct" && (
@@ -1634,7 +1634,7 @@ export function VocabularyPracticeView({
                       <StatefulButton
                         variant="success"
                         size="lg"
-                        onClick={nextQuestion}
+                        onClick={() => nextQuestion()}
                         className="w-full"
                       >
                         <span>Next Question</span>
@@ -1716,12 +1716,12 @@ const VocabExamListItem = React.memo(
           itemStatus === "correct"
             ? "border-emerald-500/50 bg-emerald-500/5 dark:bg-emerald-500/10"
             : isBlinking
-            ? "animate-wrong-blink border-rose-500 bg-rose-500/10"
-            : itemStatus === "wrong"
-            ? "border-rose-500/40 bg-rose-500/5"
-            : itemStatus === "revealed"
-            ? "border-indigo-500/40 bg-indigo-500/5"
-            : "border-border bg-background hover:border-indigo-500/30"
+              ? "animate-wrong-blink border-rose-500 bg-rose-500/10"
+              : itemStatus === "wrong"
+                ? "border-rose-500/40 bg-rose-500/5"
+                : itemStatus === "revealed"
+                  ? "border-indigo-500/40 bg-indigo-500/5"
+                  : "border-border bg-background hover:border-indigo-500/30"
         )}
       >
         {/* Left Side: Index Badge, Gujarati Word, Audio Button */}
@@ -1732,8 +1732,8 @@ const VocabExamListItem = React.memo(
               itemStatus === "correct"
                 ? "bg-emerald-500 text-white"
                 : itemStatus === "wrong" || isBlinking
-                ? "bg-rose-500 text-white"
-                : "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
+                  ? "bg-rose-500 text-white"
+                  : "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
             )}
           >
             #{idx + 1}
@@ -1797,8 +1797,8 @@ const VocabExamListItem = React.memo(
                   itemStatus === "correct"
                     ? "border-emerald-500 bg-emerald-500/15 text-emerald-700 dark:text-emerald-300"
                     : isBlinking || itemStatus === "wrong"
-                    ? "border-rose-500 bg-rose-500/15 text-rose-700 dark:text-rose-300"
-                    : "border-border bg-background focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20"
+                      ? "border-rose-500 bg-rose-500/15 text-rose-700 dark:text-rose-300"
+                      : "border-border bg-background focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20"
                 )}
               />
 
