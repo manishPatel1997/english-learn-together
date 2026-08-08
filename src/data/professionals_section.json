@@ -1,0 +1,676 @@
+{
+  "professionals_section": [
+    {
+      "english": "Dancer",
+      "pronunciation_gujarati": "ડાન્સર",
+      "meaning_gujarati": "નૃત્ય કરનાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Draft man",
+      "pronunciation_gujarati": "ડ્રાફ્ટમેન",
+      "meaning_gujarati": "નકશો દોરનાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Gem cutter",
+      "pronunciation_gujarati": "જેમ કટર",
+      "meaning_gujarati": "હીરાઘસું",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Baker",
+      "pronunciation_gujarati": "બેકર",
+      "meaning_gujarati": "ભઠિયારો",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Inspector",
+      "pronunciation_gujarati": "ઇન્સપેક્ટર",
+      "meaning_gujarati": "નિરીક્ષક",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Examiner",
+      "pronunciation_gujarati": "એકઝા મીનાર",
+      "meaning_gujarati": "પરીક્ષક",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Porter",
+      "pronunciation_gujarati": "પોર્ટર",
+      "meaning_gujarati": "કુંભાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Engineer",
+      "pronunciation_gujarati": "એન્જીનીયર",
+      "meaning_gujarati": "ઈજનેર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Florist",
+      "pronunciation_gujarati": "ફલોરીસ્ટ",
+      "meaning_gujarati": "ફૂલવાળો",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Confectioner",
+      "pronunciation_gujarati": "કન્ફેકશનર",
+      "meaning_gujarati": "મીઠાઈવાળો",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Draper",
+      "pronunciation_gujarati": "ડ્રેપર",
+      "meaning_gujarati": "કપડાનો વેપારી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Hardware merchant",
+      "pronunciation_gujarati": "હાર્ડવેર મરચન્ટ",
+      "meaning_gujarati": "લોખંડના સામાનનો વેપારી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Retailer",
+      "pronunciation_gujarati": "રીટેલર",
+      "meaning_gujarati": "છુટક વેપારી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Wholesaler",
+      "pronunciation_gujarati": "હોલસેલર",
+      "meaning_gujarati": "જથ્થાબંધ વેપારી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Constable",
+      "pronunciation_gujarati": "કોન્સ્ટેબલ",
+      "meaning_gujarati": "હવાલદાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Magistrate",
+      "pronunciation_gujarati": "મેજીસ્ટ્રેટ",
+      "meaning_gujarati": "ન્યાયાધીશ",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Fishmonger",
+      "pronunciation_gujarati": "ફીશમંગર",
+      "meaning_gujarati": "માછલા વેચનાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Ironmonger",
+      "pronunciation_gujarati": "આયર્નમંગર",
+      "meaning_gujarati": "લોખંડ વેચનાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Sailor",
+      "pronunciation_gujarati": "સેલર",
+      "meaning_gujarati": "નાવિક",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Journalist",
+      "pronunciation_gujarati": "જર્નાલીસ્ટ",
+      "meaning_gujarati": "પત્રકાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Pedlar",
+      "pronunciation_gujarati": "પેડલર",
+      "meaning_gujarati": "ફેરિયો",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Wrestler",
+      "pronunciation_gujarati": "રેસલર",
+      "meaning_gujarati": "કુસ્તીબાજ",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Poet",
+      "pronunciation_gujarati": "પોએટ",
+      "meaning_gujarati": "કવિ",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Hawker",
+      "pronunciation_gujarati": "હોકર",
+      "meaning_gujarati": "ફેરિયો",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Bookseller",
+      "pronunciation_gujarati": "બુકસેલર",
+      "meaning_gujarati": "પુસ્તક વિક્રેતા",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Clerk",
+      "pronunciation_gujarati": "ક્લાર્ક",
+      "meaning_gujarati": "હિસાબ રાખનાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Greengrocer",
+      "pronunciation_gujarati": "ગ્રીનગ્રોસર",
+      "meaning_gujarati": "શાકભાજી વાળો",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Teacher",
+      "pronunciation_gujarati": "ટીચર",
+      "meaning_gujarati": "શિક્ષક",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Pleader",
+      "pronunciation_gujarati": "પ્લીડર",
+      "meaning_gujarati": "વકીલ",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Lawyer",
+      "pronunciation_gujarati": "લોયર",
+      "meaning_gujarati": "વકીલ",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Advocate",
+      "pronunciation_gujarati": "એડવોકેટ",
+      "meaning_gujarati": "વકીલ",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Author",
+      "pronunciation_gujarati": "ઓથર",
+      "meaning_gujarati": "લેખક",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Tailor",
+      "pronunciation_gujarati": "ટેલર",
+      "meaning_gujarati": "દરજી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Washer man",
+      "pronunciation_gujarati": "વોશારમેન",
+      "meaning_gujarati": "ધોબી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Cobbler",
+      "pronunciation_gujarati": "કોબલર",
+      "meaning_gujarati": "મોચી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Cook",
+      "pronunciation_gujarati": "કુક",
+      "meaning_gujarati": "રસોઈયો",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Boatman",
+      "pronunciation_gujarati": "બોટમેન",
+      "meaning_gujarati": "હોડીવાળો",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Barber",
+      "pronunciation_gujarati": "બારબર",
+      "meaning_gujarati": "હજામ",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Broker",
+      "pronunciation_gujarati": "બ્રોકર",
+      "meaning_gujarati": "દલાલ",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Dentist",
+      "pronunciation_gujarati": "ડેન્ટીસ્ટ",
+      "meaning_gujarati": "દન્તવૈધ",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Butcher",
+      "pronunciation_gujarati": "બુચર",
+      "meaning_gujarati": "કસાઈ",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Farmer",
+      "pronunciation_gujarati": "ફાર્મર",
+      "meaning_gujarati": "ખેડૂત",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Potter",
+      "pronunciation_gujarati": "પોટર",
+      "meaning_gujarati": "કુંભાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Plumber",
+      "pronunciation_gujarati": "પ્લમ્બર",
+      "meaning_gujarati": "નળ સમું કરનાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Shepherd",
+      "pronunciation_gujarati": "શેફર્ડ",
+      "meaning_gujarati": "ભરવાડ",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Cowherd",
+      "pronunciation_gujarati": "કાઉહર્ડ",
+      "meaning_gujarati": "ગોવાળ",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Watchman",
+      "pronunciation_gujarati": "વોચમેન",
+      "meaning_gujarati": "ચોકીદાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Detective",
+      "pronunciation_gujarati": "ડીટેક્ટીવ",
+      "meaning_gujarati": "ગુનાશોધક",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Weaver",
+      "pronunciation_gujarati": "વિવર",
+      "meaning_gujarati": "વણાકર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Jeweler",
+      "pronunciation_gujarati": "જવેલર",
+      "meaning_gujarati": "ઝવેરી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Typist",
+      "pronunciation_gujarati": "ટાઈપીસ્ટ",
+      "meaning_gujarati": "ટંકલેખક",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Postman",
+      "pronunciation_gujarati": "પોસ્ટમેન",
+      "meaning_gujarati": "ટપાલી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Drummer",
+      "pronunciation_gujarati": "ડ્રમર",
+      "meaning_gujarati": "ઢોલ વગાડનાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Peon",
+      "pronunciation_gujarati": "પ્યુન",
+      "meaning_gujarati": "પટાવાળો",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Merchant",
+      "pronunciation_gujarati": "મર્ચન્ટ",
+      "meaning_gujarati": "વેપારી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Cattle man",
+      "pronunciation_gujarati": "કેટલમેન",
+      "meaning_gujarati": "ભરવાડ",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Shoe maker",
+      "pronunciation_gujarati": "શુમેકર",
+      "meaning_gujarati": "મોચી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Mechanic",
+      "pronunciation_gujarati": "મિકેનીક",
+      "meaning_gujarati": "મશીનનો કારીગર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Electrician",
+      "pronunciation_gujarati": "ઈલેક્ટ્રીશયન",
+      "meaning_gujarati": "ઈલેક્ટ્રિક નો કારીગર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Stoke broker",
+      "pronunciation_gujarati": "સ્ટોકબ્રોકર",
+      "meaning_gujarati": "શેર દલાલ",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Insurance broker",
+      "pronunciation_gujarati": "ઇન્સ્યોરન્સ બ્રોકર",
+      "meaning_gujarati": "વીમાનો દલાલ",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Real estate broker",
+      "pronunciation_gujarati": "રીયલ એસ્ટેટ બ્રોકર",
+      "meaning_gujarati": "જમીન-મકાન નો દલાલ",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Labourer",
+      "pronunciation_gujarati": "લેબરર",
+      "meaning_gujarati": "મજુર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Customer",
+      "pronunciation_gujarati": "કસ્ટમર",
+      "meaning_gujarati": "ગ્રાહક",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Optician",
+      "pronunciation_gujarati": "ઓપ્ટીશીયન",
+      "meaning_gujarati": "ચશ્માં નો વેપારી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Landlord",
+      "pronunciation_gujarati": "લેન્ડલોર્ડ",
+      "meaning_gujarati": "જમીનદાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Astrologer",
+      "pronunciation_gujarati": "એસ્ટ્રોલોજર",
+      "meaning_gujarati": "જ્યોતિષી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Midwife",
+      "pronunciation_gujarati": "મીડવાઈફ",
+      "meaning_gujarati": "દાયણ",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Betel seller",
+      "pronunciation_gujarati": "બીટલ સેલર",
+      "meaning_gujarati": "પાનવાળો",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Carder",
+      "pronunciation_gujarati": "કાર્ડર",
+      "meaning_gujarati": "રૂ-પીંજરો",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Dyer",
+      "pronunciation_gujarati": "ડાયર",
+      "meaning_gujarati": "કાપડ રંગનાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Hunter",
+      "pronunciation_gujarati": "હંટર",
+      "meaning_gujarati": "શિકારી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Exorciser",
+      "pronunciation_gujarati": "એકસોર્સઈઝર",
+      "meaning_gujarati": "વળગાડ દુર કરનાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Jocker",
+      "pronunciation_gujarati": "જોકર",
+      "meaning_gujarati": "જોકર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Folk singer",
+      "pronunciation_gujarati": "ફોક સિંગર",
+      "meaning_gujarati": "લોક ગાયક",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Folk dancer",
+      "pronunciation_gujarati": "ફોક ડાન્સર",
+      "meaning_gujarati": "લોક ડાન્સર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Politician",
+      "pronunciation_gujarati": "પોલીટીશીયન",
+      "meaning_gujarati": "રાજકારણી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Minister",
+      "pronunciation_gujarati": "મિનિસ્ટર",
+      "meaning_gujarati": "પ્રધાન",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "President",
+      "pronunciation_gujarati": "પ્રેસિડેન્ટ",
+      "meaning_gujarati": "પ્રમુખ",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Secretary",
+      "pronunciation_gujarati": "સેકેટરી",
+      "meaning_gujarati": "સચિવ/મંત્રી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Warrior",
+      "pronunciation_gujarati": "વોરિઅર",
+      "meaning_gujarati": "યોધ્ધા/લડવૈયો",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Accountant",
+      "pronunciation_gujarati": "એકાઉન્ટન્ટ",
+      "meaning_gujarati": "હિસાબ રાખનાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Auditor",
+      "pronunciation_gujarati": "ઓડીટર",
+      "meaning_gujarati": "સંપાદક",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Sculptor",
+      "pronunciation_gujarati": "સ્કલ્પટર",
+      "meaning_gujarati": "શિલ્પી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Social worker",
+      "pronunciation_gujarati": "સોશ્યલ વર્કર",
+      "meaning_gujarati": "સમાજ સેવક",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Saint",
+      "pronunciation_gujarati": "સેઈન્ટ",
+      "meaning_gujarati": "સંત/મહાત્મા",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Transporter",
+      "pronunciation_gujarati": "ટ્રાન્સપોર્ટર",
+      "meaning_gujarati": "માલપરીવાહક",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Informer",
+      "pronunciation_gujarati": "ઈન્ફોર્મર",
+      "meaning_gujarati": "ખબરી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Spy",
+      "pronunciation_gujarati": "સ્પાય",
+      "meaning_gujarati": "જાસુસ",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Thief",
+      "pronunciation_gujarati": "થીફ",
+      "meaning_gujarati": "ચોર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Smuggler",
+      "pronunciation_gujarati": "સ્મગ્લર",
+      "meaning_gujarati": "દાણચોર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Robber",
+      "pronunciation_gujarati": "રોબર",
+      "meaning_gujarati": "લૂંટારો",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Gambler",
+      "pronunciation_gujarati": "ગેમ્બલર",
+      "meaning_gujarati": "જુગારી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Terrorist",
+      "pronunciation_gujarati": "ટેરરીસ્ટ",
+      "meaning_gujarati": "ત્રાસવાદી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "News agent",
+      "pronunciation_gujarati": "ન્યુઝ એજન્ટ",
+      "meaning_gujarati": "છાપાવાળો",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Policeman",
+      "pronunciation_gujarati": "પોલીસમેન",
+      "meaning_gujarati": "પોલીસ",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Sweeper",
+      "pronunciation_gujarati": "સ્વીપર",
+      "meaning_gujarati": "સફાઈ કામદાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Businessman",
+      "pronunciation_gujarati": "બિઝનેસમેન",
+      "meaning_gujarati": "વ્યવસાયકાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Surgeon",
+      "pronunciation_gujarati": "સર્જન",
+      "meaning_gujarati": "વાઢકાપ કરનાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Actor",
+      "pronunciation_gujarati": "એક્ટર",
+      "meaning_gujarati": "અભિનેતા",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Actress",
+      "pronunciation_gujarati": "એક્ટ્રેસ",
+      "meaning_gujarati": "અભિનેત્રી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Storekeeper",
+      "pronunciation_gujarati": "સ્ટોરકીપર",
+      "meaning_gujarati": "દુકાનદાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Librarian",
+      "pronunciation_gujarati": "લાઈબ્રેરીયન",
+      "meaning_gujarati": "લાઈબ્રેરી સંભાળનાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Chairman",
+      "pronunciation_gujarati": "ચેરમેન",
+      "meaning_gujarati": "અધ્યક્ષ",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Officer",
+      "pronunciation_gujarati": "ઓફિસર",
+      "meaning_gujarati": "અધિકારી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Door keeper",
+      "pronunciation_gujarati": "ડોર-કીપર",
+      "meaning_gujarati": "દરવાન",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Beggar",
+      "pronunciation_gujarati": "બેગર",
+      "meaning_gujarati": "ભિખારી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Gardener",
+      "pronunciation_gujarati": "ગાર્ડનર",
+      "meaning_gujarati": "માળી",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Chemist",
+      "pronunciation_gujarati": "કેમિસ્ટ",
+      "meaning_gujarati": "દવાવેચનાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Blacksmith",
+      "pronunciation_gujarati": "બ્લેકસમીથ",
+      "meaning_gujarati": "લુહાર",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Grocer",
+      "pronunciation_gujarati": "ગ્રોસર",
+      "meaning_gujarati": "કરીયાણા વાળો",
+      "category": "Professionals – ધંધાદારીઓ"
+    },
+    {
+      "english": "Goldsmith",
+      "pronunciation_gujarati": "ગોલ્ડસ્મીથ",
+      "meaning_gujarati": "સોની",
+      "category": "Professionals – ધંધાદારીઓ"
+    }
+  ]
+}

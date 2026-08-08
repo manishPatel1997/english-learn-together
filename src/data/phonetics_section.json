@@ -1,0 +1,1210 @@
+{
+  "phonetics_section": [
+    {
+      "english": "Bat",
+      "pronunciation_gujarati": "બેટ",
+      "meaning_gujarati": "બેટ",
+      "category": "a સ્વર ના 'એ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Fan",
+      "pronunciation_gujarati": "ફેન",
+      "meaning_gujarati": "પંખો",
+      "category": "a સ્વર ના 'એ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Cap",
+      "pronunciation_gujarati": "કેપ",
+      "meaning_gujarati": "ટોપી",
+      "category": "a સ્વર ના 'એ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Rat",
+      "pronunciation_gujarati": "રેટ",
+      "meaning_gujarati": "ઉંદર",
+      "category": "a સ્વર ના 'એ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Mat",
+      "pronunciation_gujarati": "મેટ",
+      "meaning_gujarati": "ચટાઈ",
+      "category": "a સ્વર ના 'એ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Cat",
+      "pronunciation_gujarati": "કેટ",
+      "meaning_gujarati": "બિલાડી",
+      "category": "a સ્વર ના 'એ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Man",
+      "pronunciation_gujarati": "મેન",
+      "meaning_gujarati": "માણસ",
+      "category": "a સ્વર ના 'એ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Map",
+      "pronunciation_gujarati": "મેપ",
+      "meaning_gujarati": "નકશો",
+      "category": "a સ્વર ના 'એ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Gap",
+      "pronunciation_gujarati": "ગેપ",
+      "meaning_gujarati": "ગાબડું",
+      "category": "a સ્વર ના 'એ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Bar",
+      "pronunciation_gujarati": "બાર",
+      "meaning_gujarati": "સળીયો",
+      "category": "a સ્વર ના 'આ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Jar",
+      "pronunciation_gujarati": "જાર",
+      "meaning_gujarati": "બરણી",
+      "category": "a સ્વર ના 'આ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Farm",
+      "pronunciation_gujarati": "ફાર્મ",
+      "meaning_gujarati": "ખેતર",
+      "category": "a સ્વર ના 'આ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Car",
+      "pronunciation_gujarati": "કાર",
+      "meaning_gujarati": "મોટર",
+      "category": "a સ્વર ના 'આ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Cart",
+      "pronunciation_gujarati": "કાર્ટ",
+      "meaning_gujarati": "ગાડું",
+      "category": "a સ્વર ના 'આ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Glass",
+      "pronunciation_gujarati": "ગ્લાસ",
+      "meaning_gujarati": "પ્યાલો",
+      "category": "a સ્વર ના 'આ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Ball",
+      "pronunciation_gujarati": "બોલ",
+      "meaning_gujarati": "દડો",
+      "category": "a સ્વર ના 'ઓ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Hall",
+      "pronunciation_gujarati": "હોલ",
+      "meaning_gujarati": "દીવાનખાનું",
+      "category": "a સ્વર ના 'ઓ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "All",
+      "pronunciation_gujarati": "ઓલ",
+      "meaning_gujarati": "બધા",
+      "category": "a સ્વર ના 'ઓ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Wall",
+      "pronunciation_gujarati": "વોલ",
+      "meaning_gujarati": "દીવાલ",
+      "category": "a સ્વર ના 'ઓ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Tall",
+      "pronunciation_gujarati": "ટોલ",
+      "meaning_gujarati": "ઊંચું",
+      "category": "a સ્વર ના 'ઓ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Fall",
+      "pronunciation_gujarati": "ફોલ",
+      "meaning_gujarati": "ધોધ",
+      "category": "a સ્વર ના 'ઓ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Gate",
+      "pronunciation_gujarati": "ગેઇટ",
+      "meaning_gujarati": "દરવાજો",
+      "category": "a સ્વર ના 'એઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Face",
+      "pronunciation_gujarati": "ફેઇસ",
+      "meaning_gujarati": "ચહેરો",
+      "category": "a સ્વર ના 'એઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Mane",
+      "pronunciation_gujarati": "મેઇન",
+      "meaning_gujarati": "કેશવાળી",
+      "category": "a સ્વર ના 'એઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Lake",
+      "pronunciation_gujarati": "લેઇક",
+      "meaning_gujarati": "તળાવ",
+      "category": "a સ્વર ના 'એઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Name",
+      "pronunciation_gujarati": "નેઇમ",
+      "meaning_gujarati": "નામ",
+      "category": "a સ્વર ના 'એઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Cake",
+      "pronunciation_gujarati": "કેઇક",
+      "meaning_gujarati": "કેઇક",
+      "category": "a સ્વર ના 'એઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Tale",
+      "pronunciation_gujarati": "ટેઇલ",
+      "meaning_gujarati": "વાર્તા",
+      "category": "a સ્વર ના 'એઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Fate",
+      "pronunciation_gujarati": "ફેઇટ",
+      "meaning_gujarati": "નસીબ",
+      "category": "a સ્વર ના 'એઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Cage",
+      "pronunciation_gujarati": "કેઇજ",
+      "meaning_gujarati": "પિંજરૂં",
+      "category": "a સ્વર ના 'એઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Bed",
+      "pronunciation_gujarati": "બેડ",
+      "meaning_gujarati": "પલંગ",
+      "category": "e સ્વર ના 'એ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Hen",
+      "pronunciation_gujarati": "હેન",
+      "meaning_gujarati": "મરઘી",
+      "category": "e સ્વર ના 'એ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Net",
+      "pronunciation_gujarati": "નેટ",
+      "meaning_gujarati": "જાળ",
+      "category": "e સ્વર ના 'એ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Ten",
+      "pronunciation_gujarati": "ટેન",
+      "meaning_gujarati": "દસ",
+      "category": "e સ્વર ના 'એ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Red",
+      "pronunciation_gujarati": "રેડ",
+      "meaning_gujarati": "લાલ",
+      "category": "e સ્વર ના 'એ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Egg",
+      "pronunciation_gujarati": "એગ",
+      "meaning_gujarati": "ઈંડું",
+      "category": "e સ્વર ના 'એ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Bell",
+      "pronunciation_gujarati": "બેલ",
+      "meaning_gujarati": "ઘંટ",
+      "category": "e સ્વર ના 'એ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Pet",
+      "pronunciation_gujarati": "પેટ",
+      "meaning_gujarati": "પાળેલું પ્રાણી",
+      "category": "e સ્વર ના 'એ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Pen",
+      "pronunciation_gujarati": "પેન",
+      "meaning_gujarati": "પેન",
+      "category": "e સ્વર ના 'એ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Leg",
+      "pronunciation_gujarati": "લેગ",
+      "meaning_gujarati": "પગ",
+      "category": "e સ્વર ના 'એ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Well",
+      "pronunciation_gujarati": "વેલ",
+      "meaning_gujarati": "કૂવો",
+      "category": "e સ્વર ના 'એ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Den",
+      "pronunciation_gujarati": "ડેન",
+      "meaning_gujarati": "ગુફા",
+      "category": "e સ્વર ના 'એ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "He",
+      "pronunciation_gujarati": "હી",
+      "meaning_gujarati": "તે",
+      "category": "e સ્વર ના 'ઈ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "She",
+      "pronunciation_gujarati": "શી",
+      "meaning_gujarati": "તે, તેણી",
+      "category": "e સ્વર ના 'ઈ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Me",
+      "pronunciation_gujarati": "મી",
+      "meaning_gujarati": "મને",
+      "category": "e સ્વર ના 'ઈ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "We",
+      "pronunciation_gujarati": "વી",
+      "meaning_gujarati": "અમે, આપણે",
+      "category": "e સ્વર ના 'ઈ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Hill",
+      "pronunciation_gujarati": "હિલ",
+      "meaning_gujarati": "ટેકરી",
+      "category": "i સ્વર ના 'ઈ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Ship",
+      "pronunciation_gujarati": "શિપ",
+      "meaning_gujarati": "વહાણ",
+      "category": "i સ્વર ના 'ઈ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Pin",
+      "pronunciation_gujarati": "પિન",
+      "meaning_gujarati": "ટાંકણી",
+      "category": "i સ્વર ના 'ઇ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Ring",
+      "pronunciation_gujarati": "રિંગ",
+      "meaning_gujarati": "વીંટી",
+      "category": "i સ્વર ના 'ઇ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Pig",
+      "pronunciation_gujarati": "પિગ",
+      "meaning_gujarati": "ડુક્કર",
+      "category": "i સ્વર ના 'ઇ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Mill",
+      "pronunciation_gujarati": "મિલ",
+      "meaning_gujarati": "મિલ",
+      "category": "i સ્વર ના 'ઇ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Din",
+      "pronunciation_gujarati": "ડિન",
+      "meaning_gujarati": "ઘોંઘાટ",
+      "category": "i સ્વર ના 'ઇ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Six",
+      "pronunciation_gujarati": "સિક્સ",
+      "meaning_gujarati": "છ",
+      "category": "i સ્વર ના 'ઇ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Lip",
+      "pronunciation_gujarati": "લિપ",
+      "meaning_gujarati": "હોઠ",
+      "category": "i સ્વર ના 'ઇ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Ice",
+      "pronunciation_gujarati": "આઈસ",
+      "meaning_gujarati": "બરફ",
+      "category": "i સ્વર ના 'આઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Kite",
+      "pronunciation_gujarati": "કાઈટ",
+      "meaning_gujarati": "પતંગ",
+      "category": "i સ્વર ના 'આઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Wife",
+      "pronunciation_gujarati": "વાઈફ",
+      "meaning_gujarati": "પત્ની",
+      "category": "i સ્વર ના 'આઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Pile",
+      "pronunciation_gujarati": "પાઈલ",
+      "meaning_gujarati": "ઢગલો",
+      "category": "i સ્વર ના 'આઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Kind",
+      "pronunciation_gujarati": "કાઈન્ડ",
+      "meaning_gujarati": "દયાળુ",
+      "category": "i સ્વર ના 'આઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Fine",
+      "pronunciation_gujarati": "ફાઈન",
+      "meaning_gujarati": "સુંદર",
+      "category": "i સ્વર ના 'આઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Life",
+      "pronunciation_gujarati": "લાઈફ",
+      "meaning_gujarati": "જીવન",
+      "category": "i સ્વર ના 'આઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Line",
+      "pronunciation_gujarati": "લાઈન",
+      "meaning_gujarati": "રેખા",
+      "category": "i સ્વર ના 'આઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Mile",
+      "pronunciation_gujarati": "માઈલ",
+      "meaning_gujarati": "માઈલ",
+      "category": "i સ્વર ના 'આઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Mind",
+      "pronunciation_gujarati": "માઈન્ડ",
+      "meaning_gujarati": "મન",
+      "category": "i સ્વર ના 'આઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Wine",
+      "pronunciation_gujarati": "વાઈન",
+      "meaning_gujarati": "દારૂ",
+      "category": "i સ્વર ના 'આઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Nine",
+      "pronunciation_gujarati": "નાઈન",
+      "meaning_gujarati": "નવ",
+      "category": "i સ્વર ના 'આઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "I",
+      "pronunciation_gujarati": "આય",
+      "meaning_gujarati": "હું",
+      "category": "i સ્વર ના 'આય' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Fire",
+      "pronunciation_gujarati": "ફાયર",
+      "meaning_gujarati": "આગ",
+      "category": "i સ્વર ના 'આય' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Wire",
+      "pronunciation_gujarati": "વાયર",
+      "meaning_gujarati": "તાર",
+      "category": "i સ્વર ના 'આય' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Mire",
+      "pronunciation_gujarati": "માયર",
+      "meaning_gujarati": "કાદવ",
+      "category": "i સ્વર ના 'આય' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Hire",
+      "pronunciation_gujarati": "હાયર",
+      "meaning_gujarati": "ભાડે",
+      "category": "i સ્વર ના 'આય' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Sire",
+      "pronunciation_gujarati": "સાયર",
+      "meaning_gujarati": "સાહેબ",
+      "category": "i સ્વર ના 'આય' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Old",
+      "pronunciation_gujarati": "ઓલ્ડ",
+      "meaning_gujarati": "વૃદ્ધ",
+      "category": "o સ્વર ના 'ઓ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Cold",
+      "pronunciation_gujarati": "કોલ્ડ",
+      "meaning_gujarati": "ઠંડુ",
+      "category": "o સ્વર ના 'ઓ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Hope",
+      "pronunciation_gujarati": "હોપ",
+      "meaning_gujarati": "આશા",
+      "category": "o સ્વર ના 'ઓ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "No",
+      "pronunciation_gujarati": "ના",
+      "meaning_gujarati": "ના",
+      "category": "o સ્વર ના 'ઓ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Slope",
+      "pronunciation_gujarati": "સ્લોપ",
+      "meaning_gujarati": "ઢાળ",
+      "category": "o સ્વર ના 'ઓ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Bold",
+      "pronunciation_gujarati": "બોલ્ડ",
+      "meaning_gujarati": "બહાદુર",
+      "category": "o સ્વર ના 'ઓ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Pole",
+      "pronunciation_gujarati": "પોલ",
+      "meaning_gujarati": "થાંભલો",
+      "category": "o સ્વર ના 'ઓ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Go",
+      "pronunciation_gujarati": "ગો",
+      "meaning_gujarati": "જવું",
+      "category": "o સ્વર ના 'ઓ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Rope",
+      "pronunciation_gujarati": "રોપ",
+      "meaning_gujarati": "દોરડું",
+      "category": "o સ્વર ના 'ઓ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Rose",
+      "pronunciation_gujarati": "રોજ",
+      "meaning_gujarati": "ગુલાબ",
+      "category": "o સ્વર ના 'ઓ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Hole",
+      "pronunciation_gujarati": "હોલ",
+      "meaning_gujarati": "કાણું",
+      "category": "o સ્વર ના 'ઓ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "So",
+      "pronunciation_gujarati": "સો",
+      "meaning_gujarati": "તેથી",
+      "category": "o સ્વર ના 'ઓ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Ox",
+      "pronunciation_gujarati": "ઓક્સ",
+      "meaning_gujarati": "બળદ",
+      "category": "o સ્વર ના 'ઓ' જેવો ઉચ્ચાર (ઓક્સ)"
+    },
+    {
+      "english": "Fox",
+      "pronunciation_gujarati": "ફોક્સ",
+      "meaning_gujarati": "શિયાળ",
+      "category": "o સ્વર ના 'ઓ' જેવો ઉચ્ચાર (ઓક્સ)"
+    },
+    {
+      "english": "Dog",
+      "pronunciation_gujarati": "ડોગ",
+      "meaning_gujarati": "કુતરો",
+      "category": "o સ્વર ના 'ઓ' જેવો ઉચ્ચાર (ઓક્સ)"
+    },
+    {
+      "english": "Box",
+      "pronunciation_gujarati": "બોક્સ",
+      "meaning_gujarati": "પેટી",
+      "category": "o સ્વર ના 'ઓ' જેવો ઉચ્ચાર (ઓક્સ)"
+    },
+    {
+      "english": "God",
+      "pronunciation_gujarati": "ગોડ",
+      "meaning_gujarati": "ભગવાન",
+      "category": "o સ્વર ના 'ઓ' જેવો ઉચ્ચાર (ઓક્સ)"
+    },
+    {
+      "english": "Cock",
+      "pronunciation_gujarati": "કોક",
+      "meaning_gujarati": "કૂકડો",
+      "category": "o સ્વર ના 'ઓ' જેવો ઉચ્ચાર (ઓક્સ)"
+    },
+    {
+      "english": "Bus",
+      "pronunciation_gujarati": "બસ",
+      "meaning_gujarati": "બસ",
+      "category": "u સ્વર ના 'અ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Duck",
+      "pronunciation_gujarati": "ડક",
+      "meaning_gujarati": "બતક",
+      "category": "u સ્વર ના 'અ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Hut",
+      "pronunciation_gujarati": "હટ",
+      "meaning_gujarati": "ઝૂંપડી",
+      "category": "u સ્વર ના 'અ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Fun",
+      "pronunciation_gujarati": "ફન",
+      "meaning_gujarati": "ગમ્મત",
+      "category": "u સ્વર ના 'અ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Cut",
+      "pronunciation_gujarati": "કટ",
+      "meaning_gujarati": "કાપવું",
+      "category": "u સ્વર ના 'અ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Cup",
+      "pronunciation_gujarati": "કપ",
+      "meaning_gujarati": "કપ",
+      "category": "u સ્વર ના 'અ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Sun",
+      "pronunciation_gujarati": "સન",
+      "meaning_gujarati": "સૂર્ય",
+      "category": "u સ્વર ના 'અ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Tub",
+      "pronunciation_gujarati": "ટબ",
+      "meaning_gujarati": "ટબ",
+      "category": "u સ્વર ના 'અ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "But",
+      "pronunciation_gujarati": "બટ",
+      "meaning_gujarati": "પણ",
+      "category": "u સ્વર ના 'અ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Put",
+      "pronunciation_gujarati": "પુટ",
+      "meaning_gujarati": "મુકવું",
+      "category": "u સ્વર ના 'ઉ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Pull",
+      "pronunciation_gujarati": "પુલ",
+      "meaning_gujarati": "ખેંચવું",
+      "category": "u સ્વર ના 'ઉ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Pussy",
+      "pronunciation_gujarati": "પુસી",
+      "meaning_gujarati": "બિલાડી",
+      "category": "u સ્વર ના 'ઉ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Push",
+      "pronunciation_gujarati": "પુશ",
+      "meaning_gujarati": "ધકેલવું",
+      "category": "u સ્વર ના 'ઉ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Bush",
+      "pronunciation_gujarati": "બુશ",
+      "meaning_gujarati": "ઝાડી",
+      "category": "u સ્વર ના 'ઉ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Bull",
+      "pronunciation_gujarati": "બુલ",
+      "meaning_gujarati": "બળદ",
+      "category": "u સ્વર ના 'ઉ' જેવો ઉચ્ચાર વાળા"
+    },
+    {
+      "english": "Air",
+      "pronunciation_gujarati": "એઅર",
+      "meaning_gujarati": "હવા",
+      "category": "air સ્વર ના 'એઅર' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Hair",
+      "pronunciation_gujarati": "હેઅર",
+      "meaning_gujarati": "વાળ",
+      "category": "air સ્વર ના 'એઅર' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Pair",
+      "pronunciation_gujarati": "પેઅર",
+      "meaning_gujarati": "જોડી",
+      "category": "air સ્વર ના 'એઅર' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Chair",
+      "pronunciation_gujarati": "ચેઅર",
+      "meaning_gujarati": "ખુરશી",
+      "category": "air સ્વર ના 'એઅર' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Fair",
+      "pronunciation_gujarati": "ફેઅર",
+      "meaning_gujarati": "મેળો",
+      "category": "air સ્વર ના 'એઅર' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Stair",
+      "pronunciation_gujarati": "સ્ટેઅર",
+      "meaning_gujarati": "પગથિયું",
+      "category": "air સ્વર ના 'એઅર' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Chain",
+      "pronunciation_gujarati": "ચેઇન",
+      "meaning_gujarati": "સાંકળ",
+      "category": "ain સ્વર ના 'એઇ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Grain",
+      "pronunciation_gujarati": "ગ્રેઇન",
+      "meaning_gujarati": "અનાજ",
+      "category": "ain સ્વર ના 'એઇ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Brain",
+      "pronunciation_gujarati": "બ્રેઇન",
+      "meaning_gujarati": "મગજ",
+      "category": "ain સ્વર ના 'એઇ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Drain",
+      "pronunciation_gujarati": "ડ્રેઇન",
+      "meaning_gujarati": "ગટર",
+      "category": "ain સ્વર ના 'એઇ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Train",
+      "pronunciation_gujarati": "ટ્રેઇન",
+      "meaning_gujarati": "ગાડી",
+      "category": "ain સ્વર ના 'એઇ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Rain",
+      "pronunciation_gujarati": "રેઇન",
+      "meaning_gujarati": "વરસાદ",
+      "category": "ain સ્વર ના 'એઇ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Deep",
+      "pronunciation_gujarati": "ડીપ",
+      "meaning_gujarati": "ઊંડું",
+      "category": "ee સ્વર ના 'ઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Green",
+      "pronunciation_gujarati": "ગ્રીન",
+      "meaning_gujarati": "લીલું",
+      "category": "ee સ્વર ના 'ઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Peep",
+      "pronunciation_gujarati": "પીપ",
+      "meaning_gujarati": "ડોકાવું",
+      "category": "ee સ્વર ના 'ઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Sleep",
+      "pronunciation_gujarati": "સ્લીપ",
+      "meaning_gujarati": "સુવું",
+      "category": "ee સ્વર ના 'ઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Tree",
+      "pronunciation_gujarati": "ટ્રી",
+      "meaning_gujarati": "ઝાડ",
+      "category": "ee સ્વર ના 'ઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Three",
+      "pronunciation_gujarati": "થ્રી",
+      "meaning_gujarati": "ત્રણ",
+      "category": "ee સ્વર ના 'ઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Week",
+      "pronunciation_gujarati": "વીક",
+      "meaning_gujarati": "અઠવાડિયું",
+      "category": "ee સ્વર ના 'ઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Bee",
+      "pronunciation_gujarati": "બી",
+      "meaning_gujarati": "માખી",
+      "category": "ee સ્વર ના 'ઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "See",
+      "pronunciation_gujarati": "સી",
+      "meaning_gujarati": "જોવું",
+      "category": "ee સ્વર ના 'ઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Free",
+      "pronunciation_gujarati": "ફ્રી",
+      "meaning_gujarati": "મફત",
+      "category": "ee સ્વર ના 'ઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Ear",
+      "pronunciation_gujarati": "ઇઅર",
+      "meaning_gujarati": "કાન",
+      "category": "ea સ્વર ના 'ઈઅ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Dear",
+      "pronunciation_gujarati": "ડીઅર",
+      "meaning_gujarati": "પ્રિય",
+      "category": "ea સ્વર ના 'ઈઅ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Clear",
+      "pronunciation_gujarati": "ક્લિઅર",
+      "meaning_gujarati": "સ્પષ્ટ",
+      "category": "ea સ્વર ના 'ઈઅ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Fear",
+      "pronunciation_gujarati": "ફીઅર",
+      "meaning_gujarati": "ભય",
+      "category": "ea સ્વર ના 'ઈઅ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Near",
+      "pronunciation_gujarati": "નિઅર",
+      "meaning_gujarati": "નજીક",
+      "category": "ea સ્વર ના 'ઈઅ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Year",
+      "pronunciation_gujarati": "ઇઅર",
+      "meaning_gujarati": "વર્ષ",
+      "category": "ea સ્વર ના 'ઈઅ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Beam",
+      "pronunciation_gujarati": "બીમ",
+      "meaning_gujarati": "કિરણ",
+      "category": "ea સ્વર ના 'ઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "East",
+      "pronunciation_gujarati": "ઈસ્ટ",
+      "meaning_gujarati": "પૂર્વ",
+      "category": "ea સ્વર ના 'ઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Heat",
+      "pronunciation_gujarati": "હીટ",
+      "meaning_gujarati": "ગરમી",
+      "category": "ea સ્વર ના 'ઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Beast",
+      "pronunciation_gujarati": "બીસ્ટ",
+      "meaning_gujarati": "પશુ",
+      "category": "ea સ્વર ના 'ઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Leaf",
+      "pronunciation_gujarati": "લીફ",
+      "meaning_gujarati": "પાન",
+      "category": "ea સ્વર ના 'ઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Beach",
+      "pronunciation_gujarati": "બીચ",
+      "meaning_gujarati": "સમુદ્ર કિનારો",
+      "category": "ea સ્વર ના 'ઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Peak",
+      "pronunciation_gujarati": "પીક",
+      "meaning_gujarati": "શિખર",
+      "category": "ea સ્વર ના 'ઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Stream",
+      "pronunciation_gujarati": "સ્ટ્રીમ",
+      "meaning_gujarati": "પ્રવાહ",
+      "category": "ea સ્વર ના 'ઈ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Cool",
+      "pronunciation_gujarati": "કૂલ",
+      "meaning_gujarati": "ઠંડું",
+      "category": "oo સ્વર ના 'ઊ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Loom",
+      "pronunciation_gujarati": "લૂમ",
+      "meaning_gujarati": "સાળ",
+      "category": "oo સ્વર ના 'ઊ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Moon",
+      "pronunciation_gujarati": "મૂન",
+      "meaning_gujarati": "ચંદ્ર",
+      "category": "oo સ્વર ના 'ઊ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Room",
+      "pronunciation_gujarati": "રૂમ",
+      "meaning_gujarati": "ઓરડો",
+      "category": "oo સ્વર ના 'ઊ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Tooth",
+      "pronunciation_gujarati": "ટૂથ",
+      "meaning_gujarati": "દાંત",
+      "category": "oo સ્વર ના 'ઊ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Fool",
+      "pronunciation_gujarati": "ફુલ",
+      "meaning_gujarati": "મૂર્ખ",
+      "category": "oo સ્વર ના 'ઊ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Spoon",
+      "pronunciation_gujarati": "સ્પૂન",
+      "meaning_gujarati": "ચમચી",
+      "category": "oo સ્વર ના 'ઊ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "School",
+      "pronunciation_gujarati": "સ્કૂલ",
+      "meaning_gujarati": "શાળા",
+      "category": "oo સ્વર ના 'ઊ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Roof",
+      "pronunciation_gujarati": "રૂફ",
+      "meaning_gujarati": "છાપરું",
+      "category": "oo સ્વર ના 'ઊ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Zoo",
+      "pronunciation_gujarati": "ઝૂ",
+      "meaning_gujarati": "પ્રાણીસંગ્રહાલય",
+      "category": "oo સ્વર ના 'ઊ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Tool",
+      "pronunciation_gujarati": "ટૂલ",
+      "meaning_gujarati": "ઓજાર",
+      "category": "oo સ્વર ના 'ઊ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Mood",
+      "pronunciation_gujarati": "મૂડ",
+      "meaning_gujarati": "મનસ્થિતિ",
+      "category": "oo સ્વર ના 'ઊ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Ground",
+      "pronunciation_gujarati": "ગ્રાઉન્ડ",
+      "meaning_gujarati": "જમીન",
+      "category": "ou સ્વર ના 'આઉ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "South",
+      "pronunciation_gujarati": "સાઉથ",
+      "meaning_gujarati": "દક્ષિણ",
+      "category": "ou સ્વર ના 'આઉ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Proud",
+      "pronunciation_gujarati": "પ્રાઉડ",
+      "meaning_gujarati": "અભિમાન",
+      "category": "ou સ્વર ના 'આઉ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Round",
+      "pronunciation_gujarati": "રાઉન્ડ",
+      "meaning_gujarati": "ગોળ",
+      "category": "ou સ્વર ના 'આઉ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Mound",
+      "pronunciation_gujarati": "માઉન્ડ",
+      "meaning_gujarati": "ટેકરી",
+      "category": "ou સ્વર ના 'આઉ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Sound",
+      "pronunciation_gujarati": "સાઉન્ડ",
+      "meaning_gujarati": "અવાજ",
+      "category": "ou સ્વર ના 'આઉ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Mouth",
+      "pronunciation_gujarati": "માઉથ",
+      "meaning_gujarati": "મોં",
+      "category": "ou સ્વર ના 'આઉ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Pound",
+      "pronunciation_gujarati": "પાઉન્ડ",
+      "meaning_gujarati": "ઈંગ્લેન્ડ નું નાણું",
+      "category": "ou સ્વર ના 'આઉ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Owl",
+      "pronunciation_gujarati": "આઉલ",
+      "meaning_gujarati": "ઘુવડ",
+      "category": "ow સ્વર ના 'આઉ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Down",
+      "pronunciation_gujarati": "ડાઉન",
+      "meaning_gujarati": "નીચું",
+      "category": "ow સ્વર ના 'આઉ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Crowd",
+      "pronunciation_gujarati": "ક્રાઉડ",
+      "meaning_gujarati": "ગર્દી",
+      "category": "ow સ્વર ના 'આઉ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Now",
+      "pronunciation_gujarati": "નાઉ",
+      "meaning_gujarati": "હમણાં",
+      "category": "ow સ્વર ના 'આઉ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Crown",
+      "pronunciation_gujarati": "ક્રાઉન",
+      "meaning_gujarati": "તાજ",
+      "category": "ow સ્વર ના 'આઉ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Clown",
+      "pronunciation_gujarati": "ક્લાઉન",
+      "meaning_gujarati": "વિદૂષક",
+      "category": "ow સ્વર ના 'આઉ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "How",
+      "pronunciation_gujarati": "હાઉ",
+      "meaning_gujarati": "કેવી રીતે",
+      "category": "ow સ્વર ના 'આઉ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Cow",
+      "pronunciation_gujarati": "કાઉ",
+      "meaning_gujarati": "ગાય",
+      "category": "ow સ્વર ના 'આઉ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Nature",
+      "pronunciation_gujarati": "નેચર",
+      "meaning_gujarati": "પ્રકૃતિ, સ્વભાવ",
+      "category": "ture - ચર વાળા શબ્દો"
+    },
+    {
+      "english": "Picture",
+      "pronunciation_gujarati": "પિક્ચર",
+      "meaning_gujarati": "ચિત્ર",
+      "category": "ture - ચર વાળા શબ્દો"
+    },
+    {
+      "english": "Culture",
+      "pronunciation_gujarati": "કલ્ચર",
+      "meaning_gujarati": "સંસ્કૃતિ",
+      "category": "ture - ચર વાળા શબ્દો"
+    },
+    {
+      "english": "Future",
+      "pronunciation_gujarati": "ફ્યુચર",
+      "meaning_gujarati": "ભવિષ્ય",
+      "category": "ture - ચર વાળા શબ્દો"
+    },
+    {
+      "english": "Signature",
+      "pronunciation_gujarati": "સિગ્નેચર",
+      "meaning_gujarati": "સહી",
+      "category": "ture - ચર વાળા શબ્દો"
+    },
+    {
+      "english": "Vulture",
+      "pronunciation_gujarati": "વલ્ચર",
+      "meaning_gujarati": "ગીધ",
+      "category": "ture - ચર વાળા શબ્દો"
+    },
+    {
+      "english": "Mixture",
+      "pronunciation_gujarati": "મિક્સચર",
+      "meaning_gujarati": "મિશ્રણ",
+      "category": "ture - ચર વાળા શબ્દો"
+    },
+    {
+      "english": "Lecture",
+      "pronunciation_gujarati": "લેક્ચર",
+      "meaning_gujarati": "તાસ, પીરીયડ",
+      "category": "ture - ચર વાળા શબ્દો"
+    },
+    {
+      "english": "Furniture",
+      "pronunciation_gujarati": "ફર્નિચર",
+      "meaning_gujarati": "ફર્નિચર",
+      "category": "ture - ચર વાળા શબ્દો"
+    },
+    {
+      "english": "Action",
+      "pronunciation_gujarati": "એક્શન",
+      "meaning_gujarati": "ક્રિયા",
+      "category": "tion - શન વાળા શબ્દો"
+    },
+    {
+      "english": "Nation",
+      "pronunciation_gujarati": "નેશન",
+      "meaning_gujarati": "દેશ",
+      "category": "tion - શન વાળા શબ્દો"
+    },
+    {
+      "english": "Station",
+      "pronunciation_gujarati": "સ્ટેશન",
+      "meaning_gujarati": "સ્ટેશન",
+      "category": "tion - શન વાળા શબ્દો"
+    },
+    {
+      "english": "Relation",
+      "pronunciation_gujarati": "રીલેશન",
+      "meaning_gujarati": "સંબંધ",
+      "category": "tion - શન વાળા શબ્દો"
+    },
+    {
+      "english": "Condition",
+      "pronunciation_gujarati": "કન્ડીશન",
+      "meaning_gujarati": "પરિસ્થિતિ",
+      "category": "tion - શન વાળા શબ્દો"
+    },
+    {
+      "english": "Celebration",
+      "pronunciation_gujarati": "સેલિબ્રેશન",
+      "meaning_gujarati": "ઉજવણી",
+      "category": "tion - શન વાળા શબ્દો"
+    },
+    {
+      "english": "Operation",
+      "pronunciation_gujarati": "ઓપરેશન",
+      "meaning_gujarati": "ઓપરેશન",
+      "category": "tion - શન વાળા શબ્દો"
+    },
+    {
+      "english": "Vacation",
+      "pronunciation_gujarati": "વેકેશન",
+      "meaning_gujarati": "વેકેશન",
+      "category": "tion - શન વાળા શબ્દો"
+    },
+    {
+      "english": "Solution",
+      "pronunciation_gujarati": "સોલ્યુશન",
+      "meaning_gujarati": "ઉકેલ",
+      "category": "tion - શન વાળા શબ્દો"
+    },
+    {
+      "english": "Selection",
+      "pronunciation_gujarati": "સિલેક્શન",
+      "meaning_gujarati": "પસંદગી",
+      "category": "tion - શન વાળા શબ્દો"
+    },
+    {
+      "english": "Bridge",
+      "pronunciation_gujarati": "બ્રિજ",
+      "meaning_gujarati": "પુલ",
+      "category": "dge - જ વાળા શબ્દો"
+    },
+    {
+      "english": "Fridge",
+      "pronunciation_gujarati": "ફ્રીજ",
+      "meaning_gujarati": "ફ્રીજ",
+      "category": "dge - જ વાળા શબ્દો"
+    },
+    {
+      "english": "Pledge",
+      "pronunciation_gujarati": "પ્લેજ",
+      "meaning_gujarati": "પ્રતિજ્ઞા",
+      "category": "dge - જ વાળા શબ્દો"
+    },
+    {
+      "english": "Judge",
+      "pronunciation_gujarati": "જજ",
+      "meaning_gujarati": "ન્યાયાધીશ",
+      "category": "dge - જ વાળા શબ્દો"
+    },
+    {
+      "english": "Edge",
+      "pronunciation_gujarati": "એજ",
+      "meaning_gujarati": "કિનારો",
+      "category": "dge - જ વાળા શબ્દો"
+    },
+    {
+      "english": "Grudge",
+      "pronunciation_gujarati": "ગ્રજ",
+      "meaning_gujarati": "દ્વેષ",
+      "category": "dge - જ વાળા શબ્દો"
+    },
+    {
+      "english": "Book",
+      "pronunciation_gujarati": "બુક",
+      "meaning_gujarati": "પુસ્તક",
+      "category": "oo સ્વર ના 'ઉ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Foot",
+      "pronunciation_gujarati": "ફુટ",
+      "meaning_gujarati": "પગ",
+      "category": "oo સ્વર ના 'ઉ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Cook",
+      "pronunciation_gujarati": "કુક",
+      "meaning_gujarati": "રસોઈઓ",
+      "category": "oo સ્વર ના 'ઉ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Hook",
+      "pronunciation_gujarati": "હુક",
+      "meaning_gujarati": "હુક, આંકડો",
+      "category": "oo સ્વર ના 'ઉ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Wood",
+      "pronunciation_gujarati": "વુડ",
+      "meaning_gujarati": "જંગલ / લાકડું",
+      "category": "oo સ્વર ના 'ઉ' જેવો ઉચ્ચાર"
+    },
+    {
+      "english": "Good",
+      "pronunciation_gujarati": "ગુડ",
+      "meaning_gujarati": "સારું, સરસ",
+      "category": "oo સ્વર ના 'ઉ' જેવો ઉચ્ચાર"
+    }
+  ]
+}

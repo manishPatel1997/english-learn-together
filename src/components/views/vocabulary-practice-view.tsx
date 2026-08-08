@@ -24,10 +24,12 @@ import {
 import { StatefulButton, type ButtonState } from "@/components/beui/stateful-button";
 import { DynamicIsland } from "@/components/beui/dynamic-island";
 import { Drawer } from "@/components/beui/drawer";
+import { Select, type SelectOption } from "@/components/beui/select";
 import { useToast } from "@/components/beui/animated-toast-stack";
 import { storage, type FavoriteItem } from "@/lib/storage";
 import { cn } from "@/lib/utils";
 import { VOCABULARY_SECTIONS } from "@/lib/vocabulary-data";
+import { Layers } from "lucide-react";
 
 import { useRouter } from "next/navigation";
 
@@ -175,12 +177,59 @@ export function VocabularyPracticeView({
     }
   }, [pageMode, examViewMode]);
 
-  // Preserve exact JSON order by ID for Study / Reading Mode
+  // Preserve exact original JSON file array order for Study / Reading Mode (NO sorting)
   const studyQuestions = React.useMemo(() => {
-    return [...questions].sort((a, b) =>
-      String(a.id ?? 0).localeCompare(String(b.id ?? 0), undefined, { numeric: true })
-    );
+    return questions;
   }, [questions]);
+
+  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState<string>("all");
+
+  // Extract unique categories for filtering while preserving appearance order
+  const categoriesList = React.useMemo(() => {
+    const cats = Array.from(new Set(studyQuestions.map((q) => q.category).filter(Boolean))) as string[];
+    return cats;
+  }, [studyQuestions]);
+
+  const categoryFilterOptions: SelectOption[] = React.useMemo(() => {
+    return [
+      {
+        value: "all",
+        label: `All Sound Rules (${categoriesList.length} Rules)`,
+        icon: "📂",
+        count: studyQuestions.length,
+        description: "Show all words grouped under textbook section header banners.",
+      },
+      ...categoriesList.map((cat, idx) => ({
+        value: cat,
+        label: cat,
+        icon: "🔖",
+        count: studyQuestions.filter((q) => q.category === cat).length,
+        stepLabel: `#${idx + 1}`,
+      })),
+    ];
+  }, [categoriesList, studyQuestions]);
+
+  // Group study questions consecutively by category preserving 100% exact original JSON array sequence
+  const groupedQuestions = React.useMemo(() => {
+    const filtered =
+      selectedCategoryFilter === "all"
+        ? studyQuestions
+        : studyQuestions.filter((q) => q.category === selectedCategoryFilter);
+
+    const groups: { category: string; items: VocabQuestion[] }[] = [];
+    let currentGroup: { category: string; items: VocabQuestion[] } | null = null;
+
+    filtered.forEach((q) => {
+      const cat = q.category || "General Vocabulary";
+      if (!currentGroup || currentGroup.category !== cat) {
+        currentGroup = { category: cat, items: [] };
+        groups.push(currentGroup);
+      }
+      currentGroup.items.push(q);
+    });
+
+    return groups;
+  }, [studyQuestions, selectedCategoryFilter]);
 
   const currentQuestion = examQuestions[currentIndex] || examQuestions[0];
   const studyQuestion = studyQuestions[studyIndex] || studyQuestions[0];
@@ -453,134 +502,137 @@ export function VocabularyPracticeView({
 
   const progressPct = Math.round(((currentIndex + 1) / examQuestions.length) * 100);
 
-  // SELECTION PAGE: Choose Vocabulary Section & Mode (Compact High-Efficiency UI)
+  const sectionSelectOptions: SelectOption[] = VOCABULARY_SECTIONS.map((sec) => ({
+    value: sec.id,
+    label: sec.name,
+    icon: sec.icon,
+    badge: sec.badge,
+    count: sec.count,
+    description: sec.description,
+    index: sec.index,
+    stepLabel: sec.stepLabel,
+  }));
+
+  // SELECTION PAGE: Choose Vocabulary Section & Mode (Section Cards List UI)
   if (pageMode === "selection") {
     return (
-      <div className="space-y-4 max-w-3xl mx-auto py-2 select-none">
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-center space-y-1.5">
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-indigo-500/10 px-3 py-0.5 text-[11px] font-extrabold text-indigo-600 dark:text-indigo-400">
-            <Sparkles className="h-3 w-3" /> Vocabulary Hub
+      <div className="space-y-6 max-w-4xl mx-auto py-3 select-none">
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-center space-y-2">
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-indigo-500/10 px-3.5 py-1 text-xs font-extrabold text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
+            <Sparkles className="h-3.5 w-3.5" /> Vocabulary Learning Path
           </div>
-          <h2 className="text-2xl font-black text-foreground tracking-tight sm:text-3xl">
-            Select Vocabulary Section & Mode
+          <h2 className="text-2xl font-black text-foreground tracking-tight sm:text-4xl">
+            Select a Section to Learn & Practice
           </h2>
+          <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto font-medium">
+            Select a section card below to start reading flashcards or test your spelling accuracy in exam mode.
+          </p>
         </motion.div>
 
-        {/* Compact Segmented Section Selector */}
-        <div className="rounded-2xl border border-border/80 bg-card p-1.5 shadow-xs">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5">
-            {VOCABULARY_SECTIONS.map((sec) => (
-              <button
+        {/* Section Cards List */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {VOCABULARY_SECTIONS.map((sec) => {
+            const isSelected = activeSectionId === sec.id;
+            return (
+              <motion.div
                 key={sec.id}
-                type="button"
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
                 onClick={() => onSectionChange && onSectionChange(sec.id)}
                 className={cn(
-                  "flex items-center justify-between gap-2 rounded-xl px-3 py-2 text-xs font-bold transition-all",
-                  activeSectionId === sec.id
-                    ? "bg-indigo-600 text-white shadow-md shadow-indigo-500/20"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/70"
+                  "relative cursor-pointer rounded-3xl border p-5 transition-all shadow-md flex flex-col justify-between space-y-4",
+                  isSelected
+                    ? "border-indigo-500 bg-card ring-2 ring-indigo-500/30 shadow-xl"
+                    : "border-border bg-card/60 hover:border-indigo-500/50 hover:bg-card"
                 )}
               >
-                <div className="flex items-center gap-1.5 min-w-0">
-                  <span className="text-sm shrink-0">{sec.icon}</span>
-                  <span className="truncate font-black">{sec.shortName || sec.name}</span>
+                {/* Card Header & Badge */}
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-indigo-500/10 text-2xl shrink-0 shadow-xs">
+                        {sec.icon}
+                      </span>
+                      <div className="min-w-0">
+                        <span className="text-[10px] font-black tracking-widest text-indigo-600 dark:text-indigo-400 uppercase block">
+                          {sec.stepLabel}
+                        </span>
+                        <h3 className="text-base font-black text-foreground leading-tight truncate">
+                          {sec.name}
+                        </h3>
+                      </div>
+                    </div>
+
+                    <span
+                      className={cn(
+                        "rounded-full px-3 py-1 text-[11px] font-black shrink-0 border",
+                        isSelected
+                          ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
+                          : "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20"
+                      )}
+                    >
+                      {sec.badge}
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
+                    {sec.description}
+                  </p>
+
+                  <div className="flex items-center justify-between text-xs font-extrabold text-muted-foreground pt-1">
+                    <span className="inline-flex items-center gap-1.5 text-foreground font-black">
+                      <BookOpen className="h-4 w-4 text-indigo-500" />
+                      <span>{sec.count} Words</span>
+                    </span>
+                    {isSelected && (
+                      <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-black text-[11px]">
+                        <CheckCircle2 className="h-4 w-4" /> Active Section
+                      </span>
+                    )}
+                  </div>
                 </div>
-                <span
-                  className={cn(
-                    "rounded-full px-2 py-0.5 text-[10px] font-extrabold shrink-0",
-                    activeSectionId === sec.id ? "bg-white/20 text-white" : "bg-muted text-muted-foreground"
-                  )}
-                >
-                  {sec.count} words
-                </span>
-              </button>
-            ))}
-          </div>
-        </div>
 
-        {/* Compact Mode Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
-          {/* Card 1: Read & Study Mode */}
-          <div
-            onClick={() => switchPageMode("study")}
-            className="group cursor-pointer rounded-2xl border border-indigo-500/30 bg-card p-4 shadow-sm hover:border-indigo-500 hover:shadow-md transition-all flex flex-col justify-between space-y-3"
-          >
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-600 text-white shadow-xs group-hover:scale-105 transition-transform">
-                  <BookOpen className="h-4.5 w-4.5" />
+                {/* Direct Action Buttons Inside Section Card */}
+                <div className="pt-2 border-t border-border/60">
+                  <div className="grid grid-cols-2 gap-2.5">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (onSectionChange) onSectionChange(sec.id);
+                        switchPageMode("study");
+                      }}
+                      className={cn(
+                        "w-full rounded-xl py-2.5 px-3 text-xs font-black transition-all flex items-center justify-center gap-1.5 shadow-sm",
+                        isSelected
+                          ? "bg-indigo-600 text-white hover:bg-indigo-700"
+                          : "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600 hover:text-white"
+                      )}
+                    >
+                      <span>📖 Start Study</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (onSectionChange) onSectionChange(sec.id);
+                        switchPageMode("exam");
+                      }}
+                      className={cn(
+                        "w-full rounded-xl py-2.5 px-3 text-xs font-black transition-all flex items-center justify-center gap-1.5 shadow-sm",
+                        isSelected
+                          ? "bg-purple-600 text-white hover:bg-purple-700"
+                          : "bg-purple-500/10 text-purple-600 dark:text-purple-400 hover:bg-purple-600 hover:text-white"
+                      )}
+                    >
+                      <span>✍️ Start Exam</span>
+                    </button>
+                  </div>
                 </div>
-                <span className="rounded-full bg-indigo-500/10 px-2.5 py-0.5 text-[10px] font-black text-indigo-600 dark:text-indigo-400">
-                  Study Mode
-                </span>
-              </div>
-              <div>
-                <h3 className="text-base font-black text-foreground group-hover:text-indigo-600 transition-colors flex items-center gap-1.5">
-                  📖 Read & Study
-                </h3>
-                <p className="text-xs text-muted-foreground line-clamp-2 mt-0.5">
-                  Review flashcards, listen to pronunciations, and learn spellings at your own pace.
-                </p>
-              </div>
-              <div className="flex items-center gap-1.5 pt-0.5 flex-wrap">
-                <span className="inline-flex items-center gap-1 rounded-md bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
-                  <CheckCircle2 className="h-3 w-3" /> Audio & Cards
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-md bg-indigo-500/10 px-2 py-0.5 text-[10px] font-bold text-indigo-600 dark:text-indigo-400">
-                  <CheckCircle2 className="h-3 w-3" /> Overview List
-                </span>
-              </div>
-            </div>
-
-            <button
-              type="button"
-              className="w-full rounded-xl bg-indigo-600 py-2.5 text-xs font-black text-white group-hover:bg-indigo-700 shadow-xs transition-colors flex items-center justify-center gap-1.5 mt-1"
-            >
-              <span>Start Study</span>
-              <ArrowRight className="h-3.5 w-3.5" />
-            </button>
-          </div>
-
-          {/* Card 2: Take Exam Mode */}
-          <div
-            onClick={() => switchPageMode("exam")}
-            className="group cursor-pointer rounded-2xl border border-purple-500/30 bg-card p-4 shadow-sm hover:border-purple-500 hover:shadow-md transition-all flex flex-col justify-between space-y-3"
-          >
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-600 text-white shadow-xs group-hover:scale-105 transition-transform">
-                  <Star className="h-4.5 w-4.5" />
-                </div>
-                <span className="rounded-full bg-purple-500/10 px-2.5 py-0.5 text-[10px] font-black text-purple-600 dark:text-purple-400">
-                  Exam Mode
-                </span>
-              </div>
-              <div>
-                <h3 className="text-base font-black text-foreground group-hover:text-purple-600 transition-colors flex items-center gap-1.5">
-                  ✍️ Take Exam
-                </h3>
-                <p className="text-xs text-muted-foreground line-clamp-2 mt-0.5">
-                  Test your spelling accuracy with instant checks, XP rewards, and streak tracking.
-                </p>
-              </div>
-              <div className="flex items-center gap-1.5 pt-0.5 flex-wrap">
-                <span className="inline-flex items-center gap-1 rounded-md bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
-                  <CheckCircle2 className="h-3 w-3" /> Auto-Check
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-md bg-purple-500/10 px-2 py-0.5 text-[10px] font-bold text-purple-600 dark:text-purple-400">
-                  <CheckCircle2 className="h-3 w-3" /> XP & Streaks
-                </span>
-              </div>
-            </div>
-
-            <button
-              type="button"
-              className="w-full rounded-xl bg-purple-600 py-2.5 text-xs font-black text-white group-hover:bg-purple-700 shadow-xs transition-colors flex items-center justify-center gap-1.5 mt-1"
-            >
-              <span>Start Exam</span>
-              <ArrowRight className="h-3.5 w-3.5" />
-            </button>
-          </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     );
@@ -601,36 +653,23 @@ export function VocabularyPracticeView({
 
       {/* Top Header Navigation Bar */}
       <div className="pt-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-border pb-4">
-        <div className="flex items-center gap-3 flex-wrap">
+        <div className="flex items-center gap-3 flex-wrap flex-1 min-w-0">
           <button
             type="button"
             onClick={() => switchPageMode("selection")}
-            className="flex items-center gap-1.5 text-xs font-extrabold text-muted-foreground hover:text-foreground transition-colors"
+            className="flex items-center gap-1.5 text-xs font-extrabold text-muted-foreground hover:text-foreground transition-colors shrink-0"
           >
             <span>← Back to Mode Select</span>
           </button>
 
-          {/* Inline Section Selector Pills */}
-          <div className="flex items-center gap-1.5 rounded-xl border border-border/80 bg-card p-1 text-xs select-none">
-            {VOCABULARY_SECTIONS.map((sec) => (
-              <button
-                key={sec.id}
-                type="button"
-                onClick={() => onSectionChange && onSectionChange(sec.id)}
-                className={cn(
-                  "flex items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-extrabold transition-all",
-                  activeSectionId === sec.id
-                    ? "bg-indigo-600 text-white shadow-xs"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                )}
-                title={sec.description}
-              >
-                <span>{sec.icon}</span>
-                <span>{sec.shortName}</span>
-                <span className="text-[10px] opacity-75">({sec.count})</span>
-              </button>
-            ))}
-          </div>
+          {/* Section Dropdown Selector in Navigation Bar */}
+          <Select
+            options={sectionSelectOptions}
+            value={activeSectionId}
+            onChange={(val) => onSectionChange && onSectionChange(val)}
+            labelPrefix="Active Section"
+            className="w-64 sm:w-80 shrink-0"
+          />
         </div>
 
         {pageMode === "study" ? (
@@ -655,149 +694,219 @@ export function VocabularyPracticeView({
       {/* MODE 1: STUDY & READ SPELLINGS LIST */}
       {pageMode === "study" ? (
         <div className="space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-bold text-muted-foreground">
-            <span>Gujarati & English Vocabulary Directory ({questions.length} Words)</span>
-
-            <div className="flex flex-wrap items-center gap-3">
-              {/* Column Layout Selector (1 or 2 Columns) */}
-              <div className="flex items-center gap-1 rounded-xl border border-border bg-card p-1 shadow-sm select-none">
-                <span className="text-[11px] font-bold text-muted-foreground px-1.5 hidden sm:inline">Grid:</span>
-                <button
-                  type="button"
-                  onClick={() => setStudyColumns(1)}
-                  className={cn(
-                    "flex items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-extrabold transition-all",
-                    studyColumns === 1
-                      ? "bg-indigo-600 text-white shadow-sm"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                  )}
-                  title="Show 1 Column"
-                >
-                  <LayoutList className="h-3.5 w-3.5" />
-                  <span>1 Col</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setStudyColumns(2)}
-                  className={cn(
-                    "flex items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-extrabold transition-all",
-                    studyColumns === 2
-                      ? "bg-indigo-600 text-white shadow-sm"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                  )}
-                  title="Show 2 Columns"
-                >
-                  <LayoutGrid className="h-3.5 w-3.5" />
-                  <span>2 Cols</span>
-                </button>
-              </div>
-
-              {/* Checkbox: Hide English & Pronunciation (Hover to reveal) */}
-              <label className="inline-flex items-center gap-2 cursor-pointer rounded-xl border border-border bg-card px-3.5 py-1.5 shadow-sm hover:border-indigo-500/50 transition-colors select-none">
-                <input
-                  type="checkbox"
-                  checked={hideEnglishOnStudy}
-                  onChange={(e) => setHideEnglishOnStudy(e.target.checked)}
-                  className="h-4 w-4 rounded border-border text-indigo-600 focus:ring-indigo-500 cursor-pointer accent-indigo-600"
-                />
-                <span className="text-xs font-extrabold text-foreground flex items-center gap-1.5">
-                  {hideEnglishOnStudy ? (
-                    <EyeOff className="h-3.5 w-3.5 text-indigo-600 dark:text-indigo-400" />
-                  ) : (
-                    <Eye className="h-3.5 w-3.5 text-muted-foreground" />
-                  )}
-                  Hide Pronunciation & English (Hover to reveal)
+          {/* Active Section Page Title Banner */}
+          {(() => {
+            const activeSec = VOCABULARY_SECTIONS.find((s) => s.id === activeSectionId) || VOCABULARY_SECTIONS[0];
+            return (
+              <div className="flex items-center justify-between rounded-2xl bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-transparent border border-indigo-500/20 p-4 shadow-sm">
+                <div className="flex items-center gap-3 min-w-0">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-indigo-600 text-white text-2xl shrink-0 shadow-md">
+                    {activeSec.icon}
+                  </span>
+                  <div className="min-w-0">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 block">
+                      {activeSec.stepLabel} • Textbook Page Section
+                    </span>
+                    <h2 className="text-lg sm:text-xl font-black text-foreground truncate">
+                      {activeSec.name}
+                    </h2>
+                  </div>
+                </div>
+                <span className="rounded-full bg-indigo-600 text-white text-xs font-black px-3 py-1 shrink-0 shadow-xs hidden sm:inline-block">
+                  {questions.length} Words
                 </span>
-              </label>
+              </div>
+            );
+          })()}
+
+          {/* Top Control Bar & Category Filter */}
+          <div className="flex flex-col gap-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-bold text-muted-foreground">
+              <span>Vocabulary Directory ({questions.length} Words, {categoriesList.length} Categories)</span>
+
+              <div className="flex flex-wrap items-center gap-3">
+                {/* Column Layout Selector (1 or 2 Columns) */}
+                <div className="flex items-center gap-1 rounded-xl border border-border bg-card p-1 shadow-sm select-none">
+                  <span className="text-[11px] font-bold text-muted-foreground px-1.5 hidden sm:inline">Grid:</span>
+                  <button
+                    type="button"
+                    onClick={() => setStudyColumns(1)}
+                    className={cn(
+                      "flex items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-extrabold transition-all",
+                      studyColumns === 1
+                        ? "bg-indigo-600 text-white shadow-sm"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    )}
+                    title="Show 1 Column"
+                  >
+                    <LayoutList className="h-3.5 w-3.5" />
+                    <span>1 Col</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setStudyColumns(2)}
+                    className={cn(
+                      "flex items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-extrabold transition-all",
+                      studyColumns === 2
+                        ? "bg-indigo-600 text-white shadow-sm"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    )}
+                    title="Show 2 Columns"
+                  >
+                    <LayoutGrid className="h-3.5 w-3.5" />
+                    <span>2 Cols</span>
+                  </button>
+                </div>
+
+                {/* Checkbox: Hide English & Pronunciation (Hover to reveal) */}
+                <label className="inline-flex items-center gap-2 cursor-pointer rounded-xl border border-border bg-card px-3.5 py-1.5 shadow-sm hover:border-indigo-500/50 transition-colors select-none">
+                  <input
+                    type="checkbox"
+                    checked={hideEnglishOnStudy}
+                    onChange={(e) => setHideEnglishOnStudy(e.target.checked)}
+                    className="h-4 w-4 rounded border-border text-indigo-600 focus:ring-indigo-500 cursor-pointer accent-indigo-600"
+                  />
+                  <span className="text-xs font-extrabold text-foreground flex items-center gap-1.5">
+                    {hideEnglishOnStudy ? (
+                      <EyeOff className="h-3.5 w-3.5 text-indigo-600 dark:text-indigo-400" />
+                    ) : (
+                      <Eye className="h-3.5 w-3.5 text-muted-foreground" />
+                    )}
+                    Hide Pronunciation & English (Hover to reveal)
+                  </span>
+                </label>
+              </div>
             </div>
+
+            {/* Category / Sound Rule Filter Dropdown */}
+            {categoriesList.length > 1 && (
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 rounded-2xl border border-amber-500/20 bg-card p-3.5 shadow-sm">
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 font-extrabold text-sm shrink-0">
+                    🏷️
+                  </span>
+                  <div className="flex flex-col min-w-0">
+                    <span className="text-xs font-black text-foreground">Filter by Sound Rule / Category</span>
+                    <span className="text-[10px] text-muted-foreground font-medium">Textbook categories & vowel pronunciation rules</span>
+                  </div>
+                </div>
+
+                <Select
+                  options={categoryFilterOptions}
+                  value={selectedCategoryFilter}
+                  onChange={setSelectedCategoryFilter}
+                  labelPrefix="Category Filter"
+                  className="w-full sm:w-80"
+                />
+              </div>
+            )}
           </div>
 
-          {/* Full-Width Spellings List View */}
-          <div className="rounded-[28px] border border-border bg-card p-6 shadow-xl space-y-3">
-            <div className={cn("grid gap-3 transition-all", studyColumns === 1 ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2")}>
-              {studyQuestions.map((q, idx) => (
-                <div
-                  key={q.id !== undefined && q.id !== null ? `vocab-q-${q.id}-${idx}` : `vocab-q-${idx}`}
-                  onClick={() => {
-                    setStudyIndex(idx);
-                    setRevealSpelling(true);
-                    setDrawerOpen(true);
-                  }}
-                  className="cursor-pointer rounded-2xl border border-border bg-background p-4 flex items-center justify-between hover:border-indigo-500 hover:bg-indigo-500/5 transition-all shadow-sm group"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-extrabold text-xs shrink-0">
-                      #{idx + 1}
-                    </div>
-                    <div className="space-y-1 text-left min-w-0 flex-1">
-                      {/* Gujarati Meaning (Always Visible Prompt) */}
-                      <span className="text-base font-black text-foreground block group-hover:text-indigo-600 transition-colors leading-tight">
-                        {q.gujarati}
-                      </span>
+          {/* Grouped Category Sections (Single Dark Header Banner per Category) */}
+          <div className="space-y-6">
+            {groupedQuestions.map((group, groupIdx) => (
+              <div key={group.category || groupIdx} className="rounded-[28px] border border-border bg-card p-5 sm:p-6 shadow-xl space-y-4">
+                {/* Single Dark Textbook Category Header Box */}
+                <div className="flex items-center justify-between rounded-2xl bg-zinc-900 text-white dark:bg-zinc-950 border border-zinc-800 px-4 py-3 shadow-lg">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-indigo-500/20 text-indigo-400 font-black text-xs shrink-0">
+                      #{groupIdx + 1}
+                    </span>
+                    <h3 className="text-sm sm:text-base font-black tracking-wide truncate text-white">
+                      {group.category}
+                    </h3>
+                  </div>
+                  <span className="rounded-full bg-white/10 border border-white/10 px-3 py-0.5 text-[11px] font-extrabold text-indigo-300 shrink-0">
+                    {group.items.length} words
+                  </span>
+                </div>
 
-                      {/* Hidden / Revealed Section */}
-                      {hideEnglishOnStudy ? (
-                        <div className="relative w-full mt-1">
-                          {/* Revealed Content: Pronunciation Badge + English Spelling */}
-                          {/* Pre-rendered in layout flow so card height is 100% fixed before & during hover */}
-                          <div className="flex flex-col gap-1 transition-all duration-200 opacity-0 group-hover:opacity-100 select-none">
-                            {q.pronunciation_gujarati && (
-                              <div className="inline-flex">
-                                <span className="inline-flex items-center rounded-md bg-indigo-500/10 border border-indigo-500/20 px-2 py-0.5 text-[11px] font-extrabold text-indigo-600 dark:text-indigo-400">
-                                  🗣️ {q.pronunciation_gujarati}
+                {/* Words Grid under this Category Header */}
+                <div className={cn("grid gap-3 transition-all", studyColumns === 1 ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2")}>
+                  {group.items.map((q) => {
+                    const originalIdx = studyQuestions.findIndex((item) => item.id === q.id);
+                    const itemIdx = originalIdx >= 0 ? originalIdx : 0;
+                    return (
+                      <div
+                        key={q.id !== undefined && q.id !== null ? `vocab-q-${q.id}` : `vocab-item-${q.english}`}
+                        onClick={() => {
+                          setStudyIndex(itemIdx);
+                          setRevealSpelling(true);
+                          setDrawerOpen(true);
+                        }}
+                        className="cursor-pointer rounded-2xl border border-border bg-background p-4 flex items-center justify-between hover:border-indigo-500 hover:bg-indigo-500/5 transition-all shadow-sm group"
+                      >
+                        <div className="flex items-center gap-3 min-w-0 flex-1">
+                          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-extrabold text-xs shrink-0">
+                            #{itemIdx + 1}
+                          </div>
+                          <div className="space-y-0.5 text-left min-w-0 flex-1">
+                            <span className="text-base font-black text-foreground block group-hover:text-indigo-600 transition-colors leading-tight">
+                              {q.gujarati}
+                            </span>
+
+                            {hideEnglishOnStudy ? (
+                              <div className="relative w-full mt-1">
+                                <div className="flex flex-col gap-1 transition-all duration-200 opacity-0 group-hover:opacity-100 select-none">
+                                  {q.pronunciation_gujarati && (
+                                    <div className="inline-flex">
+                                      <span className="inline-flex items-center rounded-md bg-indigo-500/10 border border-indigo-500/20 px-2 py-0.5 text-[11px] font-extrabold text-indigo-600 dark:text-indigo-400">
+                                        🗣️ {q.pronunciation_gujarati}
+                                      </span>
+                                    </div>
+                                  )}
+                                  <span className="text-xs font-extrabold text-indigo-600 dark:text-indigo-400 block leading-tight">
+                                    {q.english}
+                                  </span>
+                                </div>
+
+                                <div className="absolute inset-y-0 left-0 flex items-center transition-all duration-200 opacity-100 group-hover:opacity-0 group-hover:pointer-events-none select-none">
+                                  <span className="inline-flex items-center gap-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20 px-2.5 py-1 text-[11px] font-extrabold text-indigo-600 dark:text-indigo-400 whitespace-nowrap">
+                                    <EyeOff className="h-3.5 w-3.5 text-indigo-500 shrink-0" />
+                                    <span>Hover to reveal</span>
+                                  </span>
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="flex flex-col gap-1 mt-1">
+                                {q.pronunciation_gujarati && (
+                                  <div className="inline-flex">
+                                    <span className="inline-flex items-center rounded-md bg-indigo-500/10 border border-indigo-500/20 px-2 py-0.5 text-[11px] font-extrabold text-indigo-600 dark:text-indigo-400">
+                                      🗣️ {q.pronunciation_gujarati}
+                                    </span>
+                                  </div>
+                                )}
+                                <span className="text-xs font-extrabold text-indigo-600 dark:text-indigo-400 block leading-tight">
+                                  {q.english}
                                 </span>
                               </div>
                             )}
-                            <span className="text-xs font-extrabold text-indigo-600 dark:text-indigo-400 block leading-tight">
-                              {q.english}
-                            </span>
-                          </div>
-
-                          {/* Hidden Hint Badge (positioned absolutely inside container, fades out smoothly on hover) */}
-                          <div className="absolute inset-y-0 left-0 flex items-center transition-all duration-200 opacity-100 group-hover:opacity-0 group-hover:pointer-events-none select-none">
-                            <span className="inline-flex items-center gap-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20 px-2.5 py-1 text-[11px] font-extrabold text-indigo-600 dark:text-indigo-400 whitespace-nowrap">
-                              <EyeOff className="h-3.5 w-3.5 text-indigo-500 shrink-0" />
-                              <span>Hover to reveal</span>
-                            </span>
                           </div>
                         </div>
-                      ) : (
-                        <div className="flex flex-col gap-1 mt-1">
-                          {q.pronunciation_gujarati && (
-                            <div className="inline-flex">
-                              <span className="inline-flex items-center rounded-md bg-indigo-500/10 border border-indigo-500/20 px-2 py-0.5 text-[11px] font-extrabold text-indigo-600 dark:text-indigo-400">
-                                🗣️ {q.pronunciation_gujarati}
-                              </span>
-                            </div>
-                          )}
-                          <span className="text-xs font-extrabold text-indigo-600 dark:text-indigo-400 block leading-tight">
-                            {q.english}
+
+                        <div className="flex items-center gap-2 shrink-0 ml-2">
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              speakWord(q.english);
+                            }}
+                            title="Listen Audio Pronunciation"
+                            className="h-9 w-9 rounded-full bg-indigo-600 text-white flex items-center justify-center hover:bg-indigo-700 transition-colors shadow-md shrink-0"
+                          >
+                            <Volume2 className="h-4 w-4" />
+                          </button>
+                          <span className="text-xs font-extrabold text-muted-foreground group-hover:text-indigo-600 transition-colors">
+                            Details ➔
                           </span>
                         </div>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        speakWord(q.english);
-                      }}
-                      title="Listen Audio Pronunciation"
-                      className="h-9 w-9 rounded-full bg-indigo-600 text-white flex items-center justify-center hover:bg-indigo-700 transition-colors shadow-md shrink-0"
-                    >
-                      <Volume2 className="h-4 w-4" />
-                    </button>
-                    <span className="text-xs font-extrabold text-muted-foreground group-hover:text-indigo-600 transition-colors">
-                      Details ➔
-                    </span>
-                  </div>
+                      </div>
+                    );
+                  })}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
 
           {/* Start Exam Primary CTA */}
@@ -1104,6 +1213,11 @@ export function VocabularyPracticeView({
                             <span className="text-xl sm:text-2xl font-black text-foreground tracking-wide block">
                               {q.gujarati}
                             </span>
+                            {q.category && (
+                              <span className="inline-flex items-center gap-1 rounded-md bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 text-[11px] font-black text-amber-700 dark:text-amber-300">
+                                🏷️ {q.category}
+                              </span>
+                            )}
                             {q.pronunciation_gujarati && (!hidePronunciationInExam || itemStatus === "correct" || itemStatus === "revealed") && (
                               <span className="inline-flex items-center rounded-md bg-purple-500/10 border border-purple-500/20 px-2 py-0.5 text-[11px] font-extrabold text-purple-600 dark:text-purple-400">
                                 🗣️ {q.pronunciation_gujarati}

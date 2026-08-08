@@ -1,0 +1,316 @@
+{
+  "relatives_section": [
+    {
+      "english": "Uncle",
+      "pronunciation_gujarati": "અંકલ",
+      "meaning_gujarati": "કાકા",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Aunt",
+      "pronunciation_gujarati": "આંટ",
+      "meaning_gujarati": "કાકી",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Father",
+      "pronunciation_gujarati": "ફાધર",
+      "meaning_gujarati": "પપ્પા",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Mother",
+      "pronunciation_gujarati": "મધર",
+      "meaning_gujarati": "મમ્મી",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Brother",
+      "pronunciation_gujarati": "બ્રધર",
+      "meaning_gujarati": "ભાઈ",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Sister",
+      "pronunciation_gujarati": "સિસ્ટર",
+      "meaning_gujarati": "બહેન",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Husband",
+      "pronunciation_gujarati": "હસ્બન્ડ",
+      "meaning_gujarati": "પતિ",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Wife",
+      "pronunciation_gujarati": "વાઈફ",
+      "meaning_gujarati": "પત્ની",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Son",
+      "pronunciation_gujarati": "સન",
+      "meaning_gujarati": "પુત્ર",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Daughter",
+      "pronunciation_gujarati": "ડોટર",
+      "meaning_gujarati": "પુત્રી",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Son-in-law",
+      "pronunciation_gujarati": "સન-ઈન-લો",
+      "meaning_gujarati": "જમાઈ",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Daughter-in-law",
+      "pronunciation_gujarati": "ડોટર ઈન લો",
+      "meaning_gujarati": "પુત્રવધુ",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Sister-in-law",
+      "pronunciation_gujarati": "સિસ્ટર-ઈન-લો",
+      "meaning_gujarati": "ભાભી, દેરાણી, જેઠાણી",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Brother-in-law",
+      "pronunciation_gujarati": "બ્રધર-ઈન-લો",
+      "meaning_gujarati": "દિયર, જેઠ, સાળો",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Mother-in-law",
+      "pronunciation_gujarati": "મધર-ઈન-લો",
+      "meaning_gujarati": "સાસુ",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Father-in-law",
+      "pronunciation_gujarati": "ફાધર-ઈન-લો",
+      "meaning_gujarati": "સાસરા",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Maternal uncle",
+      "pronunciation_gujarati": "મેટરનલ અંકલ",
+      "meaning_gujarati": "મામા",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Maternal aunt",
+      "pronunciation_gujarati": "મેટરનલ આંટ",
+      "meaning_gujarati": "મામી",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Paternal aunt",
+      "pronunciation_gujarati": "પેટર્નલ આંટ",
+      "meaning_gujarati": "ફઈ",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Paternal uncle",
+      "pronunciation_gujarati": "પેટર્નલ અંકલ",
+      "meaning_gujarati": "ફુઆ",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Adopted son",
+      "pronunciation_gujarati": "એડોપ્ટેડ સન",
+      "meaning_gujarati": "દત્તક પુત્ર",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Adopted daughter",
+      "pronunciation_gujarati": "એડોપ્ટેડ ડોટર",
+      "meaning_gujarati": "દત્તક પુત્રી",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Grand father",
+      "pronunciation_gujarati": "ગ્રાન્ડ ફાધર",
+      "meaning_gujarati": "દાદા",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Grand mother",
+      "pronunciation_gujarati": "ગ્રાન્ડ મધર",
+      "meaning_gujarati": "દાદી",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Grand son",
+      "pronunciation_gujarati": "ગ્રાન્ડ સન",
+      "meaning_gujarati": "પૌત્ર",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Grand daughter",
+      "pronunciation_gujarati": "ગ્રાન્ડ ડોટર",
+      "meaning_gujarati": "પૌત્રી",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Niece",
+      "pronunciation_gujarati": "નીસ",
+      "meaning_gujarati": "ભત્રીજી",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Nephew",
+      "pronunciation_gujarati": "નેવ્યુ",
+      "meaning_gujarati": "ભત્રીજો",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Cousin",
+      "pronunciation_gujarati": "કઝીન",
+      "meaning_gujarati": "પિત્રાઈ ભાઈ/બહેન",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Step father",
+      "pronunciation_gujarati": "સ્ટેપ ફાધર",
+      "meaning_gujarati": "સાવકા પિતા",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Step mother",
+      "pronunciation_gujarati": "સ્ટેપ મધર",
+      "meaning_gujarati": "સાવકા માં",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Fiance",
+      "pronunciation_gujarati": "ફિયાન્સ",
+      "meaning_gujarati": "(પુરુષ) મંગેતર",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Fiancée",
+      "pronunciation_gujarati": "ફિયાન્સી",
+      "meaning_gujarati": "(સ્ત્રી) મંગેતર",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Groom",
+      "pronunciation_gujarati": "ગ્રુમ",
+      "meaning_gujarati": "દુલ્હો",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Bride",
+      "pronunciation_gujarati": "બ્રાઈડ",
+      "meaning_gujarati": "દુલ્હન",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Widow",
+      "pronunciation_gujarati": "વિડો",
+      "meaning_gujarati": "વિધવા",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Widower",
+      "pronunciation_gujarati": "વિડોવાર",
+      "meaning_gujarati": "વિધુર (પુરુષ)",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Heir",
+      "pronunciation_gujarati": "હેઅર",
+      "meaning_gujarati": "વારસદાર",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Mate",
+      "pronunciation_gujarati": "મેટ",
+      "meaning_gujarati": "સાથીદાર",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Friend",
+      "pronunciation_gujarati": "ફ્રેન્ડ",
+      "meaning_gujarati": "મિત્ર",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Neighbour",
+      "pronunciation_gujarati": "નેબર",
+      "meaning_gujarati": "પડોશી",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Tenant",
+      "pronunciation_gujarati": "ટેનન્ટ",
+      "meaning_gujarati": "ભાડુઆત",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Servant",
+      "pronunciation_gujarati": "સર્વન્ટ",
+      "meaning_gujarati": "નોકર",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Guest",
+      "pronunciation_gujarati": "ગેસ્ટ",
+      "meaning_gujarati": "મહેમાન",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Host",
+      "pronunciation_gujarati": "હોસ્ટ",
+      "meaning_gujarati": "યજમાન",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Guardian",
+      "pronunciation_gujarati": "ગાર્ડીયન",
+      "meaning_gujarati": "વાલી",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Disciple",
+      "pronunciation_gujarati": "ડીસીપલ",
+      "meaning_gujarati": "શિષ્ય",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Colleague",
+      "pronunciation_gujarati": "કલીગ",
+      "meaning_gujarati": "સહકાર્યકર",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Late",
+      "pronunciation_gujarati": "લેટ",
+      "meaning_gujarati": "ગુજરેલા(મૃત્યુ પામેલ)",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Miss",
+      "pronunciation_gujarati": "મીસ",
+      "meaning_gujarati": "કુમારી",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Mister",
+      "pronunciation_gujarati": "મીસ્ટર",
+      "meaning_gujarati": "શ્રીમાન",
+      "category": "Relatives – સગાસંબંધીઓ"
+    },
+    {
+      "english": "Mrs.",
+      "pronunciation_gujarati": "મીસીસ",
+      "meaning_gujarati": "શ્રીમતી",
+      "category": "Relatives – સગાસંબંધીઓ"
+    }
+  ]
+}
