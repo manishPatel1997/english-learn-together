@@ -1,0 +1,46 @@
+{
+  "disasters_and_epidemics_section": [
+    {
+      "english": "Drought",
+      "pronunciation_gujarati": "ડ્રોટ",
+      "meaning_gujarati": "દુકાળ",
+      "category": "5. Disasters & Epidemics – આપત્તિઓ અને રોગચાળો"
+    },
+    {
+      "english": "Flood",
+      "pronunciation_gujarati": "ફલડ",
+      "meaning_gujarati": "પૂર",
+      "category": "5. Disasters & Epidemics – આપત્તિઓ અને રોગચાળો"
+    },
+    {
+      "english": "Famine",
+      "pronunciation_gujarati": "ફેમાઈન",
+      "meaning_gujarati": "ભૂખમરો (સુકો દુકાળ)",
+      "category": "5. Disasters & Epidemics – આપત્તિઓ અને રોગચાળો"
+    },
+    {
+      "english": "Hail",
+      "pronunciation_gujarati": "હેઈલ",
+      "meaning_gujarati": "કરા",
+      "category": "5. Disasters & Epidemics – આપત્તિઓ અને રોગચાળો"
+    },
+    {
+      "english": "Epidemic",
+      "pronunciation_gujarati": "એપીડેમિક",
+      "meaning_gujarati": "રોગચાળો",
+      "category": "5. Disasters & Epidemics – આપત્તિઓ અને રોગચાળો"
+    },
+    {
+      "english": "Thunder",
+      "pronunciation_gujarati": "થંડર",
+      "meaning_gujarati": "વાદળનો ગડગડાટ",
+      "category": "5. Disasters & Epidemics – આપત્તિઓ અને રોગચાળો"
+    },
+    {
+      "english": "Flash",
+      "pronunciation_gujarati": "ફ્લેશ",
+      "meaning_gujarati": "વીજળીનો કડાકો",
+      "category": "5. Disasters & Epidemics – આપત્તિઓ અને રોગચાળો"
+    }
+  ]
+}

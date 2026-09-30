@@ -5,7 +5,7 @@ import { authenticateToken, AuthenticatedRequest } from '../middleware/auth';
 
 const router = Router();
 
-const SECTION_ORDER = ['section1', 'section2', 'section3', 'section4', 'section5'];
+const SECTION_ORDER = ['section1', 'section2', 'section3', 'section4', 'section5', 'section6', 'section7', 'section8'];
 const UNLOCK_THRESHOLD_PERCENT = 80;
 
 const RecordProgressSchema = z.object({

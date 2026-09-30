@@ -48,6 +48,12 @@ export interface VocabQuestion {
   example?: string;
   sectionId?: string;
   sectionName?: string;
+  v1_base_form?: string;
+  v1_pronunciation_gujarati?: string;
+  v2_past_simple?: string;
+  v2_pronunciation_gujarati?: string;
+  v3_past_participle?: string;
+  v3_pronunciation_gujarati?: string;
 }
 
 interface VocabularyPracticeViewProps {
@@ -319,6 +325,26 @@ export function VocabularyPracticeView({
     }
   }, [currentIndex, status, pageMode, examViewMode]);
 
+  const checkVocabAnswer = (rawUser: string, question: VocabQuestion): boolean => {
+    if (!rawUser) return false;
+    const formattedUser = rawUser.trim().toLowerCase();
+    const formattedCorrect = question.english.trim().toLowerCase();
+
+    if (formattedUser === formattedCorrect) return true;
+
+    if (question.v1_base_form) {
+      const v1 = question.v1_base_form.trim().toLowerCase();
+      const v2 = (question.v2_past_simple || "").trim().toLowerCase();
+      const v3 = (question.v3_past_participle || "").trim().toLowerCase();
+
+      if (formattedUser === v1 || formattedUser === v2 || formattedUser === v3) return true;
+      if (formattedUser === `${v1} ${v2} ${v3}` || formattedUser === `${v1}/${v2}/${v3}` || formattedUser === `${v1}, ${v2}, ${v3}`) return true;
+      if (formattedUser.includes(v1) && (v2 ? formattedUser.includes(v2) : true)) return true;
+    }
+
+    return false;
+  };
+
   const handleListCheckAnswer = React.useCallback(
     (index: number, autoAdvance: boolean = true) => {
       const question = examQuestions[index];
@@ -327,10 +353,7 @@ export function VocabularyPracticeView({
       const rawUser = listUserAnswers[index] || "";
       if (!rawUser.trim()) return;
 
-      const formattedUser = rawUser.trim().toLowerCase();
-      const formattedCorrect = question.english.trim().toLowerCase();
-
-      if (formattedUser === formattedCorrect) {
+      if (checkVocabAnswer(rawUser, question)) {
         const isAlreadyCorrect = listStatuses[index] === "correct";
 
         setListStatuses((prev) => ({ ...prev, [index]: "correct" }));
@@ -530,10 +553,7 @@ export function VocabularyPracticeView({
   const checkAnswer = () => {
     if (!userAnswer.trim() || status === "correct") return;
 
-    const formattedUser = userAnswer.trim().toLowerCase();
-    const formattedCorrect = currentQuestion.english.trim().toLowerCase();
-
-    if (formattedUser === formattedCorrect) {
+    if (checkVocabAnswer(userAnswer, currentQuestion)) {
       // Correct!
       setStatus("correct");
       setBtnState("success");
@@ -1055,7 +1075,27 @@ export function VocabularyPracticeView({
                               {q.gujarati}
                             </span>
 
-                            {hideEnglishOnStudy ? (
+                             {q.v1_base_form ? (
+                              <div className="mt-2 space-y-1 select-none">
+                                <div className="grid grid-cols-3 gap-1 rounded-xl bg-indigo-500/10 p-2 border border-indigo-500/20 text-center">
+                                  <div className="space-y-0.5">
+                                    <span className="text-[9px] font-black uppercase text-purple-600 dark:text-purple-400 block">V1 (Base)</span>
+                                    <span className="text-xs font-black text-foreground block">{q.v1_base_form}</span>
+                                    <span className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 block">🗣️ {q.v1_pronunciation_gujarati}</span>
+                                  </div>
+                                  <div className="space-y-0.5 border-x border-indigo-500/20 px-0.5">
+                                    <span className="text-[9px] font-black uppercase text-purple-600 dark:text-purple-400 block">V2 (Past)</span>
+                                    <span className="text-xs font-black text-foreground block">{q.v2_past_simple}</span>
+                                    <span className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 block">🗣️ {q.v2_pronunciation_gujarati}</span>
+                                  </div>
+                                  <div className="space-y-0.5">
+                                    <span className="text-[9px] font-black uppercase text-purple-600 dark:text-purple-400 block">V3 (Participle)</span>
+                                    <span className="text-xs font-black text-foreground block">{q.v3_past_participle}</span>
+                                    <span className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 block">🗣️ {q.v3_pronunciation_gujarati}</span>
+                                  </div>
+                                </div>
+                              </div>
+                            ) : hideEnglishOnStudy ? (
                               <div className="relative w-full mt-1">
                                 <div className="flex flex-col gap-1 transition-all duration-200 opacity-0 group-hover:opacity-100 select-none">
                                   {q.pronunciation_gujarati && (
@@ -1171,32 +1211,99 @@ export function VocabularyPracticeView({
                 )}
               </div>
 
-              {/* English Spelling & Audio Pronunciation */}
-              <div className="rounded-2xl border border-indigo-500/30 bg-indigo-500/10 p-6 space-y-4">
-                <span className="text-xs font-extrabold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest block">
-                  English Spelling to Remember
-                </span>
+              {/* Verb Forms Breakdown or English Spelling */}
+              {studyQuestion.v1_base_form ? (
+                <div className="rounded-2xl border border-indigo-500/30 bg-indigo-500/10 p-5 space-y-4">
+                  <span className="text-xs font-extrabold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest block text-center">
+                    Verb Forms (V1 / V2 / V3) Breakdown
+                  </span>
 
-                <div className="flex items-center justify-center gap-3">
-                  <h1 className="text-3xl font-black text-indigo-600 dark:text-indigo-300">
-                    {studyQuestion.english}
-                  </h1>
-                  <button
-                    type="button"
-                    onClick={() => speakWord(studyQuestion.english)}
-                    title="Listen Pronunciation"
-                    className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-white hover:bg-indigo-700 shadow-md transition-colors"
-                  >
-                    <Volume2 className="h-5 w-5" />
-                  </button>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    {/* V1 Base Form */}
+                    <div className="rounded-xl border border-indigo-500/20 bg-background/90 p-3 space-y-1.5 text-center shadow-xs">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-purple-600 dark:text-purple-400 block">
+                        V1 (Base Form)
+                      </span>
+                      <h4 className="text-xl font-black text-foreground">{studyQuestion.v1_base_form}</h4>
+                      <p className="text-xs font-extrabold text-indigo-600 dark:text-indigo-400">
+                        🗣️ {studyQuestion.v1_pronunciation_gujarati}
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => speakWord(studyQuestion.v1_base_form!)}
+                        className="inline-flex items-center gap-1 rounded-lg bg-indigo-600 text-white px-3 py-1 text-xs font-extrabold hover:bg-indigo-700 transition-colors shadow-xs mt-1"
+                      >
+                        <Volume2 className="h-3.5 w-3.5" />
+                        <span>Listen</span>
+                      </button>
+                    </div>
+
+                    {/* V2 Past Simple */}
+                    <div className="rounded-xl border border-indigo-500/20 bg-background/90 p-3 space-y-1.5 text-center shadow-xs">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-purple-600 dark:text-purple-400 block">
+                        V2 (Past Simple)
+                      </span>
+                      <h4 className="text-xl font-black text-foreground">{studyQuestion.v2_past_simple}</h4>
+                      <p className="text-xs font-extrabold text-indigo-600 dark:text-indigo-400">
+                        🗣️ {studyQuestion.v2_pronunciation_gujarati}
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => speakWord(studyQuestion.v2_past_simple!)}
+                        className="inline-flex items-center gap-1 rounded-lg bg-indigo-600 text-white px-3 py-1 text-xs font-extrabold hover:bg-indigo-700 transition-colors shadow-xs mt-1"
+                      >
+                        <Volume2 className="h-3.5 w-3.5" />
+                        <span>Listen</span>
+                      </button>
+                    </div>
+
+                    {/* V3 Past Participle */}
+                    <div className="rounded-xl border border-indigo-500/20 bg-background/90 p-3 space-y-1.5 text-center shadow-xs">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-purple-600 dark:text-purple-400 block">
+                        V3 (Past Participle)
+                      </span>
+                      <h4 className="text-xl font-black text-foreground">{studyQuestion.v3_past_participle}</h4>
+                      <p className="text-xs font-extrabold text-indigo-600 dark:text-indigo-400">
+                        🗣️ {studyQuestion.v3_pronunciation_gujarati}
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => speakWord(studyQuestion.v3_past_participle!)}
+                        className="inline-flex items-center gap-1 rounded-lg bg-indigo-600 text-white px-3 py-1 text-xs font-extrabold hover:bg-indigo-700 transition-colors shadow-xs mt-1"
+                      >
+                        <Volume2 className="h-3.5 w-3.5" />
+                        <span>Listen</span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
+              ) : (
+                <div className="rounded-2xl border border-indigo-500/30 bg-indigo-500/10 p-6 space-y-4">
+                  <span className="text-xs font-extrabold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest block">
+                    English Spelling to Remember
+                  </span>
 
-                {studyQuestion.phonetic && (
-                  <p className="text-xs italic text-indigo-700 dark:text-indigo-300 font-semibold">
-                    Phonetic: "{studyQuestion.phonetic}"
-                  </p>
-                )}
-              </div>
+                  <div className="flex items-center justify-center gap-3">
+                    <h1 className="text-3xl font-black text-indigo-600 dark:text-indigo-300">
+                      {studyQuestion.english}
+                    </h1>
+                    <button
+                      type="button"
+                      onClick={() => speakWord(studyQuestion.english)}
+                      title="Listen Pronunciation"
+                      className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-white hover:bg-indigo-700 shadow-md transition-colors"
+                    >
+                      <Volume2 className="h-5 w-5" />
+                    </button>
+                  </div>
+
+                  {studyQuestion.phonetic && (
+                    <p className="text-xs italic text-indigo-700 dark:text-indigo-300 font-semibold">
+                      Phonetic: "{studyQuestion.phonetic}"
+                    </p>
+                  )}
+                </div>
+              )}
 
               {/* Example Sentence */}
               {studyQuestion.example && (
@@ -1749,7 +1856,19 @@ const VocabExamListItem = React.memo(
                   🏷️ {q.category}
                 </span>
               )}
-              {q.pronunciation_gujarati && (!hidePronunciationInExam || itemStatus === "correct" || itemStatus === "revealed") && (
+              {q.v1_base_form ? (
+                <div className="flex items-center gap-1.5 flex-wrap pt-0.5">
+                  <span className="inline-flex items-center gap-1 rounded-md bg-purple-500/10 border border-purple-500/20 px-2 py-0.5 text-[11px] font-extrabold text-purple-600 dark:text-purple-400">
+                    ⚡ V1: {q.v1_base_form} ({q.v1_pronunciation_gujarati})
+                  </span>
+                  <span className="inline-flex items-center gap-1 rounded-md bg-indigo-500/10 border border-indigo-500/20 px-2 py-0.5 text-[11px] font-extrabold text-indigo-600 dark:text-indigo-400">
+                    V2: {q.v2_past_simple} ({q.v2_pronunciation_gujarati})
+                  </span>
+                  <span className="inline-flex items-center gap-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 text-[11px] font-extrabold text-emerald-600 dark:text-emerald-400">
+                    V3: {q.v3_past_participle} ({q.v3_pronunciation_gujarati})
+                  </span>
+                </div>
+              ) : q.pronunciation_gujarati && (!hidePronunciationInExam || itemStatus === "correct" || itemStatus === "revealed") && (
                 <span className="inline-flex items-center rounded-md bg-purple-500/10 border border-purple-500/20 px-2 py-0.5 text-[11px] font-extrabold text-purple-600 dark:text-purple-400">
                   🗣️ {q.pronunciation_gujarati}
                 </span>

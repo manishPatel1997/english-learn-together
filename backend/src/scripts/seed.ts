@@ -13,6 +13,9 @@ function seedData() {
   const phoneticsPath = path.join(dataDir, 'phonetics_section.json');
   const relativesPath = path.join(dataDir, 'relatives_section.json');
   const profPath = path.join(dataDir, 'professionals_section.json');
+  const verbsPath = path.join(dataDir, 'verbs_section.json');
+  const animalsPath = path.join(dataDir, 'animals_and_birds_section.json');
+  const disastersPath = path.join(dataDir, 'disasters_and_epidemics_section.json');
   const sentencesPath = path.join(dataDir, 'sentences.json');
 
   const allVocab: VocabEntity[] = [];
@@ -112,8 +115,72 @@ function seedData() {
     });
   }
 
+  if (fs.existsSync(verbsPath)) {
+    const raw = JSON.parse(fs.readFileSync(verbsPath, 'utf-8'));
+    const items = raw.verbs_section || [];
+    items.forEach((item: any, index: number) => {
+      allVocab.push({
+        id: `verb-${item.id || index + 1}`,
+        gujarati: item.gujarati,
+        english: item.v1_base_form,
+        pronunciation_gujarati: item.v1_pronunciation_gujarati,
+        phonetic: `V1: ${item.v1_base_form} (${item.v1_pronunciation_gujarati}) | V2: ${item.v2_past_simple} (${item.v2_pronunciation_gujarati}) | V3: ${item.v3_past_participle} (${item.v3_pronunciation_gujarati})`,
+        english_pronunciation: item.v1_base_form,
+        category: '3. Verbs – ક્રિયાપદો (V1, V2, V3)',
+        difficulty: 'Easy',
+        example: `V1: ${item.v1_base_form} (${item.v1_pronunciation_gujarati}) | V2: ${item.v2_past_simple} (${item.v2_pronunciation_gujarati}) | V3: ${item.v3_past_participle} (${item.v3_pronunciation_gujarati})`,
+        sectionId: 'section6',
+        sectionName: 'Section 6: 3. Verbs – ક્રિયાપદો (V1, V2, V3)',
+        v1_base_form: item.v1_base_form,
+        v1_pronunciation_gujarati: item.v1_pronunciation_gujarati,
+        v2_past_simple: item.v2_past_simple,
+        v2_pronunciation_gujarati: item.v2_pronunciation_gujarati,
+        v3_past_participle: item.v3_past_participle,
+        v3_pronunciation_gujarati: item.v3_pronunciation_gujarati,
+      } as any);
+    });
+  }
+
+  if (fs.existsSync(animalsPath)) {
+    const raw = JSON.parse(fs.readFileSync(animalsPath, 'utf-8'));
+    const items = raw.animals_and_birds_section || [];
+    items.forEach((item: any, index: number) => {
+      allVocab.push({
+        id: `animal-${index + 1}`,
+        gujarati: item.meaning_gujarati || item.english,
+        english: item.english,
+        pronunciation_gujarati: item.pronunciation_gujarati,
+        phonetic: item.pronunciation_gujarati,
+        english_pronunciation: item.english,
+        category: item.category || '4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ',
+        difficulty: 'Easy',
+        sectionId: 'section7',
+        sectionName: 'Section 7: 4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ',
+      });
+    });
+  }
+
+  if (fs.existsSync(disastersPath)) {
+    const raw = JSON.parse(fs.readFileSync(disastersPath, 'utf-8'));
+    const items = raw.disasters_and_epidemics_section || [];
+    items.forEach((item: any, index: number) => {
+      allVocab.push({
+        id: `disaster-${index + 1}`,
+        gujarati: item.meaning_gujarati || item.english,
+        english: item.english,
+        pronunciation_gujarati: item.pronunciation_gujarati,
+        phonetic: item.pronunciation_gujarati,
+        english_pronunciation: item.english,
+        category: item.category || '5. Disasters & Epidemics – આપત્તિઓ અને રોગચાળો',
+        difficulty: 'Easy',
+        sectionId: 'section8',
+        sectionName: 'Section 8: 5. Disasters & Epidemics – આપત્તિઓ અને રોગચાળો',
+      });
+    });
+  }
+
   db.setVocabulary(allVocab);
-  console.log(`✅ Seeded ${allVocab.length} vocabulary items across 5 sections.`);
+  console.log(`✅ Seeded ${allVocab.length} vocabulary items across 8 sections.`);
 
   // Sentences Seeding (handles object with _order or array format)
   const allSentences: SentenceEntity[] = [];

@@ -1,0 +1,204 @@
+{
+  "verbs_section": [
+    {
+      "id": 1,
+      "gujarati": "ખાવું",
+      "v1_base_form": "Eat",
+      "v1_pronunciation_gujarati": "ઈટ",
+      "v2_past_simple": "Ate",
+      "v2_pronunciation_gujarati": "એટ",
+      "v3_past_participle": "Eaten",
+      "v3_pronunciation_gujarati": "ઈટન"
+    },
+    {
+      "id": 2,
+      "gujarati": "પીવું",
+      "v1_base_form": "Drink",
+      "v1_pronunciation_gujarati": "ડ્રિંક",
+      "v2_past_simple": "Drank",
+      "v2_pronunciation_gujarati": "ડ્રેંક",
+      "v3_past_participle": "Drunk",
+      "v3_pronunciation_gujarati": "ડ્રંક"
+    },
+    {
+      "id": 3,
+      "gujarati": "રમવું",
+      "v1_base_form": "Play",
+      "v1_pronunciation_gujarati": "પ્લે",
+      "v2_past_simple": "Played",
+      "v2_pronunciation_gujarati": "પ્લેડ",
+      "v3_past_participle": "Played",
+      "v3_pronunciation_gujarati": "પ્લેડ"
+    },
+    {
+      "id": 4,
+      "gujarati": "બનાવવું",
+      "v1_base_form": "Make",
+      "v1_pronunciation_gujarati": "મેક",
+      "v2_past_simple": "Made",
+      "v2_pronunciation_gujarati": "મેડ",
+      "v3_past_participle": "Made",
+      "v3_pronunciation_gujarati": "મેડ"
+    },
+    {
+      "id": 5,
+      "gujarati": "લખવું",
+      "v1_base_form": "Write",
+      "v1_pronunciation_gujarati": "રાઈટ",
+      "v2_past_simple": "Wrote",
+      "v2_pronunciation_gujarati": "રોટ",
+      "v3_past_participle": "Written",
+      "v3_pronunciation_gujarati": "રિટન"
+    },
+    {
+      "id": 6,
+      "gujarati": "વાંચવું",
+      "v1_base_form": "Read",
+      "v1_pronunciation_gujarati": "રીડ",
+      "v2_past_simple": "Read",
+      "v2_pronunciation_gujarati": "રેડ",
+      "v3_past_participle": "Read",
+      "v3_pronunciation_gujarati": "રેડ"
+    },
+    {
+      "id": 7,
+      "gujarati": "બોલવું",
+      "v1_base_form": "Speak",
+      "v1_pronunciation_gujarati": "સ્પીક",
+      "v2_past_simple": "Spoke",
+      "v2_pronunciation_gujarati": "સ્પોક",
+      "v3_past_participle": "Spoken",
+      "v3_pronunciation_gujarati": "સ્પોકન"
+    },
+    {
+      "id": 8,
+      "gujarati": "આવવું",
+      "v1_base_form": "Come",
+      "v1_pronunciation_gujarati": "કમ",
+      "v2_past_simple": "Came",
+      "v2_pronunciation_gujarati": "કેમ",
+      "v3_past_participle": "Come",
+      "v3_pronunciation_gujarati": "કમ"
+    },
+    {
+      "id": 9,
+      "gujarati": "જવું",
+      "v1_base_form": "Go",
+      "v1_pronunciation_gujarati": "ગો",
+      "v2_past_simple": "Went",
+      "v2_pronunciation_gujarati": "વેન્ટ",
+      "v3_past_participle": "Gone",
+      "v3_pronunciation_gujarati": "ગોન"
+    },
+    {
+      "id": 10,
+      "gujarati": "દોડવું",
+      "v1_base_form": "Run",
+      "v1_pronunciation_gujarati": "રન",
+      "v2_past_simple": "Ran",
+      "v2_pronunciation_gujarati": "રેન",
+      "v3_past_participle": "Run",
+      "v3_pronunciation_gujarati": "રન"
+    },
+    {
+      "id": 11,
+      "gujarati": "જોવું",
+      "v1_base_form": "Look",
+      "v1_pronunciation_gujarati": "લુક",
+      "v2_past_simple": "Looked",
+      "v2_pronunciation_gujarati": "લુક્ડ",
+      "v3_past_participle": "Looked",
+      "v3_pronunciation_gujarati": "લુક્ડ"
+    },
+    {
+      "id": 12,
+      "gujarati": "જોવું",
+      "v1_base_form": "See",
+      "v1_pronunciation_gujarati": "સી",
+      "v2_past_simple": "Saw",
+      "v2_pronunciation_gujarati": "સો",
+      "v3_past_participle": "Seen",
+      "v3_pronunciation_gujarati": "સીન"
+    },
+    {
+      "id": 13,
+      "gujarati": "જોવું",
+      "v1_base_form": "Watch",
+      "v1_pronunciation_gujarati": "વોચ",
+      "v2_past_simple": "Watched",
+      "v2_pronunciation_gujarati": "વોચ્ડ",
+      "v3_past_participle": "Watched",
+      "v3_pronunciation_gujarati": "વોચ્ડ"
+    },
+    {
+      "id": 14,
+      "gujarati": "ખોલવું",
+      "v1_base_form": "Open",
+      "v1_pronunciation_gujarati": "ઓપન",
+      "v2_past_simple": "Opened",
+      "v2_pronunciation_gujarati": "ઓપન્ડ",
+      "v3_past_participle": "Opened",
+      "v3_pronunciation_gujarati": "ઓપન્ડ"
+    },
+    {
+      "id": 15,
+      "gujarati": "બંધ કરવું",
+      "v1_base_form": "Close",
+      "v1_pronunciation_gujarati": "ક્લોઝ",
+      "v2_past_simple": "Closed",
+      "v2_pronunciation_gujarati": "ક્લોઝ્ડ",
+      "v3_past_participle": "Closed",
+      "v3_pronunciation_gujarati": "ક્લોઝ્ડ"
+    },
+    {
+      "id": 16,
+      "gujarati": "સાફ કરવું",
+      "v1_base_form": "Clean",
+      "v1_pronunciation_gujarati": "ક્લીન",
+      "v2_past_simple": "Cleaned",
+      "v2_pronunciation_gujarati": "ક્લીન્ડ",
+      "v3_past_participle": "Cleaned",
+      "v3_pronunciation_gujarati": "ક્લીન્ડ"
+    },
+    {
+      "id": 17,
+      "gujarati": "પીવું",
+      "v1_base_form": "Drink",
+      "v1_pronunciation_gujarati": "ડ્રિંક",
+      "v2_past_simple": "Drank",
+      "v2_pronunciation_gujarati": "ડ્રેંક",
+      "v3_past_participle": "Drunk",
+      "v3_pronunciation_gujarati": "ડ્રંક"
+    },
+    {
+      "id": 18,
+      "gujarati": "પાણી પાવું",
+      "v1_base_form": "Water",
+      "v1_pronunciation_gujarati": "વોટર",
+      "v2_past_simple": "Watered",
+      "v2_pronunciation_gujarati": "વોટર્ડ",
+      "v3_past_participle": "Watered",
+      "v3_pronunciation_gujarati": "વોટર્ડ"
+    },
+    {
+      "id": 19,
+      "gujarati": "ખીજવવું",
+      "v1_base_form": "Scold",
+      "v1_pronunciation_gujarati": "સ્કોલ્ડ",
+      "v2_past_simple": "Scolded",
+      "v2_pronunciation_gujarati": "સ્કોલ્ડેડ",
+      "v3_past_participle": "Scolded",
+      "v3_pronunciation_gujarati": "સ્કોલ્ડેડ"
+    },
+    {
+      "id": 20,
+      "gujarati": "ખીજવવું / મશ્કરી કરવી",
+      "v1_base_form": "Tease",
+      "v1_pronunciation_gujarati": "ટીઝ",
+      "v2_past_simple": "Teased",
+      "v2_pronunciation_gujarati": "ટીઝ્ડ",
+      "v3_past_participle": "Teased",
+      "v3_pronunciation_gujarati": "ટીઝ્ડ"
+    }
+  ]
+}

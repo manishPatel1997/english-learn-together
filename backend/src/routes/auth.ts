@@ -24,6 +24,9 @@ const ALL_DEFAULT_ADMIN_SECTIONS = [
   'section3',
   'section4',
   'section5',
+  'section6',
+  'section7',
+  'section8',
   'all',
   'who_section',
   'what_section',
@@ -52,7 +55,8 @@ router.post('/register', async (req: Request, res: Response) => {
     }
 
     const { name, email, password } = parseResult.data;
-    const existingUser = db.findUserByEmail(email);
+    const normalizedEmail = email.trim().toLowerCase();
+    const existingUser = db.findUserByEmail(normalizedEmail);
 
     if (existingUser) {
       return res.status(400).json({ success: false, message: 'An account with this email already exists.' });
@@ -67,7 +71,7 @@ router.post('/register', async (req: Request, res: Response) => {
     // Admin bootstrap: prefer explicit ADMIN_EMAIL env var over first-user heuristic.
     // In production, set ADMIN_EMAIL=you@example.com in your environment.
     const adminEmail = (process.env.ADMIN_EMAIL || '').trim().toLowerCase();
-    const isAdminByEmail = adminEmail !== '' && email.toLowerCase() === adminEmail;
+    const isAdminByEmail = adminEmail !== '' && normalizedEmail === adminEmail;
     const isAdminByFirstUser = isFirstUser && adminEmail === '';
 
     if (isFirstUser && adminEmail === '') {
@@ -78,7 +82,7 @@ router.post('/register', async (req: Request, res: Response) => {
 
     const newUser: UserEntity = {
       id: `user_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
-      email,
+      email: normalizedEmail,
       passwordHash,
       name,
       role,
@@ -117,7 +121,8 @@ router.post('/login', async (req: Request, res: Response) => {
     }
 
     const { email, password } = parseResult.data;
-    const user = db.findUserByEmail(email);
+    const normalizedEmail = email.trim().toLowerCase();
+    const user = db.findUserByEmail(normalizedEmail);
 
     if (!user) {
       return res.status(401).json({ success: false, message: 'Invalid email or password.' });

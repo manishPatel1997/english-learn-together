@@ -22,7 +22,8 @@ import { cn } from "@/lib/utils";
 import { useAuth } from "@/context/auth-context";
 import { ThemeLoader } from "@/components/beui/loader";
 
-const VOCAB_SECTION_KEYS = ["section1", "section2", "section3", "section4", "section5", "all"];
+const VOCAB_SECTION_KEYS = VOCABULARY_SECTIONS.map((s) => s.id);
+const VOCAB_INDIVIDUAL_KEYS = VOCABULARY_SECTIONS.filter((s) => s.id !== "all").map((s) => s.id);
 
 const SENTENCE_MODULES = [
   { id: "who_section", name: "Who Questions (કોણ)", icon: "👤", badge: "Who" },
@@ -59,7 +60,7 @@ export function AdminView() {
           const rawPerms = u.unlockedSections || ["section1"];
           const set = new Set(rawPerms);
           if (set.has("all")) {
-            ["section1", "section2", "section3", "section4", "section5", "all"].forEach((k) => set.add(k));
+            VOCAB_SECTION_KEYS.forEach((k) => set.add(k));
           }
           if (set.has("sentence_all")) {
             SENTENCE_SECTION_KEYS.forEach((k) => set.add(k));
@@ -90,7 +91,7 @@ export function AdminView() {
       // Normalize current array: if 'all' or 'sentence_all' are present, expand them
       const currentSet = new Set(current);
       if (currentSet.has("all")) {
-        ["section1", "section2", "section3", "section4", "section5", "all"].forEach((k) => currentSet.add(k));
+        VOCAB_SECTION_KEYS.forEach((k) => currentSet.add(k));
       }
       if (currentSet.has("sentence_all")) {
         SENTENCE_SECTION_KEYS.forEach((k) => currentSet.add(k));
@@ -100,9 +101,9 @@ export function AdminView() {
 
       if (sectionId === "all") {
         if (updatedSet.has("all")) {
-          ["section1", "section2", "section3", "section4", "section5", "all"].forEach((k) => updatedSet.delete(k));
+          VOCAB_SECTION_KEYS.forEach((k) => updatedSet.delete(k));
         } else {
-          ["section1", "section2", "section3", "section4", "section5", "all"].forEach((k) => updatedSet.add(k));
+          VOCAB_SECTION_KEYS.forEach((k) => updatedSet.add(k));
         }
       } else if (sectionId === "sentence_all") {
         if (updatedSet.has("sentence_all")) {
@@ -113,7 +114,7 @@ export function AdminView() {
       } else {
         if (updatedSet.has(sectionId)) {
           updatedSet.delete(sectionId);
-          if (["section1", "section2", "section3", "section4", "section5"].includes(sectionId)) {
+          if (VOCAB_INDIVIDUAL_KEYS.includes(sectionId)) {
             updatedSet.delete("all");
           }
           if (SENTENCE_SECTION_KEYS.includes(sectionId)) {
@@ -121,10 +122,10 @@ export function AdminView() {
           }
         } else {
           updatedSet.add(sectionId);
-          const hasAllFiveVocab = ["section1", "section2", "section3", "section4", "section5"].every((s) =>
+          const hasAllVocab = VOCAB_INDIVIDUAL_KEYS.every((s) =>
             updatedSet.has(s)
           );
-          if (hasAllFiveVocab) updatedSet.add("all");
+          if (hasAllVocab) updatedSet.add("all");
 
           const sentenceModuleKeysOnly = SENTENCE_SECTION_KEYS.filter((s) => s !== "sentence_all");
           const hasAllSentence = sentenceModuleKeysOnly.every((s) => updatedSet.has(s));

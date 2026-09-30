@@ -1,14 +1,14 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import authRouter from './routes/auth';
 import contentRouter from './routes/content';
 import userRouter from './routes/user';
 import settingsRouter from './routes/settings';
 import adminRouter from './routes/admin';
 import notificationsRouter from './routes/notifications';
-
-dotenv.config();
 
 // --- Startup security check ---
 // JWT_SECRET must be explicitly set. We never fall back to a hardcoded value.

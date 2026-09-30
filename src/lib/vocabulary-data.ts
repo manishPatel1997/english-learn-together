@@ -3,19 +3,28 @@ import adjectivesJson from "@/data/adjectives_section.json";
 import phoneticsJson from "@/data/phonetics_section.json";
 import relativesJson from "@/data/relatives_section.json";
 import professionalsJson from "@/data/professionals_section.json";
+import verbsJson from "@/data/verbs_section.json";
+import animalsJson from "@/data/animals_and_birds_section.json";
+import disastersJson from "@/data/disasters_and_epidemics_section.json";
 
 export interface VocabQuestion {
   id: string | number;
-  gujarati: string; // Gujarati meaning (e.g. "નવું", "આ")
-  english: string; // English word (e.g. "New", "This")
-  pronunciation_gujarati?: string; // Gujarati pronunciation (e.g. "ન્યુ", "Aa")
+  gujarati: string; // Gujarati meaning (e.g. "ખાવું", "નવું")
+  english: string; // English word (e.g. "Eat", "New")
+  pronunciation_gujarati?: string; // Gujarati pronunciation (e.g. "ઈટ", "ન્યુ")
   phonetic?: string;
   english_pronunciation?: string;
   category?: string;
   difficulty?: string;
   example?: string;
-  sectionId: "section1" | "section2" | "section3" | "section4" | "section5" | string;
+  sectionId: "section1" | "section2" | "section3" | "section4" | "section5" | "section6" | "section7" | "section8" | string;
   sectionName: string;
+  v1_base_form?: string;
+  v1_pronunciation_gujarati?: string;
+  v2_past_simple?: string;
+  v2_pronunciation_gujarati?: string;
+  v3_past_participle?: string;
+  v3_pronunciation_gujarati?: string;
 }
 
 export interface VocabSectionMeta {
@@ -113,12 +122,72 @@ const section5Items: VocabQuestion[] = ((professionalsJson as any).professionals
   })
 );
 
+// Normalize Section 6 data (verbs_section.json)
+const section6Items: VocabQuestion[] = ((verbsJson as any).verbs_section || []).map(
+  (item: any, index: number) => ({
+    id: `verb-${item.id || index + 1}`,
+    gujarati: item.gujarati,
+    english: item.v1_base_form,
+    pronunciation_gujarati: item.v1_pronunciation_gujarati,
+    phonetic: `V1: ${item.v1_base_form} (${item.v1_pronunciation_gujarati}) | V2: ${item.v2_past_simple} (${item.v2_pronunciation_gujarati}) | V3: ${item.v3_past_participle} (${item.v3_pronunciation_gujarati})`,
+    english_pronunciation: item.v1_base_form,
+    category: "3. Verbs – ક્રિયાપદો (V1, V2, V3)",
+    difficulty: "Easy",
+    example: `V1: ${item.v1_base_form} (${item.v1_pronunciation_gujarati}) | V2: ${item.v2_past_simple} (${item.v2_pronunciation_gujarati}) | V3: ${item.v3_past_participle} (${item.v3_pronunciation_gujarati})`,
+    sectionId: "section6",
+    sectionName: "Section 6: 3. Verbs – ક્રિયાપદો (V1, V2, V3)",
+    v1_base_form: item.v1_base_form,
+    v1_pronunciation_gujarati: item.v1_pronunciation_gujarati,
+    v2_past_simple: item.v2_past_simple,
+    v2_pronunciation_gujarati: item.v2_pronunciation_gujarati,
+    v3_past_participle: item.v3_past_participle,
+    v3_pronunciation_gujarati: item.v3_pronunciation_gujarati,
+  })
+);
+
+// Normalize Section 7 data (animals_and_birds_section.json)
+const section7Items: VocabQuestion[] = ((animalsJson as any).animals_and_birds_section || []).map(
+  (item: any, index: number) => ({
+    id: `animal-${index + 1}`,
+    gujarati: item.meaning_gujarati || item.english,
+    english: item.english,
+    pronunciation_gujarati: item.pronunciation_gujarati,
+    phonetic: item.pronunciation_gujarati,
+    english_pronunciation: item.english,
+    category: item.category || "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ",
+    difficulty: "Easy",
+    example: undefined,
+    sectionId: "section7",
+    sectionName: "Section 7: 4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ",
+  })
+);
+
+// Normalize Section 8 data (disasters_and_epidemics_section.json)
+const section8Items: VocabQuestion[] = ((disastersJson as any).disasters_and_epidemics_section || []).map(
+  (item: any, index: number) => ({
+    id: `disaster-${index + 1}`,
+    gujarati: item.meaning_gujarati || item.english,
+    english: item.english,
+    pronunciation_gujarati: item.pronunciation_gujarati,
+    phonetic: item.pronunciation_gujarati,
+    english_pronunciation: item.english,
+    category: item.category || "5. Disasters & Epidemics – આપત્તિઓ અને રોગચાળો",
+    difficulty: "Easy",
+    example: undefined,
+    sectionId: "section8",
+    sectionName: "Section 8: 5. Disasters & Epidemics – આપત્તિઓ અને રોગચાળો",
+  })
+);
+
 export const ALL_VOCABULARY_QUESTIONS: VocabQuestion[] = [
   ...section1Items,
   ...section2Items,
   ...section3Items,
   ...section4Items,
   ...section5Items,
+  ...section6Items,
+  ...section7Items,
+  ...section8Items,
 ];
 
 export const VOCABULARY_SECTIONS: VocabSectionMeta[] = [
@@ -178,6 +247,39 @@ export const VOCABULARY_SECTIONS: VocabSectionMeta[] = [
     icon: "💼",
   },
   {
+    id: "section6",
+    index: 6,
+    stepLabel: "Step 6",
+    name: "Section 6: 3. Verbs – ક્રિયાપદો (V1, V2, V3)",
+    shortName: "#6 Verbs",
+    badge: "Verb Forms",
+    count: section6Items.length,
+    description: "Action verbs with V1 Base, V2 Past Simple & V3 Past Participle forms and Gujarati pronunciations.",
+    icon: "⚡",
+  },
+  {
+    id: "section7",
+    index: 7,
+    stepLabel: "Step 7",
+    name: "Section 7: 4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ",
+    shortName: "#7 Animals & Birds",
+    badge: "Animals & Birds",
+    count: section7Items.length,
+    description: "Animals, birds, reptiles, insects, and wildlife vocabulary with Gujarati meanings & pronunciations.",
+    icon: "🦁",
+  },
+  {
+    id: "section8",
+    index: 8,
+    stepLabel: "Step 8",
+    name: "Section 8: 5. Disasters & Epidemics – આપત્તિઓ અને રોગચાળો",
+    shortName: "#8 Disasters",
+    badge: "Disasters",
+    count: section8Items.length,
+    description: "Natural disasters, weather events, and epidemics terminology with Gujarati meanings.",
+    icon: "🌪️",
+  },
+  {
     id: "all",
     index: 0,
     stepLabel: "All",
@@ -185,7 +287,7 @@ export const VOCABULARY_SECTIONS: VocabSectionMeta[] = [
     shortName: "All Sections",
     badge: "Combined",
     count: ALL_VOCABULARY_QUESTIONS.length,
-    description: "Practice all words across Section 1, 2, 3, 4, and 5 combined.",
+    description: "Practice all words across Section 1 to Section 8 combined.",
     icon: "🌐",
   },
 ];
@@ -205,6 +307,15 @@ export function getVocabularyQuestions(sectionId: string = "section1"): VocabQue
   }
   if (sectionId === "section5") {
     return section5Items;
+  }
+  if (sectionId === "section6") {
+    return section6Items;
+  }
+  if (sectionId === "section7") {
+    return section7Items;
+  }
+  if (sectionId === "section8") {
+    return section8Items;
   }
   // Default to section 1
   return section1Items;

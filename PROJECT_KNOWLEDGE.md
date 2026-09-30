@@ -683,6 +683,9 @@ Static JSON files live in `src/data/`:
 | `phonetics_section.json` | section3 | Phonetics & sound rules |
 | `relatives_section.json` | section4 | Family relations |
 | `professionals_section.json` | section5 | Professions & occupations |
+| `verbs_section.json` | section6 | Action verbs (V1, V2, V3 forms) |
+| `animals_and_birds_section.json` | section7 | Animals, birds, reptiles & insects |
+| `disasters_and_epidemics_section.json` | section8 | Disasters & epidemics |
 
 **Load priority:**
 1. Try `GET /api/content/vocabulary?sectionId=X` from Express backend
@@ -697,8 +700,8 @@ Static JSON files live in `src/data/`:
 ### 12.3 Section Unlock Order
 
 ```
-section1 → section2 → section3 → section4 → section5 → (all)
-  80%+       80%+       80%+       80%+       80%+     (all 5 done)
+section1 → section2 → section3 → section4 → section5 → section6 → section7 → section8 → (all)
+  80%+       80%+       80%+       80%+       80%+       80%+       80%+       80%+     (all done)
 ```
 
 New users start with `['section1', 'who_section']` unlocked.

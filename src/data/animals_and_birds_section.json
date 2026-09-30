@@ -1,0 +1,424 @@
+{
+  "animals_and_birds_section": [
+    {
+      "english": "Horse",
+      "pronunciation_gujarati": "હોર્સ",
+      "meaning_gujarati": "ઘોડો",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Ass",
+      "pronunciation_gujarati": "એસ",
+      "meaning_gujarati": "ગધેડો",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Bear",
+      "pronunciation_gujarati": "બેર",
+      "meaning_gujarati": "રીંછ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Camel",
+      "pronunciation_gujarati": "કેમલ",
+      "meaning_gujarati": "ઊંટ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Cat",
+      "pronunciation_gujarati": "કેટ",
+      "meaning_gujarati": "બિલાડી",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Buffalo",
+      "pronunciation_gujarati": "બફેલો",
+      "meaning_gujarati": "ભેંસ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Bull",
+      "pronunciation_gujarati": "બુલ",
+      "meaning_gujarati": "સાંઢ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Bullock",
+      "pronunciation_gujarati": "બુલક",
+      "meaning_gujarati": "બળદ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Crocodile",
+      "pronunciation_gujarati": "ક્રોકોડાઈલ",
+      "meaning_gujarati": "મગર",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Crab",
+      "pronunciation_gujarati": "ક્રેબ",
+      "meaning_gujarati": "કરચલો",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Giraffe",
+      "pronunciation_gujarati": "જીરાફ",
+      "meaning_gujarati": "જીરાફ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Deer",
+      "pronunciation_gujarati": "ડીયર",
+      "meaning_gujarati": "હરણ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Dog",
+      "pronunciation_gujarati": "ડોગ",
+      "meaning_gujarati": "કૂતરો",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Donkey",
+      "pronunciation_gujarati": "ડોન્કી",
+      "meaning_gujarati": "ગધેડો",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Elephant",
+      "pronunciation_gujarati": "એલિફન્ટ",
+      "meaning_gujarati": "હાથી",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Fish",
+      "pronunciation_gujarati": "ફિશ",
+      "meaning_gujarati": "માછલી",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Fox",
+      "pronunciation_gujarati": "ફોક્સ",
+      "meaning_gujarati": "શિયાળ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Frog",
+      "pronunciation_gujarati": "ફ્રોગ",
+      "meaning_gujarati": "દેટકો",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Goat",
+      "pronunciation_gujarati": "ગોટ",
+      "meaning_gujarati": "બકરી",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Hare",
+      "pronunciation_gujarati": "હેર",
+      "meaning_gujarati": "સસલું",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Hippopotamus",
+      "pronunciation_gujarati": "હિપ્પોપોટેમસ",
+      "meaning_gujarati": "જળઘોડો",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Kangaroo",
+      "pronunciation_gujarati": "કાંગારૂ",
+      "meaning_gujarati": "કાંગારૂ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Leopard",
+      "pronunciation_gujarati": "લેપર્ડ",
+      "meaning_gujarati": "ચિત્તો",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Lion",
+      "pronunciation_gujarati": "લાયન",
+      "meaning_gujarati": "સિંહ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Monkey",
+      "pronunciation_gujarati": "મન્કી",
+      "meaning_gujarati": "વાંદરો",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Mouse",
+      "pronunciation_gujarati": "માઉસ",
+      "meaning_gujarati": "ઉંદર",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Shark",
+      "pronunciation_gujarati": "શાર્ક",
+      "meaning_gujarati": "શાર્ક માછલી",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Sheep",
+      "pronunciation_gujarati": "શીપ",
+      "meaning_gujarati": "ઘેટું",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Cobra",
+      "pronunciation_gujarati": "કોબ્રા",
+      "meaning_gujarati": "નાગ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Panther",
+      "pronunciation_gujarati": "પેન્થર",
+      "meaning_gujarati": "ચિત્તો",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Pig",
+      "pronunciation_gujarati": "પીગ",
+      "meaning_gujarati": "ડુક્કર",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Python",
+      "pronunciation_gujarati": "પાઈથોન",
+      "meaning_gujarati": "અજગર",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Rabbit",
+      "pronunciation_gujarati": "રેબિટ",
+      "meaning_gujarati": "સસલું",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Rat",
+      "pronunciation_gujarati": "રેટ",
+      "meaning_gujarati": "ઉંદર",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "deer",
+      "pronunciation_gujarati": "ડીયર",
+      "meaning_gujarati": "હરણ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Rhinoceros",
+      "pronunciation_gujarati": "રાઈનોસોરસ",
+      "meaning_gujarati": "ગેંડો",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Zebra",
+      "pronunciation_gujarati": "ઝીબ્રા",
+      "meaning_gujarati": "ઝીબ્રા",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Turtle",
+      "pronunciation_gujarati": "ટર્ટલ",
+      "meaning_gujarati": "કાચબો",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Bitch",
+      "pronunciation_gujarati": "બિચ",
+      "meaning_gujarati": "કૂતરી",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Cuckoo",
+      "pronunciation_gujarati": "કૂકુ",
+      "meaning_gujarati": "કોયલ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Pigeon",
+      "pronunciation_gujarati": "પિજન",
+      "meaning_gujarati": "કબૂતર",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Crow",
+      "pronunciation_gujarati": "ક્રો",
+      "meaning_gujarati": "કાગડો",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Vulture",
+      "pronunciation_gujarati": "વલ્ચર",
+      "meaning_gujarati": "ગીધ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Eagle",
+      "pronunciation_gujarati": "ઈગલ",
+      "meaning_gujarati": "ગરૂડ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Owl",
+      "pronunciation_gujarati": "આઉલ",
+      "meaning_gujarati": "ઘુવડ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Sparrow",
+      "pronunciation_gujarati": "સ્પેરો",
+      "meaning_gujarati": "ચકલી",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Bat",
+      "pronunciation_gujarati": "બેટ",
+      "meaning_gujarati": "ચામાચીડિયું",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Ostrich",
+      "pronunciation_gujarati": "ઓસ્ટ્રીચ",
+      "meaning_gujarati": "શાહમૃગ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Swallow",
+      "pronunciation_gujarati": "સ્વોલો",
+      "meaning_gujarati": "કાબર",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Snake",
+      "pronunciation_gujarati": "સ્નેક",
+      "meaning_gujarati": "સાપ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Squirrel",
+      "pronunciation_gujarati": "સ્કવીરલ",
+      "meaning_gujarati": "ખિસકોલી",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Tiger",
+      "pronunciation_gujarati": "ટાઈગર",
+      "meaning_gujarati": "વાઘ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Alligator",
+      "pronunciation_gujarati": "એલિગેટર",
+      "meaning_gujarati": "મગર",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Lizard",
+      "pronunciation_gujarati": "લીઝાર્ડ",
+      "meaning_gujarati": "ગરોળી",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Butterfly",
+      "pronunciation_gujarati": "બટરફ્લાઈ",
+      "meaning_gujarati": "પતંગિયું",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Scorpion",
+      "pronunciation_gujarati": "સ્કોર્પિયન",
+      "meaning_gujarati": "વીંછી",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Bee",
+      "pronunciation_gujarati": "બી",
+      "meaning_gujarati": "મધમાખી",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Jackal",
+      "pronunciation_gujarati": "જેકલ",
+      "meaning_gujarati": "શિયાળ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Mosquito",
+      "pronunciation_gujarati": "મોસ્કીટો",
+      "meaning_gujarati": "મચ્છર",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Spider",
+      "pronunciation_gujarati": "સ્પાઈડર",
+      "meaning_gujarati": "કરોળિયો",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Peacock",
+      "pronunciation_gujarati": "પીકોક",
+      "meaning_gujarati": "મોર",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Peahen",
+      "pronunciation_gujarati": "પીહેન",
+      "meaning_gujarati": "ઢેલ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Parrot",
+      "pronunciation_gujarati": "પેરોટ",
+      "meaning_gujarati": "પોપટ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Duck",
+      "pronunciation_gujarati": "ડક",
+      "meaning_gujarati": "બતક",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Hen",
+      "pronunciation_gujarati": "હેન",
+      "meaning_gujarati": "મરઘી",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Cock",
+      "pronunciation_gujarati": "કોક",
+      "meaning_gujarati": "મરઘો",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Chicken",
+      "pronunciation_gujarati": "ચિકન",
+      "meaning_gujarati": "મરઘીનું બચ્ચું",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Kite",
+      "pronunciation_gujarati": "કાઈટ",
+      "meaning_gujarati": "સમડી",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Tailor bird",
+      "pronunciation_gujarati": "ટેલર બર્ડ",
+      "meaning_gujarati": "સુઘરી",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    },
+    {
+      "english": "Swan",
+      "pronunciation_gujarati": "સ્વાન",
+      "meaning_gujarati": "હંસ",
+      "category": "4. Animals & Birds – પ્રાણીઓ અને પક્ષીઓ"
+    }
+  ]
+}
