@@ -79,8 +79,28 @@ interface DatabaseSchema {
   notifications: NotificationEntity[];
 }
 
-const DB_FILE_PATH = path.join(process.cwd(), 'data', 'db.json');
-const DB_BAK_PATH = path.join(process.cwd(), 'data', 'db.json.bak');
+function resolveDbPaths() {
+  const possiblePaths = [
+    path.resolve(__dirname, '..', '..', 'data', 'db.json'), // from src/db or dist/db
+    path.resolve(process.cwd(), 'data', 'db.json'),
+    path.resolve(process.cwd(), 'backend', 'data', 'db.json'),
+  ];
+  for (const p of possiblePaths) {
+    if (fs.existsSync(p)) {
+      return {
+        dbFile: p,
+        bakFile: p + '.bak',
+      };
+    }
+  }
+  const fallback = path.resolve(__dirname, '..', '..', 'data', 'db.json');
+  return {
+    dbFile: fallback,
+    bakFile: fallback + '.bak',
+  };
+}
+
+const { dbFile: DB_FILE_PATH, bakFile: DB_BAK_PATH } = resolveDbPaths();
 
 class DataStore {
   private data: DatabaseSchema = {
@@ -176,11 +196,18 @@ class DataStore {
     try {
       const payload = JSON.stringify(this.data, null, 2);
 
-      // 1. Atomic write to temporary file first
-      fs.writeFileSync(tmpPath, payload, 'utf-8');
-
-      // 2. Atomic rename to target path
-      fs.renameSync(tmpPath, DB_FILE_PATH);
+      try {
+        // 1. Atomic write to temporary file first
+        fs.writeFileSync(tmpPath, payload, 'utf-8');
+        // 2. Atomic rename to target path
+        fs.renameSync(tmpPath, DB_FILE_PATH);
+      } catch (renameErr) {
+        // Fallback for Windows file system lock / EBUSY
+        fs.writeFileSync(DB_FILE_PATH, payload, 'utf-8');
+        if (fs.existsSync(tmpPath)) {
+          try { fs.unlinkSync(tmpPath); } catch (_) {}
+        }
+      }
 
       if (fs.existsSync(DB_FILE_PATH)) {
         this.lastMtime = fs.statSync(DB_FILE_PATH).mtimeMs;
@@ -220,7 +247,12 @@ class DataStore {
   public addUser(user: UserEntity): UserEntity {
     this.reloadIfNeeded();
     user.email = user.email.trim().toLowerCase();
-    this.data.users.push(user);
+    const existingIdx = this.data.users.findIndex((u) => u.email.trim().toLowerCase() === user.email);
+    if (existingIdx !== -1) {
+      this.data.users[existingIdx] = user;
+    } else {
+      this.data.users.push(user);
+    }
     this.save();
     return user;
   }
