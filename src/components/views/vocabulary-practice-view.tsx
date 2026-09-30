@@ -20,6 +20,14 @@ import {
   LayoutGrid,
   Shuffle,
   ListOrdered,
+  Search,
+  SearchX,
+  Flame,
+  Zap,
+  Award,
+  Filter,
+  Layers,
+  Lock,
 } from "lucide-react";
 import { StatefulButton, type ButtonState } from "@/components/beui/stateful-button";
 import { DynamicIsland } from "@/components/beui/dynamic-island";
@@ -30,7 +38,6 @@ import { storage, type FavoriteItem } from "@/lib/storage";
 import { cn, formatRelativeTime } from "@/lib/utils";
 import { XP_PER_VOCAB_CORRECT } from "@/lib/constants";
 import { VOCABULARY_SECTIONS } from "@/lib/vocabulary-data";
-import { Layers, Lock } from "lucide-react";
 import { useAuth } from "@/context/auth-context";
 import { apiClient } from "@/lib/api-client";
 
@@ -80,6 +87,8 @@ export function VocabularyPracticeView({
   const [hideEnglishOnStudy, setHideEnglishOnStudy] = useState(false);
   const [hidePronunciationInExam, setHidePronunciationInExam] = useState(true);
   const [studyColumns, setStudyColumns] = useState<1 | 2>(2);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState<string>("all");
 
   // Active exam questions order (sequential step-by-step by default, or randomized)
   const [activeExamQuestions, setActiveExamQuestions] = useState<VocabQuestion[]>(questions);
@@ -692,177 +701,338 @@ export function VocabularyPracticeView({
     stepLabel: sec.stepLabel,
   }));
 
-  // SELECTION PAGE: Choose Vocabulary Section & Mode (Section Cards List UI)
+  // SELECTION PAGE: Choose Vocabulary Section & Mode (Modern Animated Glass Cards UI)
   if (pageMode === "selection") {
+    const totalVocabWords = VOCABULARY_SECTIONS.filter((s) => s.id !== "all").reduce((acc, s) => acc + s.count, 0);
+    const unlockedCount = VOCABULARY_SECTIONS.filter(
+      (s) => s.id !== "all" && (s.id === "section1" || unlockedSections.includes(s.id) || unlockedSections.includes("all"))
+    ).length;
+    const totalRealSections = VOCABULARY_SECTIONS.filter((s) => s.id !== "all").length;
+
+    const filteredSections = VOCABULARY_SECTIONS.filter((sec) => {
+      // Category filter matching
+      if (categoryFilter === "basics" && !["section1", "section2", "section3"].includes(sec.id)) return false;
+      if (categoryFilter === "life" && !["section4", "section5"].includes(sec.id)) return false;
+      if (categoryFilter === "grammar" && !["section6"].includes(sec.id)) return false;
+      if (categoryFilter === "topics" && !["section7", "section8"].includes(sec.id)) return false;
+
+      // Search query matching
+      if (searchQuery.trim()) {
+        const query = searchQuery.toLowerCase();
+        const matchesName = sec.name.toLowerCase().includes(query);
+        const matchesDesc = sec.description.toLowerCase().includes(query);
+        const matchesBadge = sec.badge.toLowerCase().includes(query);
+        const matchesStep = sec.stepLabel.toLowerCase().includes(query);
+        return matchesName || matchesDesc || matchesBadge || matchesStep;
+      }
+      return true;
+    });
+
     return (
-      <div className="space-y-6 max-w-4xl mx-auto py-3 select-none">
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-center space-y-2">
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-indigo-500/10 px-3.5 py-1 text-xs font-extrabold text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
-            <Sparkles className="h-3.5 w-3.5" /> Vocabulary Learning Path
+      <div className="w-full max-w-[1700px] mx-auto space-y-6 sm:space-y-8 select-none pb-12">
+        {/* Full-Width Gradient Hero Command Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="relative overflow-hidden rounded-3xl sm:rounded-[32px] bg-gradient-to-r from-indigo-950 via-indigo-900 to-purple-950 p-6 sm:p-8 text-white border border-white/15 shadow-2xl shadow-indigo-950/40"
+        >
+          {/* Subtle Ambient Background Glow */}
+          <div className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-purple-500/20 blur-3xl animate-pulse-glow" />
+          <div className="pointer-events-none absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-indigo-500/20 blur-3xl animate-pulse-glow" />
+
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            {/* Left Header Column */}
+            <div className="lg:col-span-7 space-y-3">
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-xs font-bold backdrop-blur-md border border-white/20 shadow-inner">
+                <Sparkles className="h-3.5 w-3.5 text-amber-300 animate-spin" />
+                <span className="text-amber-200">Vocabulary Mastery Modules</span>
+                <span className="text-white/40">•</span>
+                <span className="text-indigo-100">{totalRealSections} Curated Levels</span>
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-tight">
+                Select a Section to{" "}
+                <span className="bg-gradient-to-r from-amber-200 via-amber-300 to-yellow-400 bg-clip-text text-transparent">
+                  Study & Master
+                </span>
+              </h2>
+
+              <p className="text-xs sm:text-sm text-indigo-100/80 max-w-xl font-medium leading-relaxed">
+                Step-by-step Gujarati vocabulary with English pronunciations, flashcards, and typing exam quizzes.
+              </p>
+
+              {/* Quick Stats Pill Strip */}
+              <div className="flex flex-wrap items-center gap-2.5 pt-1 text-xs font-bold">
+                <div className="inline-flex items-center gap-1.5 rounded-xl bg-white/10 px-3 py-1.5 border border-white/15 backdrop-blur-md">
+                  <BookOpen className="h-3.5 w-3.5 text-amber-300" />
+                  <span>{totalVocabWords} Master Words</span>
+                </div>
+
+                <div className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-500/20 px-3 py-1.5 border border-emerald-400/30 text-emerald-200 backdrop-blur-md">
+                  <Award className="h-3.5 w-3.5 text-emerald-300" />
+                  <span>{unlockedCount} of {totalRealSections} Sections Unlocked</span>
+                </div>
+
+                <div className="inline-flex items-center gap-1.5 rounded-xl bg-purple-500/20 px-3 py-1.5 border border-purple-400/30 text-purple-200 backdrop-blur-md">
+                  <Flame className="h-3.5 w-3.5 text-amber-400 fill-amber-400" />
+                  <span>80%+ Exam Passing Score</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Search & Filter Dock */}
+            <div className="lg:col-span-5 bg-white/10 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-white/20 space-y-3">
+              {/* Search Box */}
+              <div className="relative">
+                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-indigo-200" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search by word, topic, or section..."
+                  className="w-full rounded-xl bg-black/30 pl-10 pr-9 py-2.5 text-xs sm:text-sm font-semibold text-white placeholder:text-indigo-200/60 focus:outline-none focus:ring-2 focus:ring-amber-400 border border-white/15 transition-all"
+                />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-xs"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
+
+              {/* Category Pills */}
+              <div className="flex items-center gap-1.5 flex-wrap">
+                {[
+                  { id: "all", label: "All Sections" },
+                  { id: "basics", label: "1–3 Foundations" },
+                  { id: "life", label: "4–5 Social" },
+                  { id: "grammar", label: "6 Verbs" },
+                  { id: "topics", label: "7–8 Topics" },
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    type="button"
+                    onClick={() => setCategoryFilter(tab.id)}
+                    className={cn(
+                      "px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer border",
+                      categoryFilter === tab.id
+                        ? "bg-amber-400 text-slate-950 border-amber-300 font-black shadow-sm"
+                        : "bg-white/10 text-white/80 border-white/10 hover:bg-white/20 hover:text-white"
+                    )}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
-          <h2 className="text-2xl font-black text-foreground tracking-tight sm:text-4xl">
-            Select a Section to Learn & Practice
-          </h2>
-          <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto font-medium">
-            Select a section card below to start reading flashcards or test your spelling accuracy in exam mode.
-          </p>
         </motion.div>
 
-        {/* Section Cards List */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {VOCABULARY_SECTIONS.map((sec) => {
-            const isSelected = activeSectionId === sec.id;
-            const isUnlocked =
-              sec.id === "section1" ||
-              unlockedSections.includes(sec.id) ||
-              unlockedSections.includes("all");
+        {/* Section Cards Fluid 4-Column Grid */}
+        {filteredSections.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-16 text-center bg-card rounded-3xl border border-border p-8 space-y-3 shadow-xs">
+            <SearchX className="h-12 w-12 text-muted-foreground animate-bounce" />
+            <h4 className="text-lg font-black text-foreground">No matching vocabulary sections found</h4>
+            <p className="text-xs sm:text-sm text-muted-foreground">Try clearing your search query or switching the category filter.</p>
+            <button
+              type="button"
+              onClick={() => {
+                setSearchQuery("");
+                setCategoryFilter("all");
+              }}
+              className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline pt-1"
+            >
+              Reset Filters
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
+            {filteredSections.map((sec, idx) => {
+              const isSelected = activeSectionId === sec.id;
+              const isUnlocked =
+                sec.id === "section1" ||
+                unlockedSections.includes(sec.id) ||
+                unlockedSections.includes("all");
 
-            return (
-              <motion.div
-                key={sec.id}
-                whileHover={{ scale: isUnlocked ? 1.01 : 1 }}
-                whileTap={{ scale: isUnlocked ? 0.99 : 1 }}
-                onClick={() => {
-                  if (!isUnlocked) {
-                    toast({
-                      title: "Section Locked 🔒",
-                      description: "Achieve an 80% or higher exam score on the previous section to unlock this next section!",
-                      type: "info",
-                    });
-                    return;
-                  }
-                  if (onSectionChange) onSectionChange(sec.id);
-                }}
-                className={cn(
-                  "relative cursor-pointer rounded-3xl border p-5 transition-all shadow-md flex flex-col justify-between space-y-4",
-                  !isUnlocked
-                    ? "border-border/60 bg-card/40 opacity-80"
-                    : isSelected
-                      ? "border-indigo-500 bg-card ring-2 ring-indigo-500/30 shadow-xl"
-                      : "border-border bg-card/60 hover:border-indigo-500/50 hover:bg-card"
-                )}
-              >
-                {/* Card Header & Badge */}
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-3 min-w-0">
-                      <span
-                        className={cn(
-                          "flex h-11 w-11 items-center justify-center rounded-2xl text-2xl shrink-0 shadow-xs",
-                          isUnlocked ? "bg-indigo-500/10" : "bg-slate-500/10 grayscale"
-                        )}
-                      >
-                        {sec.icon}
-                      </span>
-                      <div className="min-w-0">
-                        <span className="text-[10px] font-black tracking-widest text-indigo-600 dark:text-indigo-400 uppercase block">
-                          {sec.stepLabel}
-                        </span>
-                        <h3 className="text-base font-black text-foreground leading-tight truncate">
-                          {sec.name}
-                        </h3>
+              return (
+                <motion.div
+                  key={sec.id}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.04, duration: 0.25 }}
+                  whileHover={{ y: isUnlocked ? -4 : 0, scale: isUnlocked ? 1.015 : 1 }}
+                  whileTap={{ scale: isUnlocked ? 0.985 : 1 }}
+                  onClick={() => {
+                    if (!isUnlocked) {
+                      toast({
+                        title: "Section Locked 🔒",
+                        description: "Achieve an 80% or higher exam score on the previous section to unlock this next section!",
+                        type: "info",
+                      });
+                      return;
+                    }
+                    if (onSectionChange) onSectionChange(sec.id);
+                  }}
+                  className={cn(
+                    "relative overflow-hidden rounded-3xl border p-5 transition-all duration-200 flex flex-col justify-between space-y-4 select-none cursor-pointer",
+                    !isUnlocked
+                      ? "border-border/60 bg-card/40 opacity-75 grayscale-[20%]"
+                      : isSelected
+                      ? "border-indigo-500 bg-card ring-2 ring-indigo-500/30 shadow-xl shadow-indigo-500/10"
+                      : "border-border bg-card hover:border-indigo-500/50 hover:shadow-xl hover:shadow-indigo-500/5"
+                  )}
+                >
+                  {/* Subtle Glow */}
+                  {isUnlocked && (
+                    <div className="pointer-events-none absolute -top-10 -right-10 h-28 w-28 rounded-full bg-indigo-500/10 blur-xl transition-all" />
+                  )}
+
+                  {/* Card Content Top Header */}
+                  <div className="space-y-3 relative z-10">
+                    <div className="flex items-start justify-between gap-2.5">
+                      <div className="flex items-start gap-3 min-w-0 flex-1">
+                        <div
+                          className={cn(
+                            "flex h-11 w-11 items-center justify-center rounded-2xl text-2xl shrink-0 shadow-xs border",
+                            isUnlocked
+                              ? "bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 border-indigo-500/20"
+                              : "bg-muted text-muted-foreground border-border grayscale"
+                          )}
+                        >
+                          {sec.icon}
+                        </div>
+
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center gap-1.5 flex-wrap">
+                            <span className="text-[10px] font-black tracking-wider text-indigo-600 dark:text-indigo-400 uppercase bg-indigo-500/10 dark:bg-indigo-500/20 px-2 py-0.5 rounded-md">
+                              {sec.stepLabel}
+                            </span>
+                            {isSelected && isUnlocked && (
+                              <span className="inline-flex items-center gap-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 px-1.5 py-0.5 text-[9px] font-black text-emerald-600 dark:text-emerald-400">
+                                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-ping" /> Active
+                              </span>
+                            )}
+                          </div>
+                          <h3 className="text-sm sm:text-base font-black text-foreground leading-snug pt-1">
+                            {sec.name}
+                          </h3>
+                        </div>
                       </div>
+
+                      {/* Right Status Badge */}
+                      {!isUnlocked ? (
+                        <span className="inline-flex items-center gap-1 rounded-full bg-rose-500/10 border border-rose-500/20 px-2.5 py-0.5 text-[10px] font-black text-rose-600 dark:text-rose-400 shrink-0">
+                          <Lock className="h-3 w-3" /> Locked
+                        </span>
+                      ) : (
+                        <span
+                          className={cn(
+                            "rounded-full px-2.5 py-0.5 text-[10px] font-black shrink-0 border",
+                            isSelected
+                              ? "bg-indigo-600 text-white border-indigo-600 shadow-xs"
+                              : "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20"
+                          )}
+                        >
+                          {sec.badge}
+                        </span>
+                      )}
                     </div>
 
-                    {!isUnlocked ? (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-rose-500/10 border border-rose-500/20 px-3 py-1 text-[11px] font-black text-rose-600 dark:text-rose-400 shrink-0">
-                        <Lock className="h-3 w-3" /> Locked
+                    {/* Section Full Description */}
+                    <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
+                      {sec.description}
+                    </p>
+
+                    {/* Section Meta Bar */}
+                    <div className="flex items-center justify-between text-xs font-bold pt-0.5">
+                      <span className="inline-flex items-center gap-1.5 text-foreground font-black bg-muted/60 px-2.5 py-1 rounded-xl">
+                        <BookOpen className="h-3.5 w-3.5 text-indigo-500" />
+                        <span>{sec.count} Words</span>
                       </span>
+
+                      {!isUnlocked ? (
+                        <span className="text-[10px] text-amber-600 dark:text-amber-400 font-extrabold flex items-center gap-1">
+                          <Lock className="h-3 w-3" /> Req: Score ≥ 80%
+                        </span>
+                      ) : (
+                        <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-extrabold flex items-center gap-1">
+                          <CheckCircle2 className="h-3 w-3" /> Ready
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Direct Action Buttons Inside Section Card */}
+                  <div className="pt-3 border-t border-border/70 relative z-10">
+                    {isUnlocked ? (
+                      <div className="grid grid-cols-2 gap-2">
+                        <motion.button
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.97 }}
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (onSectionChange) onSectionChange(sec.id);
+                            switchPageMode("study");
+                          }}
+                          className={cn(
+                            "w-full rounded-xl py-2.5 px-2.5 text-xs font-black transition-all flex items-center justify-center gap-1 shadow-xs cursor-pointer",
+                            isSelected
+                              ? "bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white shadow-indigo-500/25"
+                              : "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600 hover:text-white"
+                          )}
+                        >
+                          <BookOpen className="h-3.5 w-3.5" />
+                          <span>Study</span>
+                        </motion.button>
+
+                        <motion.button
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.97 }}
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (onSectionChange) onSectionChange(sec.id);
+                            switchPageMode("exam");
+                          }}
+                          className={cn(
+                            "w-full rounded-xl py-2.5 px-2.5 text-xs font-black transition-all flex items-center justify-center gap-1 shadow-xs cursor-pointer",
+                            isSelected
+                              ? "bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-700 hover:to-fuchsia-700 text-white shadow-purple-500/25"
+                              : "bg-purple-500/10 text-purple-600 dark:text-purple-400 hover:bg-purple-600 hover:text-white"
+                          )}
+                        >
+                          <Zap className="h-3.5 w-3.5" />
+                          <span>Exam</span>
+                        </motion.button>
+                      </div>
                     ) : (
-                      <span
-                        className={cn(
-                          "rounded-full px-3 py-1 text-[11px] font-black shrink-0 border",
-                          isSelected
-                            ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
-                            : "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20"
-                        )}
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toast({
+                            title: "Section Locked 🔒",
+                            description: "Score 80%+ on previous section to unlock!",
+                            type: "info",
+                          });
+                        }}
+                        className="w-full rounded-xl py-2 px-2 text-[11px] font-bold bg-muted text-muted-foreground transition-all flex items-center justify-center gap-1 cursor-not-allowed border border-border/50"
                       >
-                        {sec.badge}
-                      </span>
+                        <Lock className="h-3 w-3" />
+                        <span>Pass Prior Step (80%+)</span>
+                      </button>
                     )}
                   </div>
-
-                  <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
-                    {sec.description}
-                  </p>
-
-                  <div className="flex items-center justify-between text-xs font-extrabold text-muted-foreground pt-1">
-                    <span className="inline-flex items-center gap-1.5 text-foreground font-black">
-                      <BookOpen className="h-4 w-4 text-indigo-500" />
-                      <span>{sec.count} Words</span>
-                    </span>
-                    {!isUnlocked ? (
-                      <span className="text-[11px] text-amber-600 dark:text-amber-400 font-bold">
-                        Requires Score ≥ 80%
-                      </span>
-                    ) : isSelected ? (
-                      <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-black text-[11px]">
-                        <CheckCircle2 className="h-4 w-4" /> Active Section
-                      </span>
-                    ) : null}
-                  </div>
-                </div>
-
-                {/* Direct Action Buttons Inside Section Card */}
-                <div className="pt-2 border-t border-border/60">
-                  {isUnlocked ? (
-                    <div className="grid grid-cols-2 gap-2.5">
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (onSectionChange) onSectionChange(sec.id);
-                          switchPageMode("study");
-                        }}
-                        className={cn(
-                          "w-full rounded-xl py-2.5 px-3 text-xs font-black transition-all flex items-center justify-center gap-1.5 shadow-sm",
-                          isSelected
-                            ? "bg-indigo-600 text-white hover:bg-indigo-700"
-                            : "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600 hover:text-white"
-                        )}
-                      >
-                        <span>📖 Start Study</span>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (onSectionChange) onSectionChange(sec.id);
-                          switchPageMode("exam");
-                        }}
-                        className={cn(
-                          "w-full rounded-xl py-2.5 px-3 text-xs font-black transition-all flex items-center justify-center gap-1.5 shadow-sm",
-                          isSelected
-                            ? "bg-purple-600 text-white hover:bg-purple-700"
-                            : "bg-purple-500/10 text-purple-600 dark:text-purple-400 hover:bg-purple-600 hover:text-white"
-                        )}
-                      >
-                        <span>✍️ Start Exam</span>
-                      </button>
-                    </div>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        toast({
-                          title: "Section Locked 🔒",
-                          description: "Score 80%+ on previous section to unlock!",
-                          type: "info",
-                        });
-                      }}
-                      className="w-full rounded-xl py-2.5 px-3 text-xs font-black bg-muted text-muted-foreground transition-all flex items-center justify-center gap-1.5 cursor-not-allowed"
-                    >
-                      <Lock className="h-3.5 w-3.5" />
-                      <span>Locked Section</span>
-                    </button>
-                  )}
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        )}
       </div>
     );
   }
@@ -1586,171 +1756,211 @@ export function VocabularyPracticeView({
                 </div>
               </div>
 
-              {/* Main Large Practice Card */}
-              <motion.div
-                animate={shake ? { x: [-12, 12, -8, 8, -4, 4, 0] } : {}}
-                transition={{ duration: 0.4 }}
-                className={`relative my-4 rounded-[32px] border p-8 sm:p-12 shadow-2xl transition-colors bg-card ${status === "correct"
-                    ? "border-emerald-500 bg-emerald-500/5 shadow-emerald-500/20"
-                    : status === "wrong"
+              {/* Main Large Practice Card with Smooth AnimatePresence */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentQuestion.id || currentIndex}
+                  initial={{ opacity: 0, scale: 0.96, y: 15 }}
+                  animate={
+                    shake
+                      ? { x: [-12, 12, -8, 8, -4, 4, 0], opacity: 1, scale: 1, y: 0 }
+                      : { opacity: 1, scale: 1, y: 0 }
+                  }
+                  exit={{ opacity: 0, scale: 0.96, y: -15 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 26,
+                  }}
+                  className={`relative my-4 rounded-[32px] border p-8 sm:p-12 shadow-2xl transition-colors bg-card ${
+                    status === "correct"
+                      ? "border-emerald-500 bg-emerald-500/5 shadow-emerald-500/20"
+                      : status === "wrong"
                       ? "border-rose-500 bg-rose-500/5 shadow-rose-500/20"
                       : "border-border"
                   }`}
-              >
-                {/* Card Header: Category & Favorite */}
-                <div className="flex items-center justify-between mb-8">
-                  <span className="rounded-full bg-indigo-500/10 px-3.5 py-1 text-xs font-extrabold text-indigo-600 dark:text-indigo-400">
-                    {currentQuestion.category || "Vocabulary"}
-                  </span>
+                >
+                  {/* Card Header: Category & Favorite */}
+                  <div className="flex items-center justify-between mb-8">
+                    <span className="rounded-full bg-indigo-500/10 px-3.5 py-1 text-xs font-extrabold text-indigo-600 dark:text-indigo-400">
+                      {currentQuestion.category || "Vocabulary"}
+                    </span>
 
-                  <button
-                    type="button"
-                    onClick={() => handleFavorite(currentQuestion)}
-                    className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors ${isFav
-                        ? "bg-amber-500/20 border-amber-500 text-amber-500"
-                        : "border-border bg-background text-muted-foreground hover:bg-muted"
-                      }`}
-                  >
-                    <Star className={`h-4 w-4 ${isFav ? "fill-amber-500" : ""}`} />
-                  </button>
-                </div>
-
-                {/* Gujarati Display */}
-                <div className="text-center space-y-3 mb-10">
-                  <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest block">
-                    Translate Gujarati Word to English
-                  </span>
-                  <h1 className="text-4xl sm:text-6xl font-black text-foreground tracking-wide font-sans">
-                    {currentQuestion.gujarati}
-                  </h1>
-
-                  <div className="flex items-center justify-center gap-2 flex-wrap pt-1">
-                    {currentQuestion.pronunciation_gujarati && (!hidePronunciationInExam || status === "correct" || status === "revealed") && (
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-indigo-500/10 px-3.5 py-1 text-xs font-extrabold text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
-                        <span>🗣️ Pronunciation:</span>
-                        <strong className="font-black text-indigo-700 dark:text-indigo-300">{currentQuestion.pronunciation_gujarati}</strong>
-                      </span>
-                    )}
-                    <button
+                    <motion.button
                       type="button"
-                      onClick={() => speakWord(currentQuestion.english)}
-                      title="Listen Audio Pronunciation"
-                      className="inline-flex items-center gap-1.5 rounded-full bg-indigo-600 text-white px-3.5 py-1 text-xs font-extrabold hover:bg-indigo-700 transition-colors shadow-sm"
+                      whileHover={{ scale: 1.15 }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={() => handleFavorite(currentQuestion)}
+                      className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors ${
+                        isFav
+                          ? "bg-amber-500/20 border-amber-500 text-amber-500"
+                          : "border-border bg-background text-muted-foreground hover:bg-muted"
+                      }`}
                     >
-                      <Volume2 className="h-3.5 w-3.5" />
-                      <span>Listen Audio</span>
-                    </button>
+                      <Star className={`h-4 w-4 ${isFav ? "fill-amber-500" : ""}`} />
+                    </motion.button>
                   </div>
 
-                  {currentQuestion.phonetic && currentQuestion.phonetic !== currentQuestion.pronunciation_gujarati && (!hidePronunciationInExam || status === "correct" || status === "revealed") && (
-                    <p className="text-sm italic text-muted-foreground">
-                      Phonetic: "{currentQuestion.phonetic}"
-                    </p>
-                  )}
-                </div>
+                  {/* Gujarati Display */}
+                  <div className="text-center space-y-3 mb-10">
+                    <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest block">
+                      Translate Gujarati Word to English
+                    </span>
+                    <h1 className="text-4xl sm:text-6xl font-black text-foreground tracking-wide font-sans">
+                      {currentQuestion.gujarati}
+                    </h1>
 
-                {/* Answer Input */}
-                <div className="space-y-4 max-w-md mx-auto">
-                  <div className="relative">
-                    <input
-                      ref={inputRef}
-                      type="text"
-                      value={userAnswer}
-                      onChange={(e) => {
-                        setUserAnswer(e.target.value);
-                        if (status === "wrong") setStatus("idle");
-                      }}
-                      onKeyDown={handleKeyDown}
-                      placeholder="Type English spelling... (Press Enter)"
-                      disabled={status === "correct"}
-                      className={`w-full rounded-2xl border px-6 py-4 text-center text-xl font-bold text-foreground placeholder:text-muted-foreground/60 outline-none transition-all shadow-inner ${status === "correct"
-                          ? "border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
-                          : status === "wrong"
+                    <div className="flex items-center justify-center gap-2 flex-wrap pt-1">
+                      {currentQuestion.pronunciation_gujarati && (!hidePronunciationInExam || status === "correct" || status === "revealed") && (
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-indigo-500/10 px-3.5 py-1 text-xs font-extrabold text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
+                          <span>🗣️ Pronunciation:</span>
+                          <strong className="font-black text-indigo-700 dark:text-indigo-300">{currentQuestion.pronunciation_gujarati}</strong>
+                        </span>
+                      )}
+                      <motion.button
+                        type="button"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => speakWord(currentQuestion.english)}
+                        title="Listen Audio Pronunciation"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-indigo-600 text-white px-3.5 py-1 text-xs font-extrabold hover:bg-indigo-700 transition-colors shadow-sm"
+                      >
+                        <Volume2 className="h-3.5 w-3.5" />
+                        <span>Listen Audio</span>
+                      </motion.button>
+                    </div>
+
+                    {currentQuestion.phonetic && currentQuestion.phonetic !== currentQuestion.pronunciation_gujarati && (!hidePronunciationInExam || status === "correct" || status === "revealed") && (
+                      <p className="text-sm italic text-muted-foreground">
+                        Phonetic: "{currentQuestion.phonetic}"
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Answer Input */}
+                  <div className="space-y-4 max-w-md mx-auto">
+                    <div className="relative">
+                      <input
+                        ref={inputRef}
+                        type="text"
+                        value={userAnswer}
+                        onChange={(e) => {
+                          setUserAnswer(e.target.value);
+                          if (status === "wrong") setStatus("idle");
+                        }}
+                        onKeyDown={handleKeyDown}
+                        placeholder="Type English spelling... (Press Enter)"
+                        disabled={status === "correct"}
+                        className={`w-full rounded-2xl border px-6 py-4 text-center text-xl font-bold text-foreground placeholder:text-muted-foreground/60 outline-none transition-all shadow-inner ${
+                          status === "correct"
+                            ? "border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+                            : status === "wrong"
                             ? "border-rose-500 bg-rose-500/10 text-rose-600 dark:text-rose-400"
                             : "border-border bg-background focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
                         }`}
-                    />
+                      />
 
-                    {status === "correct" && (
-                      <CheckCircle2 className="absolute right-4 top-1/2 -translate-y-1/2 h-6 w-6 text-emerald-500" />
-                    )}
-                    {status === "wrong" && (
-                      <XCircle className="absolute right-4 top-1/2 -translate-y-1/2 h-6 w-6 text-rose-500" />
-                    )}
-                  </div>
+                      {status === "correct" && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ type: "spring", stiffness: 500, damping: 15 }}
+                          className="absolute right-4 top-1/2 -translate-y-1/2 text-emerald-500"
+                        >
+                          <CheckCircle2 className="h-6 w-6" />
+                        </motion.div>
+                      )}
+                      {status === "wrong" && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ type: "spring", stiffness: 500, damping: 15 }}
+                          className="absolute right-4 top-1/2 -translate-y-1/2 text-rose-500"
+                        >
+                          <XCircle className="h-6 w-6" />
+                        </motion.div>
+                      )}
+                    </div>
 
-                  {/* Answer Feedback Banner */}
-                  <AnimatePresence>
-                    {status === "revealed" && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="rounded-2xl border border-indigo-500/30 bg-indigo-500/10 p-4 text-center space-y-1"
-                      >
-                        <span className="text-xs font-semibold text-indigo-500 block">Correct English Answer:</span>
-                        <span className="text-xl font-black text-foreground">{currentQuestion.english}</span>
-                        {currentQuestion.example && (
-                          <p className="text-xs italic text-muted-foreground pt-1">{currentQuestion.example}</p>
-                        )}
-                      </motion.div>
-                    )}
+                    {/* Answer Feedback Banner */}
+                    <AnimatePresence>
+                      {status === "revealed" && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          className="rounded-2xl border border-indigo-500/30 bg-indigo-500/10 p-4 text-center space-y-1"
+                        >
+                          <span className="text-xs font-semibold text-indigo-500 block">Correct English Answer:</span>
+                          <span className="text-xl font-black text-foreground">{currentQuestion.english}</span>
+                          {currentQuestion.example && (
+                            <p className="text-xs italic text-muted-foreground pt-1">{currentQuestion.example}</p>
+                          )}
+                        </motion.div>
+                      )}
 
-                    {status === "wrong" && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="rounded-2xl border border-rose-500/30 bg-rose-500/10 p-3 text-center text-xs font-bold text-rose-600 dark:text-rose-400 flex items-center justify-center gap-2"
-                      >
-                        <XCircle className="h-4 w-4" />
-                        <span>Incorrect. Try again, reveal answer, or skip!</span>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                      {status === "wrong" && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          className="rounded-2xl border border-rose-500/30 bg-rose-500/10 p-3 text-center text-xs font-bold text-rose-600 dark:text-rose-400 flex items-center justify-center gap-2"
+                        >
+                          <XCircle className="h-4 w-4" />
+                          <span>Incorrect. Try again, reveal answer, or skip!</span>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
 
-                  {/* Main Action Buttons */}
-                  <div className="pt-4 flex flex-wrap items-center justify-center gap-3">
-                    {status === "idle" || status === "wrong" ? (
-                      <>
+                    {/* Main Action Buttons */}
+                    <div className="pt-4 flex flex-wrap items-center justify-center gap-3">
+                      {status === "idle" || status === "wrong" ? (
+                        <>
+                          <StatefulButton
+                            state={btnState}
+                            variant="primary"
+                            size="lg"
+                            onClick={checkAnswer}
+                            className="flex-1 min-w-[140px]"
+                          >
+                            <span>Submit Answer</span>
+                          </StatefulButton>
+
+                          <motion.button
+                            type="button"
+                            whileHover={{ scale: 1.04, y: -1 }}
+                            whileTap={{ scale: 0.96 }}
+                            onClick={handleShowAnswer}
+                            className="inline-flex h-14 items-center gap-1.5 rounded-[18px] border border-border bg-card px-5 text-xs font-bold text-foreground hover:bg-muted transition-colors shadow-xs"
+                          >
+                            <HelpCircle className="h-4 w-4 text-indigo-500" /> Show Answer
+                          </motion.button>
+
+                          <motion.button
+                            type="button"
+                            whileHover={{ scale: 1.04, y: -1 }}
+                            whileTap={{ scale: 0.96 }}
+                            onClick={handleSkip}
+                            className="inline-flex h-14 items-center gap-1.5 rounded-[18px] border border-border bg-card px-5 text-xs font-bold text-muted-foreground hover:bg-muted transition-colors shadow-xs"
+                          >
+                            <SkipForward className="h-4 w-4" /> Skip
+                          </motion.button>
+                        </>
+                      ) : (
                         <StatefulButton
-                          state={btnState}
-                          variant="primary"
+                          variant="success"
                           size="lg"
-                          onClick={checkAnswer}
-                          className="flex-1 min-w-[140px]"
+                          onClick={() => nextQuestion()}
+                          className="w-full"
                         >
-                          <span>Submit Answer</span>
+                          <span>Next Question</span>
+                          <ArrowRight className="h-5 w-5" />
                         </StatefulButton>
-
-                        <button
-                          type="button"
-                          onClick={handleShowAnswer}
-                          className="inline-flex h-14 items-center gap-1.5 rounded-[18px] border border-border bg-card px-5 text-xs font-bold text-foreground hover:bg-muted transition-colors"
-                        >
-                          <HelpCircle className="h-4 w-4 text-indigo-500" /> Show Answer
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={handleSkip}
-                          className="inline-flex h-14 items-center gap-1.5 rounded-[18px] border border-border bg-card px-5 text-xs font-bold text-muted-foreground hover:bg-muted transition-colors"
-                        >
-                          <SkipForward className="h-4 w-4" /> Skip
-                        </button>
-                      </>
-                    ) : (
-                      <StatefulButton
-                        variant="success"
-                        size="lg"
-                        onClick={() => nextQuestion()}
-                        className="w-full"
-                      >
-                        <span>Next Question</span>
-                        <ArrowRight className="h-5 w-5" />
-                      </StatefulButton>
-                    )}
+                      )}
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </AnimatePresence>
 
               {/* Footer Helper info */}
               <div className="flex items-center justify-between text-xs text-muted-foreground px-4">

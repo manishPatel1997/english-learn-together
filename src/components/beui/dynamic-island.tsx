@@ -43,50 +43,71 @@ export function DynamicIsland({
       <motion.div
         layout
         onClick={() => setExpanded(!expanded)}
-        transition={{ type: "spring", stiffness: 400, damping: 30 }}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        transition={{ type: "spring", stiffness: 450, damping: 30 }}
         className={cn(
-          "relative flex items-center justify-between gap-4 rounded-full bg-slate-950/90 text-white shadow-2xl border border-slate-800 backdrop-blur-xl px-5 py-2.5 cursor-pointer select-none",
-          expanded ? "w-[360px] rounded-[24px] p-5 flex-col items-stretch" : "w-auto"
+          "relative flex items-center justify-between gap-4 rounded-full bg-slate-950/95 text-white shadow-2xl border border-slate-800/80 backdrop-blur-2xl px-5 py-2.5 cursor-pointer select-none transition-all duration-300",
+          streak >= 3 && "border-amber-500/40 shadow-amber-500/10 shadow-lg",
+          streak >= 10 && "border-orange-500/60 shadow-orange-500/20 shadow-xl ring-2 ring-orange-500/30",
+          expanded ? "w-[370px] sm:w-[400px] rounded-[28px] p-5 flex-col items-stretch" : "w-auto"
         )}
       >
         <AnimatePresence mode="wait">
           {activeMessage ? (
             <motion.div
               key="msg"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, scale: 0.9, y: -6 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 6 }}
+              transition={{ type: "spring", stiffness: 500, damping: 25 }}
               className="flex items-center gap-2 text-xs font-semibold text-emerald-400"
             >
               <Sparkles className="h-4 w-4 animate-spin text-amber-400" />
               <span>{activeMessage}</span>
             </motion.div>
           ) : (
-            <motion.div key="normal" className="flex items-center gap-4 text-xs">
+            <motion.div
+              key="normal"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="flex items-center gap-4 text-xs font-medium"
+            >
               {/* Streak Badge */}
-              <div className="flex items-center gap-1.5 font-bold text-amber-400">
-                <Flame className="h-4 w-4 fill-amber-400 animate-pulse" />
+              <motion.div
+                className="flex items-center gap-1.5 font-bold text-amber-400"
+                whileHover={{ scale: 1.05 }}
+              >
+                <Flame className={cn("h-4 w-4 fill-amber-400", streak > 0 && "animate-bounce text-orange-500")} />
                 <NumberAnimation value={streak} suffix=" Streak" />
-              </div>
+              </motion.div>
 
               {/* Combo Multiplier */}
               {combo && (
-                <span className="rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-2 py-0.5 text-[10px] font-extrabold text-slate-950 uppercase tracking-wide animate-bounce">
+                <motion.span
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  className="rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-2.5 py-0.5 text-[10px] font-black text-slate-950 uppercase tracking-wider shadow-sm shadow-orange-500/30 animate-pulse"
+                >
                   {combo}
-                </span>
+                </motion.span>
               )}
 
               {/* XP */}
-              <div className="flex items-center gap-1 font-semibold text-indigo-300">
+              <motion.div
+                className="flex items-center gap-1 font-semibold text-indigo-300"
+                whileHover={{ scale: 1.05 }}
+              >
                 <Zap className="h-3.5 w-3.5 fill-indigo-400 text-indigo-400" />
                 <NumberAnimation value={xp} suffix=" XP" />
-              </div>
+              </motion.div>
 
               {/* Progress counter if present */}
               {currentQuestion && totalQuestions && (
-                <div className="hidden sm:flex items-center gap-1 text-slate-400 border-l border-slate-800 pl-3">
+                <div className="hidden sm:flex items-center gap-1 text-slate-400 border-l border-slate-800 pl-3 text-[11px] font-semibold">
                   <span>Q{currentQuestion}</span>
-                  <span>/</span>
+                  <span className="text-slate-600">/</span>
                   <span>{totalQuestions}</span>
                 </div>
               )}
@@ -96,16 +117,18 @@ export function DynamicIsland({
 
         {/* Audio Toggle button */}
         {onToggleSound && (
-          <button
+          <motion.button
+            whileHover={{ scale: 1.15 }}
+            whileTap={{ scale: 0.9 }}
             onClick={(e) => {
               e.stopPropagation();
               onToggleSound();
             }}
-            className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+            className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors shadow-xs"
             title={soundEnabled ? "Mute sound effects" : "Enable sound effects"}
           >
             {soundEnabled ? <Volume2 className="h-3.5 w-3.5" /> : <VolumeX className="h-3.5 w-3.5 text-slate-500" />}
-          </button>
+          </motion.button>
         )}
 
         {/* Expanded View Content */}
@@ -114,19 +137,20 @@ export function DynamicIsland({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="mt-3 pt-3 border-t border-slate-800 grid grid-cols-3 gap-2 text-center text-xs"
+            transition={{ type: "spring", stiffness: 450, damping: 28 }}
+            className="mt-3 pt-3 border-t border-slate-800/80 grid grid-cols-3 gap-2.5 text-center text-xs"
           >
-            <div className="bg-slate-900/80 p-2.5 rounded-xl border border-slate-800/80">
-              <span className="text-[10px] text-slate-400 block">Accuracy</span>
-              <span className="font-bold text-emerald-400 text-sm">{accuracy}%</span>
+            <div className="bg-slate-900/90 p-2.5 rounded-2xl border border-slate-800/80 shadow-xs">
+              <span className="text-[10px] text-slate-400 font-semibold block">Accuracy</span>
+              <span className="font-black text-emerald-400 text-sm">{accuracy}%</span>
             </div>
-            <div className="bg-slate-900/80 p-2.5 rounded-xl border border-slate-800/80">
-              <span className="text-[10px] text-slate-400 block">Combo</span>
-              <span className="font-bold text-amber-400 text-sm">{combo || "1x"}</span>
+            <div className="bg-slate-900/90 p-2.5 rounded-2xl border border-slate-800/80 shadow-xs">
+              <span className="text-[10px] text-slate-400 font-semibold block">Combo</span>
+              <span className="font-black text-amber-400 text-sm">{combo || "1x"}</span>
             </div>
-            <div className="bg-slate-900/80 p-2.5 rounded-xl border border-slate-800/80">
-              <span className="text-[10px] text-slate-400 block">Total XP</span>
-              <span className="font-bold text-indigo-400 text-sm">{xp}</span>
+            <div className="bg-slate-900/90 p-2.5 rounded-2xl border border-slate-800/80 shadow-xs">
+              <span className="text-[10px] text-slate-400 font-semibold block">Total XP</span>
+              <span className="font-black text-indigo-400 text-sm">{xp}</span>
             </div>
           </motion.div>
         )}

@@ -16,6 +16,8 @@ import { ShieldCheck } from "lucide-react";
 import { useAuth } from "@/context/auth-context";
 import { AuthLandingGate } from "@/components/auth/auth-landing-gate";
 
+import { SmoothScrollContainer } from "@/components/beui/smooth-scroll";
+
 export const NAV_ROUTES: Record<NavItem, string> = {
   dashboard: "/",
   vocabulary: "/vocabulary",
@@ -201,10 +203,10 @@ export function AppShell({ children }: AppShellProps) {
             onToggleMobileMenu={() => setMobileMenuOpen((prev) => !prev)}
           />
 
-          {/* Scrollable View Container */}
-          <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+          {/* Smooth Scrollable View Container */}
+          <SmoothScrollContainer className="p-4 sm:p-6 lg:p-8">
             {children}
-          </main>
+          </SmoothScrollContainer>
         </div>
 
         {/* Command Palette Modal */}

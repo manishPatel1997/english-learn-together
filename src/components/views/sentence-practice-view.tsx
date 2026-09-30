@@ -1257,233 +1257,259 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
             </div>
           </div>
 
-          <motion.div
-            animate={shake ? { x: [-12, 12, -8, 8, -4, 4, 0] } : {}}
-            transition={{ duration: 0.4 }}
-            className={`relative my-4 rounded-[32px] border p-8 sm:p-12 shadow-2xl transition-colors bg-card ${
-              status === "correct"
-                ? "border-emerald-500 bg-emerald-500/5 shadow-emerald-500/20"
-                : status === "wrong"
-                ? "border-rose-500 bg-rose-500/5 shadow-rose-500/20"
-                : "border-border"
-            }`}
-          >
-            <div className="flex items-center justify-between mb-8">
-              <span className="rounded-full bg-purple-500/10 px-3.5 py-1 text-xs font-extrabold text-purple-600 dark:text-purple-400">
-                Grammar Topic: {currentQuestion.topic}
-              </span>
+          {/* Main Practice Card with Smooth AnimatePresence */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentQuestion.id || currentIndex}
+              initial={{ opacity: 0, scale: 0.96, y: 15 }}
+              animate={
+                shake
+                  ? { x: [-12, 12, -8, 8, -4, 4, 0], opacity: 1, scale: 1, y: 0 }
+                  : { opacity: 1, scale: 1, y: 0 }
+              }
+              exit={{ opacity: 0, scale: 0.96, y: -15 }}
+              transition={{
+                type: "spring",
+                stiffness: 400,
+                damping: 26,
+              }}
+              className={`relative my-4 rounded-[32px] border p-8 sm:p-12 shadow-2xl transition-colors bg-card ${
+                status === "correct"
+                  ? "border-emerald-500 bg-emerald-500/5 shadow-emerald-500/20"
+                  : status === "wrong"
+                  ? "border-rose-500 bg-rose-500/5 shadow-rose-500/20"
+                  : "border-border"
+              }`}
+            >
+              <div className="flex items-center justify-between mb-8">
+                <span className="rounded-full bg-purple-500/10 px-3.5 py-1 text-xs font-extrabold text-purple-600 dark:text-purple-400">
+                  Grammar Topic: {currentQuestion.topic}
+                </span>
 
-              <button
-                type="button"
-                onClick={() => handleFavorite(currentQuestion)}
-                className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors ${
-                  isFav
-                    ? "bg-amber-500/20 border-amber-500 text-amber-500"
-                    : "border-border bg-background text-muted-foreground hover:bg-muted"
-                }`}
-              >
-                <Star className={`h-4 w-4 ${isFav ? "fill-amber-500" : ""}`} />
-              </button>
-            </div>
-
-            <div className="text-center space-y-3 mb-8">
-              <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest block">
-                Translate Complete Gujarati Sentence
-              </span>
-              <div className="flex items-center justify-center gap-3">
-                <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-wide font-sans leading-tight">
-                  {currentQuestion.gujarati}
-                </h2>
-                <button
+                <motion.button
                   type="button"
-                  onClick={() => playGujaratiAudio(currentQuestion.gujarati)}
-                  className="flex h-11 w-11 items-center justify-center rounded-2xl bg-purple-500/10 text-purple-600 dark:text-purple-400 hover:bg-purple-600 hover:text-white transition-all shrink-0 shadow-sm"
-                  title="Listen to Gujarati sentence audio"
-                >
-                  <Volume2 className="h-5 w-5" />
-                </button>
-              </div>
-
-              {currentQuestion.hint && (
-                <p className="text-xs text-indigo-500 font-medium flex items-center justify-center gap-1">
-                  <Sparkles className="h-3.5 w-3.5" /> {currentQuestion.hint}
-                </p>
-              )}
-            </div>
-
-            <div className="space-y-4 max-w-xl mx-auto">
-              <div className="relative">
-                <textarea
-                  ref={textareaRef}
-                  rows={3}
-                  value={userAnswer}
-                  onChange={(e) => {
-                    setUserAnswer(e.target.value);
-                    if (status === "wrong") setStatus("idle");
-                  }}
-                  onKeyDown={handleKeyDown}
-                  placeholder="Write complete English translation... (Press Enter to submit)"
-                  disabled={status === "correct"}
-                  className={`w-full rounded-2xl border p-5 text-base font-semibold text-foreground placeholder:text-muted-foreground/60 outline-none transition-all shadow-inner resize-none ${
-                    status === "correct"
-                      ? "border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
-                      : status === "wrong"
-                      ? "border-rose-500 bg-rose-500/10 text-rose-600 dark:text-rose-400"
-                      : "border-border bg-background focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10"
+                  whileHover={{ scale: 1.15 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => handleFavorite(currentQuestion)}
+                  className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors ${
+                    isFav
+                      ? "bg-amber-500/20 border-amber-500 text-amber-500"
+                      : "border-border bg-background text-muted-foreground hover:bg-muted"
                   }`}
-                />
+                >
+                  <Star className={`h-4 w-4 ${isFav ? "fill-amber-500" : ""}`} />
+                </motion.button>
               </div>
 
-              <AnimatePresence>
-                {status === "wrong" && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="rounded-2xl border border-rose-500/30 bg-rose-500/10 p-5 space-y-3 text-xs"
+              <div className="text-center space-y-3 mb-8">
+                <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest block">
+                  Translate Complete Gujarati Sentence
+                </span>
+                <div className="flex items-center justify-center gap-3">
+                  <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-wide font-sans leading-tight">
+                    {currentQuestion.gujarati}
+                  </h2>
+                  <motion.button
+                    type="button"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.92 }}
+                    onClick={() => playGujaratiAudio(currentQuestion.gujarati)}
+                    className="flex h-11 w-11 items-center justify-center rounded-2xl bg-purple-500/10 text-purple-600 dark:text-purple-400 hover:bg-purple-600 hover:text-white transition-all shrink-0 shadow-sm"
+                    title="Listen to Gujarati sentence audio"
                   >
-                    <div className="flex items-center gap-2 text-rose-600 dark:text-rose-400 font-bold">
-                      <XCircle className="h-4 w-4 shrink-0" />
-                      <span>Translation Needs Revision</span>
-                    </div>
+                    <Volume2 className="h-5 w-5" />
+                  </motion.button>
+                </div>
 
-                    <div className="space-y-1">
-                      <span className="text-muted-foreground font-semibold block">Your Answer:</span>
-                      <p className="text-foreground font-medium bg-background/60 p-2.5 rounded-xl border border-border">
-                        {userAnswer}
-                      </p>
-                    </div>
+                {currentQuestion.hint && (
+                  <p className="text-xs text-indigo-500 font-medium flex items-center justify-center gap-1">
+                    <Sparkles className="h-3.5 w-3.5" /> {currentQuestion.hint}
+                  </p>
+                )}
+              </div>
 
-                    <div className="space-y-1.5">
-                      <span className="text-muted-foreground font-semibold block">
-                        Target Answer Analysis (Closest Match: "{bestTargetAnswer}"):
-                      </span>
-                      <div className="flex flex-wrap gap-1.5 p-3 rounded-xl bg-background border border-border">
-                        {diffs.map((d, i) => (
-                          <span
-                            key={i}
-                            className={`px-2 py-1 rounded-lg text-xs font-bold ${
-                              d.matched
-                                ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30"
-                                : "bg-rose-500/20 text-rose-600 dark:text-rose-400 border border-rose-500/30 underline decoration-rose-500 decoration-2"
-                            }`}
-                          >
-                            {d.word}
-                          </span>
-                        ))}
+              <div className="space-y-4 max-w-xl mx-auto">
+                <div className="relative">
+                  <textarea
+                    ref={textareaRef}
+                    rows={3}
+                    value={userAnswer}
+                    onChange={(e) => {
+                      setUserAnswer(e.target.value);
+                      if (status === "wrong") setStatus("idle");
+                    }}
+                    onKeyDown={handleKeyDown}
+                    placeholder="Write complete English translation... (Press Enter to submit)"
+                    disabled={status === "correct"}
+                    className={`w-full rounded-2xl border p-5 text-base font-semibold text-foreground placeholder:text-muted-foreground/60 outline-none transition-all shadow-inner resize-none ${
+                      status === "correct"
+                        ? "border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+                        : status === "wrong"
+                        ? "border-rose-500 bg-rose-500/10 text-rose-600 dark:text-rose-400"
+                        : "border-border bg-background focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10"
+                    }`}
+                  />
+                </div>
+
+                <AnimatePresence>
+                  {status === "wrong" && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="rounded-2xl border border-rose-500/30 bg-rose-500/10 p-5 space-y-3 text-xs"
+                    >
+                      <div className="flex items-center gap-2 text-rose-600 dark:text-rose-400 font-bold">
+                        <XCircle className="h-4 w-4 shrink-0" />
+                        <span>Translation Needs Revision</span>
                       </div>
-                    </div>
 
-                    {validAnswers.length > 1 && (
-                      <div className="space-y-1.5 pt-1">
+                      <div className="space-y-1">
+                        <span className="text-muted-foreground font-semibold block">Your Answer:</span>
+                        <p className="text-foreground font-medium bg-background/60 p-2.5 rounded-xl border border-border">
+                          {userAnswer}
+                        </p>
+                      </div>
+
+                      <div className="space-y-1.5">
                         <span className="text-muted-foreground font-semibold block">
-                          All Valid Translations:
+                          Target Answer Analysis (Closest Match: "{bestTargetAnswer}"):
                         </span>
-                        <ul className="list-disc list-inside space-y-1 text-foreground font-medium bg-background/60 p-2.5 rounded-xl border border-border">
-                          {validAnswers.map((ans, idx) => (
-                            <li key={idx}>{ans}</li>
+                        <div className="flex flex-wrap gap-1.5 p-3 rounded-xl bg-background border border-border">
+                          {diffs.map((d, i) => (
+                            <span
+                              key={i}
+                              className={`px-2 py-1 rounded-lg text-xs font-bold ${
+                                d.matched
+                                  ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30"
+                                  : "bg-rose-500/20 text-rose-600 dark:text-rose-400 border border-rose-500/30 underline decoration-rose-500 decoration-2"
+                              }`}
+                            >
+                              {d.word}
+                            </span>
                           ))}
-                        </ul>
+                        </div>
                       </div>
-                    )}
 
-                    <div className="pt-2">
-                      {!aiExplanation ? (
-                        <button
-                          type="button"
-                          onClick={handleGetAiExplanation}
-                          disabled={loadingAi}
-                          className="flex items-center justify-center gap-2 w-full rounded-xl bg-purple-600/10 border border-purple-500/30 p-2.5 text-xs font-extrabold text-purple-600 dark:text-purple-400 hover:bg-purple-600/20 transition-colors"
-                        >
-                          {loadingAi ? (
-                            <>
-                              <MotionSpinner size="sm" />
-                              <span>Gemini AI is analyzing your mistake...</span>
-                            </>
-                          ) : (
-                            <>
-                              <Bot className="h-4 w-4 text-purple-500" />
-                              <span>Ask Gemini AI to Explain My Mistake ✨</span>
-                            </>
-                          )}
-                        </button>
-                      ) : (
-                        <div className="rounded-xl border border-purple-500/30 bg-card p-3.5 space-y-1.5 text-left shadow-sm">
-                          <div className="flex items-center gap-1.5 text-purple-600 dark:text-purple-400 font-extrabold text-[11px]">
-                            <Bot className="h-4 w-4 text-purple-500" />
-                            <span>Gemini AI Tutor Explanation:</span>
-                          </div>
-                          <div className="text-foreground text-xs leading-relaxed font-medium">
-                            <FormattedMarkdown content={aiExplanation} />
-                          </div>
+                      {validAnswers.length > 1 && (
+                        <div className="space-y-1.5 pt-1">
+                          <span className="text-muted-foreground font-semibold block">
+                            All Valid Translations:
+                          </span>
+                          <ul className="list-disc list-inside space-y-1 text-foreground font-medium bg-background/60 p-2.5 rounded-xl border border-border">
+                            {validAnswers.map((ans, idx) => (
+                              <li key={idx}>{ans}</li>
+                            ))}
+                          </ul>
                         </div>
                       )}
-                    </div>
-                  </motion.div>
-                )}
 
-                {status === "revealed" && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="rounded-2xl border border-purple-500/30 bg-purple-500/10 p-4 text-center space-y-2"
-                  >
-                    <span className="text-xs font-semibold text-purple-500 block">
-                      Accepted English Translation(s):
-                    </span>
-                    <div className="space-y-1">
-                      {validAnswers.map((ans, idx) => (
-                        <p key={idx} className="text-base font-extrabold text-foreground">
-                          {ans}
-                        </p>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                      <div className="pt-2">
+                        {!aiExplanation ? (
+                          <motion.button
+                            type="button"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            onClick={handleGetAiExplanation}
+                            disabled={loadingAi}
+                            className="flex items-center justify-center gap-2 w-full rounded-xl bg-purple-600/10 border border-purple-500/30 p-2.5 text-xs font-extrabold text-purple-600 dark:text-purple-400 hover:bg-purple-600/20 transition-colors shadow-xs"
+                          >
+                            {loadingAi ? (
+                              <>
+                                <MotionSpinner size="sm" />
+                                <span>Gemini AI is analyzing your mistake...</span>
+                              </>
+                            ) : (
+                              <>
+                                <Bot className="h-4 w-4 text-purple-500" />
+                                <span>Ask Gemini AI to Explain My Mistake ✨</span>
+                              </>
+                            )}
+                          </motion.button>
+                        ) : (
+                          <div className="rounded-xl border border-purple-500/30 bg-card p-3.5 space-y-1.5 text-left shadow-sm">
+                            <div className="flex items-center gap-1.5 text-purple-600 dark:text-purple-400 font-extrabold text-[11px]">
+                              <Bot className="h-4 w-4 text-purple-500" />
+                              <span>Gemini AI Tutor Explanation:</span>
+                            </div>
+                            <div className="text-foreground text-xs leading-relaxed font-medium">
+                              <FormattedMarkdown content={aiExplanation} />
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </motion.div>
+                  )}
 
-              <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
-                {status === "idle" || status === "wrong" ? (
-                  <>
+                  {status === "revealed" && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="rounded-2xl border border-purple-500/30 bg-purple-500/10 p-4 text-center space-y-2"
+                    >
+                      <span className="text-xs font-semibold text-purple-500 block">
+                        Accepted English Translation(s):
+                      </span>
+                      <div className="space-y-1">
+                        {validAnswers.map((ans, idx) => (
+                          <p key={idx} className="text-base font-extrabold text-foreground">
+                            {ans}
+                          </p>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
+                  {status === "idle" || status === "wrong" ? (
+                    <>
+                      <StatefulButton
+                        state={btnState}
+                        variant="primary"
+                        size="lg"
+                        onClick={checkAnswer}
+                        className="flex-1 min-w-[140px] bg-purple-600 hover:bg-purple-700"
+                      >
+                        <span>Submit Sentence</span>
+                      </StatefulButton>
+
+                      <motion.button
+                        type="button"
+                        whileHover={{ scale: 1.04, y: -1 }}
+                        whileTap={{ scale: 0.96 }}
+                        onClick={handleShowAnswer}
+                        className="inline-flex h-14 items-center gap-1.5 rounded-[18px] border border-border bg-card px-5 text-xs font-bold text-foreground hover:bg-muted transition-colors shadow-xs"
+                      >
+                        <HelpCircle className="h-4 w-4 text-purple-500" /> Show Answer
+                      </motion.button>
+
+                      <motion.button
+                        type="button"
+                        whileHover={{ scale: 1.04, y: -1 }}
+                        whileTap={{ scale: 0.96 }}
+                        onClick={handleSkip}
+                        className="inline-flex h-14 items-center gap-1.5 rounded-[18px] border border-border bg-card px-5 text-xs font-bold text-muted-foreground hover:bg-muted transition-colors shadow-xs"
+                      >
+                        <SkipForward className="h-4 w-4" /> Skip
+                      </motion.button>
+                    </>
+                  ) : (
                     <StatefulButton
-                      state={btnState}
-                      variant="primary"
+                      variant="success"
                       size="lg"
-                      onClick={checkAnswer}
-                      className="flex-1 min-w-[140px] bg-purple-600 hover:bg-purple-700"
+                      onClick={nextQuestion}
+                      className="w-full"
                     >
-                      <span>Submit Sentence</span>
+                      <span>Next Question</span>
+                      <ArrowRight className="h-5 w-5" />
                     </StatefulButton>
-
-                    <button
-                      type="button"
-                      onClick={handleShowAnswer}
-                      className="inline-flex h-14 items-center gap-1.5 rounded-[18px] border border-border bg-card px-5 text-xs font-bold text-foreground hover:bg-muted transition-colors"
-                    >
-                      <HelpCircle className="h-4 w-4 text-purple-500" /> Show Answer
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={handleSkip}
-                      className="inline-flex h-14 items-center gap-1.5 rounded-[18px] border border-border bg-card px-5 text-xs font-bold text-muted-foreground hover:bg-muted transition-colors"
-                    >
-                      <SkipForward className="h-4 w-4" /> Skip
-                    </button>
-                  </>
-                ) : (
-                  <StatefulButton
-                    variant="success"
-                    size="lg"
-                    onClick={nextQuestion}
-                    className="w-full"
-                  >
-                    <span>Next Question</span>
-                    <ArrowRight className="h-5 w-5" />
-                  </StatefulButton>
-                )}
+                  )}
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </AnimatePresence>
 
           <div className="flex items-center justify-between text-xs text-muted-foreground px-4">
             <span>Keyboard: <kbd className="rounded border bg-muted px-1.5 py-0.5 font-bold">Enter</kbd> = Submit, <kbd className="rounded border bg-muted px-1.5 py-0.5 font-bold">Esc</kbd> = Skip</span>

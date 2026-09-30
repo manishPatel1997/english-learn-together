@@ -164,10 +164,13 @@ export function AITutorModal({ isOpen, onClose, initialQuestion }: AITutorModalP
           )}
 
           {/* Chat Messages - Solid Opaque Background */}
-          <div className="flex-1 p-6 overflow-y-auto space-y-4 bg-slate-100 dark:bg-slate-900">
+          <div className="flex-1 p-6 overflow-y-auto space-y-4 bg-slate-100 dark:bg-slate-900 scrollbar-thin">
             {messages.map((m, i) => (
-              <div
+              <motion.div
                 key={i}
+                initial={{ opacity: 0, y: 12, scale: 0.97 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ type: "spring", stiffness: 450, damping: 25 }}
                 className={`flex gap-3 ${m.role === "user" ? "justify-end" : "justify-start"}`}
               >
                 {m.role === "ai" && (
@@ -189,13 +192,27 @@ export function AITutorModal({ isOpen, onClose, initialQuestion }: AITutorModalP
                     <User className="h-4 w-4" />
                   </div>
                 )}
-              </div>
+              </motion.div>
             ))}
 
             {loading && (
-              <div className="flex items-center gap-2.5 text-xs font-bold text-purple-700 dark:text-purple-300 bg-purple-500/20 p-3 rounded-xl border border-purple-500/30 max-w-fit shadow-sm">
-                <MotionSpinner size="sm" /> <span>Gemini AI is thinking...</span>
-              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center gap-3 text-xs font-bold text-purple-700 dark:text-purple-300 bg-purple-500/20 px-4 py-3 rounded-2xl border border-purple-500/30 max-w-fit shadow-sm"
+              >
+                <div className="flex items-center gap-1">
+                  {[0.1, 0.3, 0.2, 0.4].map((delay, idx) => (
+                    <motion.span
+                      key={idx}
+                      animate={{ height: ["8px", "18px", "8px"] }}
+                      transition={{ repeat: Infinity, duration: 0.8, delay }}
+                      className="w-1 bg-purple-600 rounded-full inline-block"
+                    />
+                  ))}
+                </div>
+                <span>Gemini AI is analyzing & generating answer...</span>
+              </motion.div>
             )}
           </div>
 
@@ -206,14 +223,16 @@ export function AITutorModal({ isOpen, onClose, initialQuestion }: AITutorModalP
               "Difference between 'Has' & 'Have'",
               "How to use past tense correctly?",
             ].map((qp, idx) => (
-              <button
+              <motion.button
                 key={idx}
                 type="button"
+                whileHover={{ scale: 1.04, y: -1 }}
+                whileTap={{ scale: 0.96 }}
                 onClick={() => handleSend(qp)}
-                className="text-[11px] font-black text-purple-800 dark:text-purple-200 bg-purple-500/20 border border-purple-500/40 hover:bg-purple-500/30 px-3.5 py-1.5 rounded-full transition-all shadow-sm"
+                className="text-[11px] font-black text-purple-800 dark:text-purple-200 bg-purple-500/20 border border-purple-500/40 hover:bg-purple-500/30 px-3.5 py-1.5 rounded-full transition-all shadow-xs"
               >
                 {qp}
-              </button>
+              </motion.button>
             ))}
           </div>
 
@@ -233,13 +252,15 @@ export function AITutorModal({ isOpen, onClose, initialQuestion }: AITutorModalP
                 placeholder="Ask Gemini AI any English question... (e.g. explain tenses)"
                 className="flex-1 rounded-2xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 p-3.5 text-xs font-bold text-slate-900 dark:text-slate-100 placeholder:text-slate-500 dark:placeholder:text-slate-400 outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
               />
-              <button
+              <motion.button
                 type="submit"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 disabled={loading || !input.trim()}
                 className="flex h-11 w-11 items-center justify-center rounded-2xl bg-purple-600 text-white hover:bg-purple-700 disabled:opacity-50 transition-colors shadow-md shadow-purple-600/30"
               >
                 <Send className="h-4 w-4" />
-              </button>
+              </motion.button>
             </form>
           </div>
         </motion.div>

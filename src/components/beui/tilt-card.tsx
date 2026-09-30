@@ -25,15 +25,15 @@ export function TiltCard({ children, className = "", onClick, glare = true }: Ti
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
 
-    const rX = ((mouseY - height / 2) / (height / 2)) * -10; // max -10deg to 10deg
-    const rY = ((mouseX - width / 2) / (width / 2)) * 10;
+    const rX = ((mouseY - height / 2) / (height / 2)) * -8; // max -8deg to 8deg for smoother tilt
+    const rY = ((mouseX - width / 2) / (width / 2)) * 8;
 
     setRotateX(rX);
     setRotateY(rY);
 
     const glareX = (mouseX / width) * 100;
     const glareY = (mouseY / height) * 100;
-    setGlarePos({ x: glareX, y: glareY, opacity: 0.25 });
+    setGlarePos({ x: glareX, y: glareY, opacity: 0.22 });
   };
 
   const handleMouseLeave = () => {
@@ -49,10 +49,17 @@ export function TiltCard({ children, className = "", onClick, glare = true }: Ti
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
       animate={{ rotateX, rotateY }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      whileHover={{ y: -4, scale: 1.008 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{
+        type: "spring",
+        stiffness: 380,
+        damping: 24,
+        mass: 0.8,
+      }}
       style={{ transformStyle: "preserve-3d", perspective: 1000 }}
       className={cn(
-        "relative overflow-hidden rounded-[20px] border border-border bg-card p-6 shadow-lg hover:shadow-2xl transition-shadow cursor-pointer select-none",
+        "relative overflow-hidden rounded-[22px] border border-border/80 bg-card p-6 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer select-none",
         className
       )}
     >
@@ -61,11 +68,11 @@ export function TiltCard({ children, className = "", onClick, glare = true }: Ti
           className="pointer-events-none absolute inset-0 transition-opacity duration-300 z-10"
           style={{
             opacity: glarePos.opacity,
-            background: `radial-gradient(circle at ${glarePos.x}% ${glarePos.y}%, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 70%)`,
+            background: `radial-gradient(circle at ${glarePos.x}% ${glarePos.y}%, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 65%)`,
           }}
         />
       )}
-      <div style={{ transform: "translateZ(20px)" }} className="relative z-20">
+      <div style={{ transform: "translateZ(24px)" }} className="relative z-20">
         {children}
       </div>
     </motion.div>

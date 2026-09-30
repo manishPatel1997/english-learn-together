@@ -43,12 +43,21 @@ export function StatefulButton({
   };
 
   const isError = state === "error";
+  const isSuccess = state === "success";
 
   return (
     <motion.button
-      animate={isError ? { x: [-10, 10, -8, 8, -4, 4, 0] } : {}}
-      transition={{ duration: 0.4 }}
-      className={cn(baseClasses, variants[variant], sizes[size], className)}
+      animate={isError ? { x: [-10, 10, -8, 8, -4, 4, 0] } : isSuccess ? { scale: [1, 1.05, 1] } : {}}
+      whileHover={disabled || state === "loading" ? undefined : { scale: 1.025, y: -1.5 }}
+      whileTap={disabled || state === "loading" ? undefined : { scale: 0.96 }}
+      transition={{ type: "spring", stiffness: 450, damping: 22 }}
+      className={cn(
+        baseClasses,
+        variants[variant],
+        sizes[size],
+        isSuccess && "ring-4 ring-emerald-500/30",
+        className
+      )}
       disabled={disabled || state === "loading"}
       {...(props as any)}
     >
@@ -56,9 +65,10 @@ export function StatefulButton({
         {state === "loading" && (
           <motion.span
             key="loading"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.7, y: 4 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.7, y: -4 }}
+            transition={{ type: "spring", stiffness: 500, damping: 25 }}
             className="flex items-center gap-2"
           >
             <MotionSpinner size="sm" />
@@ -69,12 +79,19 @@ export function StatefulButton({
         {state === "success" && (
           <motion.span
             key="success"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.6, rotate: -20 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            exit={{ opacity: 0, scale: 0.6, rotate: 20 }}
+            transition={{ type: "spring", stiffness: 500, damping: 20 }}
             className="flex items-center gap-2 text-white font-bold"
           >
-            <Check className="h-4 w-4 stroke-[3]" />
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", stiffness: 600, damping: 15, delay: 0.05 }}
+            >
+              <Check className="h-4 w-4 stroke-[3]" />
+            </motion.div>
             <span>Correct!</span>
           </motion.span>
         )}
@@ -82,12 +99,19 @@ export function StatefulButton({
         {state === "error" && (
           <motion.span
             key="error"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.6, rotate: 20 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            exit={{ opacity: 0, scale: 0.6, rotate: -20 }}
+            transition={{ type: "spring", stiffness: 500, damping: 20 }}
             className="flex items-center gap-2 text-white font-bold"
           >
-            <X className="h-4 w-4 stroke-[3]" />
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", stiffness: 600, damping: 15, delay: 0.05 }}
+            >
+              <X className="h-4 w-4 stroke-[3]" />
+            </motion.div>
             <span>Incorrect</span>
           </motion.span>
         )}
@@ -98,6 +122,7 @@ export function StatefulButton({
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.15 }}
             className="flex items-center gap-2"
           >
             {children}
