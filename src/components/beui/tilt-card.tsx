@@ -11,11 +11,10 @@ interface TiltCardProps {
   glare?: boolean;
 }
 
-export function TiltCard({ children, className = "", onClick, glare = true }: TiltCardProps) {
+export function TiltCard({ children, className = "", onClick }: TiltCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
-  const [glarePos, setGlarePos] = useState({ x: 50, y: 50, opacity: 0 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
@@ -25,21 +24,16 @@ export function TiltCard({ children, className = "", onClick, glare = true }: Ti
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
 
-    const rX = ((mouseY - height / 2) / (height / 2)) * -8; // max -8deg to 8deg for smoother tilt
-    const rY = ((mouseX - width / 2) / (width / 2)) * 8;
+    const rX = ((mouseY - height / 2) / (height / 2)) * -5;
+    const rY = ((mouseX - width / 2) / (width / 2)) * 5;
 
     setRotateX(rX);
     setRotateY(rY);
-
-    const glareX = (mouseX / width) * 100;
-    const glareY = (mouseY / height) * 100;
-    setGlarePos({ x: glareX, y: glareY, opacity: 0.22 });
   };
 
   const handleMouseLeave = () => {
     setRotateX(0);
     setRotateY(0);
-    setGlarePos((prev) => ({ ...prev, opacity: 0 }));
   };
 
   return (
@@ -49,30 +43,20 @@ export function TiltCard({ children, className = "", onClick, glare = true }: Ti
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
       animate={{ rotateX, rotateY }}
-      whileHover={{ y: -4, scale: 1.008 }}
-      whileTap={{ scale: 0.98 }}
+      whileHover={{ x: -2, y: -2 }}
+      whileTap={{ x: 2, y: 2 }}
       transition={{
         type: "spring",
-        stiffness: 380,
-        damping: 24,
-        mass: 0.8,
+        stiffness: 450,
+        damping: 26,
       }}
       style={{ transformStyle: "preserve-3d", perspective: 1000 }}
       className={cn(
-        "relative overflow-hidden rounded-[22px] border border-border/80 bg-card p-6 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer select-none",
+        "relative overflow-hidden rounded-[6px] border-[2.5px] border-black dark:border-white bg-card p-6 shadow-[5px_5px_0px_#121212] dark:shadow-[5px_5px_0px_#ffffff] hover:shadow-[7px_7px_0px_#121212] dark:hover:shadow-[7px_7px_0px_#ffffff] transition-shadow duration-150 cursor-pointer select-none",
         className
       )}
     >
-      {glare && (
-        <div
-          className="pointer-events-none absolute inset-0 transition-opacity duration-300 z-10"
-          style={{
-            opacity: glarePos.opacity,
-            background: `radial-gradient(circle at ${glarePos.x}% ${glarePos.y}%, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 65%)`,
-          }}
-        />
-      )}
-      <div style={{ transform: "translateZ(24px)" }} className="relative z-20">
+      <div style={{ transform: "translateZ(12px)" }} className="relative z-10">
         {children}
       </div>
     </motion.div>

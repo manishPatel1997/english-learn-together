@@ -2,14 +2,12 @@
 
 import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import { Settings, Target, Volume2, Clock, Trash2, Moon, Sun, RefreshCw, Sparkles } from "lucide-react";
+import { Settings, Target, Volume2, Clock, Trash2, Moon, Sun, Sparkles } from "lucide-react";
 import { Select } from "@/components/beui/select";
-import { StatefulButton } from "@/components/beui/stateful-button";
 import { MorphingModal } from "@/components/beui/morphing-modal";
 import { useToast } from "@/components/beui/animated-toast-stack";
 import { storage, type UserStats } from "@/lib/storage";
 import { getStoredGeminiKey, saveStoredGeminiKey } from "@/lib/gemini-client";
-
 import { apiClient } from "@/lib/api-client";
 import { useAuth } from "@/context/auth-context";
 
@@ -95,34 +93,34 @@ export function SettingsView({ stats, onUpdateStats }: SettingsViewProps) {
   };
 
   return (
-    <div className="space-y-8 max-w-3xl mx-auto py-4 select-none pb-12">
+    <div className="space-y-7 w-full max-w-5xl mx-auto select-none pb-12">
       {/* Header */}
-      <div className="border-b border-border pb-6">
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-indigo-500/10 px-3.5 py-1 text-xs font-bold text-indigo-600 dark:text-indigo-400">
-          <Settings className="h-3.5 w-3.5" /> App Preferences
+      <div className="border-b-2 border-black dark:border-white pb-5">
+        <span className="inline-flex items-center gap-1.5 rounded-[2px] border-2 border-black bg-[#FFE600] px-2.5 py-0.5 text-xs font-black uppercase text-black shadow-[2px_2px_0px_#121212]">
+          <Settings className="h-3.5 w-3.5 stroke-[2.5]" /> App Preferences
         </span>
-        <h2 className="text-3xl font-black text-foreground tracking-tight mt-1">
+        <h2 className="text-2xl sm:text-3xl font-black text-foreground uppercase tracking-tight mt-2">
           Settings & Preferences
         </h2>
-        <p className="text-xs text-muted-foreground">
+        <p className="text-xs font-bold text-muted-foreground">
           Configure your daily targets, theme appearance, and learning preferences.
         </p>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-5">
         {/* Daily Goal Target */}
-        <div className="flex items-center justify-between rounded-[22px] border border-border bg-card p-6 shadow-sm">
-          <div className="space-y-1">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-900 p-5 shadow-[4px_4px_0px_#121212] dark:shadow-[4px_4px_0px_#ffffff]">
+          <div className="space-y-0.5">
             <div className="flex items-center gap-2">
-              <Target className="h-5 w-5 text-amber-500" />
-              <span className="text-base font-bold text-foreground">Daily Practice Goal</span>
+              <Target className="h-5 w-5 text-[#FF6B00] stroke-[2.5]" />
+              <span className="text-sm font-black uppercase text-foreground">Daily Practice Goal</span>
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs font-bold text-muted-foreground">
               Target number of questions to answer per day to maintain your streak
             </p>
           </div>
 
-          <div className="w-44">
+          <div className="w-full sm:w-52">
             <Select
               value={dailyGoal}
               onChange={handleGoalChange}
@@ -137,18 +135,18 @@ export function SettingsView({ stats, onUpdateStats }: SettingsViewProps) {
         </div>
 
         {/* Theme Preference */}
-        <div className="flex items-center justify-between rounded-[22px] border border-border bg-card p-6 shadow-sm">
-          <div className="space-y-1">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-900 p-5 shadow-[4px_4px_0px_#121212] dark:shadow-[4px_4px_0px_#ffffff]">
+          <div className="space-y-0.5">
             <div className="flex items-center gap-2">
-              {resolvedTheme === "dark" ? <Moon className="h-5 w-5 text-indigo-400" /> : <Sun className="h-5 w-5 text-amber-500" />}
-              <span className="text-base font-bold text-foreground">Appearance Theme</span>
+              {resolvedTheme === "dark" ? <Moon className="h-5 w-5 text-yellow-400 stroke-[2.5]" /> : <Sun className="h-5 w-5 text-black stroke-[2.5]" />}
+              <span className="text-sm font-black uppercase text-foreground">Appearance Theme</span>
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs font-bold text-muted-foreground">
               Switch between Light Mode and Dark Mode interface
             </p>
           </div>
 
-          <div className="w-44">
+          <div className="w-full sm:w-52">
             <Select
               value={theme || "system"}
               onChange={(val) => setTheme(val)}
@@ -162,24 +160,24 @@ export function SettingsView({ stats, onUpdateStats }: SettingsViewProps) {
         </div>
 
         {/* Auto Advance Speed */}
-        <div className="flex items-center justify-between rounded-[22px] border border-border bg-card p-6 shadow-sm">
-          <div className="space-y-1">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-900 p-5 shadow-[4px_4px_0px_#121212] dark:shadow-[4px_4px_0px_#ffffff]">
+          <div className="space-y-0.5">
             <div className="flex items-center gap-2">
-              <Clock className="h-5 w-5 text-indigo-500" />
-              <span className="text-base font-bold text-foreground">Auto-Advance Delay</span>
+              <Clock className="h-5 w-5 text-black dark:text-white stroke-[2.5]" />
+              <span className="text-sm font-black uppercase text-foreground">Auto-Advance Delay</span>
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs font-bold text-muted-foreground">
               Delay before moving to next question after correct answer
             </p>
           </div>
 
-          <div className="w-44">
+          <div className="w-full sm:w-52">
             <Select
               value={autoAdvance}
               onChange={setAutoAdvance}
               options={[
                 { value: "500", label: "500ms (Fast)" },
-                { value: "700", label: "700ms (Recommended)" },
+                { value: "700", label: "700ms (Normal)" },
                 { value: "1200", label: "1200ms (Relaxed)" },
               ]}
             />
@@ -187,18 +185,18 @@ export function SettingsView({ stats, onUpdateStats }: SettingsViewProps) {
         </div>
 
         {/* Sound Feedback */}
-        <div className="flex items-center justify-between rounded-[22px] border border-border bg-card p-6 shadow-sm">
-          <div className="space-y-1">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-900 p-5 shadow-[4px_4px_0px_#121212] dark:shadow-[4px_4px_0px_#ffffff]">
+          <div className="space-y-0.5">
             <div className="flex items-center gap-2">
-              <Volume2 className="h-5 w-5 text-emerald-500" />
-              <span className="text-base font-bold text-foreground">Audio Sound Effects</span>
+              <Volume2 className="h-5 w-5 text-[#22C55E] stroke-[2.5]" />
+              <span className="text-sm font-black uppercase text-foreground">Audio Sound Effects</span>
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs font-bold text-muted-foreground">
               Enable celebration audio and feedback chimes
             </p>
           </div>
 
-          <div className="w-44">
+          <div className="w-full sm:w-52">
             <Select
               value={soundEnabled}
               onChange={setSoundEnabled}
@@ -211,17 +209,17 @@ export function SettingsView({ stats, onUpdateStats }: SettingsViewProps) {
         </div>
 
         {/* Google Gemini AI Settings */}
-        <div className="rounded-[22px] border border-purple-500/30 bg-gradient-to-r from-purple-500/5 via-indigo-500/5 to-blue-500/5 p-6 space-y-4 shadow-sm">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div className="space-y-1">
+        <div className="rounded-[4px] border-2 border-black dark:border-white bg-[#FFFDE6] dark:bg-zinc-900 p-5 sm:p-6 space-y-4 shadow-[4px_4px_0px_#121212] dark:shadow-[4px_4px_0px_#ffffff]">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b-2 border-black/10 dark:border-white/10 pb-3">
+            <div className="space-y-0.5">
               <div className="flex items-center gap-2">
-                <Sparkles className="h-5 w-5 text-purple-500" />
-                <span className="text-base font-bold text-foreground">Google Gemini AI Tutor API</span>
-                <span className="rounded-full bg-purple-500/20 px-2 py-0.5 text-[10px] font-bold text-purple-600 dark:text-purple-400">
+                <Sparkles className="h-5 w-5 text-[#FF6B00] stroke-[2.5]" />
+                <span className="text-sm font-black uppercase text-foreground">Google Gemini AI Tutor API</span>
+                <span className="rounded-[2px] border border-black bg-[#FFE600] px-1.5 py-0.2 text-[9px] font-black uppercase text-black">
                   Free Tier
                 </span>
               </div>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs font-bold text-muted-foreground">
                 Enter your free Gemini API Key from Google AI Studio to power real-time AI explanations and chat tutor.
               </p>
             </div>
@@ -230,7 +228,7 @@ export function SettingsView({ stats, onUpdateStats }: SettingsViewProps) {
               href="https://aistudio.google.com/"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex h-9 items-center gap-1.5 rounded-full border border-purple-500/40 bg-purple-500/10 px-4 text-xs font-bold text-purple-600 dark:text-purple-400 hover:bg-purple-500/20 transition-colors shrink-0"
+              className="inline-flex h-8 items-center gap-1 rounded-[3px] border-2 border-black bg-white dark:bg-zinc-800 px-3 text-xs font-black uppercase text-foreground hover:bg-[#FFE600] hover:text-black shadow-[2px_2px_0px_#121212] transition-colors shrink-0"
             >
               Get Free Key ↗
             </a>
@@ -242,12 +240,12 @@ export function SettingsView({ stats, onUpdateStats }: SettingsViewProps) {
               value={geminiKey}
               onChange={(e) => setGeminiKey(e.target.value)}
               placeholder="AIzaSy... (Paste Google Gemini API Key)"
-              className="flex-1 rounded-2xl border border-border bg-background px-4 py-2.5 text-xs font-semibold outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+              className="flex-1 rounded-[3px] border-2 border-black bg-white dark:bg-zinc-800 px-3.5 py-2 text-xs font-bold outline-none shadow-[2px_2px_0px_#121212]"
             />
             <button
               type="button"
               onClick={handleSaveGeminiKey}
-              className="rounded-2xl bg-purple-600 px-5 text-xs font-bold text-white hover:bg-purple-700 transition-colors shadow-md shadow-purple-600/20"
+              className="inline-flex items-center justify-center min-h-[44px] rounded-[3px] border-2 border-black bg-[#FFE600] px-4 text-xs font-black uppercase text-black hover:bg-[#FACC15] shadow-[3px_3px_0px_#121212] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#121212] cursor-pointer"
             >
               Save Key
             </button>
@@ -255,13 +253,13 @@ export function SettingsView({ stats, onUpdateStats }: SettingsViewProps) {
         </div>
 
         {/* Danger Zone */}
-        <div className="rounded-[22px] border border-rose-500/30 bg-rose-500/5 p-6 space-y-4">
-          <div className="flex items-center justify-between">
+        <div className="rounded-[4px] border-2 border-black bg-[#FFEAEA] dark:bg-rose-950/60 p-5 space-y-4 shadow-[4px_4px_0px_#121212]">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div className="space-y-0.5">
-              <span className="text-sm font-extrabold text-rose-600 dark:text-rose-400 block">
+              <span className="text-sm font-black uppercase text-[#FF4D4D] block">
                 Reset All Learning Progress
               </span>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs font-bold text-muted-foreground">
                 Clears XP, streak counters, saved mistakes, and local storage data
               </p>
             </div>
@@ -269,9 +267,9 @@ export function SettingsView({ stats, onUpdateStats }: SettingsViewProps) {
             <button
               type="button"
               onClick={() => setResetModalOpen(true)}
-              className="inline-flex h-10 items-center gap-2 rounded-xl bg-rose-600 px-4 text-xs font-bold text-white hover:bg-rose-700 transition-colors shadow-md shadow-rose-600/20"
+              className="inline-flex h-10 items-center justify-center gap-1.5 rounded-[3px] border-2 border-black bg-[#FF4D4D] px-4 text-xs font-black uppercase text-white shadow-[3px_3px_0px_#121212] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#121212] cursor-pointer shrink-0"
             >
-              <Trash2 className="h-3.5 w-3.5" /> Reset Data
+              <Trash2 className="h-3.5 w-3.5 stroke-[2.5]" /> Reset Data
             </button>
           </div>
         </div>
@@ -283,11 +281,11 @@ export function SettingsView({ stats, onUpdateStats }: SettingsViewProps) {
         onOpenChange={setResetModalOpen}
         title="Confirm Data Reset"
       >
-        <div className="space-y-5 pt-2 text-center">
-          <div className="rounded-2xl bg-rose-500/10 dark:bg-rose-500/20 border border-rose-500/30 p-4 text-rose-700 dark:text-rose-300 text-xs font-bold leading-relaxed">
+        <div className="space-y-5 pt-2 text-center select-none">
+          <div className="rounded-[4px] bg-[#FFEAEA] border-2 border-black p-4 text-black text-xs font-black uppercase leading-relaxed shadow-[3px_3px_0px_#121212]">
             ⚠️ Warning: This will permanently delete your practice streak, earned XP, saved mistakes, and custom settings.
           </div>
-          <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+          <p className="text-sm font-bold text-foreground">
             Are you sure you want to reset all progress? This action cannot be undone.
           </p>
 
@@ -295,14 +293,14 @@ export function SettingsView({ stats, onUpdateStats }: SettingsViewProps) {
             <button
               type="button"
               onClick={() => setResetModalOpen(false)}
-              className="inline-flex h-11 items-center rounded-2xl border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 px-6 text-xs font-extrabold text-slate-900 dark:text-slate-100 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors shadow-xs"
+              className="inline-flex h-10 items-center rounded-[3px] border-2 border-black bg-white dark:bg-zinc-800 px-5 text-xs font-black uppercase text-foreground shadow-[2px_2px_0px_#121212] hover:bg-neutral-100 cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="button"
               onClick={handleResetData}
-              className="inline-flex h-11 items-center justify-center rounded-2xl bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-xs px-6 shadow-lg shadow-rose-600/30 transition-all hover:scale-105"
+              className="inline-flex h-10 items-center justify-center rounded-[3px] border-2 border-black bg-[#FF4D4D] text-white font-black uppercase text-xs px-5 shadow-[3px_3px_0px_#121212] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#121212] cursor-pointer"
             >
               Yes, Reset Everything
             </button>

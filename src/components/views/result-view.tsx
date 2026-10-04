@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { motion } from "framer-motion";
 import confetti from "canvas-confetti";
 import {
   Trophy,
@@ -11,7 +10,6 @@ import {
   RotateCcw,
   LayoutDashboard,
   AlertCircle,
-  Sparkles,
   CheckCircle2,
 } from "lucide-react";
 import { StatefulButton } from "@/components/beui/stateful-button";
@@ -37,19 +35,19 @@ export function ResultView({
 }: ResultViewProps) {
   useEffect(() => {
     // Fire celebratory confetti on mount
-    const end = Date.now() + 1.5 * 1000;
-    const colors = ["#6366f1", "#a855f7", "#10b981", "#f59e0b"];
+    const end = Date.now() + 1.2 * 1000;
+    const colors = ["#FFE600", "#FF6B00", "#22C55E", "#000000"];
 
     (function frame() {
       confetti({
-        particleCount: 4,
+        particleCount: 5,
         angle: 60,
         spread: 55,
         origin: { x: 0 },
         colors,
       });
       confetti({
-        particleCount: 4,
+        particleCount: 5,
         angle: 120,
         spread: 55,
         origin: { x: 1 },
@@ -63,84 +61,62 @@ export function ResultView({
   }, []);
 
   return (
-    <div className="max-w-2xl mx-auto py-8 text-center space-y-8 select-none">
+    <div className="max-w-2xl mx-auto py-8 text-center space-y-7 select-none">
       {/* Trophy Header Badge */}
-      <motion.div
-        initial={{ scale: 0, rotate: -20 }}
-        animate={{ scale: 1, rotate: 0 }}
-        transition={{ type: "spring", stiffness: 350, damping: 20 }}
-        className="relative flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-tr from-amber-400 via-yellow-400 to-amber-500 text-slate-950 mx-auto shadow-2xl shadow-amber-400/30"
-      >
-        <Trophy className="h-12 w-12 stroke-[2.5]" />
-        <motion.div
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          className="absolute -top-1 -right-1 flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 text-white shadow-md"
-        >
-          <Sparkles className="h-4 w-4" />
-        </motion.div>
-      </motion.div>
+      <div className="relative flex h-20 w-20 items-center justify-center rounded-[4px] border-[3px] border-black bg-[#FFE600] text-black mx-auto shadow-[5px_5px_0px_#121212] dark:shadow-[5px_5px_0px_#ffffff]">
+        <Trophy className="h-10 w-10 stroke-[2.5]" />
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        className="space-y-2"
-      >
-        <span className="inline-block rounded-full bg-emerald-500/10 px-4 py-1 text-xs font-extrabold text-emerald-600 dark:text-emerald-400">
-          Module Complete 🎉
+      <div className="space-y-2">
+        <span className="inline-block rounded-[2px] border-2 border-black bg-[#22C55E] px-3.5 py-0.5 text-xs font-black uppercase text-black shadow-[2px_2px_0px_#121212]">
+          Session Completed 🎉
         </span>
-        <h2 className="text-4xl font-black text-foreground tracking-tight sm:text-5xl">
+        <h2 className="text-3xl sm:text-5xl font-black text-foreground uppercase tracking-tight">
           Congratulations!
         </h2>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-xs sm:text-sm font-bold text-muted-foreground">
           You finished the practice session with incredible focus. Here is your summary!
         </p>
-      </motion.div>
+      </div>
 
       {/* Main Score Grid */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.3 }}
-        className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6 rounded-[28px] border border-border bg-card shadow-xl"
-      >
-        <div className="rounded-2xl bg-muted/40 p-4 border border-border/60">
-          <CheckCircle2 className="h-5 w-5 mx-auto text-emerald-500 mb-1" />
-          <span className="text-[10px] text-muted-foreground uppercase font-bold block">Score</span>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 p-5 sm:p-6 rounded-[4px] border-[2.5px] border-black dark:border-white bg-white dark:bg-zinc-900 shadow-[6px_6px_0px_#121212] dark:shadow-[6px_6px_0px_#ffffff]">
+        <div className="rounded-[3px] bg-[#FAF7F2] dark:bg-zinc-800 p-3.5 border-2 border-black dark:border-white shadow-[2px_2px_0px_#121212]">
+          <CheckCircle2 className="h-5 w-5 mx-auto text-[#22C55E] mb-1 stroke-[3]" />
+          <span className="text-[9px] text-muted-foreground uppercase font-black block">Score</span>
           <NumberAnimation value={score} className="text-xl font-black text-foreground" />
         </div>
 
-        <div className="rounded-2xl bg-muted/40 p-4 border border-border/60">
-          <BarChart3 className="h-5 w-5 mx-auto text-indigo-500 mb-1" />
-          <span className="text-[10px] text-muted-foreground uppercase font-bold block">Accuracy</span>
+        <div className="rounded-[3px] bg-[#FAF7F2] dark:bg-zinc-800 p-3.5 border-2 border-black dark:border-white shadow-[2px_2px_0px_#121212]">
+          <BarChart3 className="h-5 w-5 mx-auto text-black dark:text-white mb-1 stroke-[2.5]" />
+          <span className="text-[9px] text-muted-foreground uppercase font-black block">Accuracy</span>
           <span className="text-xl font-black text-foreground">{accuracy}%</span>
         </div>
 
-        <div className="rounded-2xl bg-muted/40 p-4 border border-border/60">
-          <Zap className="h-5 w-5 mx-auto text-amber-500 fill-amber-500 mb-1" />
-          <span className="text-[10px] text-muted-foreground uppercase font-bold block">XP Earned</span>
-          <NumberAnimation value={xp} className="text-xl font-black text-indigo-600 dark:text-indigo-400" prefix="+" />
+        <div className="rounded-[3px] bg-[#FAF7F2] dark:bg-zinc-800 p-3.5 border-2 border-black dark:border-white shadow-[2px_2px_0px_#121212]">
+          <Zap className="h-5 w-5 mx-auto text-black fill-[#FFE600] mb-1 stroke-[2]" />
+          <span className="text-[9px] text-muted-foreground uppercase font-black block">XP Earned</span>
+          <NumberAnimation value={xp} className="text-xl font-black text-[#FF6B00]" prefix="+" />
         </div>
 
-        <div className="rounded-2xl bg-muted/40 p-4 border border-border/60">
-          <Flame className="h-5 w-5 mx-auto text-rose-500 fill-rose-500 mb-1" />
-          <span className="text-[10px] text-muted-foreground uppercase font-bold block">Streak</span>
+        <div className="rounded-[3px] bg-[#FAF7F2] dark:bg-zinc-800 p-3.5 border-2 border-black dark:border-white shadow-[2px_2px_0px_#121212]">
+          <Flame className="h-5 w-5 mx-auto text-black fill-[#FF6B00] mb-1" />
+          <span className="text-[9px] text-muted-foreground uppercase font-black block">Streak</span>
           <span className="text-xl font-black text-foreground">Active 🔥</span>
         </div>
-      </motion.div>
+      </div>
 
       {/* Weak Topics / Review Mistakes Summary */}
       {mistakes.length > 0 ? (
-        <div className="rounded-2xl border border-rose-500/30 bg-rose-500/5 p-5 text-left space-y-3">
+        <div className="rounded-[4px] border-2 border-black bg-[#FFEAEA] dark:bg-rose-950/60 p-5 text-left space-y-3 shadow-[4px_4px_0px_#121212]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-extrabold text-rose-600 dark:text-rose-400 flex items-center gap-1.5">
-              <AlertCircle className="h-4 w-4" /> {mistakes.length} Items Need Review
+            <span className="text-xs font-black uppercase text-[#FF4D4D] flex items-center gap-1.5">
+              <AlertCircle className="h-4 w-4 stroke-[3]" /> {mistakes.length} Items Need Review
             </span>
             <button
               type="button"
               onClick={() => onNavigate("mistakes")}
-              className="text-xs font-bold text-rose-600 dark:text-rose-400 hover:underline"
+              className="text-xs font-black uppercase text-foreground hover:underline cursor-pointer"
             >
               Open Mistakes Page →
             </button>
@@ -149,36 +125,37 @@ export function ResultView({
             {mistakes.slice(0, 4).map((m, i) => (
               <span
                 key={i}
-                className="rounded-lg bg-card px-3 py-1 text-xs font-semibold text-foreground border border-border"
+                className="rounded-[2px] bg-white dark:bg-zinc-900 px-2.5 py-1 text-xs font-bold text-foreground border border-black shadow-[1.5px_1.5px_0px_#121212]"
               >
-                {m.gujarati} → <span className="text-emerald-500">{m.correctEnglish}</span>
+                {m.gujarati} → <span className="text-[#22C55E] font-black">{m.correctEnglish}</span>
               </span>
             ))}
           </div>
         </div>
       ) : (
-        <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-xs font-bold text-emerald-600 dark:text-emerald-400">
+        <div className="rounded-[4px] border-2 border-black bg-[#E8F8EE] dark:bg-zinc-900 p-4 text-xs font-black uppercase text-black dark:text-emerald-300 shadow-[3px_3px_0px_#121212]">
           🌟 Perfect Score! You answered all questions correctly without any mistakes.
         </div>
       )}
 
       {/* Footer Navigation Buttons */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-3">
         <StatefulButton
           variant="primary"
           size="lg"
           onClick={onRestartPractice}
           className="w-full sm:w-auto"
         >
-          <RotateCcw className="h-4 w-4" /> Practice Again
+          <RotateCcw className="h-4 w-4 stroke-[2.5]" />
+          <span>Practice Again</span>
         </StatefulButton>
 
         <button
           type="button"
           onClick={() => onNavigate("dashboard")}
-          className="inline-flex h-14 w-full sm:w-auto items-center justify-center gap-2 rounded-[18px] border border-border bg-card px-8 text-sm font-bold text-foreground hover:bg-muted transition-colors shadow-sm"
+          className="inline-flex h-13 w-full sm:w-auto items-center justify-center gap-2 rounded-[4px] border-[2.5px] border-black bg-white dark:bg-zinc-800 px-7 text-xs sm:text-sm font-black uppercase text-foreground shadow-[4px_4px_0px_#121212] dark:shadow-[4px_4px_0px_#ffffff] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_#121212] transition-all cursor-pointer"
         >
-          <LayoutDashboard className="h-4 w-4 text-indigo-500" /> Return to Dashboard
+          <LayoutDashboard className="h-4 w-4 stroke-[2.5]" /> Return to Dashboard
         </button>
       </div>
     </div>

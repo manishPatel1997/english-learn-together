@@ -1,7 +1,7 @@
 {
   "name": "English Learn Together",
   "short_name": "ELT",
-  "description": "Master Gujarati to English vocabulary, spellings and sentence translation.",
+  "description": "Practice Gujarati to English vocabulary, sentence translation, and grammar with interactive exercises and AI feedback.",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -14,10 +14,19 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    },
+    {
+      "src": "/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
-  "theme_color": "#6366f1",
-  "background_color": "#0f0f13",
+  "theme_color": "#FFE600",
+  "background_color": "#121214",
   "display": "standalone",
-  "start_url": "/"
+  "start_url": "/",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["education", "productivity"]
 }

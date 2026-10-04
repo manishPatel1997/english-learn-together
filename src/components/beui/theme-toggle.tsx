@@ -14,18 +14,18 @@ export function ThemeToggle() {
   }, []);
 
   if (!mounted) {
-    return <div className="h-9 w-9 rounded-full border border-border bg-card" />;
+    return <div className="h-9 w-9 rounded-[4px] border-2 border-black bg-card shadow-[2px_2px_0px_#121212]" />;
   }
 
   const isDark = resolvedTheme === "dark";
 
   return (
-    <motion.button
+    <button
       type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      whileTap={{ scale: 0.9 }}
-      className="relative flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-sm hover:bg-muted transition-colors"
+      className="relative flex h-9 w-9 items-center justify-center rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-800 text-foreground shadow-[2px_2px_0px_#121212] dark:shadow-[2px_2px_0px_#ffffff] hover:bg-[#FFE600] dark:hover:bg-zinc-700 hover:text-black hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#121212] dark:hover:shadow-[3px_3px_0px_#ffffff] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer"
       aria-label="Toggle theme"
+      title="Toggle Light/Dark Theme"
     >
       <motion.div
         initial={false}
@@ -34,10 +34,10 @@ export function ThemeToggle() {
           scale: isDark ? 1 : 0,
           opacity: isDark ? 1 : 0,
         }}
-        transition={{ duration: 0.3, type: "spring" }}
+        transition={{ duration: 0.2 }}
         className="absolute"
       >
-        <Moon className="h-4 w-4 text-indigo-400" />
+        <Moon className="h-4 w-4 text-yellow-400 stroke-[2.5]" />
       </motion.div>
 
       <motion.div
@@ -47,11 +47,11 @@ export function ThemeToggle() {
           scale: isDark ? 0 : 1,
           opacity: isDark ? 0 : 1,
         }}
-        transition={{ duration: 0.3, type: "spring" }}
+        transition={{ duration: 0.2 }}
         className="absolute"
       >
-        <Sun className="h-4 w-4 text-amber-500" />
+        <Sun className="h-4 w-4 text-black stroke-[2.5]" />
       </motion.div>
-    </motion.button>
+    </button>
   );
 }

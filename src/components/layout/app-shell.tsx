@@ -14,6 +14,7 @@ import { storage, type UserStats } from "@/lib/storage";
 import { ThemeLoader } from "@/components/beui/loader";
 import { ShieldCheck } from "lucide-react";
 import { useAuth } from "@/context/auth-context";
+import { getStoredAuthToken } from "@/lib/api-client";
 import { AuthLandingGate } from "@/components/auth/auth-landing-gate";
 
 import { SmoothScrollContainer } from "@/components/beui/smooth-scroll";
@@ -124,6 +125,35 @@ export function AppShell({ children }: AppShellProps) {
     window.addEventListener("keydown", handleGlobalShortcuts);
     return () => window.removeEventListener("keydown", handleGlobalShortcuts);
   }, [router]);
+
+  const isPublicRoute = [
+    "/learn-english",
+    "/english-vocabulary-practice",
+    "/english-sentence-practice",
+    "/gujarati-to-english",
+    "/english-reading-practice",
+    "/faq",
+  ].some((route) => pathname === route || pathname.startsWith(`${route}/`));
+
+  if (isPublicRoute) {
+    return <>{children}</>;
+  }
+
+  // On the homepage ('/'), render AuthLandingGate for SSR / unauthenticated visitors
+  // so search crawlers and visitors receive a full <h1>, descriptive content, and crawlable navigation.
+  if (pathname === "/" && !isLoggedIn) {
+    if (isLoading && getStoredAuthToken()) {
+      return (
+        <ThemeLoader
+          variant="fullscreen"
+          title="Verifying Account Authentication"
+          subtitle="Syncing profile data, streak counters, and unlocked sections..."
+          icon={<ShieldCheck className="h-3.5 w-3.5 text-indigo-500" />}
+        />
+      );
+    }
+    return <AuthLandingGate />;
+  }
 
   if (isLoading) {
     return (

@@ -100,16 +100,18 @@ export function CommandPalette({
       type: "vocab" as const,
       id: `vocab-${word.id}`,
       word,
+      label: `${word.gujarati} — ${word.english}`,
       onSelect: () => {
         if (onSelectWord) onSelectWord(word);
         onNavigate("vocabulary");
         onOpenChange(false);
       },
     })),
-    ...filteredSentences.map((sent: any) => ({
+    ...filteredSentences.map((sent: any, idx) => ({
       type: "sentence" as const,
-      id: `sent-${sent.id}`,
-      sentence: sent,
+      id: `sent-${idx}`,
+      sent,
+      label: `${sent.gujarati} — ${sent.english}`,
       onSelect: () => {
         onNavigate("sentence");
         onOpenChange(false);
@@ -117,30 +119,23 @@ export function CommandPalette({
     })),
   ];
 
-  // Reset selected index when query or open changes
   useEffect(() => {
     setSelectedIndex(0);
-  }, [query, open]);
+  }, [query]);
 
-  useEffect(() => {
-    if (!open) setQuery("");
-  }, [open]);
-
-  // Global & modal shortcut event listener
+  // Global keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      const activeEl = document.activeElement;
-      const isInputActive =
-        activeEl &&
-        (activeEl.tagName === "INPUT" ||
-          activeEl.tagName === "TEXTAREA" ||
-          (activeEl as HTMLElement).isContentEditable);
-
-      const isKKey = (e.key && e.key.toLowerCase() === "k") || e.code === "KeyK";
       const isSlashKey = e.key === "/" || e.code === "Slash";
+      const isKKey = e.key.toLowerCase() === "k";
+      const target = e.target as HTMLElement | null;
+      const isInputActive =
+        target?.tagName === "INPUT" ||
+        target?.tagName === "TEXTAREA" ||
+        target?.isContentEditable;
 
-      // Ctrl+1..9 or Cmd+1..9 or Alt+1..9 navigation shortcut
-      if (e.ctrlKey || e.metaKey || e.altKey) {
+      // ⌘1..9 / Ctrl+1..9 quick module jumping
+      if ((e.metaKey || e.ctrlKey || e.altKey) && !open) {
         const numMap: Record<string, () => void> = {
           "1": () => onNavigate("dashboard"),
           "2": () => onNavigate("vocabulary"),
@@ -168,7 +163,7 @@ export function CommandPalette({
         return;
       }
 
-      // "/" shortcut (when not in an input field)
+      // "/" shortcut
       if (isSlashKey && !open && !isInputActive && !e.metaKey && !e.ctrlKey) {
         e.preventDefault();
         onOpenChange(true);
@@ -217,37 +212,37 @@ export function CommandPalette({
   return (
     <AnimatePresence>
       {open && (
-        <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4">
+        <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 select-none">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => onOpenChange(false)}
-            className="fixed inset-0 bg-slate-950/60 backdrop-blur-md"
+            className="fixed inset-0 bg-black/75 z-40"
           />
 
           {/* Dialog Container */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: -20 }}
+            initial={{ opacity: 0, scale: 0.96, y: -15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: -20 }}
-            transition={{ type: "spring", stiffness: 450, damping: 30 }}
-            className="relative w-full max-w-2xl overflow-hidden rounded-[24px] border border-border bg-card shadow-2xl z-10"
+            exit={{ opacity: 0, scale: 0.96, y: -15 }}
+            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+            className="relative w-full max-w-2xl overflow-hidden rounded-[6px] border-[3px] border-black dark:border-white bg-[#FAF7F2] dark:bg-[#161619] shadow-[4px_4px_0px_#121212] sm:shadow-[8px_8px_0px_#121212] dark:shadow-[4px_4px_0px_#ffffff] sm:dark:shadow-[8px_8px_0px_#ffffff] z-50"
           >
             {/* Input Header */}
-            <div className="flex items-center gap-3 border-b border-border px-5 py-4">
-              <Search className="h-5 w-5 text-muted-foreground" />
+            <div className="flex items-center gap-3 border-b-2 border-black dark:border-white px-5 py-4 bg-white dark:bg-zinc-900">
+              <Search className="h-5 w-5 text-black dark:text-white stroke-[2.5]" />
               <input
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search words, Gujarati sentences, commands... (Esc to exit)"
                 autoFocus
-                className="flex-1 bg-transparent text-base text-foreground placeholder:text-muted-foreground outline-none"
+                className="flex-1 bg-transparent text-sm sm:text-base font-bold text-foreground placeholder:text-muted-foreground outline-none"
               />
               <div className="flex items-center gap-1.5">
-                <kbd className="hidden sm:inline-flex items-center gap-1 rounded-md border border-border bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
+                <kbd className="hidden sm:inline-flex items-center rounded-[2px] border-2 border-black dark:border-white bg-[#FFE600] px-2 py-0.5 text-[10px] font-black text-black shadow-[1.5px_1.5px_0px_#121212]">
                   ESC
                 </kbd>
               </div>
@@ -258,7 +253,7 @@ export function CommandPalette({
               {/* Quick Actions */}
               {filteredNav.length > 0 && (
                 <div>
-                  <div className="px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+                  <div className="px-3 py-1 text-[10px] font-black uppercase tracking-wider text-muted-foreground">
                     Navigation & Actions
                   </div>
                   <div className="space-y-1">
@@ -278,17 +273,17 @@ export function CommandPalette({
                           }}
                           onMouseEnter={() => setSelectedIndex(itemIndex)}
                           className={cn(
-                            "flex w-full items-center justify-between rounded-xl px-3.5 py-2.5 text-sm transition-colors text-left group",
+                            "flex w-full items-center justify-between rounded-[3px] px-3.5 py-2.5 text-xs font-bold transition-all text-left group cursor-pointer",
                             isSelected
-                              ? "bg-primary/15 text-primary font-semibold ring-1 ring-primary/30"
-                              : "text-foreground hover:bg-primary/10 hover:text-primary"
+                              ? "bg-[#FFE600] text-black border-2 border-black shadow-[2.5px_2.5px_0px_#121212] font-black"
+                              : "border-2 border-transparent text-foreground hover:border-black dark:hover:border-white hover:bg-white dark:hover:bg-zinc-800"
                           )}
                         >
                           <div className="flex items-center gap-3">
                             <Icon
                               className={cn(
-                                "h-4 w-4",
-                                isSelected ? "text-primary" : "text-muted-foreground group-hover:text-primary"
+                                "h-4 w-4 stroke-[2.5]",
+                                isSelected ? "text-black" : "text-foreground"
                               )}
                             />
                             <span>{cmd.label}</span>
@@ -297,10 +292,10 @@ export function CommandPalette({
                             {cmd.shortcut && (
                               <kbd
                                 className={cn(
-                                  "hidden sm:inline-flex items-center gap-0.5 rounded border px-1.5 py-0.5 text-[10px] font-bold shadow-xs transition-colors",
+                                  "hidden sm:inline-flex items-center rounded-[2px] border border-black px-1.5 py-0.2 text-[10px] font-black shadow-[1px_1px_0px_#121212]",
                                   isSelected
-                                    ? "border-primary/40 bg-primary/20 text-primary"
-                                    : "border-border bg-muted/60 text-muted-foreground"
+                                    ? "bg-white text-black"
+                                    : "bg-white dark:bg-black text-foreground"
                                 )}
                               >
                                 {isMac ? `⌘${cmd.shortcut}` : `Ctrl+${cmd.shortcut}`}
@@ -308,8 +303,8 @@ export function CommandPalette({
                             )}
                             <ArrowRight
                               className={cn(
-                                "h-4 w-4 transition-opacity",
-                                isSelected ? "opacity-100 text-primary" : "opacity-0 group-hover:opacity-100"
+                                "h-4 w-4 stroke-[3]",
+                                isSelected ? "opacity-100 text-black" : "opacity-0 group-hover:opacity-100"
                               )}
                             />
                           </div>
@@ -323,7 +318,7 @@ export function CommandPalette({
               {/* Vocabulary Results */}
               {filteredVocab.length > 0 && (
                 <div>
-                  <div className="px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+                  <div className="px-3 py-1 text-[10px] font-black uppercase tracking-wider text-muted-foreground">
                     Vocabulary Words ({filteredVocab.length})
                   </div>
                   <div className="space-y-1">
@@ -343,20 +338,20 @@ export function CommandPalette({
                           }}
                           onMouseEnter={() => setSelectedIndex(itemIndex)}
                           className={cn(
-                            "flex w-full items-center justify-between rounded-xl px-3.5 py-2.5 text-sm transition-colors text-left",
+                            "flex w-full items-center justify-between rounded-[3px] px-3.5 py-2.5 text-xs transition-all text-left cursor-pointer",
                             isSelected
-                              ? "bg-indigo-500/15 text-foreground ring-1 ring-indigo-500/30"
-                              : "hover:bg-muted"
+                              ? "bg-[#FFE600] text-black border-2 border-black shadow-[2.5px_2.5px_0px_#121212] font-black"
+                              : "border-2 border-transparent text-foreground hover:border-black dark:hover:border-white hover:bg-white dark:hover:bg-zinc-800"
                           )}
                         >
                           <div className="flex items-center gap-3">
-                            <span className="font-bold text-indigo-600 dark:text-indigo-400 text-base">
+                            <span className="font-black text-sm">
                               {word.gujarati}
                             </span>
                             <span className="text-muted-foreground">—</span>
-                            <span className="font-medium text-foreground">{word.english}</span>
+                            <span className="font-bold">{word.english}</span>
                           </div>
-                          <span className="rounded-full bg-indigo-500/10 px-2 py-0.5 text-[10px] font-semibold text-indigo-600 dark:text-indigo-400">
+                          <span className="rounded-[2px] border border-black bg-white dark:bg-zinc-800 px-2 py-0.5 text-[9px] font-black uppercase text-foreground">
                             {word.category}
                           </span>
                         </button>
@@ -369,7 +364,7 @@ export function CommandPalette({
               {/* Sentence Results */}
               {filteredSentences.length > 0 && (
                 <div>
-                  <div className="px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+                  <div className="px-3 py-1 text-[10px] font-black uppercase tracking-wider text-muted-foreground">
                     Sentences ({filteredSentences.length})
                   </div>
                   <div className="space-y-1">
@@ -388,17 +383,17 @@ export function CommandPalette({
                           }}
                           onMouseEnter={() => setSelectedIndex(itemIndex)}
                           className={cn(
-                            "flex w-full items-center justify-between rounded-xl px-3.5 py-2.5 text-sm transition-colors text-left",
+                            "flex w-full items-center justify-between rounded-[3px] px-3.5 py-2.5 text-xs transition-all text-left cursor-pointer",
                             isSelected
-                              ? "bg-purple-500/15 text-foreground ring-1 ring-purple-500/30"
-                              : "hover:bg-muted"
+                              ? "bg-[#FFE600] text-black border-2 border-black shadow-[2.5px_2.5px_0px_#121212] font-black"
+                              : "border-2 border-transparent text-foreground hover:border-black dark:hover:border-white hover:bg-white dark:hover:bg-zinc-800"
                           )}
                         >
                           <div className="flex flex-col">
-                            <span className="font-semibold text-foreground">{sent.gujarati}</span>
-                            <span className="text-xs text-muted-foreground">{sent.english}</span>
+                            <span className="font-black text-sm">{sent.gujarati}</span>
+                            <span className="text-xs font-bold text-muted-foreground">{sent.english}</span>
                           </div>
-                          <span className="rounded-full bg-purple-500/10 px-2 py-0.5 text-[10px] font-semibold text-purple-600 dark:text-purple-400">
+                          <span className="rounded-[2px] border border-black bg-white dark:bg-zinc-800 px-2 py-0.5 text-[9px] font-black uppercase text-foreground">
                             {sent.topic}
                           </span>
                         </button>
@@ -409,34 +404,30 @@ export function CommandPalette({
               )}
 
               {query && filteredVocab.length === 0 && filteredSentences.length === 0 && filteredNav.length === 0 && (
-                <div className="p-8 text-center text-sm text-muted-foreground">
+                <div className="p-8 text-center text-xs font-bold text-muted-foreground uppercase">
                   No matching words or commands found for "{query}"
                 </div>
               )}
             </div>
 
             {/* Footer */}
-            <div className="flex flex-wrap items-center justify-between gap-2 border-t border-border px-5 py-3 text-[11px] text-muted-foreground bg-muted/30">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-t-2 border-black dark:border-white px-5 py-3 text-[11px] font-bold text-foreground bg-[#EFE8DD] dark:bg-zinc-900">
               <div className="flex items-center gap-1.5 flex-wrap">
-                <span>Jump:</span>
-                <kbd className="rounded border border-border bg-card px-1.5 py-0.5 font-bold text-foreground">
+                <span className="uppercase">Jump:</span>
+                <kbd className="rounded-[2px] border border-black bg-white dark:bg-zinc-800 px-1.5 py-0.2 font-black shadow-[1px_1px_0px_#121212]">
                   {isMac ? "⌘1..9" : "Ctrl+1..9"}
                 </kbd>
                 <span className="mx-1">•</span>
-                <span>Search:</span>
-                <kbd className="rounded border border-border bg-card px-1.5 py-0.5 font-bold text-foreground">
+                <span className="uppercase">Search:</span>
+                <kbd className="rounded-[2px] border border-black bg-white dark:bg-zinc-800 px-1.5 py-0.2 font-black shadow-[1px_1px_0px_#121212]">
                   {isMac ? "⌘K" : "Ctrl+K"}
-                </kbd>
-                <span>or</span>
-                <kbd className="rounded border border-border bg-card px-1.5 py-0.5 font-bold text-foreground">
-                  /
                 </kbd>
               </div>
               <div className="flex items-center gap-2">
-                <span>Navigate</span>
-                <kbd className="rounded border border-border bg-card px-1 py-0.5 font-bold">↑↓</kbd>
-                <span>Select</span>
-                <kbd className="rounded border border-border bg-card px-1 py-0.5 font-bold">↵</kbd>
+                <span className="uppercase">Navigate</span>
+                <kbd className="rounded-[2px] border border-black bg-white dark:bg-zinc-800 px-1 py-0.2 font-black">↑↓</kbd>
+                <span className="uppercase">Select</span>
+                <kbd className="rounded-[2px] border border-black bg-white dark:bg-zinc-800 px-1 py-0.2 font-black">↵</kbd>
               </div>
             </div>
           </motion.div>
@@ -445,4 +436,3 @@ export function CommandPalette({
     </AnimatePresence>
   );
 }
-

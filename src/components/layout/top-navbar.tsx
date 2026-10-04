@@ -29,6 +29,65 @@ function formatRelativeTime(dateStr: string): string {
   return `${days}d ago`;
 }
 
+export interface ModuleTitleConfig {
+  desktopTitle: string;
+  mobileTitle: string;
+  desc: string;
+}
+
+export const MODULE_NAV_TITLES: Record<NavItem, ModuleTitleConfig> = {
+  dashboard: {
+    desktopTitle: "DASHBOARD",
+    mobileTitle: "DASHBOARD",
+    desc: "Ready to master Gujarati today?",
+  },
+  vocabulary: {
+    desktopTitle: "VOCABULARY PRACTICE",
+    mobileTitle: "VOCABULARY",
+    desc: "Practice Gujarati to English word spellings",
+  },
+  sentence: {
+    desktopTitle: "SENTENCE PRACTICE",
+    mobileTitle: "SENTENCES",
+    desc: "Practice Gujarati sentence translation and grammar",
+  },
+  "sentence-reading": {
+    desktopTitle: "SENTENCE READING AI",
+    mobileTitle: "READING AI",
+    desc: "Listen, read aloud, and breakdown Gujarati sentence phonetics",
+  },
+  mixed: {
+    desktopTitle: "MIXED PRACTICE MODE",
+    mobileTitle: "MIXED",
+    desc: "Randomized vocabulary and sentence challenges",
+  },
+  progress: {
+    desktopTitle: "PROGRESS & ANALYTICS",
+    mobileTitle: "PROGRESS",
+    desc: "Track your learning curves, accuracy, and practice streaks",
+  },
+  mistakes: {
+    desktopTitle: "MISTAKES REVIEW",
+    mobileTitle: "MISTAKES",
+    desc: "Turn your past errors into solid knowledge",
+  },
+  favorites: {
+    desktopTitle: "SAVED FAVORITES & FLASHCARDS",
+    mobileTitle: "FAVORITES",
+    desc: "Your personal collection of bookmarked words & sentences",
+  },
+  settings: {
+    desktopTitle: "SETTINGS & PREFERENCES",
+    mobileTitle: "SETTINGS",
+    desc: "Customize daily goals, audio feedback, and preferences",
+  },
+  admin: {
+    desktopTitle: "ADMIN PANEL & MODULE UNLOCKING",
+    mobileTitle: "ADMIN",
+    desc: "View all user performance metrics and configure module permissions",
+  },
+};
+
 export function TopNavbar({
   currentNav,
   onOpenCommandPalette,
@@ -96,65 +155,53 @@ export function TopNavbar({
     }
   }, []);
 
-  const moduleTitles: Record<NavItem, { title: string; desc: string }> = {
-    dashboard: { title: "Home Dashboard", desc: "Welcome back! Ready to master Gujarati today?" },
-    vocabulary: { title: "Vocabulary Practice", desc: "Practice Gujarati to English word spellings" },
-    sentence: { title: "Sentence Practice", desc: "Practice Gujarati sentence translation and grammar" },
-    "sentence-reading": { title: "Sentence Reading AI", desc: "Listen, read aloud, and breakdown Gujarati sentence phonetics" },
-    mixed: { title: "Mixed Practice Mode", desc: "Randomized vocabulary and sentence challenges" },
-    progress: { title: "Analytics & Progress", desc: "Track your learning curves, accuracy, and practice streaks" },
-    mistakes: { title: "Mistakes Review", desc: "Turn your past errors into solid knowledge" },
-    favorites: { title: "Saved Favorites", desc: "Your personal collection of bookmarked words & sentences" },
-    settings: { title: "App Settings", desc: "Customize daily goals, audio feedback, and preferences" },
-    admin: { title: "Admin Panel & Module Unlocking", desc: "View all user performance metrics and configure module permissions" },
-  };
-
-  const currentModule = moduleTitles[currentNav] || moduleTitles.dashboard;
+  const currentModule = MODULE_NAV_TITLES[currentNav] || MODULE_NAV_TITLES.dashboard;
 
   return (
-    <header className="sticky top-0 z-20 flex h-16 w-full items-center justify-between border-b border-border bg-card/80 px-3 sm:px-6 backdrop-blur-md gap-2">
+    <header className="sticky top-0 z-20 flex h-16 w-full items-center justify-between border-b-[2.5px] border-black dark:border-white bg-[#FAF7F2] dark:bg-[#161619] px-2.5 sm:px-6 gap-1.5 sm:gap-2 select-none shadow-[0px_3px_0px_#121212] dark:shadow-[0px_3px_0px_#ffffff]">
       {/* Left Section: Mobile Menu Toggle & Current Module Title */}
-      <div className="flex items-center gap-2.5 min-w-0">
+      <div className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1 sm:flex-initial">
         {onToggleMobileMenu && (
           <button
             type="button"
             onClick={onToggleMobileMenu}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-card text-foreground hover:bg-muted transition-colors lg:hidden shrink-0 shadow-xs"
+            className="flex h-10 w-10 sm:h-9 sm:w-9 min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 items-center justify-center rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-800 text-foreground hover:bg-[#FFE600] hover:text-black shadow-[2px_2px_0px_#121212] dark:shadow-[2px_2px_0px_#ffffff] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#121212] dark:hover:shadow-[3px_3px_0px_#ffffff] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none lg:hidden shrink-0 cursor-pointer transition-all"
             aria-label="Open Navigation Drawer"
             title="Open Menu"
           >
-            <Menu className="h-5 w-5" />
+            <Menu className="h-5 w-5 stroke-[2.5]" />
           </button>
         )}
 
-        <div className="flex flex-col min-w-0">
-          <h1 className="text-sm sm:text-base font-extrabold tracking-tight text-foreground truncate">
-            {currentModule.title}
+        <div className="flex flex-col min-w-0 flex-1 sm:flex-initial justify-center">
+          <h1 className="text-[13px] sm:text-base font-black tracking-tight text-foreground uppercase truncate sm:whitespace-normal">
+            <span className="inline sm:hidden">{currentModule.mobileTitle}</span>
+            <span className="hidden sm:inline">{currentModule.desktopTitle}</span>
           </h1>
-          <p className="hidden md:block text-[11px] font-medium text-muted-foreground truncate">
+          <p className="hidden md:block text-[11px] font-bold text-muted-foreground truncate">
             {currentModule.desc}
           </p>
         </div>
       </div>
 
       {/* Center: Command Palette Trigger Search */}
-      <div className="flex-1 max-w-md mx-1 sm:mx-4">
+      <div className="shrink-0 sm:flex-1 sm:max-w-md sm:mx-4 flex justify-end sm:justify-stretch">
         <button
           type="button"
           onClick={onOpenCommandPalette}
           title="Open search & command palette (Ctrl+K or /)"
-          className="flex h-9 sm:h-10 w-full items-center justify-between rounded-full border border-border bg-muted/50 px-3 sm:px-4 text-xs text-muted-foreground hover:bg-muted hover:border-indigo-500/50 transition-all shadow-inner group"
+          className="flex h-10 sm:h-10 items-center justify-center sm:justify-between rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-900 px-2.5 sm:px-4 text-xs font-bold text-muted-foreground hover:text-foreground shadow-[2px_2px_0px_#121212] sm:shadow-[3px_3px_0px_#121212] dark:shadow-[2px_2px_0px_#ffffff] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-[2px] active:translate-y-[2px] active:shadow-[1px_1px_0px_#121212] transition-all min-h-[44px] sm:min-h-0 min-w-[44px] sm:w-full group cursor-pointer shrink-0"
         >
-          <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
-            <Search className="h-4 w-4 shrink-0 text-muted-foreground group-hover:text-indigo-500 transition-colors" />
-            <span className="truncate hidden sm:inline">Search Gujarati words, sentences...</span>
-            <span className="truncate sm:hidden text-[11px]">Search...</span>
+          <div className="flex items-center gap-2 min-w-0">
+            <Search className="h-4 w-4 shrink-0 text-black dark:text-white stroke-[2.5]" />
+            <span className="truncate hidden md:inline text-foreground font-bold">Search Gujarati words, sentences...</span>
+            <span className="truncate hidden sm:inline md:hidden text-[11px] text-foreground font-bold">Search...</span>
           </div>
           <div className="hidden sm:flex items-center gap-1.5 shrink-0">
-            <kbd className="inline-flex items-center gap-0.5 rounded-md border border-border bg-card px-2 py-0.5 text-[10px] font-bold text-foreground shadow-xs">
+            <kbd className="inline-flex items-center gap-0.5 rounded-[2px] border-2 border-black dark:border-white bg-[#FFE600] px-1.5 py-0.2 text-[10px] font-black text-black shadow-[1px_1px_0px_#121212]">
               {isMac ? "⌘K" : "Ctrl+K"}
             </kbd>
-            <kbd className="inline-flex items-center justify-center rounded-md border border-border bg-card px-1.5 py-0.5 text-[10px] font-bold text-muted-foreground shadow-xs">
+            <kbd className="inline-flex items-center justify-center rounded-[2px] border-2 border-black dark:border-white bg-white px-1.5 py-0.2 text-[10px] font-black text-black shadow-[1px_1px_0px_#121212]">
               /
             </kbd>
           </div>
@@ -167,15 +214,17 @@ export function TopNavbar({
           <button
             type="button"
             onClick={onOpenAiTutor}
-            className="flex h-9 items-center gap-1 sm:gap-1.5 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 px-2.5 sm:px-3.5 text-xs font-extrabold text-white shadow-md hover:shadow-lg transition-all hover:scale-105"
+            className="hidden sm:flex h-9 items-center gap-1.5 rounded-[4px] border-2 border-black dark:border-white bg-[#FF6B00] px-2.5 sm:px-3 text-xs font-black uppercase text-white shadow-[3px_3px_0px_#121212] dark:shadow-[3px_3px_0px_#ffffff] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#121212] dark:hover:shadow-[4px_4px_0px_#ffffff] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[1px_1px_0px_#121212] dark:active:shadow-[1px_1px_0px_#ffffff] transition-all cursor-pointer min-h-[40px]"
             title="Ask AI Tutor"
           >
-            <Sparkles className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">AI Tutor</span>
+            <Sparkles className="h-3.5 w-3.5 stroke-[2.5]" />
+            <span className="hidden md:inline">AI Tutor</span>
           </button>
         )}
 
-        <ThemeToggle />
+        <div className="hidden sm:block">
+          <ThemeToggle />
+        </div>
 
         {/* Notification Bell */}
         <button
@@ -184,17 +233,15 @@ export function TopNavbar({
             setNotificationOpen(true);
             fetchNotifications();
           }}
-          className="relative flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-foreground hover:bg-muted transition-colors"
+          className="relative flex h-10 w-10 sm:h-9 sm:w-9 min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 items-center justify-center rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-800 text-foreground shadow-[2px_2px_0px_#121212] dark:shadow-[2px_2px_0px_#ffffff] hover:bg-[#FFE600] dark:hover:bg-zinc-700 hover:text-black hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#121212] dark:hover:shadow-[3px_3px_0px_#ffffff] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer"
           aria-label="Open notifications"
           title="Notifications"
         >
-          <Bell className="h-4 w-4" />
+          <Bell className="h-4 w-4 stroke-[2.5]" />
           {notifications.length > 0 && (
-            <>
-              <span className="absolute -top-0.5 -right-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-indigo-600 px-1 text-[9px] font-extrabold text-white shadow-sm animate-pulse">
-                {notifications.length}
-              </span>
-            </>
+            <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-[2px] border border-black bg-[#FF4D4D] px-1 text-[9px] font-black text-white shadow-[1px_1px_0px_#121212]">
+              {notifications.length}
+            </span>
           )}
         </button>
 
@@ -203,17 +250,17 @@ export function TopNavbar({
           <button
             type="button"
             onClick={() => setProfileOpen(true)}
-            className="flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 p-1 sm:pr-3 hover:bg-indigo-500/20 transition-colors"
+            className="flex items-center gap-1.5 sm:gap-2 rounded-[4px] border-2 border-black dark:border-white bg-[#FFE600] p-1.5 sm:pr-3 text-black shadow-[2px_2px_0px_#121212] sm:shadow-[3px_3px_0px_#121212] dark:shadow-[2px_2px_0px_#ffffff] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#121212] dark:hover:shadow-[4px_4px_0px_#ffffff] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[1px_1px_0px_#121212] dark:active:shadow-[1px_1px_0px_#ffffff] transition-all cursor-pointer min-h-[44px]"
             title="Profile settings"
           >
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 text-white font-bold text-xs shadow-sm">
+            <div className="flex h-7 w-7 items-center justify-center rounded-[2px] border border-black bg-black text-white font-black text-xs">
               {user?.name ? user.name[0].toUpperCase() : "U"}
             </div>
-            <span className="hidden md:inline-block text-xs font-bold text-foreground">
+            <span className="hidden md:inline-block text-xs font-black">
               {user?.name || "User"}
             </span>
             {user?.role === "admin" && (
-              <span className="hidden sm:inline-block rounded-full bg-amber-500/20 px-1.5 py-0.5 text-[9px] font-extrabold text-amber-600 dark:text-amber-400">
+              <span className="hidden lg:inline-block rounded-[2px] border border-black bg-[#FF4D4D] px-1 py-0.2 text-[9px] font-black text-white">
                 ADMIN
               </span>
             )}
@@ -222,37 +269,37 @@ export function TopNavbar({
           <button
             type="button"
             onClick={openAuthModal}
-            className="flex h-9 items-center gap-1.5 rounded-full border border-indigo-500/40 bg-indigo-500/10 px-3.5 text-xs font-extrabold text-indigo-600 dark:text-indigo-400 hover:bg-indigo-500/20 transition-all shadow-xs"
+            className="flex h-10 sm:h-9 min-h-[44px] items-center gap-1.5 rounded-[4px] border-2 border-black dark:border-white bg-[#FFE600] px-2.5 sm:px-3 text-xs font-black uppercase text-black shadow-[2px_2px_0px_#121212] sm:shadow-[3px_3px_0px_#121212] dark:shadow-[2px_2px_0px_#ffffff] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#121212] dark:hover:shadow-[4px_4px_0px_#ffffff] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[1px_1px_0px_#121212] dark:active:shadow-[1px_1px_0px_#ffffff] transition-all cursor-pointer"
           >
-            <LogIn className="h-3.5 w-3.5" /> Sign In
+            <LogIn className="h-3.5 w-3.5 stroke-[2.5]" /> <span className="hidden sm:inline">Sign In</span>
           </button>
         )}
       </div>
-
+      {/* Notifications Drawer */}
       <Drawer open={notificationOpen} onOpenChange={setNotificationOpen} title="Notifications & Activity" side="right">
         <div className="space-y-3 pt-2">
           {notifications.length > 0 && (
-            <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
-              <span className="text-xs font-bold text-slate-500 dark:text-slate-400">
+            <div className="flex items-center justify-between pb-3 border-b-2 border-black dark:border-white">
+              <span className="text-xs font-black uppercase text-muted-foreground">
                 {notifications.length} Unread {notifications.length === 1 ? "Notification" : "Notifications"}
               </span>
               <button
                 type="button"
                 onClick={handleMarkAllAsRead}
-                className="text-xs font-extrabold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300 flex items-center gap-1 transition-colors"
+                className="text-xs font-black text-[#FF6B00] hover:underline flex items-center gap-1 cursor-pointer"
               >
-                <CheckCheck className="h-3.5 w-3.5" /> Mark all as read
+                <CheckCheck className="h-3.5 w-3.5 stroke-[3]" /> Mark all as read
               </button>
             </div>
           )}
 
           {notifications.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-12 text-center text-slate-500 dark:text-slate-400 space-y-2.5">
-              <div className="rounded-full bg-slate-100 dark:bg-slate-800/80 p-4 border border-slate-200 dark:border-slate-700/60 shadow-xs">
-                <Bell className="h-6 w-6 text-slate-400 dark:text-slate-500" />
+            <div className="flex flex-col items-center justify-center py-12 text-center text-muted-foreground space-y-3">
+              <div className="rounded-[4px] bg-white dark:bg-zinc-800 p-4 border-2 border-black dark:border-white shadow-[3px_3px_0px_#121212] dark:shadow-[3px_3px_0px_#ffffff]">
+                <Bell className="h-6 w-6 text-foreground stroke-[2.5]" />
               </div>
-              <p className="text-sm font-extrabold text-slate-900 dark:text-slate-100">No unread notifications</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400 max-w-xs">
+              <p className="text-sm font-black text-foreground uppercase">No unread notifications</p>
+              <p className="text-xs font-bold text-muted-foreground max-w-xs">
                 You are all caught up! Notifications marked as read are archived automatically.
               </p>
             </div>
@@ -260,36 +307,36 @@ export function TopNavbar({
             notifications.map((n) => (
               <div
                 key={n.id}
-                className="flex items-start gap-3.5 rounded-2xl border border-slate-200 dark:border-slate-800/80 p-3.5 bg-slate-50 dark:bg-slate-900/90 hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-all shadow-xs"
+                className="flex items-start gap-3 rounded-[4px] border-2 border-black dark:border-white p-3.5 bg-white dark:bg-zinc-900 shadow-[3px_3px_0px_#121212] dark:shadow-[3px_3px_0px_#ffffff]"
               >
-                <div className="mt-0.5 rounded-full p-2.5 bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/60 shadow-xs flex items-center justify-center shrink-0">
+                <div className="mt-0.5 rounded-[2px] p-2 bg-[#FFE600] border-2 border-black text-black shadow-[1.5px_1.5px_0px_#121212] flex items-center justify-center shrink-0">
                   {n.type === "module_unlock" ? (
-                    <Unlock className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                    <Unlock className="h-4 w-4 stroke-[2.5]" />
                   ) : n.type === "achievement" ? (
-                    <Flame className="h-4 w-4 text-amber-500" />
+                    <Flame className="h-4 w-4 stroke-[2.5]" />
                   ) : (
-                    <Sparkles className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
+                    <Sparkles className="h-4 w-4 stroke-[2.5]" />
                   )}
                 </div>
                 <div className="flex-1 min-w-0 space-y-1">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs font-extrabold text-slate-900 dark:text-slate-100 truncate">
+                    <span className="text-xs font-black text-foreground truncate">
                       {n.title}
                     </span>
-                    <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 shrink-0">
+                    <span className="text-[10px] font-black text-muted-foreground shrink-0">
                       {formatRelativeTime(n.createdAt)}
                     </span>
                   </div>
-                  <p className="text-xs font-medium text-slate-600 dark:text-slate-300 leading-relaxed">
+                  <p className="text-xs font-bold text-muted-foreground leading-relaxed">
                     {n.message}
                   </p>
                   <div className="pt-1.5 flex justify-end">
                     <button
                       type="button"
                       onClick={() => handleMarkAsRead(n.id)}
-                      className="text-[11px] font-extrabold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300 flex items-center gap-1 transition-colors"
+                      className="text-[11px] font-black text-[#FF6B00] hover:underline flex items-center gap-1 cursor-pointer"
                     >
-                      <Check className="h-3 w-3" /> Mark as read
+                      <Check className="h-3 w-3 stroke-[3]" /> Mark as read
                     </button>
                   </div>
                 </div>
@@ -303,43 +350,43 @@ export function TopNavbar({
       <Drawer open={profileOpen} onOpenChange={setProfileOpen} title="User Account Profile" side="right">
         <div className="space-y-6 pt-2">
           <div className="flex flex-col items-center text-center">
-            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 text-white font-extrabold text-2xl shadow-xl mb-3">
+            <div className="flex h-18 w-18 items-center justify-center rounded-[4px] border-2 border-black dark:border-white bg-[#FFE600] text-black font-black text-2xl shadow-[4px_4px_0px_#121212] dark:shadow-[4px_4px_0px_#ffffff] mb-3">
               {user?.name ? user.name[0].toUpperCase() : "U"}
             </div>
-            <h3 className="text-lg font-extrabold text-foreground flex items-center gap-1.5">
+            <h3 className="text-lg font-black text-foreground flex items-center gap-1.5 uppercase">
               {user?.name || "Gujarati Learner"}
-              {user?.role === "admin" && <ShieldCheck className="h-4 w-4 text-amber-500" />}
+              {user?.role === "admin" && <ShieldCheck className="h-4 w-4 text-[#FF6B00]" />}
             </h3>
-            <p className="text-xs font-medium text-muted-foreground">{user?.email}</p>
-            <div className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-extrabold text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
-              <UserCheck className="h-3.5 w-3.5" />
-              Role: <span className="uppercase">{user?.role || "USER"}</span>
+            <p className="text-xs font-bold text-muted-foreground">{user?.email}</p>
+            <div className="mt-2 inline-flex items-center gap-1.5 rounded-[2px] border-2 border-black bg-white dark:bg-zinc-800 px-3 py-1 text-xs font-black text-foreground shadow-[2px_2px_0px_#121212]">
+              <UserCheck className="h-3.5 w-3.5 stroke-[2.5]" />
+              Role: <span className="uppercase text-[#FF6B00]">{user?.role || "USER"}</span>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-3 text-left">
-            <div className="rounded-2xl border border-border p-4 bg-card">
-              <span className="text-xs text-muted-foreground block">Unlocked Sections</span>
-              <span className="text-sm font-bold text-foreground">
+            <div className="rounded-[4px] border-2 border-black dark:border-white p-3.5 bg-white dark:bg-zinc-900 shadow-[3px_3px_0px_#121212]">
+              <span className="text-xs font-black uppercase text-muted-foreground block">Unlocked Sections</span>
+              <span className="text-sm font-black text-foreground">
                 {user?.unlockedSections ? `${user.unlockedSections.length} Sections` : "Section 1"}
               </span>
             </div>
-            <div className="rounded-2xl border border-border p-4 bg-card">
-              <span className="text-xs text-muted-foreground block">Total Earned XP</span>
-              <span className="text-sm font-bold text-indigo-500">⚡ {user?.xp || 0} XP</span>
+            <div className="rounded-[4px] border-2 border-black dark:border-white p-3.5 bg-white dark:bg-zinc-900 shadow-[3px_3px_0px_#121212]">
+              <span className="text-xs font-black uppercase text-muted-foreground block">Total XP</span>
+              <span className="text-sm font-black text-[#FF6B00]">⚡ {user?.xp || 0} XP</span>
             </div>
           </div>
 
-          <div className="pt-4 border-t border-border">
+          <div className="pt-4 border-t-2 border-black dark:border-white">
             <button
               type="button"
               onClick={() => {
                 logout();
                 setProfileOpen(false);
               }}
-              className="w-full flex h-11 items-center justify-center gap-2 rounded-2xl border border-rose-500/30 bg-rose-500/10 text-rose-600 dark:text-rose-400 font-extrabold text-xs hover:bg-rose-500/20 transition-all shadow-xs"
+              className="w-full flex h-11 items-center justify-center gap-2 rounded-[4px] border-2 border-black dark:border-white bg-[#FF4D4D] text-white font-black text-xs uppercase shadow-[3px_3px_0px_#121212] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#121212] transition-all cursor-pointer"
             >
-              <LogOut className="h-4 w-4" /> Sign Out
+              <LogOut className="h-4 w-4 stroke-[3]" /> Sign Out
             </button>
           </div>
         </div>
@@ -347,4 +394,3 @@ export function TopNavbar({
     </header>
   );
 }
-

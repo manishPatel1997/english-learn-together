@@ -265,28 +265,26 @@ export function SentenceReadingAIView({ initialSentence }: SentenceReadingAIView
   };
 
   return (
-    <div className="space-y-8 max-w-5xl mx-auto pb-12 select-none">
+    <div className="space-y-8 w-full pb-12 select-none">
       <SentenceSubNav />
 
       {/* Header Banner */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden rounded-2xl sm:rounded-[28px] bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-800 p-5 sm:p-8 text-white shadow-2xl shadow-purple-600/20"
+        className="relative overflow-hidden rounded-[6px] border-[2.5px] border-black dark:border-white bg-[#18181B] text-white p-6 sm:p-8 shadow-[6px_6px_0px_#121212] dark:shadow-[6px_6px_0px_#000]"
       >
-        <div className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-indigo-400/20 blur-3xl animate-pulse-glow" />
-
         <div className="relative z-10 space-y-3">
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-xs font-semibold backdrop-blur-md border border-white/20">
-            <Sparkles className="h-3.5 w-3.5 text-amber-300 animate-spin" />
+          <div className="inline-flex items-center gap-2 rounded-[3px] bg-[#FFE600] text-black px-3.5 py-1 text-xs font-black uppercase tracking-wider border-2 border-black">
+            <Sparkles className="h-3.5 w-3.5 fill-black" />
             <span>AI Voice & Sentence Reading Assistant</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight uppercase">
             Sentence Reading AI
           </h2>
 
-          <p className="text-xs sm:text-sm text-purple-100/90 max-w-2xl leading-relaxed">
+          <p className="text-xs sm:text-sm text-zinc-300 max-w-2xl leading-relaxed font-medium">
             Understand how to pronounce, read, and translate any Gujarati sentence into English. Hear native voice reading, get word-by-word phonetics, and practice speaking into your microphone!
           </p>
         </div>
@@ -294,7 +292,7 @@ export function SentenceReadingAIView({ initialSentence }: SentenceReadingAIView
 
       {/* Preset Sentence Selector */}
       <div className="space-y-3">
-        <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground block">
+        <label className="text-xs font-black uppercase tracking-wider text-foreground block">
           Quick Preset Sentence Examples
         </label>
 
@@ -306,14 +304,14 @@ export function SentenceReadingAIView({ initialSentence }: SentenceReadingAIView
                 key={idx}
                 type="button"
                 onClick={() => handleSelectPreset(preset)}
-                className={`flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-bold transition-all border ${
+                className={`flex items-center gap-2 rounded-[4px] px-3.5 py-2 text-xs font-bold transition-transform active:translate-x-0.5 active:translate-y-0.5 border-2 border-black dark:border-white ${
                   isSelected
-                    ? "bg-purple-600 text-white border-purple-500 shadow-md shadow-purple-500/25 scale-105"
-                    : "bg-card text-foreground border-border hover:border-purple-500/50 hover:bg-purple-500/10"
+                    ? "bg-[#FFE600] text-black shadow-[3px_3px_0px_#121212] dark:shadow-[3px_3px_0px_#fff]"
+                    : "bg-card text-foreground hover:bg-[#EFE8DD] dark:hover:bg-zinc-800 shadow-[2px_2px_0px_#121212] dark:shadow-[2px_2px_0px_#000]"
                 }`}
               >
-                <span className="opacity-80 font-normal">{preset.category}:</span>
-                <span>{preset.gujarati}</span>
+                <span className="opacity-70 font-semibold">{preset.category}:</span>
+                <span className="font-black">{preset.gujarati}</span>
               </button>
             );
           })}
@@ -324,11 +322,11 @@ export function SentenceReadingAIView({ initialSentence }: SentenceReadingAIView
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        className="rounded-[28px] border border-border bg-card p-6 sm:p-8 space-y-6 shadow-lg"
+        className="rounded-[6px] border-[2.5px] border-black dark:border-white bg-card p-6 sm:p-8 space-y-6 shadow-[6px_6px_0px_#121212] dark:shadow-[6px_6px_0px_#000]"
       >
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-border pb-6">
-          <div className="space-y-1 flex-1 w-full">
-            <span className="text-[11px] font-extrabold uppercase tracking-widest text-purple-600 dark:text-purple-400">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b-2 border-black/10 dark:border-white/10 pb-6">
+          <div className="space-y-2 flex-1 w-full">
+            <span className="text-[11px] font-black uppercase tracking-widest text-[#FF6B00]">
               Active Sentence to Read & Learn
             </span>
             <input
@@ -336,11 +334,11 @@ export function SentenceReadingAIView({ initialSentence }: SentenceReadingAIView
               value={inputSentence}
               onChange={(e) => setInputSentence(e.target.value)}
               placeholder="Type any Gujarati sentence here..."
-              className="w-full text-2xl sm:text-3xl font-black text-foreground bg-transparent border-b border-border/60 focus:border-purple-500 outline-none pb-1 transition-colors"
+              className="w-full text-2xl sm:text-3xl font-black text-foreground bg-transparent border-b-2 border-black dark:border-white focus:border-[#FF6B00] outline-none pb-2 transition-colors"
             />
             {selectedEnglish && (
-              <p className="text-sm font-semibold text-muted-foreground">
-                English Translation: <span className="text-foreground">{selectedEnglish}</span>
+              <p className="text-sm font-bold text-muted-foreground pt-1">
+                English Translation: <span className="text-foreground font-black">{selectedEnglish}</span>
               </p>
             )}
           </div>
@@ -349,33 +347,33 @@ export function SentenceReadingAIView({ initialSentence }: SentenceReadingAIView
           <button
             type="button"
             onClick={handleToggleFavorite}
-            className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border transition-all ${
+            className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-[4px] border-2 border-black dark:border-white transition-all shadow-[2px_2px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 ${
               isFav
-                ? "border-amber-500/50 bg-amber-500/10 text-amber-500 shadow-sm"
-                : "border-border bg-muted/50 text-muted-foreground hover:bg-muted hover:text-amber-500"
+                ? "bg-[#FFE600] text-black"
+                : "bg-card text-foreground hover:bg-[#EFE8DD] dark:hover:bg-zinc-800"
             }`}
             title={isFav ? "Remove from Favorites" : "Save to Favorites"}
           >
-            <Star className={`h-5 w-5 ${isFav ? "fill-amber-500" : ""}`} />
+            <Star className={`h-5 w-5 ${isFav ? "fill-black" : ""}`} />
           </button>
         </div>
 
         {/* Audio Reading Controls Bar */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-muted/40 p-4 rounded-2xl border border-border">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-[#EFE8DD] dark:bg-zinc-900 p-4 rounded-[4px] border-2 border-black dark:border-white shadow-[3px_3px_0px_#121212] dark:shadow-[3px_3px_0px_#000]">
           {/* Speed Selector */}
           <div className="md:col-span-4 flex items-center gap-2">
-            <Sliders className="h-4 w-4 text-muted-foreground shrink-0" />
-            <span className="text-xs font-bold text-muted-foreground shrink-0">Speech Speed:</span>
-            <div className="flex items-center gap-1 rounded-xl bg-card border border-border p-1">
+            <Sliders className="h-4 w-4 text-foreground shrink-0" />
+            <span className="text-xs font-black uppercase text-foreground shrink-0">Speed:</span>
+            <div className="flex items-center gap-1 rounded-[3px] bg-card border-2 border-black p-1 shadow-[2px_2px_0px_#121212]">
               {[0.75, 1.0, 1.25].map((speed) => (
                 <button
                   key={speed}
                   type="button"
                   onClick={() => setPlaybackSpeed(speed)}
-                  className={`px-2.5 py-1 text-[11px] font-extrabold rounded-lg transition-colors ${
+                  className={`px-3 py-2 sm:px-2.5 sm:py-1 text-xs sm:text-[11px] font-black rounded-[2px] min-h-[44px] sm:min-h-0 min-w-[44px] sm:min-w-0 flex items-center justify-center transition-colors ${
                     playbackSpeed === speed
-                      ? "bg-purple-600 text-white"
-                      : "text-muted-foreground hover:text-foreground"
+                      ? "bg-[#18181B] text-white"
+                      : "text-foreground hover:bg-[#FFE600] hover:text-black"
                   }`}
                 >
                   {speed}x
@@ -391,10 +389,10 @@ export function SentenceReadingAIView({ initialSentence }: SentenceReadingAIView
               type="button"
               onClick={() => handlePlayAudio(inputSentence, "gu-IN")}
               disabled={isPlayingGu}
-              className="flex items-center gap-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white px-4 py-2.5 text-xs font-bold shadow-md shadow-purple-600/20 transition-all hover:scale-105 disabled:opacity-50"
+              className="flex items-center gap-2 rounded-[4px] bg-[#FFE600] text-black border-2 border-black px-4 py-2.5 text-xs font-black uppercase tracking-wider shadow-[3px_3px_0px_#121212] transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none disabled:opacity-50"
             >
               <Volume2 className={`h-4 w-4 ${isPlayingGu ? "animate-bounce" : ""}`} />
-              <span>{isPlayingGu ? "Reading Gujarati..." : "Read Gujarati AI"}</span>
+              <span>{isPlayingGu ? "Reading..." : "Read Gujarati"}</span>
             </button>
 
             {/* English Voice */}
@@ -403,10 +401,10 @@ export function SentenceReadingAIView({ initialSentence }: SentenceReadingAIView
                 type="button"
                 onClick={() => handlePlayAudio(selectedEnglish, "en-US")}
                 disabled={isPlayingEn}
-                className="flex items-center gap-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 text-xs font-bold shadow-md shadow-indigo-600/20 transition-all hover:scale-105 disabled:opacity-50"
+                className="flex items-center gap-2 rounded-[4px] bg-[#22C55E] text-white border-2 border-black px-4 py-2.5 text-xs font-black uppercase tracking-wider shadow-[3px_3px_0px_#121212] transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none disabled:opacity-50"
               >
                 <Volume2 className={`h-4 w-4 ${isPlayingEn ? "animate-bounce" : ""}`} />
-                <span>{isPlayingEn ? "Reading English..." : "Read English Voice"}</span>
+                <span>{isPlayingEn ? "Reading..." : "Read English"}</span>
               </button>
             )}
 
@@ -415,14 +413,14 @@ export function SentenceReadingAIView({ initialSentence }: SentenceReadingAIView
               type="button"
               onClick={handleStartListening}
               disabled={isListening}
-              className={`flex items-center gap-2 rounded-xl border px-4 py-2.5 text-xs font-bold transition-all ${
+              className={`flex items-center gap-2 rounded-[4px] border-2 border-black px-4 py-2.5 text-xs font-black uppercase tracking-wider shadow-[3px_3px_0px_#121212] transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none ${
                 isListening
-                  ? "bg-rose-500 text-white border-rose-600 animate-pulse"
-                  : "bg-card border-border text-foreground hover:bg-muted"
+                  ? "bg-[#FF4D4D] text-white animate-pulse"
+                  : "bg-card text-foreground hover:bg-[#FFE600] hover:text-black"
               }`}
             >
-              <Mic className="h-4 w-4 text-rose-500" />
-              <span>{isListening ? "Listening..." : "Practice Speaking Mic"}</span>
+              <Mic className="h-4 w-4" />
+              <span>{isListening ? "Listening..." : "Practice Mic"}</span>
             </button>
           </div>
         </div>
@@ -432,31 +430,31 @@ export function SentenceReadingAIView({ initialSentence }: SentenceReadingAIView
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
-            className="rounded-2xl border border-border bg-card p-4 space-y-2"
+            className="rounded-[4px] border-2 border-black dark:border-white bg-[#FAF7F2] dark:bg-zinc-900 p-4 space-y-2 shadow-[3px_3px_0px_#121212] dark:shadow-[3px_3px_0px_#000]"
           >
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-muted-foreground">Your Spoken Input:</span>
+              <span className="text-xs font-black uppercase tracking-wider text-muted-foreground">Your Spoken Input:</span>
               {matchScore !== null && (
                 <span
-                  className={`rounded-full px-2.5 py-0.5 text-xs font-extrabold ${
+                  className={`rounded-[3px] border-2 border-black px-2.5 py-0.5 text-xs font-black uppercase ${
                     matchScore >= 80
-                      ? "bg-emerald-500/10 text-emerald-600"
+                      ? "bg-[#22C55E] text-white"
                       : matchScore >= 50
-                      ? "bg-amber-500/10 text-amber-600"
-                      : "bg-destructive/15 text-destructive"
+                      ? "bg-[#FFE600] text-black"
+                      : "bg-[#FF4D4D] text-white"
                   }`}
                 >
-                  Pronunciation Accuracy: {matchScore}%
+                  Accuracy: {matchScore}%
                 </span>
               )}
             </div>
-            <p className="text-sm font-semibold text-foreground italic">"{spokenTranscript}"</p>
+            <p className="text-base font-black text-foreground italic">"{spokenTranscript}"</p>
           </motion.div>
         )}
 
         {/* AI Sentence Analysis Trigger */}
-        <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border">
-          <p className="text-xs text-muted-foreground">
+        <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t-2 border-black/10 dark:border-white/10">
+          <p className="text-xs text-muted-foreground font-semibold">
             Get word-by-word phonetics, grammar structure, and reading rules from Gemini AI.
           </p>
 
@@ -465,7 +463,7 @@ export function SentenceReadingAIView({ initialSentence }: SentenceReadingAIView
             size="lg"
             state={btnState}
             onClick={() => handleAnalyzeWithAI()}
-            className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-indigo-600 text-white border-0 font-extrabold shadow-lg shadow-purple-600/30"
+            className="w-full sm:w-auto font-black uppercase tracking-wider"
           >
             <Sparkles className="h-4 w-4 mr-2" />
             <span>Generate AI Reading Breakdown</span>
@@ -486,20 +484,20 @@ export function SentenceReadingAIView({ initialSentence }: SentenceReadingAIView
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="rounded-[28px] border border-purple-500/30 bg-card p-6 sm:p-8 space-y-6 shadow-xl"
+          className="rounded-[6px] border-[2.5px] border-black dark:border-white bg-card p-6 sm:p-8 space-y-6 shadow-[6px_6px_0px_#121212] dark:shadow-[6px_6px_0px_#000]"
         >
-          <div className="flex items-center gap-3 border-b border-border pb-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-purple-600 text-white shadow-md">
-              <Bot className="h-5 w-5" />
+          <div className="flex items-center gap-3 border-b-2 border-black/10 dark:border-white/10 pb-4">
+            <div className="flex h-11 w-11 items-center justify-center rounded-[4px] bg-[#FFE600] text-black border-2 border-black shadow-[2px_2px_0px_#121212]">
+              <Bot className="h-6 w-6" />
             </div>
             <div>
-              <h3 className="text-lg font-black text-foreground">AI Sentence Reading Guide</h3>
-              <p className="text-xs text-muted-foreground">Detailed breakdown and reading instructions</p>
+              <h3 className="text-xl font-black text-foreground uppercase tracking-tight">AI Sentence Reading Guide</h3>
+              <p className="text-xs font-semibold text-muted-foreground">Detailed breakdown and reading instructions</p>
             </div>
           </div>
 
           {/* Formatted Markdown Analysis */}
-          <div className="prose prose-purple dark:prose-invert max-w-none text-sm leading-relaxed">
+          <div className="prose dark:prose-invert max-w-none text-sm leading-relaxed font-medium">
             <FormattedMarkdown content={aiAnalysis} />
           </div>
         </motion.div>

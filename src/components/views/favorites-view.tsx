@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Star, BookOpen, MessageSquare, Trash2, RotateCw, Sparkles } from "lucide-react";
+import { Star, Trash2, RotateCw, Sparkles } from "lucide-react";
 import { storage, type FavoriteItem } from "@/lib/storage";
 import { useToast } from "@/components/beui/animated-toast-stack";
 
@@ -31,45 +30,43 @@ export function FavoritesView() {
   };
 
   return (
-    <div className="space-y-8 max-w-4xl mx-auto py-4 select-none pb-12">
+    <div className="space-y-7 w-full max-w-6xl mx-auto select-none pb-12">
       {/* Header Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-2 border-black dark:border-white pb-5">
         <div>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 px-3.5 py-1 text-xs font-bold text-amber-600 dark:text-amber-400">
-            <Star className="h-3.5 w-3.5 fill-amber-500" /> Bookmarked Collection
+          <span className="inline-flex items-center gap-1.5 rounded-[2px] border-2 border-black bg-[#FFE600] px-2.5 py-0.5 text-xs font-black uppercase text-black shadow-[2px_2px_0px_#121212]">
+            <Star className="h-3.5 w-3.5 fill-black stroke-[2.5]" /> Bookmarked Collection
           </span>
-          <h2 className="text-3xl font-black text-foreground tracking-tight mt-1">
+          <h2 className="text-2xl sm:text-3xl font-black text-foreground uppercase tracking-tight mt-2">
             Saved Favorites & Flashcards
           </h2>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs font-bold text-muted-foreground">
             Click on any card to flip it and reveal the English translation and example context.
           </p>
         </div>
 
-        <span className="rounded-2xl border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-xs font-extrabold text-amber-600 dark:text-amber-400 self-start sm:self-auto">
+        <span className="rounded-[3px] border-2 border-black bg-[#FFE600] px-4 py-2 text-xs font-black uppercase text-black shadow-[3px_3px_0px_#121212] self-start sm:self-auto">
           {favorites.length} Saved Items
         </span>
       </div>
 
       {/* Favorites Flashcards Grid */}
       {favorites.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {favorites.map((item, idx) => {
             const isFlipped = !!flippedIds[item.id];
 
             return (
-              <motion.div
+              <div
                 key={`fav-${item.id}-${idx}`}
                 onClick={() => toggleFlip(item.id)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="relative min-h-[220px] rounded-[26px] border border-border bg-card p-6 shadow-md cursor-pointer flex flex-col justify-between overflow-hidden select-none hover:border-amber-500/50 transition-colors"
+                className="relative min-h-[220px] rounded-[4px] border-[2.5px] border-black dark:border-white bg-white dark:bg-zinc-900 p-5 sm:p-6 shadow-[3px_3px_0px_#121212] sm:shadow-[5px_5px_0px_#121212] dark:shadow-[3px_3px_0px_#ffffff] sm:dark:shadow-[5px_5px_0px_#ffffff] cursor-pointer flex flex-col justify-between overflow-hidden select-none hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#121212] dark:hover:shadow-[6px_6px_0px_#ffffff] transition-all"
               >
                 {!isFlipped ? (
                   /* Front Side (Gujarati) */
                   <div className="flex flex-col justify-between h-full space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="rounded-full bg-indigo-500/10 px-3 py-0.5 text-[10px] font-extrabold text-indigo-600 dark:text-indigo-400">
+                      <span className="rounded-[2px] border border-black bg-[#FFE600] px-2 py-0.2 text-[9px] font-black uppercase text-black shadow-[1px_1px_0px_#121212]">
                         {item.categoryOrTopic}
                       </span>
                       <button
@@ -78,32 +75,34 @@ export function FavoritesView() {
                           e.stopPropagation();
                           handleRemove(item);
                         }}
-                        className="text-muted-foreground hover:text-rose-500 transition-colors p-1"
+                        className="flex h-9 w-9 sm:h-8 sm:w-8 min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 items-center justify-center rounded-[3px] border-2 border-black bg-white text-black hover:bg-[#FF4D4D] hover:text-white transition-colors shadow-[1.5px_1.5px_0px_#121212] cursor-pointer"
+                        aria-label="Remove from favorites"
+                        title="Remove bookmark"
                       >
-                        <Trash2 className="h-4 w-4" />
+                        <Trash2 className="h-4 w-4 stroke-[2.5]" />
                       </button>
                     </div>
 
                     <div className="text-center py-4">
                       <h3 className="text-3xl font-black text-foreground">{item.gujarati}</h3>
                       {item.phonetic && (
-                        <p className="text-xs italic text-muted-foreground mt-1">"{item.phonetic}"</p>
+                        <p className="text-xs italic font-bold text-muted-foreground mt-1">"{item.phonetic}"</p>
                       )}
                     </div>
 
-                    <div className="flex items-center justify-between text-[11px] font-semibold text-muted-foreground pt-2 border-t border-border/60">
-                      <span className="flex items-center gap-1">
-                        <RotateCw className="h-3 w-3 text-amber-500" /> Click card to flip
+                    <div className="flex items-center justify-between text-[11px] font-black uppercase text-muted-foreground pt-2 border-t-2 border-black/10 dark:border-white/10">
+                      <span className="flex items-center gap-1 text-black dark:text-white">
+                        <RotateCw className="h-3 w-3 stroke-[3]" /> Click to flip
                       </span>
-                      <span className="capitalize">{item.type}</span>
+                      <span>{item.type}</span>
                     </div>
                   </div>
                 ) : (
                   /* Back Side (English Translation) */
-                  <div className="flex flex-col justify-between h-full space-y-4 bg-amber-500/5 -m-6 p-6 rounded-[26px]">
+                  <div className="flex flex-col justify-between h-full space-y-4 bg-[#FFE600] text-black -m-6 p-6">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
-                        <Sparkles className="h-3.5 w-3.5" /> Revealed Translation
+                      <span className="text-xs font-black uppercase text-black flex items-center gap-1">
+                        <Sparkles className="h-3.5 w-3.5 stroke-[3]" /> Revealed English
                       </span>
                       <button
                         type="button"
@@ -111,36 +110,36 @@ export function FavoritesView() {
                           e.stopPropagation();
                           handleRemove(item);
                         }}
-                        className="text-muted-foreground hover:text-rose-500 transition-colors p-1"
+                        className="rounded-[2px] border border-black bg-white text-black hover:bg-[#FF4D4D] hover:text-white p-1 transition-colors shadow-[1px_1px_0px_#000] cursor-pointer"
                       >
-                        <Trash2 className="h-4 w-4" />
+                        <Trash2 className="h-3.5 w-3.5 stroke-[2.5]" />
                       </button>
                     </div>
 
                     <div className="text-center py-2">
-                      <h3 className="text-2xl font-black text-foreground">{item.english}</h3>
+                      <h3 className="text-2xl font-black text-black">{item.english}</h3>
                       {item.example && (
-                        <p className="text-xs italic text-muted-foreground mt-2 max-w-xs mx-auto">
+                        <p className="text-xs italic font-bold text-neutral-800 mt-2 max-w-xs mx-auto">
                           "{item.example}"
                         </p>
                       )}
                     </div>
 
-                    <div className="flex items-center justify-between text-[11px] font-semibold text-amber-600 dark:text-amber-400 pt-2 border-t border-amber-500/20">
+                    <div className="flex items-center justify-between text-[11px] font-black uppercase text-black pt-2 border-t-2 border-black">
                       <span>Click to flip back</span>
                       <span>✓ Saved</span>
                     </div>
                   </div>
                 )}
-              </motion.div>
+              </div>
             );
           })}
         </div>
       ) : (
-        <div className="rounded-[28px] border border-amber-500/30 bg-amber-500/5 p-12 text-center space-y-3">
-          <Star className="h-12 w-12 text-amber-500 mx-auto fill-amber-500" />
-          <h3 className="text-2xl font-black text-foreground">No Saved Favorites</h3>
-          <p className="text-xs text-muted-foreground max-w-sm mx-auto">
+        <div className="rounded-[4px] border-[2.5px] border-black bg-[#FFFDE6] dark:bg-zinc-900 p-12 text-center space-y-3 shadow-[5px_5px_0px_#121212]">
+          <Star className="h-12 w-12 text-[#FF6B00] mx-auto fill-[#FFE600] stroke-[2.5]" />
+          <h3 className="text-2xl font-black uppercase tracking-tight text-foreground">No Saved Favorites</h3>
+          <p className="text-xs font-bold text-muted-foreground max-w-sm mx-auto">
             Click the star icon during vocabulary or sentence practice to bookmark words for quick flashcard review!
           </p>
         </div>

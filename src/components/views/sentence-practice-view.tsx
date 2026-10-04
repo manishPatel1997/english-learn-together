@@ -25,7 +25,7 @@ import { storage, type FavoriteItem } from "@/lib/storage";
 import { requestGeminiAI } from "@/lib/gemini-client";
 import { MotionSpinner } from "@/components/beui/loader";
 import { useToast } from "@/components/beui/animated-toast-stack";
-import { formatRelativeTime } from "@/lib/utils";
+import { formatRelativeTime, cn } from "@/lib/utils";
 import { XP_PER_SENTENCE_CORRECT } from "@/lib/constants";
 
 export interface SentenceQuestion {
@@ -776,53 +776,53 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
 
   if (pageMode === "selection") {
     return (
-      <div className="space-y-4 max-w-3xl mx-auto py-2 select-none">
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-center space-y-1.5">
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-purple-500/10 px-3 py-0.5 text-[11px] font-extrabold text-purple-600 dark:text-purple-400">
-            <Sparkles className="h-3 w-3" /> Sentence Hub
+      <div className="space-y-6 w-full pb-12 select-none">
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-center space-y-2">
+          <div className="inline-flex items-center gap-1.5 rounded-[3px] border-2 border-black bg-[#FFE600] px-3.5 py-1 text-xs font-black uppercase tracking-wider text-black shadow-[2px_2px_0px_#121212]">
+            <Sparkles className="h-3.5 w-3.5 fill-black" /> Sentence Hub
           </div>
-          <h2 className="text-2xl font-black text-foreground tracking-tight sm:text-3xl">
+          <h2 className="text-2xl font-black text-foreground tracking-tight sm:text-3xl uppercase">
             Select Sentence Practice Mode
           </h2>
         </motion.div>
 
         {/* Compact Mode Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
           {/* Card 1: Read & Study Sentences */}
           <div
             onClick={() => setPageMode("study")}
-            className="group cursor-pointer rounded-2xl border border-indigo-500/30 bg-card p-4 shadow-sm hover:border-indigo-500 hover:shadow-md transition-all flex flex-col justify-between space-y-3"
+            className="group cursor-pointer rounded-[6px] border-[2.5px] border-black dark:border-white bg-card p-5 shadow-[4px_4px_0px_#121212] dark:shadow-[4px_4px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#121212] transition-all flex flex-col justify-between space-y-4"
           >
-            <div className="space-y-2">
+            <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-600 text-white shadow-xs group-hover:scale-105 transition-transform">
-                  <BookOpen className="h-4.5 w-4.5" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-[4px] bg-[#FFE600] text-black border-2 border-black shadow-[2px_2px_0px_#121212]">
+                  <BookOpen className="h-5 w-5" />
                 </div>
-                <span className="rounded-full bg-indigo-500/10 px-2.5 py-0.5 text-[10px] font-black text-indigo-600 dark:text-indigo-400">
+                <span className="rounded-[3px] border-2 border-black bg-[#EFE8DD] dark:bg-zinc-800 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-foreground">
                   Study Mode
                 </span>
               </div>
               <div>
-                <h3 className="text-base font-black text-foreground group-hover:text-indigo-600 transition-colors flex items-center gap-1.5">
+                <h3 className="text-lg font-black text-foreground uppercase tracking-tight flex items-center gap-1.5">
                   📖 Read & Study Sentences
                 </h3>
-                <p className="text-xs text-muted-foreground line-clamp-2 mt-0.5">
+                <p className="text-xs text-muted-foreground font-medium line-clamp-2 mt-1">
                   Read Gujarati sentences, listen to audio, and review grammar structure formulas.
                 </p>
               </div>
               <div className="flex items-center gap-1.5 pt-0.5 flex-wrap">
-                <span className="inline-flex items-center gap-1 rounded-md bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
+                <span className="inline-flex items-center gap-1 rounded-[3px] border-2 border-black bg-[#22C55E]/15 px-2 py-0.5 text-[10px] font-black uppercase text-[#22C55E]">
                   <CheckCircle2 className="h-3 w-3" /> Grammar Formulas
                 </span>
-                <span className="inline-flex items-center gap-1 rounded-md bg-indigo-500/10 px-2 py-0.5 text-[10px] font-bold text-indigo-600 dark:text-indigo-400">
-                  <CheckCircle2 className="h-3 w-3" /> Audio Pronunciation
+                <span className="inline-flex items-center gap-1 rounded-[3px] border-2 border-black bg-[#FFE600]/20 px-2 py-0.5 text-[10px] font-black uppercase text-foreground">
+                  <CheckCircle2 className="h-3 w-3" /> Audio
                 </span>
               </div>
             </div>
 
             <button
               type="button"
-              className="w-full rounded-xl bg-indigo-600 py-2.5 text-xs font-black text-white group-hover:bg-indigo-700 shadow-xs transition-colors flex items-center justify-center gap-1.5 mt-1"
+              className="w-full rounded-[4px] bg-[#18181B] text-white border-2 border-black py-2.5 text-xs font-black uppercase tracking-wider shadow-[3px_3px_0px_#121212] transition-transform active:translate-x-0.5 active:translate-y-0.5 flex items-center justify-center gap-1.5"
             >
               <span>Start Study</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -832,30 +832,30 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
           {/* Card 2: Take Sentence Exam */}
           <div
             onClick={() => setPageMode("exam")}
-            className="group cursor-pointer rounded-2xl border border-purple-500/30 bg-card p-4 shadow-sm hover:border-purple-500 hover:shadow-md transition-all flex flex-col justify-between space-y-3"
+            className="group cursor-pointer rounded-[6px] border-[2.5px] border-black dark:border-white bg-card p-5 shadow-[4px_4px_0px_#121212] dark:shadow-[4px_4px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#121212] transition-all flex flex-col justify-between space-y-4"
           >
-            <div className="space-y-2">
+            <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-600 text-white shadow-xs group-hover:scale-105 transition-transform">
-                  <Star className="h-4.5 w-4.5" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-[4px] bg-[#FF6B00] text-white border-2 border-black shadow-[2px_2px_0px_#121212]">
+                  <Star className="h-5 w-5" />
                 </div>
-                <span className="rounded-full bg-purple-500/10 px-2.5 py-0.5 text-[10px] font-black text-purple-600 dark:text-purple-400">
+                <span className="rounded-[3px] border-2 border-black bg-[#EFE8DD] dark:bg-zinc-800 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-foreground">
                   Exam Mode
                 </span>
               </div>
               <div>
-                <h3 className="text-base font-black text-foreground group-hover:text-purple-600 transition-colors flex items-center gap-1.5">
+                <h3 className="text-lg font-black text-foreground uppercase tracking-tight flex items-center gap-1.5">
                   ✍️ Take Sentence Exam
                 </h3>
-                <p className="text-xs text-muted-foreground line-clamp-2 mt-0.5">
+                <p className="text-xs text-muted-foreground font-medium line-clamp-2 mt-1">
                   Type English sentence translations to earn +25 XP, build streaks, and get AI feedback.
                 </p>
               </div>
               <div className="flex items-center gap-1.5 pt-0.5 flex-wrap">
-                <span className="inline-flex items-center gap-1 rounded-md bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
+                <span className="inline-flex items-center gap-1 rounded-[3px] border-2 border-black bg-[#22C55E]/15 px-2 py-0.5 text-[10px] font-black uppercase text-[#22C55E]">
                   <CheckCircle2 className="h-3 w-3" /> Diff Analysis
                 </span>
-                <span className="inline-flex items-center gap-1 rounded-md bg-purple-500/10 px-2 py-0.5 text-[10px] font-bold text-purple-600 dark:text-purple-400">
+                <span className="inline-flex items-center gap-1 rounded-[3px] border-2 border-black bg-[#FFE600]/20 px-2 py-0.5 text-[10px] font-black uppercase text-foreground">
                   <CheckCircle2 className="h-3 w-3" /> Gemini AI Tutor
                 </span>
               </div>
@@ -863,7 +863,7 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
 
             <button
               type="button"
-              className="w-full rounded-xl bg-purple-600 py-2.5 text-xs font-black text-white group-hover:bg-purple-700 shadow-xs transition-colors flex items-center justify-center gap-1.5 mt-1"
+              className="w-full rounded-[4px] bg-[#FFE600] text-black border-2 border-black py-2.5 text-xs font-black uppercase tracking-wider shadow-[3px_3px_0px_#121212] transition-transform active:translate-x-0.5 active:translate-y-0.5 flex items-center justify-center gap-1.5"
             >
               <span>Start Exam</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -875,22 +875,29 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
   }
 
   return (
-    <div className="relative min-h-[80vh] flex flex-col justify-between py-6 max-w-4xl mx-auto select-none space-y-6">
-      <DynamicIsland
-        streak={sessionStreak}
-        xp={sessionXP}
-        currentQuestion={pageMode === "study" ? studyIndex + 1 : currentIndex + 1}
-        totalQuestions={questions.length}
-        activeMessage={islandMsg}
-        soundEnabled={soundEnabled}
-        onToggleSound={() => setSoundEnabled(!soundEnabled)}
-      />
+    <div className="relative flex flex-col select-none space-y-6 w-full pb-12">
+      {pageMode === "exam" && (
+        <DynamicIsland
+          streak={sessionStreak}
+          xp={sessionXP}
+          currentQuestion={currentIndex + 1}
+          totalQuestions={questions.length}
+          activeMessage={islandMsg}
+          soundEnabled={soundEnabled}
+          onToggleSound={() => setSoundEnabled(!soundEnabled)}
+        />
+      )}
 
-      <div className="pt-12 flex items-center justify-between border-b border-border pb-4">
+      <div
+        className={cn(
+          "flex items-center justify-between border-b-2 border-black/10 dark:border-white/10 pb-4",
+          pageMode === "exam" ? "pt-12" : "pt-1"
+        )}
+      >
         <button
           type="button"
           onClick={() => setPageMode("selection")}
-          className="flex items-center gap-1.5 text-xs font-extrabold text-muted-foreground hover:text-foreground transition-colors"
+          className="flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
         >
           <span>← Back to Mode Select</span>
         </button>
@@ -899,7 +906,7 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
           <button
             type="button"
             onClick={() => setPageMode("exam")}
-            className="flex items-center gap-1.5 rounded-xl bg-purple-600 px-4 py-2 text-xs font-extrabold text-white hover:bg-purple-700 transition-colors shadow-md"
+            className="flex items-center gap-1.5 rounded-[4px] border-2 border-black bg-[#FFE600] px-4 py-2 text-xs font-black uppercase tracking-wider text-black shadow-[3px_3px_0px_#121212] transition-transform active:translate-x-0.5 active:translate-y-0.5"
           >
             <span>Finished Studying? Take Exam 🚀</span>
           </button>
@@ -907,7 +914,7 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
           <button
             type="button"
             onClick={() => setPageMode("study")}
-            className="flex items-center gap-1.5 rounded-xl border border-border bg-card px-4 py-2 text-xs font-extrabold text-foreground hover:bg-muted transition-colors"
+            className="flex items-center gap-1.5 rounded-[4px] border-2 border-black bg-card px-4 py-2 text-xs font-black uppercase tracking-wider text-foreground hover:bg-[#EFE8DD] dark:hover:bg-zinc-800 shadow-[3px_3px_0px_#121212] transition-transform active:translate-x-0.5 active:translate-y-0.5"
           >
             <span>📖 Read Sentences First</span>
           </button>
@@ -918,12 +925,12 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
         <div className="space-y-6">
           {/* GRAMMAR STRUCTURE FORMULA GUIDE CARD */}
           {activeTopicFormula && (
-            <div className="rounded-[28px] border border-purple-500/30 bg-gradient-to-br from-purple-500/10 via-indigo-500/5 to-card p-6 sm:p-8 shadow-xl space-y-5 text-left">
+            <div className="rounded-[6px] border-[2.5px] border-black dark:border-white bg-[#FAF7F2] dark:bg-zinc-900 p-6 sm:p-8 shadow-[6px_6px_0px_#121212] dark:shadow-[6px_6px_0px_#000] space-y-5 text-left">
               {/* Topic Formula Selector Tabs (if multiple topics selected) */}
               {allActiveTopicFormulas.length > 1 && (
-                <div className="flex items-center gap-2 flex-wrap pb-3 border-b border-purple-500/20">
-                  <span className="text-xs font-bold text-muted-foreground mr-1">
-                    Formulas for Selected Topics ({allActiveTopicFormulas.length}):
+                <div className="flex items-center gap-2 flex-wrap pb-3 border-b-2 border-black/10 dark:border-white/10">
+                  <span className="text-xs font-black uppercase tracking-wider text-muted-foreground mr-1">
+                    Formulas ({allActiveTopicFormulas.length}):
                   </span>
                   <div className="flex items-center gap-1.5 flex-wrap">
                     {allActiveTopicFormulas.map((f) => {
@@ -933,13 +940,13 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
                           key={f.topicKey}
                           type="button"
                           onClick={() => setActiveFormulaKey(f.topicKey)}
-                          className={`px-3.5 py-1.5 rounded-xl text-xs font-black transition-all ${
+                          className={`px-3 py-1 rounded-[3px] text-xs font-black uppercase border-2 border-black transition-transform ${
                             isSelected
-                              ? "bg-purple-600 text-white shadow-md shadow-purple-600/30 scale-105"
-                              : "bg-background text-foreground border border-border hover:bg-purple-500/10"
+                              ? "bg-[#FFE600] text-black shadow-[2px_2px_0px_#121212]"
+                              : "bg-card text-foreground hover:bg-[#EFE8DD]"
                           }`}
                         >
-                          {f.topicName} Formula
+                          {f.topicName}
                         </button>
                       );
                     })}
@@ -949,26 +956,26 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
 
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
-                  <Sparkles className="h-5 w-5 text-purple-500" />
-                  <h3 className="text-lg font-black text-foreground">
-                    English Sentence Structure Formula ({activeTopicFormula.topicName})
+                  <Sparkles className="h-5 w-5 fill-[#FF6B00] text-[#FF6B00]" />
+                  <h3 className="text-lg font-black text-foreground uppercase tracking-tight">
+                    Sentence Formula ({activeTopicFormula.topicName})
                   </h3>
                 </div>
-                <span className="rounded-full bg-purple-500/20 px-3 py-1 text-xs font-extrabold text-purple-600 dark:text-purple-400 self-start sm:self-auto">
-                  Grammar Rule & Pattern Guide
+                <span className="rounded-[3px] border-2 border-black bg-[#FFE600] px-2.5 py-0.5 text-[10px] font-black uppercase text-black self-start sm:self-auto shadow-[2px_2px_0px_#121212]">
+                  Grammar Rule
                 </span>
               </div>
 
               {/* Exact Formula Code Box */}
-              <div className="p-4 rounded-2xl bg-slate-950 text-purple-300 font-mono text-xs sm:text-sm font-black border border-purple-500/30 shadow-inner overflow-x-auto">
+              <div className="p-4 rounded-[4px] bg-[#18181B] text-[#FFE600] font-mono text-xs sm:text-sm font-black border-2 border-black shadow-[3px_3px_0px_#121212] overflow-x-auto">
                 {activeTopicFormula.formula}
               </div>
 
               {/* Part-by-part breakdown */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                 {activeTopicFormula.breakdown.map((item, i) => (
-                  <div key={i} className="p-3.5 rounded-2xl border border-border bg-background space-y-1 shadow-xs">
-                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-purple-500 block">
+                  <div key={i} className="p-3.5 rounded-[4px] border-2 border-black bg-card space-y-1 shadow-[2px_2px_0px_#121212]">
+                    <span className="text-[10px] font-black uppercase tracking-wider text-[#FF6B00] block">
                       {item.part}
                     </span>
                     <span className="text-xs font-bold text-foreground block">
@@ -976,7 +983,7 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
                     </span>
                     <div className="flex flex-wrap gap-1 pt-1.5">
                       {item.examples.map((ex, exIdx) => (
-                        <span key={exIdx} className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-purple-500/10 text-purple-600 dark:text-purple-300 font-bold border border-purple-500/20">
+                        <span key={exIdx} className="px-1.5 py-0.5 rounded-[2px] text-[10px] font-mono bg-[#EFE8DD] dark:bg-zinc-800 text-foreground font-black border border-black/30">
                           {ex}
                         </span>
                       ))}
@@ -986,19 +993,19 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
               </div>
 
               {/* Gujarati Pattern Equivalent */}
-              <div className="p-4 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <span className="font-bold text-purple-600 dark:text-purple-400">Gujarati Sentence Pattern:</span>
+              <div className="p-4 rounded-[4px] bg-card border-2 border-black text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2 shadow-[2px_2px_0px_#121212]">
+                <span className="font-black uppercase text-foreground">Gujarati Pattern:</span>
                 <span className="font-black text-foreground font-mono">{activeTopicFormula.gujaratiPattern}</span>
               </div>
             </div>
           )}
 
-          <div className="flex items-center justify-between text-xs font-bold text-muted-foreground pt-2">
-            <span>Sentence Practice Directory ({questions.length} Sentences)</span>
-            <span>Click any sentence card for full details & audio 🔊</span>
+          <div className="flex items-center justify-between text-xs font-black uppercase tracking-wider text-muted-foreground pt-2">
+            <span>Directory ({questions.length} Sentences)</span>
+            <span>Click any card for full details 🔊</span>
           </div>
 
-          <div className="rounded-[28px] border border-border bg-card p-6 shadow-xl space-y-3">
+          <div className="rounded-[6px] border-[2.5px] border-black dark:border-white bg-card p-6 shadow-[6px_6px_0px_#121212] dark:shadow-[6px_6px_0px_#000] space-y-3">
             <div className="grid grid-cols-1 gap-3">
               {questions.map((q, idx) => {
                 return (
@@ -1010,22 +1017,22 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
                       if (f) setActiveFormulaKey(f.topicKey);
                       setDrawerOpen(true);
                     }}
-                    className="cursor-pointer rounded-2xl border border-border bg-background p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-purple-500 hover:bg-purple-500/5 transition-all shadow-sm group"
+                    className="cursor-pointer rounded-[4px] border-2 border-black bg-card p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[4px_4px_0px_#121212] transition-all shadow-[2px_2px_0px_#121212] group"
                   >
                     <div className="flex items-start gap-3">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 font-extrabold text-xs mt-0.5">
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[3px] bg-[#FFE600] text-black border-2 border-black font-black text-xs mt-0.5 shadow-[1px_1px_0px_#121212]">
                         #{idx + 1}
                       </div>
                       <div className="space-y-1 text-left">
                         <div className="flex items-center gap-2">
-                          <span className="rounded-full bg-purple-500/10 px-2.5 py-0.5 text-[10px] font-extrabold text-purple-600 dark:text-purple-400">
+                          <span className="rounded-[2px] border border-black bg-[#EFE8DD] dark:bg-zinc-800 px-2 py-0.5 text-[10px] font-black uppercase text-foreground">
                             {q.topic}
                           </span>
                         </div>
-                        <h4 className="text-base font-black text-foreground block group-hover:text-purple-600 transition-colors">
+                        <h4 className="text-base font-black text-foreground block">
                           {q.gujarati}
                         </h4>
-                        <p className="text-xs font-bold text-indigo-600 dark:text-indigo-400">
+                        <p className="text-xs font-bold text-muted-foreground">
                           {q.english}
                         </p>
                       </div>
@@ -1039,11 +1046,11 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
                           playGujaratiAudio(q.gujarati);
                         }}
                         title="Listen to Gujarati Audio"
-                        className="h-9 w-9 rounded-full bg-purple-600 text-white flex items-center justify-center hover:bg-purple-700 transition-colors shadow-md"
+                        className="h-9 w-9 rounded-[3px] bg-[#FFE600] text-black border-2 border-black flex items-center justify-center shadow-[2px_2px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 transition-transform"
                       >
                         <Volume2 className="h-4 w-4" />
                       </button>
-                      <span className="text-xs font-extrabold text-muted-foreground group-hover:text-purple-600 transition-colors">
+                      <span className="text-xs font-black uppercase text-foreground">
                         Details ➔
                       </span>
                     </div>
@@ -1057,7 +1064,7 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
             <button
               type="button"
               onClick={() => setPageMode("exam")}
-              className="w-full max-w-md rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 py-4 text-sm font-black text-white hover:from-purple-700 hover:to-indigo-700 shadow-xl transition-all"
+              className="w-full max-w-md rounded-[4px] bg-[#FFE600] text-black border-2 border-black py-3.5 text-sm font-black uppercase tracking-wider shadow-[4px_4px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 transition-transform"
             >
               <span>I'm Ready! Start Exam Now 🚀</span>
             </button>
@@ -1066,42 +1073,42 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
           <Drawer
             open={drawerOpen}
             onOpenChange={setDrawerOpen}
-            title="Sentence Study & Audio Pronunciation"
+            title="Sentence Study & Pronunciation"
             side="right"
           >
             <div className="space-y-6 pt-2 text-center">
               <div className="flex items-center justify-between">
-                <span className="rounded-full bg-purple-500/10 border border-purple-500/20 px-3.5 py-1 text-xs font-extrabold text-purple-600 dark:text-purple-400">
+                <span className="rounded-[3px] border-2 border-black bg-[#FFE600] px-3 py-0.5 text-xs font-black uppercase text-black shadow-[2px_2px_0px_#121212]">
                   {studyQuestion.topic || "Sentence"}
                 </span>
 
                 <button
                   type="button"
                   onClick={() => handleFavorite(studyQuestion)}
-                  className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors ${
+                  className={`flex h-9 w-9 items-center justify-center rounded-[4px] border-2 border-black transition-transform shadow-[2px_2px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 ${
                     isFav
-                      ? "bg-amber-500/20 border-amber-500 text-amber-500"
-                      : "border-border bg-background text-muted-foreground hover:bg-muted"
+                      ? "bg-[#FFE600] text-black"
+                      : "bg-card text-foreground hover:bg-[#EFE8DD]"
                   }`}
                 >
-                  <Star className={`h-4 w-4 ${isFav ? "fill-amber-500" : ""}`} />
+                  <Star className={`h-4 w-4 ${isFav ? "fill-black" : ""}`} />
                 </button>
               </div>
 
               {/* Gujarati Sentence & Audio */}
               <div className="space-y-3 py-2">
-                <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest block">
+                <span className="text-xs font-black uppercase tracking-widest text-muted-foreground block">
                   Gujarati Sentence
                 </span>
                 <div className="flex items-center justify-center gap-3">
-                  <h2 className="text-3xl font-black text-foreground">
+                  <h2 className="text-2xl sm:text-3xl font-black text-foreground">
                     {studyQuestion.gujarati}
                   </h2>
                   <button
                     type="button"
                     onClick={() => playGujaratiAudio(studyQuestion.gujarati)}
                     title="Listen Gujarati"
-                    className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600 text-white hover:bg-purple-700 shadow-md transition-colors"
+                    className="flex h-10 w-10 items-center justify-center rounded-[4px] bg-[#FFE600] text-black border-2 border-black shadow-[2px_2px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5"
                   >
                     <Volume2 className="h-5 w-5" />
                   </button>
@@ -1109,20 +1116,20 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
               </div>
 
               {/* English Translation & Audio */}
-              <div className="rounded-2xl border border-indigo-500/30 bg-indigo-500/10 p-6 space-y-4 text-left">
-                <span className="text-xs font-extrabold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest block text-center">
+              <div className="rounded-[4px] border-2 border-black bg-[#FAF7F2] dark:bg-zinc-900 p-5 space-y-4 text-left shadow-[3px_3px_0px_#121212]">
+                <span className="text-xs font-black uppercase tracking-wider text-muted-foreground block text-center">
                   Accepted English Translation(s)
                 </span>
 
                 <div className="space-y-2">
                   {studyValidAnswers.map((ans, idx) => (
-                    <div key={idx} className="flex items-center justify-between gap-3 p-3 rounded-xl bg-background border border-border">
-                      <span className="text-base font-extrabold text-foreground">{ans}</span>
+                    <div key={idx} className="flex items-center justify-between gap-3 p-3 rounded-[3px] bg-card border-2 border-black shadow-[2px_2px_0px_#121212]">
+                      <span className="text-base font-black text-foreground">{ans}</span>
                       <button
                         type="button"
                         onClick={() => speakEnglishAudio(ans)}
                         title="Listen English"
-                        className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-colors shadow-xs"
+                        className="flex h-8 w-8 items-center justify-center rounded-[2px] bg-[#22C55E] text-white border border-black shadow-[1px_1px_0px_#121212]"
                       >
                         <Volume2 className="h-4 w-4" />
                       </button>
@@ -1133,9 +1140,9 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
 
               {/* Sentence Formula Box for Drawer */}
               {activeTopicFormula && (
-                <div className="p-4 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-left space-y-2">
-                  <span className="text-[11px] font-extrabold text-purple-600 dark:text-purple-400 block uppercase tracking-wider">
-                    Grammar Formula ({activeTopicFormula.topicName}):
+                <div className="p-4 rounded-[4px] bg-[#EFE8DD] dark:bg-zinc-800 border-2 border-black text-left space-y-2 shadow-[2px_2px_0px_#121212]">
+                  <span className="text-[11px] font-black uppercase tracking-wider text-foreground block">
+                    Formula ({activeTopicFormula.topicName}):
                   </span>
                   <p className="text-xs font-mono font-black text-foreground">
                     {activeTopicFormula.formula}
@@ -1145,9 +1152,9 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
 
               {/* Hint / Notes */}
               {studyQuestion.hint && (
-                <div className="p-4 rounded-2xl bg-muted/50 border border-border text-left space-y-1">
-                  <span className="text-[11px] font-bold text-muted-foreground block">Grammar Hint & Usage:</span>
-                  <p className="text-xs font-semibold text-purple-600 dark:text-purple-400 italic">
+                <div className="p-4 rounded-[4px] bg-card border-2 border-black text-left space-y-1 shadow-[2px_2px_0px_#121212]">
+                  <span className="text-[11px] font-black uppercase text-muted-foreground block">Grammar Hint:</span>
+                  <p className="text-xs font-bold text-foreground italic">
                     "{studyQuestion.hint}"
                   </p>
                 </div>
@@ -1158,7 +1165,7 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
                   type="button"
                   disabled={studyIndex === 0}
                   onClick={() => setStudyIndex((prev) => Math.max(0, prev - 1))}
-                  className="flex-1 rounded-2xl border border-border bg-card py-3 text-xs font-bold text-foreground disabled:opacity-40 hover:bg-muted transition-colors"
+                  className="flex-1 rounded-[4px] border-2 border-black bg-card py-2.5 text-xs font-black uppercase text-foreground disabled:opacity-40 hover:bg-[#EFE8DD] shadow-[2px_2px_0px_#121212] transition-colors"
                 >
                   ← Previous
                 </button>
@@ -1167,7 +1174,7 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
                   type="button"
                   disabled={studyIndex >= questions.length - 1}
                   onClick={() => setStudyIndex((prev) => Math.min(questions.length - 1, prev + 1))}
-                  className="flex-1 rounded-2xl border border-border bg-card py-3 text-xs font-bold text-foreground disabled:opacity-40 hover:bg-muted transition-colors"
+                  className="flex-1 rounded-[4px] border-2 border-black bg-card py-2.5 text-xs font-black uppercase text-foreground disabled:opacity-40 hover:bg-[#EFE8DD] shadow-[2px_2px_0px_#121212] transition-colors"
                 >
                   Next →
                 </button>
@@ -1180,7 +1187,7 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
                     setDrawerOpen(false);
                     setPageMode("exam");
                   }}
-                  className="w-full rounded-2xl bg-purple-600 py-3.5 text-xs font-extrabold text-white hover:bg-purple-700 shadow-md transition-colors"
+                  className="w-full rounded-[4px] bg-[#FFE600] text-black border-2 border-black py-3 text-xs font-black uppercase tracking-wider shadow-[3px_3px_0px_#121212] transition-transform active:translate-x-0.5 active:translate-y-0.5"
                 >
                   Start Practice Exam Now 🚀
                 </button>
@@ -1195,15 +1202,15 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="rounded-2xl border border-indigo-500/40 bg-indigo-500/10 p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg backdrop-blur-md"
+              className="rounded-[6px] border-[2.5px] border-black dark:border-white bg-[#FFE600] text-black p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-[4px_4px_0px_#121212]"
             >
               <div className="flex items-center gap-3.5">
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-600 text-white shadow-md shrink-0 font-bold">
+                <div className="flex h-10 w-10 items-center justify-center rounded-[4px] bg-black text-white border-2 border-black shadow-[2px_2px_0px_#121212] shrink-0 font-bold">
                   <RotateCcw className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-black text-foreground">Unfinished Sentence Session Found!</h4>
-                  <p className="text-xs text-muted-foreground font-medium">
+                  <h4 className="text-sm font-black uppercase">Unfinished Session Found!</h4>
+                  <p className="text-xs font-bold opacity-80">
                     You were on Question {activeDraft.currentIndex + 1} of {questions.length} ({formatRelativeTime(new Date(activeDraft.timestamp).toISOString())}).
                   </p>
                 </div>
@@ -1213,24 +1220,24 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
                 <button
                   type="button"
                   onClick={handleStartFreshExam}
-                  className="flex-1 sm:flex-none h-10 rounded-xl border border-border bg-card hover:bg-muted px-4 text-xs font-extrabold text-foreground transition-all shadow-xs"
+                  className="flex-1 sm:flex-none h-10 rounded-[4px] border-2 border-black bg-card hover:bg-[#EFE8DD] px-4 text-xs font-black uppercase tracking-wider text-foreground shadow-[2px_2px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5"
                 >
-                  Start Fresh Exam 🔄
+                  Start Fresh 🔄
                 </button>
 
                 <button
                   type="button"
                   onClick={handleResumeExamDraft}
-                  className="flex-1 sm:flex-none h-10 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white px-5 text-xs font-black shadow-md shadow-indigo-600/30 transition-all"
+                  className="flex-1 sm:flex-none h-10 rounded-[4px] bg-[#18181B] text-white border-2 border-black px-5 text-xs font-black uppercase tracking-wider shadow-[3px_3px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5"
                 >
-                  Resume Saved Session 🚀
+                  Resume Session 🚀
                 </button>
               </div>
             </motion.div>
           )}
 
           <div className="space-y-2 mb-6">
-            <div className="flex items-center justify-between text-xs font-bold text-muted-foreground">
+            <div className="flex items-center justify-between text-xs font-black uppercase tracking-wider text-muted-foreground">
               <div className="flex items-center gap-2">
                 <span>
                   Sentence {currentIndex + 1} of {questions.length}
@@ -1238,7 +1245,7 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
                 <button
                   type="button"
                   onClick={handleStartFreshExam}
-                  className="inline-flex items-center gap-1 rounded-lg border border-border bg-card hover:bg-rose-500/10 hover:border-rose-500/30 px-2.5 py-1 text-[11px] font-extrabold text-muted-foreground hover:text-rose-600 dark:hover:text-rose-400 transition-all shadow-xs"
+                  className="inline-flex items-center gap-1 rounded-[3px] border-2 border-black bg-card hover:bg-[#FF4D4D] hover:text-white px-2 py-0.5 text-[11px] font-black uppercase tracking-wider text-foreground transition-colors shadow-[1px_1px_0px_#121212]"
                   title="Restart exam from Question 1"
                 >
                   <RotateCcw className="h-3 w-3" />
@@ -1247,12 +1254,12 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
               </div>
               <span>{progressPct}% Complete</span>
             </div>
-            <div className="h-2.5 w-full overflow-hidden rounded-full bg-muted">
+            <div className="h-3 w-full overflow-hidden rounded-[4px] border-2 border-black bg-[#EFE8DD] dark:bg-zinc-800">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${progressPct}%` }}
                 transition={{ duration: 0.3 }}
-                className="h-full rounded-full bg-gradient-to-r from-purple-500 to-indigo-600"
+                className="h-full bg-[#FFE600]"
               />
             </div>
           </div>
@@ -1261,60 +1268,54 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
           <AnimatePresence mode="wait">
             <motion.div
               key={currentQuestion.id || currentIndex}
-              initial={{ opacity: 0, scale: 0.96, y: 15 }}
+              initial={{ opacity: 0, scale: 0.98, y: 10 }}
               animate={
                 shake
                   ? { x: [-12, 12, -8, 8, -4, 4, 0], opacity: 1, scale: 1, y: 0 }
                   : { opacity: 1, scale: 1, y: 0 }
               }
-              exit={{ opacity: 0, scale: 0.96, y: -15 }}
-              transition={{
-                type: "spring",
-                stiffness: 400,
-                damping: 26,
-              }}
-              className={`relative my-4 rounded-[32px] border p-8 sm:p-12 shadow-2xl transition-colors bg-card ${
+              exit={{ opacity: 0, scale: 0.98, y: -10 }}
+              transition={{ duration: 0.15 }}
+              className={`relative my-4 rounded-[6px] border-[2.5px] border-black dark:border-white p-6 sm:p-10 shadow-[6px_6px_0px_#121212] dark:shadow-[6px_6px_0px_#000] transition-colors bg-card ${
                 status === "correct"
-                  ? "border-emerald-500 bg-emerald-500/5 shadow-emerald-500/20"
+                  ? "bg-[#22C55E]/10"
                   : status === "wrong"
-                  ? "border-rose-500 bg-rose-500/5 shadow-rose-500/20"
-                  : "border-border"
+                  ? "bg-[#FF4D4D]/10"
+                  : "bg-card"
               }`}
             >
               <div className="flex items-center justify-between mb-8">
-                <span className="rounded-full bg-purple-500/10 px-3.5 py-1 text-xs font-extrabold text-purple-600 dark:text-purple-400">
-                  Grammar Topic: {currentQuestion.topic}
+                <span className="rounded-[3px] border-2 border-black bg-[#FFE600] px-3.5 py-1 text-xs font-black uppercase tracking-wider text-black shadow-[2px_2px_0px_#121212]">
+                  Topic: {currentQuestion.topic}
                 </span>
 
                 <motion.button
                   type="button"
-                  whileHover={{ scale: 1.15 }}
-                  whileTap={{ scale: 0.9 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => handleFavorite(currentQuestion)}
-                  className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors ${
+                  className={`flex h-9 w-9 items-center justify-center rounded-[4px] border-2 border-black shadow-[2px_2px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 ${
                     isFav
-                      ? "bg-amber-500/20 border-amber-500 text-amber-500"
-                      : "border-border bg-background text-muted-foreground hover:bg-muted"
+                      ? "bg-[#FFE600] text-black"
+                      : "bg-card text-foreground hover:bg-[#EFE8DD]"
                   }`}
                 >
-                  <Star className={`h-4 w-4 ${isFav ? "fill-amber-500" : ""}`} />
+                  <Star className={`h-4 w-4 ${isFav ? "fill-black" : ""}`} />
                 </motion.button>
               </div>
 
               <div className="text-center space-y-3 mb-8">
-                <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest block">
+                <span className="text-xs font-black uppercase tracking-widest text-[#FF6B00] block">
                   Translate Complete Gujarati Sentence
                 </span>
                 <div className="flex items-center justify-center gap-3">
-                  <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-wide font-sans leading-tight">
+                  <h2 className="text-3xl sm:text-4xl font-black text-foreground tracking-tight font-sans leading-tight">
                     {currentQuestion.gujarati}
                   </h2>
                   <motion.button
                     type="button"
-                    whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.92 }}
                     onClick={() => playGujaratiAudio(currentQuestion.gujarati)}
-                    className="flex h-11 w-11 items-center justify-center rounded-2xl bg-purple-500/10 text-purple-600 dark:text-purple-400 hover:bg-purple-600 hover:text-white transition-all shrink-0 shadow-sm"
+                    className="flex h-11 w-11 items-center justify-center rounded-[4px] bg-[#FFE600] text-black border-2 border-black shadow-[2px_2px_0px_#121212] shrink-0 active:translate-x-0.5 active:translate-y-0.5"
                     title="Listen to Gujarati sentence audio"
                   >
                     <Volume2 className="h-5 w-5" />
@@ -1322,8 +1323,8 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
                 </div>
 
                 {currentQuestion.hint && (
-                  <p className="text-xs text-indigo-500 font-medium flex items-center justify-center gap-1">
-                    <Sparkles className="h-3.5 w-3.5" /> {currentQuestion.hint}
+                  <p className="text-xs text-muted-foreground font-bold flex items-center justify-center gap-1">
+                    <Sparkles className="h-3.5 w-3.5 text-[#FF6B00]" /> {currentQuestion.hint}
                   </p>
                 )}
               </div>
@@ -1341,12 +1342,12 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
                     onKeyDown={handleKeyDown}
                     placeholder="Write complete English translation... (Press Enter to submit)"
                     disabled={status === "correct"}
-                    className={`w-full rounded-2xl border p-5 text-base font-semibold text-foreground placeholder:text-muted-foreground/60 outline-none transition-all shadow-inner resize-none ${
+                    className={`w-full rounded-[4px] border-2 border-black dark:border-white p-4 text-base font-bold text-foreground placeholder:text-muted-foreground/60 outline-none transition-all shadow-[3px_3px_0px_#121212] dark:shadow-[3px_3px_0px_#000] resize-none ${
                       status === "correct"
-                        ? "border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+                        ? "bg-[#22C55E]/15 text-[#22C55E]"
                         : status === "wrong"
-                        ? "border-rose-500 bg-rose-500/10 text-rose-600 dark:text-rose-400"
-                        : "border-border bg-background focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10"
+                        ? "bg-[#FF4D4D]/15 text-[#FF4D4D]"
+                        : "bg-background focus:border-[#FF6B00]"
                     }`}
                   />
                 </div>
@@ -1357,32 +1358,32 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      className="rounded-2xl border border-rose-500/30 bg-rose-500/10 p-5 space-y-3 text-xs"
+                      className="rounded-[4px] border-2 border-black bg-[#FAF7F2] dark:bg-zinc-900 p-5 space-y-3 text-xs shadow-[3px_3px_0px_#121212]"
                     >
-                      <div className="flex items-center gap-2 text-rose-600 dark:text-rose-400 font-bold">
+                      <div className="flex items-center gap-2 text-[#FF4D4D] font-black uppercase">
                         <XCircle className="h-4 w-4 shrink-0" />
                         <span>Translation Needs Revision</span>
                       </div>
 
                       <div className="space-y-1">
-                        <span className="text-muted-foreground font-semibold block">Your Answer:</span>
-                        <p className="text-foreground font-medium bg-background/60 p-2.5 rounded-xl border border-border">
+                        <span className="text-muted-foreground font-bold block">Your Answer:</span>
+                        <p className="text-foreground font-bold bg-card p-2.5 rounded-[3px] border border-black/30">
                           {userAnswer}
                         </p>
                       </div>
 
                       <div className="space-y-1.5">
-                        <span className="text-muted-foreground font-semibold block">
-                          Target Answer Analysis (Closest Match: "{bestTargetAnswer}"):
+                        <span className="text-muted-foreground font-bold block">
+                          Target Answer Analysis (Closest: "{bestTargetAnswer}"):
                         </span>
-                        <div className="flex flex-wrap gap-1.5 p-3 rounded-xl bg-background border border-border">
+                        <div className="flex flex-wrap gap-1.5 p-3 rounded-[3px] bg-card border border-black/30">
                           {diffs.map((d, i) => (
                             <span
                               key={i}
-                              className={`px-2 py-1 rounded-lg text-xs font-bold ${
+                              className={`px-2 py-1 rounded-[2px] text-xs font-black border-2 border-black ${
                                 d.matched
-                                  ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30"
-                                  : "bg-rose-500/20 text-rose-600 dark:text-rose-400 border border-rose-500/30 underline decoration-rose-500 decoration-2"
+                                  ? "bg-[#22C55E] text-white"
+                                  : "bg-[#FF4D4D] text-white line-through"
                               }`}
                             >
                               {d.word}
@@ -1393,10 +1394,10 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
 
                       {validAnswers.length > 1 && (
                         <div className="space-y-1.5 pt-1">
-                          <span className="text-muted-foreground font-semibold block">
+                          <span className="text-muted-foreground font-bold block">
                             All Valid Translations:
                           </span>
-                          <ul className="list-disc list-inside space-y-1 text-foreground font-medium bg-background/60 p-2.5 rounded-xl border border-border">
+                          <ul className="list-disc list-inside space-y-1 text-foreground font-bold bg-card p-2.5 rounded-[3px] border border-black/30">
                             {validAnswers.map((ans, idx) => (
                               <li key={idx}>{ans}</li>
                             ))}
@@ -1406,13 +1407,11 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
 
                       <div className="pt-2">
                         {!aiExplanation ? (
-                          <motion.button
+                          <button
                             type="button"
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
                             onClick={handleGetAiExplanation}
                             disabled={loadingAi}
-                            className="flex items-center justify-center gap-2 w-full rounded-xl bg-purple-600/10 border border-purple-500/30 p-2.5 text-xs font-extrabold text-purple-600 dark:text-purple-400 hover:bg-purple-600/20 transition-colors shadow-xs"
+                            className="flex items-center justify-center gap-2 w-full rounded-[4px] bg-[#FFE600] text-black border-2 border-black p-2.5 text-xs font-black uppercase tracking-wider shadow-[2px_2px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5"
                           >
                             {loadingAi ? (
                               <>
@@ -1421,15 +1420,15 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
                               </>
                             ) : (
                               <>
-                                <Bot className="h-4 w-4 text-purple-500" />
+                                <Bot className="h-4 w-4" />
                                 <span>Ask Gemini AI to Explain My Mistake ✨</span>
                               </>
                             )}
-                          </motion.button>
+                          </button>
                         ) : (
-                          <div className="rounded-xl border border-purple-500/30 bg-card p-3.5 space-y-1.5 text-left shadow-sm">
-                            <div className="flex items-center gap-1.5 text-purple-600 dark:text-purple-400 font-extrabold text-[11px]">
-                              <Bot className="h-4 w-4 text-purple-500" />
+                          <div className="rounded-[4px] border-2 border-black bg-card p-3.5 space-y-1.5 text-left shadow-[2px_2px_0px_#121212]">
+                            <div className="flex items-center gap-1.5 text-foreground font-black text-xs uppercase">
+                              <Bot className="h-4 w-4" />
                               <span>Gemini AI Tutor Explanation:</span>
                             </div>
                             <div className="text-foreground text-xs leading-relaxed font-medium">
@@ -1446,14 +1445,14 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      className="rounded-2xl border border-purple-500/30 bg-purple-500/10 p-4 text-center space-y-2"
+                      className="rounded-[4px] border-2 border-black bg-[#FFE600] text-black p-4 text-center space-y-2 shadow-[3px_3px_0px_#121212]"
                     >
-                      <span className="text-xs font-semibold text-purple-500 block">
+                      <span className="text-xs font-black uppercase tracking-wider block">
                         Accepted English Translation(s):
                       </span>
                       <div className="space-y-1">
                         {validAnswers.map((ans, idx) => (
-                          <p key={idx} className="text-base font-extrabold text-foreground">
+                          <p key={idx} className="text-base font-black">
                             {ans}
                           </p>
                         ))}
@@ -1470,37 +1469,33 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
                         variant="primary"
                         size="lg"
                         onClick={checkAnswer}
-                        className="flex-1 min-w-[140px] bg-purple-600 hover:bg-purple-700"
+                        className="flex-1 min-w-[140px] font-black uppercase tracking-wider"
                       >
                         <span>Submit Sentence</span>
                       </StatefulButton>
 
-                      <motion.button
+                      <button
                         type="button"
-                        whileHover={{ scale: 1.04, y: -1 }}
-                        whileTap={{ scale: 0.96 }}
                         onClick={handleShowAnswer}
-                        className="inline-flex h-14 items-center gap-1.5 rounded-[18px] border border-border bg-card px-5 text-xs font-bold text-foreground hover:bg-muted transition-colors shadow-xs"
+                        className="inline-flex h-12 items-center gap-1.5 rounded-[4px] border-2 border-black bg-card px-4 text-xs font-black uppercase tracking-wider text-foreground hover:bg-[#EFE8DD] transition-transform active:translate-x-0.5 active:translate-y-0.5 shadow-[2px_2px_0px_#121212]"
                       >
-                        <HelpCircle className="h-4 w-4 text-purple-500" /> Show Answer
-                      </motion.button>
+                        <HelpCircle className="h-4 w-4" /> Show Answer
+                      </button>
 
-                      <motion.button
+                      <button
                         type="button"
-                        whileHover={{ scale: 1.04, y: -1 }}
-                        whileTap={{ scale: 0.96 }}
                         onClick={handleSkip}
-                        className="inline-flex h-14 items-center gap-1.5 rounded-[18px] border border-border bg-card px-5 text-xs font-bold text-muted-foreground hover:bg-muted transition-colors shadow-xs"
+                        className="inline-flex h-12 items-center gap-1.5 rounded-[4px] border-2 border-black bg-card px-4 text-xs font-black uppercase tracking-wider text-muted-foreground hover:bg-[#EFE8DD] transition-transform active:translate-x-0.5 active:translate-y-0.5 shadow-[2px_2px_0px_#121212]"
                       >
                         <SkipForward className="h-4 w-4" /> Skip
-                      </motion.button>
+                      </button>
                     </>
                   ) : (
                     <StatefulButton
                       variant="success"
                       size="lg"
                       onClick={nextQuestion}
-                      className="w-full"
+                      className="w-full font-black uppercase tracking-wider"
                     >
                       <span>Next Question</span>
                       <ArrowRight className="h-5 w-5" />
@@ -1511,9 +1506,9 @@ export function SentencePracticeView({ questions, onComplete, initialPageMode }:
             </motion.div>
           </AnimatePresence>
 
-          <div className="flex items-center justify-between text-xs text-muted-foreground px-4">
-            <span>Keyboard: <kbd className="rounded border bg-muted px-1.5 py-0.5 font-bold">Enter</kbd> = Submit, <kbd className="rounded border bg-muted px-1.5 py-0.5 font-bold">Esc</kbd> = Skip</span>
-            <span>Auto-focus enabled</span>
+          <div className="flex items-center justify-between text-xs font-bold text-muted-foreground px-4">
+            <span>Keyboard: <kbd className="rounded-[2px] border-2 border-black bg-[#FFE600] text-black px-1.5 py-0.5 font-black shadow-[1px_1px_0px_#121212]">Enter</kbd> = Submit, <kbd className="rounded-[2px] border-2 border-black bg-[#FFE600] text-black px-1.5 py-0.5 font-black shadow-[1px_1px_0px_#121212]">Esc</kbd> = Skip</span>
+            <span className="font-bold">Auto-focus enabled</span>
           </div>
         </div>
       )}

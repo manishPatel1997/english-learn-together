@@ -41,6 +41,34 @@
       "xp": 30,
       "streak": 0,
       "createdAt": "2026-08-08T11:41:06.327Z"
+    },
+    {
+      "id": "user_1791141565235_2oz36",
+      "email": "newuser@example.com",
+      "passwordHash": "$2a$10$142SSD4SAOdUGmlq27tBkOqSsipGMAB5tdHkT9ujh.D21PoEWlyFe",
+      "name": "Test User",
+      "role": "user",
+      "unlockedSections": [
+        "section1",
+        "section2",
+        "section3",
+        "section4",
+        "section5",
+        "section6",
+        "section7",
+        "section8",
+        "all",
+        "who_section",
+        "what_section",
+        "where_section",
+        "whose_section",
+        "how_many_much_section",
+        "which_section",
+        "sentence_all"
+      ],
+      "xp": 0,
+      "streak": 0,
+      "createdAt": "2026-10-04T19:19:25.235Z"
     }
   ],
   "progress": [
@@ -14661,6 +14689,15 @@
     }
   ],
   "notifications": [
+    {
+      "id": "notif_1791142530544_w5ek",
+      "userId": "user_1791141565235_2oz36",
+      "title": "🎉 Module Access Granted by Admin!",
+      "message": "An administrator updated your module permissions. Unlocked sections: SECTION1, SECTION2, SECTION3, SECTION4, SECTION5, SECTION6, SECTION7, SECTION8, ALL, WHO_SECTION, WHAT_SECTION, WHERE_SECTION, WHOSE_SECTION, HOW_MANY_MUCH_SECTION, WHICH_SECTION, SENTENCE_ALL.",
+      "type": "module_unlock",
+      "readBy": [],
+      "createdAt": "2026-10-04T19:35:30.544Z"
+    },
     {
       "id": "notif_1786190581183_8nq8",
       "userId": "user_1786189266327_xb3m2",

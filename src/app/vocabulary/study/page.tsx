@@ -38,7 +38,7 @@ export default function VocabularyStudyPage() {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="w-full space-y-4">
       <VocabularySubNav />
       {questions.length > 0 ? (
         <VocabularyPracticeView

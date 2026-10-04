@@ -19,6 +19,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { TodaysGoalCard } from "./todays-goal-card";
+import { ThemeToggle } from "./theme-toggle";
 import { cn } from "@/lib/utils";
 import { storage } from "@/lib/storage";
 import { useAuth } from "@/context/auth-context";
@@ -105,7 +106,7 @@ export function BounceSidebar({
     { id: "sentence", label: "Sentence Practice", icon: MessageSquare, shortcut: "3" },
     { id: "sentence-reading", label: "Sentence Reading AI", icon: Volume2, badge: "AI", shortcut: "4" },
     { id: "mixed", label: "Mixed Practice", icon: Shuffle, shortcut: "5" },
-    { id: "progress", label: "Progress", icon: BarChart3, shortcut: "6" },
+    { id: "progress", label: "Progress & Stats", icon: BarChart3, shortcut: "6" },
     { id: "mistakes", label: "Mistakes", icon: AlertCircle, badge: mistakesCount > 0 ? String(mistakesCount) : undefined, shortcut: "7" },
     { id: "favorites", label: "Favorites", icon: Star, shortcut: "8" },
     { id: "settings", label: "Settings", icon: Settings, shortcut: "9" },
@@ -117,30 +118,30 @@ export function BounceSidebar({
   return (
     <motion.aside
       animate={{ width: isMobile ? "100%" : collapsed ? 80 : 280 }}
-      transition={{ type: "spring", stiffness: 350, damping: 28 }}
+      transition={{ type: "spring", stiffness: 450, damping: 32 }}
       className={cn(
-        "relative flex flex-col h-full border-r border-border bg-card text-card-foreground select-none z-30 shrink-0 shadow-sm overflow-hidden",
+        "relative flex flex-col h-full border-r-[2.5px] border-black dark:border-white bg-[#FAF7F2] dark:bg-[#161619] text-card-foreground select-none z-30 shrink-0 overflow-hidden",
         isMobile ? "w-full" : "h-screen"
       )}
     >
       {/* Brand Header */}
-      <div className="flex h-16 items-center justify-between px-4 border-b border-border shrink-0">
+      <div className="flex h-16 items-center justify-between px-4 border-b-[2.5px] border-black dark:border-white shrink-0 bg-white dark:bg-zinc-900">
         <div className="flex items-center gap-3 overflow-hidden">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-purple-500 text-white shadow-lg shadow-indigo-500/30">
-            <GraduationCap className="h-5 w-5" />
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[4px] border-2 border-black dark:border-white bg-[#FFE600] text-black shadow-[3px_3px_0px_#121212] dark:shadow-[3px_3px_0px_#ffffff]">
+            <GraduationCap className="h-5 w-5 stroke-[2.5]" />
           </div>
           {(!collapsed || isMobile) && (
             <motion.div
-              initial={{ opacity: 0, x: -10 }}
+              initial={{ opacity: 0, x: -6 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
+              exit={{ opacity: 0, x: -6 }}
               className="flex flex-col truncate"
             >
-              <span className="text-sm font-extrabold tracking-tight bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
+              <span className="text-sm font-black tracking-tight text-foreground uppercase">
                 Gujarati English
               </span>
-              <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest">
-                Master SaaS
+              <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">
+                Neo Master
               </span>
             </motion.div>
           )}
@@ -151,70 +152,59 @@ export function BounceSidebar({
           <button
             type="button"
             onClick={onCloseMobile}
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-border bg-background hover:bg-muted text-muted-foreground transition-colors"
+            className="flex h-10 w-10 min-h-[44px] min-w-[44px] items-center justify-center rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-800 text-foreground hover:bg-[#FFE600] hover:text-black shadow-[2px_2px_0px_#121212] dark:shadow-[2px_2px_0px_#ffffff] transition-all cursor-pointer"
             aria-label="Close navigation drawer"
           >
-            <X className="h-4 w-4" />
+            <X className="h-5 w-5 stroke-[3]" />
           </button>
         ) : (
           <button
             type="button"
             onClick={handleToggle}
-            className="flex h-7 w-7 items-center justify-center rounded-full border border-border bg-background hover:bg-muted text-muted-foreground transition-colors shadow-xs"
+            className="flex h-7 w-7 items-center justify-center rounded-[3px] border-2 border-black dark:border-white bg-white dark:bg-zinc-800 text-foreground hover:bg-[#FFE600] hover:text-black shadow-[2px_2px_0px_#121212] dark:shadow-[2px_2px_0px_#ffffff] transition-all cursor-pointer"
             aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
             title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
-            {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
+            {collapsed ? <ChevronRight className="h-4 w-4 stroke-[3]" /> : <ChevronLeft className="h-4 w-4 stroke-[3]" />}
           </button>
         )}
       </div>
 
       {/* Navigation List */}
-      <nav className="flex-1 overflow-y-auto px-2.5 py-4 space-y-1.5 scrollbar-thin">
+      <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-2">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = currentNav === item.id;
 
           return (
-            <motion.button
+            <button
               key={item.id}
               onClick={() => onNavigate(item.id as NavItem)}
-              whileHover={{ scale: 1.02, x: 2 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 400, damping: 25 }}
               title={`${item.label} (${isMac ? `⌘${item.shortcut}` : `Ctrl+${item.shortcut}`})`}
               className={cn(
-                "relative flex w-full items-center rounded-xl py-3 text-sm font-medium transition-colors outline-none group",
-                collapsed && !isMobile ? "justify-center px-0" : "gap-3.5 px-3.5",
+                "relative flex w-full items-center rounded-[4px] py-2.5 text-xs font-bold transition-all outline-none cursor-pointer",
+                collapsed && !isMobile ? "justify-center px-0" : "gap-3 px-3",
                 isActive
-                  ? "bg-primary text-primary-foreground font-semibold shadow-lg shadow-indigo-500/25"
-                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  ? "border-[2.5px] border-black dark:border-white bg-[#FFE600] text-black font-black shadow-[4px_4px_0px_#121212] dark:shadow-[4px_4px_0px_#ffffff] translate-x-0"
+                  : "border-2 border-transparent text-foreground hover:border-black dark:hover:border-white hover:bg-white dark:hover:bg-zinc-800 hover:shadow-[3px_3px_0px_#121212] dark:hover:shadow-[3px_3px_0px_#ffffff]"
               )}
             >
-              {isActive && (
-                <motion.div
-                  layoutId="bounce-active-pill"
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                  className="absolute inset-0 rounded-xl bg-primary -z-10"
-                />
-              )}
-
               <div className="relative flex items-center justify-center shrink-0">
-                <Icon className={cn("h-5 w-5", isActive ? "text-primary-foreground" : "text-muted-foreground")} />
+                <Icon className={cn("h-4.5 w-4.5 stroke-[2.5]", isActive ? "text-black" : "text-foreground")} />
                 {collapsed && !isMobile && item.badge && (
-                  <span className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-destructive animate-pulse" />
+                  <span className="absolute -top-1 -right-1 h-2.5 w-2.5 border border-black bg-[#FF4D4D]" />
                 )}
               </div>
 
               {(!collapsed || isMobile) && (
-                <span className="truncate flex-1 text-left">{item.label}</span>
+                <span className="truncate flex-1 text-left tracking-tight font-extrabold">{item.label}</span>
               )}
 
               {(!collapsed || isMobile) && item.badge && (
                 <span
                   className={cn(
-                    "rounded-full px-2 py-0.5 text-[10px] font-extrabold",
-                    isActive ? "bg-white/20 text-white" : "bg-destructive/15 text-destructive"
+                    "rounded-[2px] border-2 border-black px-1.5 py-0.2 text-[9px] font-black uppercase shadow-[1.5px_1.5px_0px_#121212]",
+                    isActive ? "bg-black text-white" : "bg-[#FF4D4D] text-white"
                   )}
                 >
                   {item.badge}
@@ -224,22 +214,28 @@ export function BounceSidebar({
               {(!collapsed || isMobile) && item.shortcut && (
                 <kbd
                   className={cn(
-                    "hidden xl:inline-flex items-center rounded px-1.5 py-0.5 text-[9px] font-bold transition-opacity",
+                    "hidden xl:inline-flex items-center rounded-[2px] border-2 border-black px-1 py-0.2 text-[9px] font-black shadow-[1px_1px_0px_#121212]",
                     isActive
-                      ? "bg-white/20 text-white"
-                      : "border border-border bg-background text-muted-foreground opacity-60 group-hover:opacity-100"
+                      ? "bg-white text-black"
+                      : "bg-white dark:bg-black text-foreground"
                   )}
                 >
                   {isMac ? `⌘${item.shortcut}` : `Ctrl+${item.shortcut}`}
                 </kbd>
               )}
-            </motion.button>
+            </button>
           );
         })}
       </nav>
 
       {/* Bottom Section Widget */}
-      <div className="p-3 shrink-0 border-t border-border/50">
+      <div className="p-3 shrink-0 border-t-[2.5px] border-black dark:border-white bg-[#FAF7F2] dark:bg-[#161619] space-y-2">
+        {isMobile && (
+          <div className="flex items-center justify-between p-2 rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-900 shadow-[2px_2px_0px_#121212] dark:shadow-[2px_2px_0px_#ffffff]">
+            <span className="text-xs font-black uppercase text-foreground">Theme Mode</span>
+            <ThemeToggle />
+          </div>
+        )}
         <TodaysGoalCard
           streak={streak}
           xp={xp}
@@ -253,4 +249,3 @@ export function BounceSidebar({
     </motion.aside>
   );
 }
-

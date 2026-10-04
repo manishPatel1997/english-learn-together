@@ -1,18 +1,15 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import {
   Check,
   Clock,
   HelpCircle as QuestionIcon,
-  Zap,
   ArrowRight,
   SlidersHorizontal,
   X,
   Lock,
 } from "lucide-react";
-import { StatefulButton } from "@/components/beui/stateful-button";
 import sentenceData from "@/data/sentences.json";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/context/auth-context";
@@ -88,7 +85,7 @@ interface TopicSelectViewProps {
 
 export function TopicSelectView({ onStartSelectedTopics }: TopicSelectViewProps) {
   const { toast } = useToast();
-  const { user, unlockedSections } = useAuth();
+  const { unlockedSections } = useAuth();
   const topicList = getDynamicTopicList();
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
 
@@ -119,7 +116,7 @@ export function TopicSelectView({ onStartSelectedTopics }: TopicSelectViewProps)
   };
 
   const selectAll = () => {
-    setSelectedKeys(topicList.map((t) => t.key));
+    setSelectedKeys(topicList.filter((t) => isTopicUnlocked(t.key)).map((t) => t.key));
   };
 
   const deselectAll = () => {
@@ -138,17 +135,17 @@ export function TopicSelectView({ onStartSelectedTopics }: TopicSelectViewProps)
   }, 0);
 
   return (
-    <div className="space-y-8 max-w-5xl mx-auto py-4 select-none pb-24">
+    <div className="space-y-7 w-full select-none pb-28">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-2 border-black dark:border-white pb-5">
         <div>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-purple-500/10 px-3.5 py-1 text-xs font-bold text-purple-600 dark:text-purple-400">
-            <SlidersHorizontal className="h-3.5 w-3.5" /> Sentence Grammar Modules
+          <span className="inline-flex items-center gap-1.5 rounded-[2px] border-2 border-black bg-[#FFE600] px-2.5 py-0.5 text-xs font-black uppercase text-black shadow-[2px_2px_0px_#121212]">
+            <SlidersHorizontal className="h-3.5 w-3.5 stroke-[2.5]" /> Sentence Grammar Modules
           </span>
-          <h2 className="text-3xl font-black text-foreground tracking-tight mt-1">
+          <h2 className="text-2xl sm:text-3xl font-black text-foreground uppercase tracking-tight mt-2">
             Select Practice Topics
           </h2>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs font-bold text-muted-foreground">
             Choose one or multiple topics to generate your custom practice set.
           </p>
         </div>
@@ -157,16 +154,16 @@ export function TopicSelectView({ onStartSelectedTopics }: TopicSelectViewProps)
           <button
             type="button"
             onClick={selectAll}
-            className="inline-flex h-9 items-center gap-1.5 rounded-full border border-border bg-card px-3.5 text-xs font-bold text-foreground hover:bg-muted transition-colors shadow-xs"
+            className="inline-flex h-9 items-center gap-1.5 rounded-[3px] border-2 border-black bg-white dark:bg-zinc-800 px-3.5 text-xs font-black uppercase text-foreground hover:bg-[#FFE600] hover:text-black shadow-[2px_2px_0px_#121212] dark:shadow-[2px_2px_0px_#ffffff] cursor-pointer"
           >
-            <Check className="h-3.5 w-3.5 text-emerald-500" /> Select All
+            <Check className="h-3.5 w-3.5 stroke-[3]" /> Select All
           </button>
           <button
             type="button"
             onClick={deselectAll}
-            className="inline-flex h-9 items-center gap-1.5 rounded-full border border-border bg-card px-3.5 text-xs font-bold text-muted-foreground hover:text-foreground hover:bg-muted transition-colors shadow-xs"
+            className="inline-flex h-9 items-center gap-1.5 rounded-[3px] border-2 border-black bg-white dark:bg-zinc-800 px-3.5 text-xs font-black uppercase text-foreground hover:bg-[#FF4D4D] hover:text-white shadow-[2px_2px_0px_#121212] dark:shadow-[2px_2px_0px_#ffffff] cursor-pointer"
           >
-            <X className="h-3.5 w-3.5 text-rose-500" /> Deselect All
+            <X className="h-3.5 w-3.5 stroke-[3]" /> Deselect
           </button>
         </div>
       </div>
@@ -179,94 +176,104 @@ export function TopicSelectView({ onStartSelectedTopics }: TopicSelectViewProps)
           const questionsCount = ((sentenceData as any)[topic.key] || []).length;
 
           return (
-            <motion.div
+            <div
               key={topic.key}
               onClick={() => toggleTopic(topic.key)}
-              whileHover={{ scale: isUnlocked ? 1.02 : 1 }}
-              whileTap={{ scale: isUnlocked ? 0.98 : 1 }}
               className={cn(
-                "relative flex flex-col justify-between rounded-[22px] border p-5 cursor-pointer transition-all shadow-sm select-none",
+                "relative flex flex-col justify-between rounded-[4px] border-2 p-5 cursor-pointer select-none transition-all",
                 !isUnlocked
-                  ? "border-border/60 bg-card/40 opacity-70"
+                  ? "border-black/30 dark:border-white/30 bg-neutral-100 dark:bg-zinc-900 opacity-60"
                   : isSelected
-                  ? "border-purple-500 bg-purple-500/10 shadow-lg shadow-purple-500/15"
-                  : "border-border bg-card hover:border-border/80"
+                  ? "border-[2.5px] border-black bg-[#FFE600] text-black shadow-[5px_5px_0px_#121212] -translate-x-0.5 -translate-y-0.5"
+                  : "border-2 border-black dark:border-white bg-white dark:bg-zinc-900 text-foreground shadow-[4px_4px_0px_#121212] dark:shadow-[4px_4px_0px_#ffffff] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#121212] dark:hover:shadow-[6px_6px_0px_#ffffff]"
               )}
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <span className={cn("text-2xl", !isUnlocked && "grayscale opacity-50")}>{topic.icon}</span>
                   {!isUnlocked ? (
-                    <span className="inline-flex items-center gap-1 rounded-full bg-rose-500/10 border border-rose-500/20 px-2.5 py-0.5 text-[10px] font-black text-rose-600 dark:text-rose-400">
-                      <Lock className="h-3 w-3" /> Locked
+                    <span className="inline-flex items-center gap-1 rounded-[2px] border border-black bg-[#FF4D4D] px-2 py-0.5 text-[9px] font-black uppercase text-white shadow-[1px_1px_0px_#000]">
+                      <Lock className="h-3 w-3 stroke-[2.5]" /> Locked
                     </span>
                   ) : (
                     <div
                       className={cn(
-                        "flex h-6 w-6 items-center justify-center rounded-full border transition-all",
+                        "flex h-6 w-6 items-center justify-center rounded-[2px] border-2 border-black transition-all",
                         isSelected
-                          ? "border-purple-600 bg-purple-600 text-white"
-                          : "border-border bg-background text-transparent"
+                          ? "bg-black text-white shadow-[1px_1px_0px_#000]"
+                          : "bg-white text-transparent shadow-[1px_1px_0px_#121212]"
                       )}
                     >
-                      <Check className="h-3.5 w-3.5 stroke-[3]" />
+                      <Check className="h-4 w-4 stroke-[3.5]" />
                     </div>
                   )}
                 </div>
 
-                <h4 className="text-lg font-black text-foreground mb-1">
+                <h4 className="text-base font-black uppercase tracking-tight mb-1">
                   {!isUnlocked ? `🔒 ${topic.name}` : isSelected ? `✓ ${topic.name}` : topic.name}
                 </h4>
 
-                <p className="text-xs text-indigo-600 dark:text-indigo-400 font-medium mb-4 italic">
+                <p className="text-xs font-bold mb-4 italic opacity-90">
                   "{topic.gujaratiSample}"
                 </p>
               </div>
 
-              <div className="flex items-center justify-between pt-3 border-t border-border/60 text-xs">
-                <span className="text-muted-foreground flex items-center gap-1 font-semibold">
-                  <QuestionIcon className="h-3.5 w-3.5 text-purple-500" /> {questionsCount} Questions
+              <div className="flex items-center justify-between pt-3 border-t-2 border-black/10 dark:border-white/10 text-xs">
+                <span className="flex items-center gap-1 font-bold">
+                  <QuestionIcon className="h-3.5 w-3.5 stroke-[2.5]" /> {questionsCount} Qs
                 </span>
-                <span className="text-muted-foreground flex items-center gap-1 font-semibold">
-                  <Clock className="h-3.5 w-3.5 text-amber-500" /> ~{topic.estimatedMinutes} mins
+                <span className="flex items-center gap-1 font-bold">
+                  <Clock className="h-3.5 w-3.5 stroke-[2.5]" /> ~{topic.estimatedMinutes}m
                 </span>
                 <span
                   className={cn(
-                    "rounded-full px-2 py-0.5 text-[10px] font-extrabold",
+                    "rounded-[2px] border border-black px-1.5 py-0.2 text-[9px] font-black uppercase shadow-[1px_1px_0px_#121212]",
                     topic.difficulty === "Easy"
-                      ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400"
-                      : "bg-amber-500/15 text-amber-600 dark:text-amber-400"
+                      ? "bg-[#22C55E] text-black"
+                      : "bg-[#FF6B00] text-white"
                   )}
                 >
                   {topic.difficulty}
                 </span>
               </div>
-            </motion.div>
+            </div>
           );
         })}
       </div>
 
       {/* Sticky Bottom Summary Bar */}
-      <div className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-40 w-full max-w-4xl px-3 sm:px-4">
-        <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 rounded-2xl sm:rounded-[24px] border border-border bg-slate-950/95 p-3.5 sm:p-4 px-4 sm:px-6 text-white shadow-2xl backdrop-blur-xl"
-        >
+      <div className="fixed bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 z-40 w-full max-w-4xl px-3 sm:px-4 pointer-events-none">
+        <div className="pointer-events-auto flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 rounded-[4px] border-[2.5px] sm:border-[3px] border-black dark:border-white bg-white dark:bg-zinc-900 p-3.5 sm:p-4 px-4 sm:px-6 text-foreground shadow-[4px_4px_0px_#121212] sm:shadow-[6px_6px_0px_#121212] dark:shadow-[4px_4px_0px_#ffffff] sm:dark:shadow-[6px_6px_0px_#ffffff] transition-all">
           <div className="flex items-center justify-between w-full sm:w-auto gap-3 sm:gap-6 text-xs sm:text-sm">
             <div className="text-center sm:text-left">
-              <span className="text-[9px] sm:text-[10px] text-slate-400 font-bold block uppercase">Topics</span>
-              <span className="font-extrabold text-amber-400 text-xs sm:text-base">{selectedKeys.length} Modules</span>
+              <span className="text-[9px] sm:text-[10px] text-muted-foreground font-black block uppercase tracking-wider">Topics</span>
+              <span className="font-black text-foreground text-xs sm:text-base">
+                <span className={cn(
+                  "px-1.5 py-0.2 rounded-[2px] border border-black dark:border-white font-black inline-block mr-1",
+                  selectedKeys.length > 0
+                    ? "bg-[#FFE600] text-black shadow-[1px_1px_0px_#121212]"
+                    : "bg-neutral-100 dark:bg-zinc-800 text-muted-foreground"
+                )}>
+                  {selectedKeys.length}
+                </span>
+                <span className="text-[10px] sm:text-xs font-bold text-muted-foreground uppercase">
+                  {selectedKeys.length === 1 ? "Module" : "Modules"}
+                </span>
+              </span>
             </div>
-            <div className="h-6 sm:h-8 w-[1px] bg-slate-800" />
+            <div className="h-6 sm:h-8 w-[2px] bg-black/15 dark:bg-white/20" />
             <div className="text-center sm:text-left">
-              <span className="text-[9px] sm:text-[10px] text-slate-400 font-bold block uppercase">Questions</span>
-              <span className="font-extrabold text-indigo-300 text-xs sm:text-base">{totalQuestions} Qs</span>
+              <span className="text-[9px] sm:text-[10px] text-muted-foreground font-black block uppercase tracking-wider">Questions</span>
+              <span className="font-black text-foreground text-xs sm:text-base">
+                {totalQuestions} <span className="text-[10px] sm:text-xs font-bold text-muted-foreground uppercase">Qs</span>
+              </span>
             </div>
-            <div className="h-6 sm:h-8 w-[1px] bg-slate-800" />
+            <div className="h-6 sm:h-8 w-[2px] bg-black/15 dark:bg-white/20" />
             <div className="text-center sm:text-left">
-              <span className="text-[9px] sm:text-[10px] text-slate-400 font-bold block uppercase">Duration</span>
-              <span className="font-extrabold text-emerald-400 text-xs sm:text-base">~{totalTime} Mins</span>
+              <span className="text-[9px] sm:text-[10px] text-muted-foreground font-black block uppercase tracking-wider">Duration</span>
+              <span className="font-black text-[#22C55E] dark:text-[#4ADE80] text-xs sm:text-base">
+                ~{totalTime} <span className="text-[10px] sm:text-xs font-bold text-muted-foreground uppercase">Mins</span>
+              </span>
             </div>
           </div>
 
@@ -274,12 +281,17 @@ export function TopicSelectView({ onStartSelectedTopics }: TopicSelectViewProps)
             type="button"
             disabled={selectedKeys.length === 0}
             onClick={() => onStartSelectedTopics(selectedKeys)}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl sm:rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 px-6 sm:px-8 py-3 text-xs sm:text-sm font-extrabold text-white shadow-xl shadow-purple-600/30 hover:from-purple-700 hover:to-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+            className={cn(
+              "w-full sm:w-auto min-h-[44px] flex items-center justify-center gap-2 rounded-[3px] border-2 border-black px-6 sm:px-8 py-2.5 text-xs sm:text-sm font-black uppercase transition-all",
+              selectedKeys.length === 0
+                ? "bg-neutral-100 dark:bg-zinc-800 text-neutral-400 dark:text-zinc-500 border-black/30 dark:border-white/30 cursor-not-allowed shadow-none"
+                : "bg-[#22C55E] text-black shadow-[3px_3px_0px_#121212] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#121212] cursor-pointer"
+            )}
           >
-            <span>{selectedKeys.length === 0 ? "Select at least 1 topic" : "Start Practice"}</span>
-            <ArrowRight className="h-4 w-4" />
+            <span>{selectedKeys.length === 0 ? "Select at least 1 topic" : `Start Practice (${selectedKeys.length})`}</span>
+            <ArrowRight className="h-4 w-4 stroke-[3]" />
           </button>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

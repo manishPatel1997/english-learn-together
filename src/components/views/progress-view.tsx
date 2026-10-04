@@ -18,10 +18,8 @@ import {
   Zap,
   TrendingUp,
   BookOpen,
-  MessageSquare,
   Award,
   Calendar,
-  AlertCircle,
 } from "lucide-react";
 import { NumberAnimation } from "@/components/beui/number-animation";
 import { ExpandableTabs } from "@/components/beui/expandable-tabs";
@@ -76,30 +74,30 @@ export function ProgressView({ stats }: ProgressViewProps) {
   });
 
   const getHeatmapColor = (count: number) => {
-    if (count === 0) return "bg-muted border-border";
-    if (count < 4) return "bg-indigo-500/30 border-indigo-500/40";
-    if (count < 8) return "bg-indigo-500/60 border-indigo-500/70";
-    return "bg-indigo-600 border-indigo-700 shadow-xs";
+    if (count === 0) return "bg-[#FAF7F2] dark:bg-zinc-800 border-black dark:border-white";
+    if (count < 4) return "bg-[#FEF08A] border-black text-black";
+    if (count < 8) return "bg-[#FACC15] border-black text-black";
+    return "bg-[#22C55E] border-black text-black shadow-[1px_1px_0px_#000]";
   };
 
   return (
-    <div className="space-y-8 pb-10 select-none">
+    <div className="space-y-7 max-w-6xl mx-auto pb-12 select-none">
       {/* Header Tabs */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-2 border-black dark:border-white pb-5">
         <div>
-          <h2 className="text-3xl font-black text-foreground tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-black text-foreground uppercase tracking-tight">
             Learning Analytics & Progress
           </h2>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs font-bold text-muted-foreground">
             Track your daily consistency, accuracy trends, and mastery growth
           </p>
         </div>
 
         <ExpandableTabs
           tabs={[
-            { id: "overview", label: "Overview", icon: <TrendingUp className="h-3.5 w-3.5" /> },
-            { id: "accuracy", label: "Topic Breakdown", icon: <Award className="h-3.5 w-3.5" /> },
-            { id: "heatmap", label: "Activity Heatmap", icon: <Calendar className="h-3.5 w-3.5" /> },
+            { id: "overview", label: "Overview", icon: <TrendingUp className="h-3.5 w-3.5 stroke-[2.5]" /> },
+            { id: "accuracy", label: "Topic Breakdown", icon: <Award className="h-3.5 w-3.5 stroke-[2.5]" /> },
+            { id: "heatmap", label: "Activity Heatmap", icon: <Calendar className="h-3.5 w-3.5 stroke-[2.5]" /> },
           ]}
           activeId={activeTab}
           onChange={setActiveTab}
@@ -107,47 +105,55 @@ export function ProgressView({ stats }: ProgressViewProps) {
       </div>
 
       {/* Main Metric Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-        <div className="rounded-[22px] border border-border bg-card p-5 space-y-2">
-          <div className="flex items-center justify-between text-muted-foreground text-xs font-semibold">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        <div className="rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-900 p-5 space-y-2 shadow-[4px_4px_0px_#121212] dark:shadow-[4px_4px_0px_#ffffff]">
+          <div className="flex items-center justify-between text-muted-foreground text-xs font-black uppercase">
             <span>Total XP Earned</span>
-            <Zap className="h-4 w-4 text-indigo-500 fill-indigo-500" />
+            <div className="p-1 rounded-[2px] border border-black bg-[#FFE600] text-black">
+              <Zap className="h-3.5 w-3.5 fill-[#FFE600] stroke-[2.5]" />
+            </div>
           </div>
-          <NumberAnimation value={stats.xp} className="text-3xl font-black text-foreground" />
-          <p className="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium">
+          <NumberAnimation value={stats.xp} className="text-2xl sm:text-3xl font-black text-foreground block tracking-tight" />
+          <p className="text-[11px] text-[#22C55E] dark:text-[#4ADE80] font-black uppercase">
             +{stats.todayCompleted * 15} XP today
           </p>
         </div>
 
-        <div className="rounded-[22px] border border-border bg-card p-5 space-y-2">
-          <div className="flex items-center justify-between text-muted-foreground text-xs font-semibold">
+        <div className="rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-900 p-5 space-y-2 shadow-[4px_4px_0px_#121212] dark:shadow-[4px_4px_0px_#ffffff]">
+          <div className="flex items-center justify-between text-muted-foreground text-xs font-black uppercase">
             <span>Current Streak</span>
-            <Flame className="h-4 w-4 text-amber-500 fill-amber-500" />
+            <div className="p-1 rounded-[2px] border border-black bg-[#FF6B00] text-white">
+              <Flame className="h-3.5 w-3.5 fill-white stroke-[2.5]" />
+            </div>
           </div>
-          <NumberAnimation value={stats.streak} className="text-3xl font-black text-foreground" suffix=" Days" />
-          <p className="text-[11px] text-amber-600 dark:text-amber-400 font-medium">
+          <NumberAnimation value={stats.streak} className="text-2xl sm:text-3xl font-black text-foreground block tracking-tight" suffix=" Days" />
+          <p className="text-[11px] text-[#FF6B00] font-black uppercase">
             Personal Best: {stats.bestStreak} days
           </p>
         </div>
 
-        <div className="rounded-[22px] border border-border bg-card p-5 space-y-2">
-          <div className="flex items-center justify-between text-muted-foreground text-xs font-semibold">
+        <div className="rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-900 p-5 space-y-2 shadow-[4px_4px_0px_#121212] dark:shadow-[4px_4px_0px_#ffffff]">
+          <div className="flex items-center justify-between text-muted-foreground text-xs font-black uppercase">
             <span>Overall Accuracy</span>
-            <TrendingUp className="h-4 w-4 text-emerald-500" />
+            <div className="p-1 rounded-[2px] border border-black bg-[#22C55E] text-black">
+              <TrendingUp className="h-3.5 w-3.5 stroke-[3]" />
+            </div>
           </div>
-          <span className="text-3xl font-black text-foreground block">{stats.accuracy}%</span>
-          <p className="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium">
+          <span className="text-2xl sm:text-3xl font-black text-foreground block tracking-tight">{stats.accuracy}%</span>
+          <p className="text-[11px] text-[#22C55E] dark:text-[#4ADE80] font-black uppercase">
             Based on {stats.totalAnswered} questions
           </p>
         </div>
 
-        <div className="rounded-[22px] border border-border bg-card p-5 space-y-2">
-          <div className="flex items-center justify-between text-muted-foreground text-xs font-semibold">
-            <span>Vocabulary Learned</span>
-            <BookOpen className="h-4 w-4 text-purple-500" />
+        <div className="rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-900 p-5 space-y-2 shadow-[4px_4px_0px_#121212] dark:shadow-[4px_4px_0px_#ffffff]">
+          <div className="flex items-center justify-between text-muted-foreground text-xs font-black uppercase">
+            <span>Words Learned</span>
+            <div className="p-1 rounded-[2px] border border-black bg-[#FFE600] text-black">
+              <BookOpen className="h-3.5 w-3.5 stroke-[2.5]" />
+            </div>
           </div>
-          <NumberAnimation value={stats.vocabularyLearned} className="text-3xl font-black text-foreground" suffix=" Words" />
-          <p className="text-[11px] text-purple-600 dark:text-purple-400 font-medium">
+          <NumberAnimation value={stats.vocabularyLearned} className="text-2xl sm:text-3xl font-black text-foreground block tracking-tight" suffix=" Words" />
+          <p className="text-[11px] text-muted-foreground font-black uppercase">
             {stats.vocabularyLearned} mastered words
           </p>
         </div>
@@ -156,40 +162,35 @@ export function ProgressView({ stats }: ProgressViewProps) {
       {/* Tab Views */}
       {activeTab === "overview" && (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Weekly Questions Area Chart */}
-          <div className="lg:col-span-7 rounded-[26px] border border-border bg-card p-6 space-y-4 shadow-sm">
-            <div className="flex items-center justify-between">
-              <h3 className="text-base font-extrabold text-foreground">Weekly Practice Volume</h3>
-              <span className="text-xs text-muted-foreground">Questions per day</span>
+          {/* Weekly Practice Volume */}
+          <div className="lg:col-span-7 rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-900 p-6 space-y-4 shadow-[5px_5px_0px_#121212] dark:shadow-[5px_5px_0px_#ffffff]">
+            <div className="flex items-center justify-between border-b-2 border-black/10 dark:border-white/10 pb-3">
+              <h3 className="text-sm font-black uppercase tracking-tight text-foreground">Weekly Practice Volume</h3>
+              <span className="text-xs font-bold text-muted-foreground">Questions / Day</span>
             </div>
             <div className="h-64 w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={weeklyData}>
-                  <defs>
-                    <linearGradient id="colorQuestions" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#6366f1" stopOpacity={0.4} />
-                      <stop offset="95%" stopColor="#6366f1" stopOpacity={0} />
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="3 3" opacity={0.15} />
-                  <XAxis dataKey="day" stroke="#94a3b8" fontSize={11} />
-                  <YAxis stroke="#94a3b8" fontSize={11} />
+                  <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
+                  <XAxis dataKey="day" stroke="#121212" fontSize={11} fontWeight={800} />
+                  <YAxis stroke="#121212" fontSize={11} fontWeight={800} />
                   <RechartsTooltip
                     contentStyle={{
-                      backgroundColor: "#0f172a",
-                      borderColor: "#1e293b",
-                      borderRadius: "12px",
+                      backgroundColor: "#18181B",
+                      border: "2px solid #000000",
+                      borderRadius: "4px",
                       color: "#fff",
                       fontSize: "12px",
+                      fontWeight: 800,
                     }}
                   />
                   <Area
                     type="monotone"
                     dataKey="questions"
-                    stroke="#6366f1"
+                    stroke="#FF6B00"
                     strokeWidth={3}
-                    fillOpacity={1}
-                    fill="url(#colorQuestions)"
+                    fillOpacity={0.6}
+                    fill="#FFE600"
                   />
                 </AreaChart>
               </ResponsiveContainer>
@@ -197,26 +198,27 @@ export function ProgressView({ stats }: ProgressViewProps) {
           </div>
 
           {/* XP Progress Bar Chart */}
-          <div className="lg:col-span-5 rounded-[26px] border border-border bg-card p-6 space-y-4 shadow-sm">
-            <div className="flex items-center justify-between">
-              <h3 className="text-base font-extrabold text-foreground">Daily XP Growth</h3>
-              <span className="text-xs text-muted-foreground">XP earned</span>
+          <div className="lg:col-span-5 rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-900 p-6 space-y-4 shadow-[5px_5px_0px_#121212] dark:shadow-[5px_5px_0px_#ffffff]">
+            <div className="flex items-center justify-between border-b-2 border-black/10 dark:border-white/10 pb-3">
+              <h3 className="text-sm font-black uppercase tracking-tight text-foreground">Daily XP Growth</h3>
+              <span className="text-xs font-bold text-muted-foreground">XP Earned</span>
             </div>
             <div className="h-64 w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={weeklyData}>
-                  <XAxis dataKey="day" stroke="#94a3b8" fontSize={11} />
-                  <YAxis stroke="#94a3b8" fontSize={11} />
+                  <XAxis dataKey="day" stroke="#121212" fontSize={11} fontWeight={800} />
+                  <YAxis stroke="#121212" fontSize={11} fontWeight={800} />
                   <RechartsTooltip
                     contentStyle={{
-                      backgroundColor: "#0f172a",
-                      borderColor: "#1e293b",
-                      borderRadius: "12px",
+                      backgroundColor: "#18181B",
+                      border: "2px solid #000000",
+                      borderRadius: "4px",
                       color: "#fff",
                       fontSize: "12px",
+                      fontWeight: 800,
                     }}
                   />
-                  <Bar dataKey="xp" fill="#a855f7" radius={[8, 8, 0, 0]} />
+                  <Bar dataKey="xp" fill="#22C55E" />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -225,32 +227,32 @@ export function ProgressView({ stats }: ProgressViewProps) {
       )}
 
       {activeTab === "accuracy" && (
-        <div className="rounded-[26px] border border-border bg-card p-6 space-y-6 shadow-sm">
-          <div className="flex items-center justify-between">
+        <div className="rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-900 p-6 space-y-6 shadow-[5px_5px_0px_#121212] dark:shadow-[5px_5px_0px_#ffffff]">
+          <div className="flex items-center justify-between border-b-2 border-black/10 dark:border-white/10 pb-3">
             <div>
-              <h3 className="text-lg font-extrabold text-foreground">Topic Accuracy Breakdown</h3>
-              <p className="text-xs text-muted-foreground">Identify high-mastery topics vs. areas needing practice</p>
+              <h3 className="text-base font-black uppercase tracking-tight text-foreground">Topic Accuracy Breakdown</h3>
+              <p className="text-xs font-bold text-muted-foreground">Identify high-mastery topics vs. areas needing practice</p>
             </div>
           </div>
 
           <div className="space-y-4 max-w-3xl">
             {topicAccuracyData.map((item) => (
-              <div key={item.topic} className="space-y-1.5">
-                <div className="flex items-center justify-between text-xs font-bold">
+              <div key={item.topic} className="space-y-1">
+                <div className="flex items-center justify-between text-xs font-black uppercase">
                   <span className="text-foreground">{item.topic} Module</span>
-                  <span className={item.accuracy < 80 ? "text-amber-500 font-extrabold" : "text-emerald-500 font-extrabold"}>
+                  <span className={item.accuracy < 80 ? "text-[#FF6B00]" : "text-[#22C55E]"}>
                     {item.accuracy}% Accuracy
                   </span>
                 </div>
-                <div className="h-3 w-full overflow-hidden rounded-full bg-muted">
+                <div className="h-4 w-full overflow-hidden rounded-[2px] bg-[#FAF7F2] dark:bg-zinc-800 border-2 border-black dark:border-white p-0.5">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${item.accuracy}%` }}
                     transition={{ duration: 0.8 }}
-                    className={`h-full rounded-full ${
+                    className={`h-full border-r-2 border-black ${
                       item.accuracy < 80
-                        ? "bg-gradient-to-r from-amber-500 to-orange-500"
-                        : "bg-gradient-to-r from-emerald-500 to-teal-500"
+                        ? "bg-[#FF6B00]"
+                        : "bg-[#22C55E]"
                     }`}
                   />
                 </div>
@@ -261,32 +263,42 @@ export function ProgressView({ stats }: ProgressViewProps) {
       )}
 
       {activeTab === "heatmap" && (
-        <div className="rounded-[26px] border border-border bg-card p-6 space-y-4 shadow-sm">
-          <div className="flex items-center justify-between">
+        <div className="rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-900 p-6 space-y-4 shadow-[5px_5px_0px_#121212] dark:shadow-[5px_5px_0px_#ffffff]">
+          <div className="flex items-center justify-between border-b-2 border-black/10 dark:border-white/10 pb-3">
             <div>
-              <h3 className="text-lg font-extrabold text-foreground">365-Day Activity Heatmap</h3>
-              <p className="text-xs text-muted-foreground">Visual log of daily practice contributions</p>
+              <h3 className="text-base font-black uppercase tracking-tight text-foreground">Activity Heatmap</h3>
+              <p className="text-xs font-bold text-muted-foreground">Visual log of daily practice contributions</p>
             </div>
-            <span className="text-xs font-bold text-indigo-500">112 Sessions Logged</span>
+            <span className="text-xs font-black uppercase bg-[#FFE600] text-black px-2 py-0.5 border border-black rounded-[2px] shadow-[1.5px_1.5px_0px_#121212]">
+              112 Sessions Logged
+            </span>
           </div>
 
-          <div className="pt-4">
-            <div className="grid grid-flow-col grid-rows-7 gap-2 overflow-x-auto pb-4">
+          <div className="pt-2">
+            {/* Scroll Affordance Indicator for Mobile */}
+            <div className="sm:hidden flex items-center justify-between pb-2 text-[10px] font-black uppercase text-muted-foreground">
+              <span className="inline-flex items-center gap-1 bg-[#FAF7F2] dark:bg-zinc-800 px-2 py-0.5 rounded-[2px] border border-black dark:border-white">
+                ← Swipe to view all 16 weeks →
+              </span>
+              <span>16 Weeks</span>
+            </div>
+
+            <div className="grid grid-flow-col grid-rows-7 gap-1.5 overflow-x-auto pb-4">
               {heatmapData.map((d) => (
                 <div
                   key={d.id}
                   title={`Activity Level: ${d.count}`}
-                  className={`h-4 w-4 rounded-md border ${getHeatmapColor(d.count)} transition-transform hover:scale-125 cursor-pointer`}
+                  className={`h-4 w-4 rounded-[2px] border-2 ${getHeatmapColor(d.count)} transition-transform hover:scale-125 cursor-pointer`}
                 />
               ))}
             </div>
 
-            <div className="flex items-center justify-end gap-2 text-[11px] text-muted-foreground pt-2">
+            <div className="flex items-center justify-end gap-2 text-[10px] font-black uppercase text-muted-foreground pt-2">
               <span>Less</span>
-              <div className="h-3 w-3 rounded-xs bg-muted border border-border" />
-              <div className="h-3 w-3 rounded-xs bg-indigo-500/30 border border-indigo-500/40" />
-              <div className="h-3 w-3 rounded-xs bg-indigo-500/60 border border-indigo-500/70" />
-              <div className="h-3 w-3 rounded-xs bg-indigo-600 border border-indigo-700" />
+              <div className="h-3.5 w-3.5 rounded-[1px] bg-[#FAF7F2] border border-black" />
+              <div className="h-3.5 w-3.5 rounded-[1px] bg-[#FEF08A] border border-black" />
+              <div className="h-3.5 w-3.5 rounded-[1px] bg-[#FACC15] border border-black" />
+              <div className="h-3.5 w-3.5 rounded-[1px] bg-[#22C55E] border border-black" />
               <span>More</span>
             </div>
           </div>

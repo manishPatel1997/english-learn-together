@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export interface TabItem {
@@ -19,7 +18,7 @@ interface ExpandableTabsProps {
 
 export function ExpandableTabs({ tabs, activeId, onChange, className }: ExpandableTabsProps) {
   return (
-    <div className={cn("inline-flex items-center gap-1.5 rounded-full bg-muted/60 p-1.5 border border-border/80 backdrop-blur-sm", className)}>
+    <div className={cn("inline-flex items-center gap-1.5 rounded-[4px] bg-[#EFE8DD] dark:bg-zinc-800 p-1 border-2 border-black dark:border-white shadow-[3px_3px_0px_#121212] dark:shadow-[3px_3px_0px_#ffffff]", className)}>
       {tabs.map((tab) => {
         const isActive = activeId === tab.id;
 
@@ -29,19 +28,14 @@ export function ExpandableTabs({ tabs, activeId, onChange, className }: Expandab
             type="button"
             onClick={() => onChange(tab.id)}
             className={cn(
-              "relative flex h-9 items-center gap-2 rounded-full px-4 text-xs font-semibold transition-colors outline-none select-none z-10",
-              isActive ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+              "relative flex h-8 items-center gap-1.5 rounded-[2px] px-3 text-xs font-black uppercase transition-all outline-none select-none cursor-pointer",
+              isActive
+                ? "bg-[#FFE600] text-black border-2 border-black shadow-[2px_2px_0px_#121212]"
+                : "border-2 border-transparent text-foreground hover:bg-black/5 hover:border-black/30"
             )}
           >
-            {isActive && (
-              <motion.div
-                layoutId="expandable-tab-pill"
-                transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                className="absolute inset-0 rounded-full bg-primary -z-10 shadow-md shadow-indigo-500/20"
-              />
-            )}
             {tab.icon && <span className="shrink-0">{tab.icon}</span>}
-            <motion.span layout="position">{tab.label}</motion.span>
+            <span>{tab.label}</span>
           </button>
         );
       })}

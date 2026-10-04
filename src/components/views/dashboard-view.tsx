@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Flame,
   Zap,
@@ -20,7 +20,6 @@ import {
   Calendar,
   Layers,
   ChevronRight,
-  RotateCcw,
   Star,
 } from "lucide-react";
 import { TiltCard } from "@/components/beui/tilt-card";
@@ -112,136 +111,122 @@ export function DashboardView({ stats, onNavigate, onStartPractice }: DashboardV
   }, []);
 
   return (
-    <div className="space-y-6 sm:space-y-8 pb-12">
-      {/* 🌟 1. Ultra-Modern Hero Banner */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="relative overflow-hidden rounded-3xl sm:rounded-[32px] bg-gradient-to-br from-indigo-900 via-indigo-800 to-purple-900 p-6 sm:p-10 text-white shadow-2xl shadow-indigo-900/30 border border-white/15"
-      >
-        {/* Dynamic Multi-layered Background Glow & Mesh */}
-        <div className="pointer-events-none absolute -top-32 -right-32 h-[420px] w-[420px] rounded-full bg-gradient-to-br from-purple-500/30 to-pink-500/20 blur-3xl animate-pulse-glow" />
-        <div className="pointer-events-none absolute -bottom-32 -left-32 h-[420px] w-[420px] rounded-full bg-gradient-to-tr from-indigo-500/30 to-cyan-500/20 blur-3xl animate-pulse-glow" />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/5 via-transparent to-black/20" />
-
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Left Hero Column */}
-          <div className="lg:col-span-7 space-y-4 sm:space-y-5">
+    <div className="space-y-7 pb-12 select-none">
+      {/* 🌟 1. Bold Neo-Brutalist Hero Banner */}
+      <div className="relative overflow-hidden rounded-[6px] border-[3px] border-black dark:border-white bg-[#18181B] text-white p-4 sm:p-9 shadow-[4px_4px_0px_#121212] sm:shadow-[7px_7px_0px_#121212] dark:shadow-[4px_4px_0px_#ffffff] sm:dark:shadow-[7px_7px_0px_#ffffff]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          {/* Left Column */}
+          <div className="lg:col-span-7 space-y-4">
             {/* Pill Header Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold backdrop-blur-xl border border-white/20 shadow-inner">
-              <span className="text-base">{timeInfo.icon}</span>
-              <span className="text-amber-300 font-bold">{timeInfo.greeting}</span>
-              <span className="text-white/40">•</span>
-              <span className="text-indigo-100/90 font-medium">નમસ્તે • Kem Cho!</span>
+            <div className="inline-flex items-center gap-2 rounded-[2px] border-2 border-black bg-[#FFE600] px-3 py-1 text-xs font-black text-black shadow-[2.5px_2.5px_0px_#000000] uppercase tracking-wide">
+              <span>{timeInfo.icon}</span>
+              <span>{timeInfo.greeting}</span>
+              <span>•</span>
+              <span>નમસ્તે • Kem Cho!</span>
             </div>
 
             {/* Main Headline */}
             <div className="space-y-2">
-              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.15]">
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
                 Master Gujarati to English with{" "}
-                <span className="bg-gradient-to-r from-amber-200 via-amber-300 to-yellow-400 bg-clip-text text-transparent">
-                  AI Confidence
+                <span className="bg-[#FFE600] text-black px-2 py-0.5 inline-block border-2 border-black shadow-[3px_3px_0px_#000000]">
+                  Confidence
                 </span>
               </h2>
-              <p className="text-xs sm:text-sm text-indigo-100/80 leading-relaxed max-w-xl font-medium">
+              <p className="text-xs sm:text-sm text-neutral-300 font-bold max-w-xl">
                 {timeInfo.subtitle}
               </p>
             </div>
 
-            {/* Quick Level & XP Badge */}
+            {/* Quick Level & XP Badges */}
             <div className="flex flex-wrap items-center gap-3 pt-1">
-              <div className="inline-flex items-center gap-2 rounded-2xl bg-white/10 px-3.5 py-2 backdrop-blur-md border border-white/15">
-                <Award className="h-4 w-4 text-amber-300" />
-                <span className="text-xs font-bold text-white">Level {level} Explorer</span>
-                <span className="text-[10px] text-indigo-200 bg-white/10 px-2 py-0.5 rounded-full font-semibold">
-                  {xpToNextLevel} XP to Level {level + 1}
+              <div className="inline-flex items-center gap-2 rounded-[3px] border-2 border-black bg-white px-3 py-1.5 text-black shadow-[2.5px_2.5px_0px_#000000]">
+                <Award className="h-4 w-4 text-[#FF6B00] stroke-[2.5]" />
+                <span className="text-xs font-black uppercase">Level {level} Explorer</span>
+                <span className="text-[10px] font-black bg-[#FAF7F2] border border-black px-1.5 py-0.2 rounded-[2px]">
+                  {xpToNextLevel} XP to Lvl {level + 1}
                 </span>
               </div>
 
-              <div className="inline-flex items-center gap-1.5 rounded-2xl bg-emerald-500/20 px-3.5 py-2 backdrop-blur-md border border-emerald-400/30 text-emerald-200">
-                <Flame className="h-4 w-4 text-amber-400 fill-amber-400 animate-bounce" />
-                <span className="text-xs font-extrabold">{stats.streak} Day Streak 🔥</span>
+              <div className="inline-flex items-center gap-1.5 rounded-[3px] border-2 border-black bg-[#FF6B00] px-3 py-1.5 text-white shadow-[2.5px_2.5px_0px_#000000]">
+                <Flame className="h-4 w-4 fill-white stroke-[2.5]" />
+                <span className="text-xs font-black uppercase">{stats.streak} Day Streak 🔥</span>
               </div>
             </div>
 
             {/* CTA Buttons */}
             <div className="pt-2 flex flex-wrap items-center gap-3 sm:gap-4">
-              <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-                <StatefulButton
-                  variant="success"
-                  size="lg"
-                  onClick={() => onStartPractice("vocabulary")}
-                  className="bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 hover:from-emerald-600 hover:to-teal-700 text-white font-extrabold shadow-xl shadow-emerald-500/30 border-0 text-xs sm:text-sm px-5 sm:px-7 py-3 rounded-2xl"
-                >
-                  <Sparkles className="h-4 w-4 mr-1.5 text-amber-200" />
-                  <span>Start Practice Now</span>
-                  <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 ml-1.5" />
-                </StatefulButton>
-              </motion.div>
+              <StatefulButton
+                variant="success"
+                size="lg"
+                onClick={() => onStartPractice("vocabulary")}
+                className="bg-[#22C55E] text-black font-black uppercase border-[2.5px] border-black shadow-[4px_4px_0px_#000000] text-xs sm:text-sm hover:bg-[#16A34A]"
+              >
+                <Sparkles className="h-4 w-4 mr-1.5 stroke-[2.5]" />
+                <span>Start Practice Now</span>
+                <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 ml-1.5 stroke-[3]" />
+              </StatefulButton>
 
-              <motion.button
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.96 }}
+              <button
                 type="button"
                 onClick={() => onNavigate("progress")}
-                className="inline-flex h-12 sm:h-13 items-center gap-2 rounded-2xl border border-white/20 bg-white/10 hover:bg-white/20 px-5 sm:px-6 text-xs sm:text-sm font-bold text-white backdrop-blur-md transition-all shadow-lg shadow-black/10"
+                className="inline-flex h-13 items-center gap-2 rounded-[4px] border-[2.5px] border-black bg-white hover:bg-neutral-100 text-black px-5 sm:px-6 text-xs sm:text-sm font-black uppercase shadow-[4px_4px_0px_#000000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_#000000] transition-all cursor-pointer"
               >
                 <span>Analytics & Insights</span>
-                <BarChart3 className="h-4 w-4 text-indigo-200" />
-              </motion.button>
+                <BarChart3 className="h-4 w-4 stroke-[2.5]" />
+              </button>
             </div>
           </div>
 
-          {/* Right Hero Column: Interactive Goal Card with Radial Gauge */}
-          <div className="lg:col-span-5 bg-white/10 backdrop-blur-2xl rounded-3xl p-5 sm:p-6 border border-white/20 shadow-2xl space-y-5">
+          {/* Right Column: Goal Card */}
+          <div className="lg:col-span-5 bg-white text-black rounded-[4px] p-5 sm:p-6 border-2 border-black shadow-[5px_5px_0px_#000000] space-y-4">
             {/* Top Target Header */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5">
-                <div className="h-9 w-9 rounded-xl bg-amber-400/20 border border-amber-300/30 flex items-center justify-center text-amber-300">
-                  <Target className="h-5 w-5" />
+                <div className="h-9 w-9 rounded-[2px] bg-[#FFE600] border-2 border-black flex items-center justify-center text-black shadow-[2px_2px_0px_#000000]">
+                  <Target className="h-5 w-5 stroke-[2.5]" />
                 </div>
                 <div>
-                  <h4 className="text-xs sm:text-sm font-extrabold text-white">Daily Learning Goal</h4>
-                  <span className="text-[11px] text-indigo-200 font-medium" suppressHydrationWarning>
+                  <h4 className="text-xs sm:text-sm font-black uppercase text-black">Daily Goal</h4>
+                  <span className="text-[11px] text-neutral-600 font-bold" suppressHydrationWarning>
                     {stats.todayCompleted} of {stats.dailyGoal} questions completed
                   </span>
                 </div>
               </div>
-              <span className="rounded-full bg-amber-400/20 border border-amber-400/30 px-2.5 py-1 text-[11px] font-black text-amber-300">
+              <span className="rounded-[2px] border-2 border-black bg-[#FFE600] px-2 py-0.5 text-xs font-black shadow-[2px_2px_0px_#000000]">
                 {goalPercentage}%
               </span>
             </div>
 
-            {/* Glowing Progress Track */}
-            <div className="space-y-2">
-              <div className="h-3.5 w-full overflow-hidden rounded-full bg-black/30 p-0.5 border border-white/10">
+            {/* Neo Progress Track */}
+            <div className="space-y-1.5">
+              <div className="h-4 w-full overflow-hidden rounded-[2px] bg-[#FAF7F2] border-2 border-black p-0.5">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${goalPercentage}%` }}
-                  transition={{ duration: 1.2, ease: "easeOut" }}
-                  className="h-full rounded-full bg-gradient-to-r from-amber-400 via-yellow-300 to-emerald-400 shadow-lg shadow-amber-400/30"
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="h-full bg-[#FFE600] border-r-2 border-black"
                 />
               </div>
-              <div className="flex justify-between text-[11px] font-bold text-indigo-200">
-                <span suppressHydrationWarning>{goalPercentage}% Achieved</span>
+              <div className="flex justify-between text-[11px] font-black text-black">
+                <span suppressHydrationWarning>{goalPercentage}% Completed</span>
                 <span suppressHydrationWarning>
                   {stats.dailyGoal - stats.todayCompleted > 0
                     ? `${stats.dailyGoal - stats.todayCompleted} Qs left today`
-                    : "Daily Goal Crushed! 🎉"}
+                    : "Goal Complete! 🎉"}
                 </span>
               </div>
             </div>
 
             {/* 7-Day Weekly Streak Dots */}
             <div className="pt-1">
-              <div className="flex items-center justify-between text-[10px] font-bold text-indigo-200 mb-2">
+              <div className="flex items-center justify-between text-[10px] font-black uppercase text-black mb-1.5">
                 <span className="flex items-center gap-1">
-                  <Calendar className="h-3 w-3 text-amber-300" /> 7-Day Momentum
+                  <Calendar className="h-3 w-3 stroke-[2.5]" /> 7-Day Momentum
                 </span>
                 <span>Active Week</span>
               </div>
-              <div className="grid grid-cols-7 gap-1.5">
+              <div className="grid grid-cols-7 gap-1 xs:gap-1.5">
                 {daysOfWeek.map((day, idx) => {
                   const isCompleted = idx <= currentDayIndex;
                   const isToday = idx === currentDayIndex;
@@ -249,19 +234,19 @@ export function DashboardView({ stats, onNavigate, onStartPractice }: DashboardV
                     <div
                       key={idx}
                       className={cn(
-                        "flex flex-col items-center py-2 rounded-xl border text-[10px] font-extrabold transition-all",
+                        "flex flex-col items-center py-1 xs:py-1.5 px-0.5 rounded-[2px] border border-black sm:border-2 text-[9px] xs:text-[10px] font-black shadow-[1px_1px_0px_#000000] sm:shadow-[1.5px_1.5px_0px_#000000]",
                         isToday
-                          ? "bg-amber-400 text-slate-900 border-amber-300 ring-2 ring-amber-300/40 shadow-md font-black"
+                          ? "bg-[#FFE600] text-black"
                           : isCompleted
-                          ? "bg-white/15 text-emerald-300 border-emerald-400/30"
-                          : "bg-black/20 text-white/40 border-white/5"
+                          ? "bg-[#22C55E] text-black"
+                          : "bg-neutral-100 text-neutral-400"
                       )}
                     >
-                      <span className="text-[9px] uppercase tracking-wider">{day}</span>
+                      <span className="text-[8px] xs:text-[9px] uppercase">{day}</span>
                       {isCompleted ? (
-                        <CheckCircle2 className="h-3 w-3 mt-1 text-emerald-300" />
+                        <CheckCircle2 className="h-2.5 w-2.5 xs:h-3 xs:w-3 mt-1 stroke-[3]" />
                       ) : (
-                        <div className="h-2 w-2 rounded-full bg-white/20 mt-1.5" />
+                        <div className="h-1.5 w-1.5 xs:h-2 xs:w-2 rounded-full bg-neutral-300 mt-1.5" />
                       )}
                     </div>
                   );
@@ -269,151 +254,145 @@ export function DashboardView({ stats, onNavigate, onStartPractice }: DashboardV
               </div>
             </div>
 
-            {/* 3 Micro Stats Grid */}
+            {/* 3 Micro Stats */}
             <div className="grid grid-cols-3 gap-2 text-center pt-1">
-              <div className="rounded-2xl bg-black/30 p-2.5 border border-white/10">
-                <Flame className="h-4 w-4 mx-auto text-amber-400 fill-amber-400 mb-1" />
-                <span className="text-[9px] text-indigo-200 uppercase font-bold block">Streak</span>
-                <NumberAnimation value={stats.streak} className="text-base font-black text-white" suffix="d" />
+              <div className="rounded-[2px] bg-[#FAF7F2] p-2 border-2 border-black shadow-[2px_2px_0px_#000000]">
+                <Flame className="h-4 w-4 mx-auto text-black fill-amber-500 mb-0.5" />
+                <span className="text-[9px] text-neutral-600 uppercase font-black block">Streak</span>
+                <NumberAnimation value={stats.streak} className="text-sm font-black text-black" suffix="d" />
               </div>
 
-              <div className="rounded-2xl bg-black/30 p-2.5 border border-white/10">
-                <Zap className="h-4 w-4 mx-auto text-indigo-300 fill-indigo-300 mb-1" />
-                <span className="text-[9px] text-indigo-200 uppercase font-bold block">Total XP</span>
-                <NumberAnimation value={stats.xp} className="text-base font-black text-white" />
+              <div className="rounded-[2px] bg-[#FAF7F2] p-2 border-2 border-black shadow-[2px_2px_0px_#000000]">
+                <Zap className="h-4 w-4 mx-auto text-black fill-[#FFE600] mb-0.5" />
+                <span className="text-[9px] text-neutral-600 uppercase font-black block">Total XP</span>
+                <NumberAnimation value={stats.xp} className="text-sm font-black text-black" />
               </div>
 
-              <div className="rounded-2xl bg-black/30 p-2.5 border border-white/10">
-                <TrendingUp className="h-4 w-4 mx-auto text-emerald-400 mb-1" />
-                <span className="text-[9px] text-indigo-200 uppercase font-bold block">Accuracy</span>
-                <span className="text-base font-black text-white" suppressHydrationWarning>{stats.accuracy}%</span>
+              <div className="rounded-[2px] bg-[#FAF7F2] p-2 border-2 border-black shadow-[2px_2px_0px_#000000]">
+                <TrendingUp className="h-4 w-4 mx-auto text-black stroke-[2.5] mb-0.5" />
+                <span className="text-[9px] text-neutral-600 uppercase font-black block">Accuracy</span>
+                <span className="text-sm font-black text-black" suppressHydrationWarning>{stats.accuracy}%</span>
               </div>
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* 🚀 2. Practice Selection Launcher Grid */}
       <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <h3 className="text-xl sm:text-2xl font-black text-foreground tracking-tight flex items-center gap-2">
-              <Layers className="h-5 w-5 text-indigo-500" /> Practice Modules
-            </h3>
-            <p className="text-xs sm:text-sm text-muted-foreground">Select a mode to accelerate your Gujarati & English fluency</p>
-          </div>
+        <div>
+          <h3 className="text-xl sm:text-2xl font-black text-foreground uppercase tracking-tight flex items-center gap-2">
+            <Layers className="h-5 w-5 stroke-[2.5]" /> Practice Modules
+          </h3>
+          <p className="text-xs sm:text-sm font-bold text-muted-foreground">Select a mode to accelerate your Gujarati & English fluency</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6">
           {/* Card 1: Vocabulary */}
           <TiltCard
             onClick={() => onStartPractice("vocabulary")}
-            className="group relative overflow-hidden hover:border-emerald-500/50 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all bg-card p-5 sm:p-6 rounded-3xl border border-border"
+            className="group relative overflow-hidden bg-white dark:bg-zinc-900 p-5 sm:p-6 border-[2.5px] border-black dark:border-white shadow-[3px_3px_0px_#121212] sm:shadow-[6px_6px_0px_#121212] dark:shadow-[3px_3px_0px_#ffffff] sm:dark:shadow-[6px_6px_0px_#ffffff] rounded-[6px]"
           >
-            <div className="absolute top-0 right-0 h-28 w-28 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/20 transition-all" />
             <div className="flex items-center justify-between mb-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500/20 to-teal-500/20 text-emerald-600 dark:text-emerald-400 group-hover:scale-110 group-hover:rotate-3 transition-transform border border-emerald-500/20">
-                <BookOpen className="h-6 w-6" />
+              <div className="flex h-11 w-11 items-center justify-center rounded-[3px] border-2 border-black bg-[#22C55E] text-black shadow-[2.5px_2.5px_0px_#121212] dark:shadow-[2.5px_2.5px_0px_#ffffff]">
+                <BookOpen className="h-5 w-5 stroke-[2.5]" />
               </div>
-              <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-extrabold text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+              <span className="rounded-[2px] border-2 border-black bg-[#22C55E] px-2 py-0.5 text-xs font-black text-black shadow-[2px_2px_0px_#121212] dark:shadow-[2px_2px_0px_#ffffff] uppercase">
                 25 Words
               </span>
             </div>
 
-            <h4 className="text-lg font-black text-foreground mb-1.5 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+            <h4 className="text-lg font-black text-foreground mb-1.5 uppercase tracking-tight">
               Vocabulary Practice
             </h4>
-            <p className="text-xs text-muted-foreground mb-5 leading-relaxed">
+            <p className="text-xs text-muted-foreground font-semibold mb-5 leading-relaxed">
               Master Gujarati word spellings, phonetics, and English meanings with instant feedback.
             </p>
 
-            <div className="flex items-center justify-between text-xs font-bold text-emerald-600 dark:text-emerald-400 pt-3 border-t border-border">
+            <div className="flex items-center justify-between text-xs font-black text-foreground pt-3 border-t-2 border-black dark:border-white uppercase">
               <span>Start Vocabulary</span>
-              <ArrowRight className="h-4 w-4 group-hover:translate-x-1.5 transition-transform" />
+              <ArrowRight className="h-4 w-4 stroke-[3] group-hover:translate-x-1 transition-transform" />
             </div>
           </TiltCard>
 
           {/* Card 2: Sentence */}
           <TiltCard
             onClick={() => onStartPractice("sentence")}
-            className="group relative overflow-hidden hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-500/10 transition-all bg-card p-5 sm:p-6 rounded-3xl border border-border"
+            className="group relative overflow-hidden bg-white dark:bg-zinc-900 p-5 sm:p-6 border-[2.5px] border-black dark:border-white shadow-[3px_3px_0px_#121212] sm:shadow-[6px_6px_0px_#121212] dark:shadow-[3px_3px_0px_#ffffff] sm:dark:shadow-[6px_6px_0px_#ffffff] rounded-[6px]"
           >
-            <div className="absolute top-0 right-0 h-28 w-28 bg-indigo-500/10 rounded-full blur-2xl group-hover:bg-indigo-500/20 transition-all" />
             <div className="flex items-center justify-between mb-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 text-indigo-600 dark:text-indigo-400 group-hover:scale-110 group-hover:rotate-3 transition-transform border border-indigo-500/20">
-                <MessageSquare className="h-6 w-6" />
+              <div className="flex h-11 w-11 items-center justify-center rounded-[3px] border-2 border-black bg-[#FF6B00] text-white shadow-[2.5px_2.5px_0px_#121212] dark:shadow-[2.5px_2.5px_0px_#ffffff]">
+                <MessageSquare className="h-5 w-5 stroke-[2.5]" />
               </div>
-              <span className="rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-extrabold text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
+              <span className="rounded-[2px] border-2 border-black bg-[#FF6B00] px-2 py-0.5 text-xs font-black text-white shadow-[2px_2px_0px_#121212] dark:shadow-[2px_2px_0px_#ffffff] uppercase">
                 10 Topics
               </span>
             </div>
 
-            <h4 className="text-lg font-black text-foreground mb-1.5 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+            <h4 className="text-lg font-black text-foreground mb-1.5 uppercase tracking-tight">
               Sentence Practice
             </h4>
-            <p className="text-xs text-muted-foreground mb-5 leading-relaxed">
+            <p className="text-xs text-muted-foreground font-semibold mb-5 leading-relaxed">
               Practice full Gujarati to English translations across topics like Whose, Which, Can, Could, Will, etc.
             </p>
 
-            <div className="flex items-center justify-between text-xs font-bold text-indigo-600 dark:text-indigo-400 pt-3 border-t border-border">
+            <div className="flex items-center justify-between text-xs font-black text-foreground pt-3 border-t-2 border-black dark:border-white uppercase">
               <span>Choose Topics</span>
-              <ArrowRight className="h-4 w-4 group-hover:translate-x-1.5 transition-transform" />
+              <ArrowRight className="h-4 w-4 stroke-[3] group-hover:translate-x-1 transition-transform" />
             </div>
           </TiltCard>
 
           {/* Card 3: Mixed Practice */}
           <TiltCard
             onClick={() => onStartPractice("mixed")}
-            className="group relative overflow-hidden hover:border-amber-500/50 hover:shadow-2xl hover:shadow-amber-500/10 transition-all bg-card p-5 sm:p-6 rounded-3xl border border-border"
+            className="group relative overflow-hidden bg-white dark:bg-zinc-900 p-5 sm:p-6 border-[2.5px] border-black dark:border-white shadow-[3px_3px_0px_#121212] sm:shadow-[6px_6px_0px_#121212] dark:shadow-[3px_3px_0px_#ffffff] sm:dark:shadow-[6px_6px_0px_#ffffff] rounded-[6px]"
           >
-            <div className="absolute top-0 right-0 h-28 w-28 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition-all" />
             <div className="flex items-center justify-between mb-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 text-amber-600 dark:text-amber-400 group-hover:scale-110 group-hover:rotate-3 transition-transform border border-amber-500/20">
-                <Shuffle className="h-6 w-6" />
+              <div className="flex h-11 w-11 items-center justify-center rounded-[3px] border-2 border-black bg-[#FFE600] text-black shadow-[2.5px_2.5px_0px_#121212] dark:shadow-[2.5px_2.5px_0px_#ffffff]">
+                <Shuffle className="h-5 w-5 stroke-[2.5]" />
               </div>
-              <span className="rounded-full bg-amber-500/10 px-3 py-1 text-xs font-extrabold text-amber-600 dark:text-amber-400 border border-amber-500/20">
+              <span className="rounded-[2px] border-2 border-black bg-[#FFE600] px-2 py-0.5 text-xs font-black text-black shadow-[2px_2px_0px_#121212] dark:shadow-[2px_2px_0px_#ffffff] uppercase">
                 Adaptive Quiz
               </span>
             </div>
 
-            <h4 className="text-lg font-black text-foreground mb-1.5 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+            <h4 className="text-lg font-black text-foreground mb-1.5 uppercase tracking-tight">
               Mixed Challenge
             </h4>
-            <p className="text-xs text-muted-foreground mb-5 leading-relaxed">
+            <p className="text-xs text-muted-foreground font-semibold mb-5 leading-relaxed">
               Challenge yourself with a randomized sequence of vocabulary spellings and grammar sentences.
             </p>
 
-            <div className="flex items-center justify-between text-xs font-bold text-amber-600 dark:text-amber-400 pt-3 border-t border-border">
+            <div className="flex items-center justify-between text-xs font-black text-foreground pt-3 border-t-2 border-black dark:border-white uppercase">
               <span>Start Quiz</span>
-              <ArrowRight className="h-4 w-4 group-hover:translate-x-1.5 transition-transform" />
+              <ArrowRight className="h-4 w-4 stroke-[3] group-hover:translate-x-1 transition-transform" />
             </div>
           </TiltCard>
 
           {/* Card 4: Sentence Reading AI */}
           <TiltCard
             onClick={() => onNavigate("sentence-reading" as any)}
-            className="group relative overflow-hidden hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/10 transition-all bg-card p-5 sm:p-6 rounded-3xl border border-border"
+            className="group relative overflow-hidden bg-white dark:bg-zinc-900 p-5 sm:p-6 border-[2.5px] border-black dark:border-white shadow-[3px_3px_0px_#121212] sm:shadow-[6px_6px_0px_#121212] dark:shadow-[3px_3px_0px_#ffffff] sm:dark:shadow-[6px_6px_0px_#ffffff] rounded-[6px]"
           >
-            <div className="absolute top-0 right-0 h-28 w-28 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all" />
             <div className="flex items-center justify-between mb-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 text-purple-600 dark:text-purple-400 group-hover:scale-110 group-hover:rotate-3 transition-transform border border-purple-500/20">
-                <Volume2 className="h-6 w-6" />
+              <div className="flex h-11 w-11 items-center justify-center rounded-[3px] border-2 border-black bg-[#FF4D4D] text-white shadow-[2.5px_2.5px_0px_#121212] dark:shadow-[2.5px_2.5px_0px_#ffffff]">
+                <Volume2 className="h-5 w-5 stroke-[2.5]" />
               </div>
-              <span className="rounded-full bg-purple-500/10 px-3 py-1 text-xs font-extrabold text-purple-600 dark:text-purple-400 border border-purple-500/20">
+              <span className="rounded-[2px] border-2 border-black bg-[#FF4D4D] px-2 py-0.5 text-xs font-black text-white shadow-[2px_2px_0px_#121212] dark:shadow-[2px_2px_0px_#ffffff] uppercase">
                 AI Speech
               </span>
             </div>
 
-            <h4 className="text-lg font-black text-foreground mb-1.5 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+            <h4 className="text-lg font-black text-foreground mb-1.5 uppercase tracking-tight">
               Sentence Reading AI
             </h4>
-            <p className="text-xs text-muted-foreground mb-5 leading-relaxed">
+            <p className="text-xs text-muted-foreground font-semibold mb-5 leading-relaxed">
               Listen to native reading, inspect word-by-word phonetics, and practice speaking into mic.
             </p>
 
-            <div className="flex items-center justify-between text-xs font-bold text-purple-600 dark:text-purple-400 pt-3 border-t border-border">
+            <div className="flex items-center justify-between text-xs font-black text-foreground pt-3 border-t-2 border-black dark:border-white uppercase">
               <span>Open AI Reader</span>
-              <ArrowRight className="h-4 w-4 group-hover:translate-x-1.5 transition-transform" />
+              <ArrowRight className="h-4 w-4 stroke-[3] group-hover:translate-x-1 transition-transform" />
             </div>
           </TiltCard>
         </div>
@@ -424,142 +403,130 @@ export function DashboardView({ stats, onNavigate, onStartPractice }: DashboardV
         {/* Statistics Grid */}
         <div className="lg:col-span-7 space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-xl font-black text-foreground tracking-tight flex items-center gap-2">
-              <BarChart3 className="h-5 w-5 text-indigo-500" /> Learning Analytics
+            <h3 className="text-xl font-black text-foreground uppercase tracking-tight flex items-center gap-2">
+              <BarChart3 className="h-5 w-5 stroke-[2.5]" /> Learning Analytics
             </h3>
             <button
               type="button"
               onClick={() => onNavigate("progress")}
-              className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline inline-flex items-center gap-1"
+              className="text-xs font-black uppercase text-foreground hover:underline inline-flex items-center gap-1 cursor-pointer"
             >
-              Detailed Reports <ChevronRight className="h-3.5 w-3.5" />
+              Detailed Reports <ChevronRight className="h-3.5 w-3.5 stroke-[3]" />
             </button>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <motion.div
-              whileHover={{ y: -3 }}
-              className="rounded-3xl border border-border bg-card p-5 space-y-2.5 shadow-sm hover:shadow-md transition-all"
-            >
-              <div className="flex items-center justify-between text-muted-foreground text-xs font-bold">
-                <span>Vocabulary Words Learned</span>
-                <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
-                  <BookOpen className="h-4 w-4" />
+            <div className="rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-900 p-5 space-y-2.5 shadow-[4px_4px_0px_#121212] dark:shadow-[4px_4px_0px_#ffffff]">
+              <div className="flex items-center justify-between text-muted-foreground text-xs font-black uppercase">
+                <span>Words Learned</span>
+                <div className="p-1.5 rounded-[2px] border-2 border-black bg-[#22C55E] text-black shadow-[1.5px_1.5px_0px_#121212]">
+                  <BookOpen className="h-4 w-4 stroke-[2.5]" />
                 </div>
               </div>
-              <NumberAnimation value={stats.vocabularyLearned} className="text-2xl sm:text-3xl font-black text-foreground block" suffix=" Words" />
-              <div className="flex items-center justify-between pt-1">
-                <span className="text-xs text-emerald-600 dark:text-emerald-400 flex items-center gap-1 font-bold">
-                  <TrendingUp className="h-3.5 w-3.5" /> Mastered 100%
+              <NumberAnimation value={stats.vocabularyLearned} className="text-2xl sm:text-3xl font-black text-foreground block tracking-tight" suffix=" Words" />
+              <div className="flex items-center justify-between pt-1 border-t-2 border-black/10 dark:border-white/10">
+                <span className="text-xs text-[#22C55E] dark:text-[#4ADE80] flex items-center gap-1 font-black uppercase">
+                  <TrendingUp className="h-3.5 w-3.5 stroke-[3]" /> Mastered
                 </span>
-                <span className="text-[11px] text-muted-foreground">Section 1 Active</span>
+                <span className="text-[11px] font-bold text-muted-foreground">Section 1 Active</span>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              whileHover={{ y: -3 }}
-              className="rounded-3xl border border-border bg-card p-5 space-y-2.5 shadow-sm hover:shadow-md transition-all"
-            >
-              <div className="flex items-center justify-between text-muted-foreground text-xs font-bold">
+            <div className="rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-900 p-5 space-y-2.5 shadow-[4px_4px_0px_#121212] dark:shadow-[4px_4px_0px_#ffffff]">
+              <div className="flex items-center justify-between text-muted-foreground text-xs font-black uppercase">
                 <span>Sentence Practice</span>
-                <div className="p-2 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400">
-                  <MessageSquare className="h-4 w-4" />
+                <div className="p-1.5 rounded-[2px] border-2 border-black bg-[#FF6B00] text-white shadow-[1.5px_1.5px_0px_#121212]">
+                  <MessageSquare className="h-4 w-4 stroke-[2.5]" />
                 </div>
               </div>
-              <NumberAnimation value={stats.sentencesPracticed} className="text-2xl sm:text-3xl font-black text-foreground block" suffix=" Sentences" />
-              <div className="flex items-center justify-between pt-1">
-                <span className="text-xs text-purple-600 dark:text-purple-400 flex items-center gap-1 font-bold">
-                  <CheckCircle2 className="h-3.5 w-3.5" /> High Retention
+              <NumberAnimation value={stats.sentencesPracticed} className="text-2xl sm:text-3xl font-black text-foreground block tracking-tight" suffix=" Sentences" />
+              <div className="flex items-center justify-between pt-1 border-t-2 border-black/10 dark:border-white/10">
+                <span className="text-xs text-[#FF6B00] flex items-center gap-1 font-black uppercase">
+                  <CheckCircle2 className="h-3.5 w-3.5 stroke-[3]" /> High Retention
                 </span>
-                <span className="text-[11px] text-muted-foreground">10 Grammar Topics</span>
+                <span className="text-[11px] font-bold text-muted-foreground">10 Topics</span>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              whileHover={{ y: -3 }}
-              className="rounded-3xl border border-border bg-card p-5 space-y-2.5 shadow-sm hover:shadow-md transition-all"
-            >
-              <div className="flex items-center justify-between text-muted-foreground text-xs font-bold">
+            <div className="rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-900 p-5 space-y-2.5 shadow-[4px_4px_0px_#121212] dark:shadow-[4px_4px_0px_#ffffff]">
+              <div className="flex items-center justify-between text-muted-foreground text-xs font-black uppercase">
                 <span>Recommended Focus</span>
-                <div className="p-2 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400">
-                  <Star className="h-4 w-4" />
+                <div className="p-1.5 rounded-[2px] border-2 border-black bg-[#FFE600] text-black shadow-[1.5px_1.5px_0px_#121212]">
+                  <Star className="h-4 w-4 stroke-[2.5]" />
                 </div>
               </div>
-              <span className="text-xl sm:text-2xl font-black text-foreground block">Had & Would</span>
-              <div className="flex items-center justify-between pt-1">
-                <span className="text-xs text-amber-600 dark:text-amber-400 font-bold">
+              <span className="text-xl sm:text-2xl font-black text-foreground block tracking-tight">Had & Would</span>
+              <div className="flex items-center justify-between pt-1 border-t-2 border-black/10 dark:border-white/10">
+                <span className="text-xs text-[#FF6B00] font-black uppercase">
                   Needs practice
                 </span>
                 <button
                   onClick={() => onStartPractice("sentence")}
-                  className="text-xs font-extrabold text-indigo-600 dark:text-indigo-400 hover:underline"
+                  className="text-xs font-black uppercase text-foreground hover:underline cursor-pointer"
                 >
                   Practice Now →
                 </button>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              whileHover={{ y: -3 }}
-              className="rounded-3xl border border-border bg-card p-5 space-y-2.5 shadow-sm hover:shadow-md transition-all"
-            >
-              <div className="flex items-center justify-between text-muted-foreground text-xs font-bold">
+            <div className="rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-900 p-5 space-y-2.5 shadow-[4px_4px_0px_#121212] dark:shadow-[4px_4px_0px_#ffffff]">
+              <div className="flex items-center justify-between text-muted-foreground text-xs font-black uppercase">
                 <span>Overall Accuracy</span>
-                <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">
-                  <TrendingUp className="h-4 w-4" />
+                <div className="p-1.5 rounded-[2px] border-2 border-black bg-[#FFE600] text-black shadow-[1.5px_1.5px_0px_#121212]">
+                  <TrendingUp className="h-4 w-4 stroke-[2.5]" />
                 </div>
               </div>
-              <span className="text-2xl sm:text-3xl font-black text-foreground block" suppressHydrationWarning>
+              <span className="text-2xl sm:text-3xl font-black text-foreground block tracking-tight" suppressHydrationWarning>
                 {stats.accuracy}%
               </span>
-              <div className="flex items-center justify-between pt-1">
-                <span className="text-xs text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1">
-                  <CheckCircle2 className="h-3.5 w-3.5" /> Top Performer
+              <div className="flex items-center justify-between pt-1 border-t-2 border-black/10 dark:border-white/10">
+                <span className="text-xs text-[#22C55E] dark:text-[#4ADE80] font-black uppercase flex items-center gap-1">
+                  <CheckCircle2 className="h-3.5 w-3.5 stroke-[3]" /> Top Performer
                 </span>
-                <span className="text-[11px] text-muted-foreground">Ranked #{Math.max(1, 10 - Math.floor(stats.streak / 2))}</span>
+                <span className="text-[11px] font-bold text-muted-foreground">Ranked #{Math.max(1, 10 - Math.floor(stats.streak / 2))}</span>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
 
         {/* Recent Activity Timeline Feed */}
         <div className="lg:col-span-5 space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-xl font-black text-foreground tracking-tight flex items-center gap-2">
-              <Clock className="h-5 w-5 text-indigo-500" /> Recent Activity
+            <h3 className="text-xl font-black text-foreground uppercase tracking-tight flex items-center gap-2">
+              <Clock className="h-5 w-5 stroke-[2.5]" /> Recent Activity
             </h3>
             <button
               type="button"
               onClick={() => onNavigate("progress")}
-              className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline"
+              className="text-xs font-black uppercase text-foreground hover:underline cursor-pointer"
             >
-              View Full History
+              Full History
             </button>
           </div>
 
-          <div className="rounded-3xl border border-border bg-card p-5 space-y-3.5 shadow-sm">
+          <div className="rounded-[4px] border-2 border-black dark:border-white bg-white dark:bg-zinc-900 p-5 space-y-3.5 shadow-[5px_5px_0px_#121212] dark:shadow-[5px_5px_0px_#ffffff]">
             {loadingActivities ? (
               <div className="flex flex-col items-center justify-center py-10 space-y-2.5">
                 <MotionSpinner size="md" />
-                <span className="text-xs font-bold text-muted-foreground">Syncing recent progress...</span>
+                <span className="text-xs font-black uppercase text-muted-foreground">Syncing recent progress...</span>
               </div>
             ) : activities.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-10 text-center space-y-3">
-                <div className="rounded-2xl bg-indigo-500/10 p-3.5 text-indigo-500">
-                  <Sparkles className="h-6 w-6 animate-spin" />
+                <div className="rounded-[3px] border-2 border-black bg-[#FFE600] p-3 text-black shadow-[2.5px_2.5px_0px_#121212]">
+                  <Sparkles className="h-6 w-6 stroke-[2.5]" />
                 </div>
                 <div>
-                  <p className="text-sm font-black text-foreground">Ready for Your First Challenge?</p>
-                  <p className="text-xs text-muted-foreground max-w-xs leading-relaxed mt-1">
+                  <p className="text-sm font-black text-foreground uppercase">Ready for Your First Challenge?</p>
+                  <p className="text-xs font-bold text-muted-foreground max-w-xs leading-relaxed mt-1">
                     Complete your first vocabulary or sentence quiz to see your live progress feed here!
                   </p>
                 </div>
                 <button
                   type="button"
                   onClick={() => onStartPractice("vocabulary")}
-                  className="inline-flex items-center gap-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs px-4 py-2 shadow-md shadow-indigo-500/20"
+                  className="inline-flex items-center gap-1.5 rounded-[3px] border-2 border-black bg-[#FFE600] text-black font-black uppercase text-xs px-4 py-2 shadow-[3px_3px_0px_#121212] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#121212] cursor-pointer"
                 >
-                  Start First Quiz <ArrowRight className="h-3.5 w-3.5" />
+                  Start First Quiz <ArrowRight className="h-3.5 w-3.5 stroke-[3]" />
                 </button>
               </div>
             ) : (
@@ -567,25 +534,22 @@ export function DashboardView({ stats, onNavigate, onStartPractice }: DashboardV
                 const secName = act.sectionId ? act.sectionId.toUpperCase() : "EXAM";
                 const typeLabel = act.examType === "sentence" ? "Sentence Module" : "Vocabulary Section";
                 return (
-                  <motion.div
+                  <div
                     key={act.id || index}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.08 }}
-                    className="flex items-start gap-3.5 border-b border-border/60 last:border-0 pb-3 last:pb-0 group"
+                    className="flex items-start gap-3 border-b-2 border-black/10 dark:border-white/10 last:border-0 pb-3 last:pb-0"
                   >
                     <div
                       className={cn(
-                        "rounded-2xl p-2.5 mt-0.5 shrink-0 transition-transform group-hover:scale-110",
+                        "rounded-[2px] p-2 mt-0.5 shrink-0 border-2 border-black shadow-[1.5px_1.5px_0px_#121212]",
                         act.passed
-                          ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20"
-                          : "bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20"
+                          ? "bg-[#22C55E] text-black"
+                          : "bg-[#FF6B00] text-white"
                       )}
                     >
                       {act.examType === "sentence" ? (
-                        <MessageSquare className="h-4 w-4" />
+                        <MessageSquare className="h-4 w-4 stroke-[2.5]" />
                       ) : (
-                        <CheckCircle2 className="h-4 w-4" />
+                        <CheckCircle2 className="h-4 w-4 stroke-[2.5]" />
                       )}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -593,20 +557,20 @@ export function DashboardView({ stats, onNavigate, onStartPractice }: DashboardV
                         <span className="text-xs font-black text-foreground truncate block">
                           Completed {secName} {typeLabel}
                         </span>
-                        <span className="text-[10px] font-bold text-muted-foreground flex items-center gap-1 shrink-0">
-                          <Clock className="h-3 w-3" /> {formatRelativeTime(act.timestamp)}
+                        <span className="text-[10px] font-black text-muted-foreground flex items-center gap-1 shrink-0 uppercase">
+                          <Clock className="h-3 w-3 stroke-[2.5]" /> {formatRelativeTime(act.timestamp)}
                         </span>
                       </div>
                       <div className="flex items-center justify-between mt-1">
-                        <span className="text-[11px] font-medium text-muted-foreground">
+                        <span className="text-[11px] font-bold text-muted-foreground">
                           Accuracy: <strong className="text-foreground">{act.scorePercentage}%</strong> ({act.correctAnswers}/{act.totalQuestions})
                         </span>
-                        <span className="text-[10px] font-black text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md">
+                        <span className="text-[10px] font-black text-black bg-[#FFE600] border border-black px-1.5 py-0.2 rounded-[2px] shadow-[1px_1px_0px_#121212]">
                           +{act.correctAnswers * 10} XP
                         </span>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })
             )}

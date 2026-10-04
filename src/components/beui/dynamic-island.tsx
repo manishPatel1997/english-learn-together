@@ -39,7 +39,7 @@ export function DynamicIsland({
   const combo = getComboMultiplier(streak);
 
   return (
-    <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 pointer-events-auto">
+    <div className="fixed top-18 sm:top-4 left-1/2 -translate-x-1/2 z-30 pointer-events-auto max-w-[calc(100vw-24px)]">
       <motion.div
         layout
         onClick={() => setExpanded(!expanded)}
@@ -47,10 +47,10 @@ export function DynamicIsland({
         whileTap={{ scale: 0.98 }}
         transition={{ type: "spring", stiffness: 450, damping: 30 }}
         className={cn(
-          "relative flex items-center justify-between gap-4 rounded-full bg-slate-950/95 text-white shadow-2xl border border-slate-800/80 backdrop-blur-2xl px-5 py-2.5 cursor-pointer select-none transition-all duration-300",
+          "relative flex items-center justify-between gap-3 sm:gap-4 rounded-full bg-slate-950/95 text-white shadow-2xl border border-slate-800/80 backdrop-blur-2xl px-3.5 sm:px-5 py-2 sm:py-2.5 cursor-pointer select-none transition-all duration-300",
           streak >= 3 && "border-amber-500/40 shadow-amber-500/10 shadow-lg",
           streak >= 10 && "border-orange-500/60 shadow-orange-500/20 shadow-xl ring-2 ring-orange-500/30",
-          expanded ? "w-[370px] sm:w-[400px] rounded-[28px] p-5 flex-col items-stretch" : "w-auto"
+          expanded ? "w-[calc(100vw-24px)] sm:w-[400px] rounded-[28px] p-5 flex-col items-stretch" : "max-w-[calc(100vw-24px)] w-auto"
         )}
       >
         <AnimatePresence mode="wait">

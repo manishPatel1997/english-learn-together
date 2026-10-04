@@ -192,6 +192,12 @@ export const apiClient = {
         method: "POST",
         body: JSON.stringify({ targetUserId, unlockedSections }),
       }),
+
+    updateUserPermissions: (targetUserId: string, unlockedSections: string[]) =>
+      request<{ success: boolean; message: string; user: UserProfile }>("/admin/unlock-section", {
+        method: "POST",
+        body: JSON.stringify({ targetUserId, unlockedSections }),
+      }),
   },
 
   // Notifications API

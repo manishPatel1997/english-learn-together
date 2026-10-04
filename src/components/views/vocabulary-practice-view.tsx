@@ -18,6 +18,8 @@ import {
   EyeOff,
   LayoutList,
   LayoutGrid,
+  Columns2,
+  Grid3X3,
   Shuffle,
   ListOrdered,
   Search,
@@ -28,6 +30,7 @@ import {
   Filter,
   Layers,
   Lock,
+  SlidersHorizontal,
 } from "lucide-react";
 import { StatefulButton, type ButtonState } from "@/components/beui/stateful-button";
 import { DynamicIsland } from "@/components/beui/dynamic-island";
@@ -86,9 +89,15 @@ export function VocabularyPracticeView({
   const [pageMode, setPageMode] = useState<"selection" | "study" | "exam">(initialPageMode);
   const [hideEnglishOnStudy, setHideEnglishOnStudy] = useState(false);
   const [hidePronunciationInExam, setHidePronunciationInExam] = useState(true);
-  const [studyColumns, setStudyColumns] = useState<1 | 2>(2);
+  const [studyColumns, setStudyColumns] = useState<1 | 2 | 3>(3);
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
+  const [revealedStudyIds, setRevealedStudyIds] = useState<Record<string | number, boolean>>({});
+  const [mobileExamOptionsOpen, setMobileExamOptionsOpen] = useState(false);
+
+  const toggleStudyReveal = (id: string | number) => {
+    setRevealedStudyIds((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
 
   // Active exam questions order (sequential step-by-step by default, or randomized)
   const [activeExamQuestions, setActiveExamQuestions] = useState<VocabQuestion[]>(questions);
@@ -729,75 +738,68 @@ export function VocabularyPracticeView({
     });
 
     return (
-      <div className="w-full max-w-[1700px] mx-auto space-y-6 sm:space-y-8 select-none pb-12">
-        {/* Full-Width Gradient Hero Command Bar */}
+      <div className="w-full space-y-6 sm:space-y-8 select-none pb-12">
+        {/* Full-Width Neo-Brutalist Hero Command Bar */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="relative overflow-hidden rounded-3xl sm:rounded-[32px] bg-gradient-to-r from-indigo-950 via-indigo-900 to-purple-950 p-6 sm:p-8 text-white border border-white/15 shadow-2xl shadow-indigo-950/40"
+          transition={{ duration: 0.3 }}
+          className="relative overflow-hidden rounded-[6px] border-[2.5px] border-black dark:border-white bg-[#18181B] text-white p-6 sm:p-8 shadow-[6px_6px_0px_#121212] dark:shadow-[6px_6px_0px_#000]"
         >
-          {/* Subtle Ambient Background Glow */}
-          <div className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-purple-500/20 blur-3xl animate-pulse-glow" />
-          <div className="pointer-events-none absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-indigo-500/20 blur-3xl animate-pulse-glow" />
-
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
             {/* Left Header Column */}
             <div className="lg:col-span-7 space-y-3">
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-xs font-bold backdrop-blur-md border border-white/20 shadow-inner">
-                <Sparkles className="h-3.5 w-3.5 text-amber-300 animate-spin" />
-                <span className="text-amber-200">Vocabulary Mastery Modules</span>
-                <span className="text-white/40">•</span>
-                <span className="text-indigo-100">{totalRealSections} Curated Levels</span>
+              <div className="inline-flex items-center gap-2 rounded-[3px] border-2 border-black bg-[#FFE600] px-3.5 py-1 text-xs font-black uppercase tracking-wider text-black shadow-[2px_2px_0px_#121212]">
+                <Sparkles className="h-3.5 w-3.5 fill-black" />
+                <span>Vocabulary Mastery Modules</span>
+                <span>•</span>
+                <span>{totalRealSections} Curated Levels</span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-tight">
-                Select a Section to{" "}
-                <span className="bg-gradient-to-r from-amber-200 via-amber-300 to-yellow-400 bg-clip-text text-transparent">
-                  Study & Master
-                </span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight leading-tight text-white">
+                Select a Section to <span className="text-[#FFE600]">Study & Master</span>
               </h2>
 
-              <p className="text-xs sm:text-sm text-indigo-100/80 max-w-xl font-medium leading-relaxed">
+              <p className="text-xs sm:text-sm text-zinc-300 max-w-xl font-medium leading-relaxed">
                 Step-by-step Gujarati vocabulary with English pronunciations, flashcards, and typing exam quizzes.
               </p>
 
               {/* Quick Stats Pill Strip */}
               <div className="flex flex-wrap items-center gap-2.5 pt-1 text-xs font-bold">
-                <div className="inline-flex items-center gap-1.5 rounded-xl bg-white/10 px-3 py-1.5 border border-white/15 backdrop-blur-md">
-                  <BookOpen className="h-3.5 w-3.5 text-amber-300" />
-                  <span>{totalVocabWords} Master Words</span>
+                <div className="inline-flex items-center gap-1.5 rounded-[3px] border-2 border-black bg-[#EFE8DD] text-black px-3 py-1 font-black uppercase shadow-[2px_2px_0px_#121212]">
+                  <BookOpen className="h-3.5 w-3.5 text-black" />
+                  <span>{totalVocabWords} Words</span>
                 </div>
 
-                <div className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-500/20 px-3 py-1.5 border border-emerald-400/30 text-emerald-200 backdrop-blur-md">
-                  <Award className="h-3.5 w-3.5 text-emerald-300" />
-                  <span>{unlockedCount} of {totalRealSections} Sections Unlocked</span>
+                <div className="inline-flex items-center gap-1.5 rounded-[3px] border-2 border-black bg-[#22C55E] text-white px-3 py-1 font-black uppercase shadow-[2px_2px_0px_#121212]">
+                  <Award className="h-3.5 w-3.5 text-white" />
+                  <span>{unlockedCount} of {totalRealSections} Unlocked</span>
                 </div>
 
-                <div className="inline-flex items-center gap-1.5 rounded-xl bg-purple-500/20 px-3 py-1.5 border border-purple-400/30 text-purple-200 backdrop-blur-md">
-                  <Flame className="h-3.5 w-3.5 text-amber-400 fill-amber-400" />
-                  <span>80%+ Exam Passing Score</span>
+                <div className="inline-flex items-center gap-1.5 rounded-[3px] border-2 border-black bg-[#FF6B00] text-white px-3 py-1 font-black uppercase shadow-[2px_2px_0px_#121212]">
+                  <Flame className="h-3.5 w-3.5 fill-white" />
+                  <span>80%+ Passing Score</span>
                 </div>
               </div>
             </div>
 
             {/* Right Search & Filter Dock */}
-            <div className="lg:col-span-5 bg-white/10 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-white/20 space-y-3">
+            <div className="lg:col-span-5 bg-card text-foreground rounded-[4px] border-2 border-black p-4 sm:p-5 shadow-[4px_4px_0px_#121212] space-y-3">
               {/* Search Box */}
               <div className="relative">
-                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-indigo-200" />
+                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search by word, topic, or section..."
-                  className="w-full rounded-xl bg-black/30 pl-10 pr-9 py-2.5 text-xs sm:text-sm font-semibold text-white placeholder:text-indigo-200/60 focus:outline-none focus:ring-2 focus:ring-amber-400 border border-white/15 transition-all"
+                  className="w-full rounded-[4px] bg-[#FAF7F2] dark:bg-zinc-900 pl-10 pr-9 py-2.5 text-xs sm:text-sm font-bold text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-[#FF6B00] border-2 border-black shadow-[2px_2px_0px_#121212] transition-colors"
                 />
                 {searchQuery && (
                   <button
                     type="button"
                     onClick={() => setSearchQuery("")}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-xs"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 font-black text-xs hover:text-[#FF4D4D]"
                   >
                     ✕
                   </button>
@@ -818,10 +820,10 @@ export function VocabularyPracticeView({
                     type="button"
                     onClick={() => setCategoryFilter(tab.id)}
                     className={cn(
-                      "px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer border",
+                      "px-2.5 py-1 rounded-[3px] text-xs font-black uppercase transition-transform active:translate-x-0.5 active:translate-y-0.5 cursor-pointer border-2 border-black",
                       categoryFilter === tab.id
-                        ? "bg-amber-400 text-slate-950 border-amber-300 font-black shadow-sm"
-                        : "bg-white/10 text-white/80 border-white/10 hover:bg-white/20 hover:text-white"
+                        ? "bg-[#FFE600] text-black shadow-[2px_2px_0px_#121212]"
+                        : "bg-card text-foreground hover:bg-[#EFE8DD] dark:hover:bg-zinc-800"
                     )}
                   >
                     {tab.label}
@@ -834,17 +836,17 @@ export function VocabularyPracticeView({
 
         {/* Section Cards Fluid 4-Column Grid */}
         {filteredSections.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-16 text-center bg-card rounded-3xl border border-border p-8 space-y-3 shadow-xs">
-            <SearchX className="h-12 w-12 text-muted-foreground animate-bounce" />
-            <h4 className="text-lg font-black text-foreground">No matching vocabulary sections found</h4>
-            <p className="text-xs sm:text-sm text-muted-foreground">Try clearing your search query or switching the category filter.</p>
+          <div className="flex flex-col items-center justify-center py-16 text-center bg-card rounded-[6px] border-[2.5px] border-black p-8 space-y-3 shadow-[4px_4px_0px_#121212]">
+            <SearchX className="h-12 w-12 text-foreground" />
+            <h4 className="text-lg font-black uppercase text-foreground">No matching vocabulary sections found</h4>
+            <p className="text-xs sm:text-sm text-muted-foreground font-semibold">Try clearing your search query or switching the category filter.</p>
             <button
               type="button"
               onClick={() => {
                 setSearchQuery("");
                 setCategoryFilter("all");
               }}
-              className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline pt-1"
+              className="text-xs font-black uppercase text-[#FF6B00] hover:underline pt-1"
             >
               Reset Filters
             </button>
@@ -878,29 +880,24 @@ export function VocabularyPracticeView({
                     if (onSectionChange) onSectionChange(sec.id);
                   }}
                   className={cn(
-                    "relative overflow-hidden rounded-3xl border p-5 transition-all duration-200 flex flex-col justify-between space-y-4 select-none cursor-pointer",
+                    "relative overflow-hidden rounded-[6px] border-[2.5px] border-black dark:border-white p-5 transition-all duration-150 flex flex-col justify-between space-y-4 select-none cursor-pointer",
                     !isUnlocked
-                      ? "border-border/60 bg-card/40 opacity-75 grayscale-[20%]"
+                      ? "bg-card opacity-70 grayscale-[30%] shadow-[2px_2px_0px_#121212]"
                       : isSelected
-                      ? "border-indigo-500 bg-card ring-2 ring-indigo-500/30 shadow-xl shadow-indigo-500/10"
-                      : "border-border bg-card hover:border-indigo-500/50 hover:shadow-xl hover:shadow-indigo-500/5"
+                      ? "bg-card shadow-[5px_5px_0px_#121212] dark:shadow-[5px_5px_0px_#000] -translate-x-0.5 -translate-y-0.5"
+                      : "bg-card shadow-[3px_3px_0px_#121212] dark:shadow-[3px_3px_0px_#000] hover:shadow-[5px_5px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5"
                   )}
                 >
-                  {/* Subtle Glow */}
-                  {isUnlocked && (
-                    <div className="pointer-events-none absolute -top-10 -right-10 h-28 w-28 rounded-full bg-indigo-500/10 blur-xl transition-all" />
-                  )}
-
                   {/* Card Content Top Header */}
                   <div className="space-y-3 relative z-10">
                     <div className="flex items-start justify-between gap-2.5">
                       <div className="flex items-start gap-3 min-w-0 flex-1">
                         <div
                           className={cn(
-                            "flex h-11 w-11 items-center justify-center rounded-2xl text-2xl shrink-0 shadow-xs border",
+                            "flex h-11 w-11 items-center justify-center rounded-[4px] text-2xl shrink-0 border-2 border-black shadow-[2px_2px_0px_#121212]",
                             isUnlocked
-                              ? "bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 border-indigo-500/20"
-                              : "bg-muted text-muted-foreground border-border grayscale"
+                              ? "bg-[#FFE600] text-black"
+                              : "bg-muted text-muted-foreground grayscale"
                           )}
                         >
                           {sec.icon}
@@ -908,16 +905,16 @@ export function VocabularyPracticeView({
 
                         <div className="min-w-0 flex-1">
                           <div className="flex items-center gap-1.5 flex-wrap">
-                            <span className="text-[10px] font-black tracking-wider text-indigo-600 dark:text-indigo-400 uppercase bg-indigo-500/10 dark:bg-indigo-500/20 px-2 py-0.5 rounded-md">
+                            <span className="text-[10px] font-black tracking-wider text-black uppercase bg-[#FFE600] border border-black px-2 py-0.5 rounded-[2px]">
                               {sec.stepLabel}
                             </span>
                             {isSelected && isUnlocked && (
-                              <span className="inline-flex items-center gap-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 px-1.5 py-0.5 text-[9px] font-black text-emerald-600 dark:text-emerald-400">
-                                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-ping" /> Active
+                              <span className="inline-flex items-center gap-1 rounded-[2px] bg-[#22C55E] text-white border border-black px-1.5 py-0.5 text-[9px] font-black uppercase">
+                                Active
                               </span>
                             )}
                           </div>
-                          <h3 className="text-sm sm:text-base font-black text-foreground leading-snug pt-1">
+                          <h3 className="text-sm sm:text-base font-black text-foreground uppercase tracking-tight leading-snug pt-1">
                             {sec.name}
                           </h3>
                         </div>
@@ -925,16 +922,16 @@ export function VocabularyPracticeView({
 
                       {/* Right Status Badge */}
                       {!isUnlocked ? (
-                        <span className="inline-flex items-center gap-1 rounded-full bg-rose-500/10 border border-rose-500/20 px-2.5 py-0.5 text-[10px] font-black text-rose-600 dark:text-rose-400 shrink-0">
+                        <span className="inline-flex items-center gap-1 rounded-[3px] bg-[#FF4D4D] text-white border border-black px-2 py-0.5 text-[10px] font-black uppercase shrink-0">
                           <Lock className="h-3 w-3" /> Locked
                         </span>
                       ) : (
                         <span
                           className={cn(
-                            "rounded-full px-2.5 py-0.5 text-[10px] font-black shrink-0 border",
+                            "rounded-[3px] px-2 py-0.5 text-[10px] font-black uppercase shrink-0 border border-black",
                             isSelected
-                              ? "bg-indigo-600 text-white border-indigo-600 shadow-xs"
-                              : "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20"
+                              ? "bg-[#18181B] text-white shadow-[1px_1px_0px_#121212]"
+                              : "bg-[#EFE8DD] dark:bg-zinc-800 text-foreground"
                           )}
                         >
                           {sec.badge}
@@ -943,23 +940,23 @@ export function VocabularyPracticeView({
                     </div>
 
                     {/* Section Full Description */}
-                    <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
+                    <p className="text-xs text-muted-foreground font-medium leading-relaxed line-clamp-2">
                       {sec.description}
                     </p>
 
                     {/* Section Meta Bar */}
                     <div className="flex items-center justify-between text-xs font-bold pt-0.5">
-                      <span className="inline-flex items-center gap-1.5 text-foreground font-black bg-muted/60 px-2.5 py-1 rounded-xl">
-                        <BookOpen className="h-3.5 w-3.5 text-indigo-500" />
+                      <span className="inline-flex items-center gap-1.5 text-foreground font-black bg-[#EFE8DD] dark:bg-zinc-800 border border-black px-2.5 py-1 rounded-[3px]">
+                        <BookOpen className="h-3.5 w-3.5 text-foreground" />
                         <span>{sec.count} Words</span>
                       </span>
 
                       {!isUnlocked ? (
-                        <span className="text-[10px] text-amber-600 dark:text-amber-400 font-extrabold flex items-center gap-1">
+                        <span className="text-[10px] text-[#FF6B00] font-black uppercase flex items-center gap-1">
                           <Lock className="h-3 w-3" /> Req: Score ≥ 80%
                         </span>
                       ) : (
-                        <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-extrabold flex items-center gap-1">
+                        <span className="text-[10px] text-[#22C55E] font-black uppercase flex items-center gap-1">
                           <CheckCircle2 className="h-3 w-3" /> Ready
                         </span>
                       )}
@@ -967,12 +964,10 @@ export function VocabularyPracticeView({
                   </div>
 
                   {/* Direct Action Buttons Inside Section Card */}
-                  <div className="pt-3 border-t border-border/70 relative z-10">
+                  <div className="pt-3 border-t-2 border-black/10 dark:border-white/10 relative z-10">
                     {isUnlocked ? (
                       <div className="grid grid-cols-2 gap-2">
-                        <motion.button
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.97 }}
+                        <button
                           type="button"
                           onClick={(e) => {
                             e.stopPropagation();
@@ -980,19 +975,17 @@ export function VocabularyPracticeView({
                             switchPageMode("study");
                           }}
                           className={cn(
-                            "w-full rounded-xl py-2.5 px-2.5 text-xs font-black transition-all flex items-center justify-center gap-1 shadow-xs cursor-pointer",
+                            "w-full rounded-[4px] py-2 px-2.5 text-xs font-black uppercase tracking-wider border-2 border-black transition-transform active:translate-x-0.5 active:translate-y-0.5 flex items-center justify-center gap-1 shadow-[2px_2px_0px_#121212] cursor-pointer",
                             isSelected
-                              ? "bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white shadow-indigo-500/25"
-                              : "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600 hover:text-white"
+                              ? "bg-[#18181B] text-white hover:bg-black"
+                              : "bg-card text-foreground hover:bg-[#EFE8DD] dark:hover:bg-zinc-800"
                           )}
                         >
                           <BookOpen className="h-3.5 w-3.5" />
                           <span>Study</span>
-                        </motion.button>
+                        </button>
 
-                        <motion.button
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.97 }}
+                        <button
                           type="button"
                           onClick={(e) => {
                             e.stopPropagation();
@@ -1000,15 +993,15 @@ export function VocabularyPracticeView({
                             switchPageMode("exam");
                           }}
                           className={cn(
-                            "w-full rounded-xl py-2.5 px-2.5 text-xs font-black transition-all flex items-center justify-center gap-1 shadow-xs cursor-pointer",
+                            "w-full rounded-[4px] py-2 px-2.5 text-xs font-black uppercase tracking-wider border-2 border-black transition-transform active:translate-x-0.5 active:translate-y-0.5 flex items-center justify-center gap-1 shadow-[2px_2px_0px_#121212] cursor-pointer",
                             isSelected
-                              ? "bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-700 hover:to-fuchsia-700 text-white shadow-purple-500/25"
-                              : "bg-purple-500/10 text-purple-600 dark:text-purple-400 hover:bg-purple-600 hover:text-white"
+                              ? "bg-[#FFE600] text-black hover:bg-amber-400"
+                              : "bg-[#FFE600]/30 text-foreground hover:bg-[#FFE600] hover:text-black"
                           )}
                         >
                           <Zap className="h-3.5 w-3.5" />
                           <span>Exam</span>
-                        </motion.button>
+                        </button>
                       </div>
                     ) : (
                       <button
@@ -1021,7 +1014,7 @@ export function VocabularyPracticeView({
                             type: "info",
                           });
                         }}
-                        className="w-full rounded-xl py-2 px-2 text-[11px] font-bold bg-muted text-muted-foreground transition-all flex items-center justify-center gap-1 cursor-not-allowed border border-border/50"
+                        className="w-full rounded-[4px] py-2 px-2 text-[11px] font-black uppercase bg-muted text-muted-foreground transition-all flex items-center justify-center gap-1 cursor-not-allowed border-2 border-black/30"
                       >
                         <Lock className="h-3 w-3" />
                         <span>Pass Prior Step (80%+)</span>
@@ -1038,25 +1031,32 @@ export function VocabularyPracticeView({
   }
 
   return (
-    <div className="relative min-h-[80vh] flex flex-col justify-between py-6 max-w-3xl mx-auto select-none space-y-6">
-      {/* Dynamic Island Header */}
-      <DynamicIsland
-        streak={sessionStreak}
-        xp={sessionXP}
-        currentQuestion={pageMode === "study" ? studyIndex + 1 : currentIndex + 1}
-        totalQuestions={questions.length}
-        activeMessage={islandMsg}
-        soundEnabled={soundEnabled}
-        onToggleSound={() => setSoundEnabled(!soundEnabled)}
-      />
+    <div className="relative flex flex-col select-none space-y-6 w-full pb-12">
+      {/* Dynamic Island Header - only active in Exam mode */}
+      {pageMode === "exam" && (
+        <DynamicIsland
+          streak={sessionStreak}
+          xp={sessionXP}
+          currentQuestion={currentIndex + 1}
+          totalQuestions={questions.length}
+          activeMessage={islandMsg}
+          soundEnabled={soundEnabled}
+          onToggleSound={() => setSoundEnabled(!soundEnabled)}
+        />
+      )}
 
       {/* Top Header Navigation Bar */}
-      <div className="pt-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-border pb-4">
+      <div
+        className={cn(
+          "flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b-2 border-black/10 dark:border-white/10 pb-4",
+          pageMode === "exam" ? "pt-12" : "pt-1"
+        )}
+      >
         <div className="flex items-center gap-3 flex-wrap flex-1 min-w-0">
           <button
             type="button"
             onClick={() => switchPageMode("selection")}
-            className="flex items-center gap-1.5 text-xs font-extrabold text-muted-foreground hover:text-foreground transition-colors shrink-0"
+            className="flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors shrink-0"
           >
             <span>← Back to Mode Select</span>
           </button>
@@ -1075,7 +1075,7 @@ export function VocabularyPracticeView({
           <button
             type="button"
             onClick={() => switchPageMode("exam")}
-            className="flex items-center gap-1.5 rounded-xl bg-purple-600 px-4 py-2 text-xs font-extrabold text-white hover:bg-purple-700 transition-colors shadow-md"
+            className="flex items-center gap-1.5 rounded-[4px] border-2 border-black bg-[#FFE600] px-4 py-2 text-xs font-black uppercase tracking-wider text-black shadow-[3px_3px_0px_#121212] transition-transform active:translate-x-0.5 active:translate-y-0.5"
           >
             <span>Finished Studying? Take Exam 🚀</span>
           </button>
@@ -1083,7 +1083,7 @@ export function VocabularyPracticeView({
           <button
             type="button"
             onClick={() => switchPageMode("study")}
-            className="flex items-center gap-1.5 rounded-xl border border-border bg-card px-4 py-2 text-xs font-extrabold text-foreground hover:bg-muted transition-colors"
+            className="flex items-center gap-1.5 rounded-[4px] border-2 border-black bg-card px-4 py-2 text-xs font-black uppercase tracking-wider text-foreground hover:bg-[#EFE8DD] dark:hover:bg-zinc-800 shadow-[3px_3px_0px_#121212] transition-transform active:translate-x-0.5 active:translate-y-0.5"
           >
             <span>📖 Read Spellings First</span>
           </button>
@@ -1097,21 +1097,21 @@ export function VocabularyPracticeView({
           {(() => {
             const activeSec = VOCABULARY_SECTIONS.find((s) => s.id === activeSectionId) || VOCABULARY_SECTIONS[0];
             return (
-              <div className="flex items-center justify-between rounded-2xl bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-transparent border border-indigo-500/20 p-4 shadow-sm">
-                <div className="flex items-center gap-3 min-w-0">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-indigo-600 text-white text-2xl shrink-0 shadow-md">
+              <div className="flex items-center justify-between rounded-[6px] border-[2.5px] border-black dark:border-white bg-[#18181B] text-white p-4 sm:p-5 shadow-[5px_5px_0px_#121212] dark:shadow-[5px_5px_0px_#000]">
+                <div className="flex items-center gap-3.5 min-w-0">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-[4px] bg-[#FFE600] text-black border-2 border-black text-2xl shrink-0 shadow-[2px_2px_0px_#121212]">
                     {activeSec.icon}
                   </span>
                   <div className="min-w-0">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 block">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-[#FFE600] block">
                       {activeSec.stepLabel} • Textbook Page Section
                     </span>
-                    <h2 className="text-lg sm:text-xl font-black text-foreground truncate">
+                    <h2 className="text-lg sm:text-xl font-black uppercase tracking-tight text-white truncate">
                       {activeSec.name}
                     </h2>
                   </div>
                 </div>
-                <span className="rounded-full bg-indigo-600 text-white text-xs font-black px-3 py-1 shrink-0 shadow-xs hidden sm:inline-block">
+                <span className="rounded-[3px] border-2 border-black bg-[#FFE600] text-black text-xs font-black uppercase px-3 py-1 shrink-0 shadow-[2px_2px_0px_#121212] hidden sm:inline-block">
                   {questions.length} Words
                 </span>
               </div>
@@ -1120,25 +1120,26 @@ export function VocabularyPracticeView({
 
           {/* Top Control Bar & Category Filter */}
           <div className="flex flex-col gap-3">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-bold text-muted-foreground">
-              <span>Vocabulary Directory ({questions.length} Words, {categoriesList.length} Categories)</span>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-black uppercase tracking-wider text-muted-foreground">
+              <span>Directory ({questions.length} Words, {categoriesList.length} Categories)</span>
 
               <div className="flex flex-wrap items-center gap-3">
-                {/* Column Layout Selector (1 or 2 Columns) */}
-                <div className="flex items-center gap-1 rounded-xl border border-border bg-card p-1 shadow-sm select-none">
-                  <span className="text-[11px] font-bold text-muted-foreground px-1.5 hidden sm:inline">Grid:</span>
+                {/* Column Layout Selector (1, 2, or 3 Columns) */}
+                <div className="flex items-center gap-1 rounded-[4px] border-2 border-black dark:border-white bg-[#FAF7F2] dark:bg-[#161619] p-1 shadow-[2px_2px_0px_#121212] dark:shadow-[2px_2px_0px_#ffffff] select-none">
+                  <span className="text-[10px] font-black text-foreground uppercase px-1.5 hidden sm:inline">Grid:</span>
+                  
                   <button
                     type="button"
                     onClick={() => setStudyColumns(1)}
                     className={cn(
-                      "flex items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-extrabold transition-all",
+                      "flex items-center gap-1 rounded-[2px] px-2.5 py-1 text-xs font-black uppercase transition-all cursor-pointer",
                       studyColumns === 1
-                        ? "bg-indigo-600 text-white shadow-sm"
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                        ? "bg-[#FFE600] text-black border-2 border-black dark:border-white shadow-[2px_2px_0px_#121212] dark:shadow-[2px_2px_0px_#ffffff]"
+                        : "border-2 border-transparent text-foreground hover:border-black dark:hover:border-white hover:bg-white dark:hover:bg-zinc-800"
                     )}
-                    title="Show 1 Column"
+                    title="Show 1 Column (Single column centered)"
                   >
-                    <LayoutList className="h-3.5 w-3.5" />
+                    <LayoutList className="h-3.5 w-3.5 stroke-[2.5]" />
                     <span>1 Col</span>
                   </button>
 
@@ -1146,33 +1147,48 @@ export function VocabularyPracticeView({
                     type="button"
                     onClick={() => setStudyColumns(2)}
                     className={cn(
-                      "flex items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-extrabold transition-all",
+                      "flex items-center gap-1 rounded-[2px] px-2.5 py-1 text-xs font-black uppercase transition-all cursor-pointer",
                       studyColumns === 2
-                        ? "bg-indigo-600 text-white shadow-sm"
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                        ? "bg-[#FFE600] text-black border-2 border-black dark:border-white shadow-[2px_2px_0px_#121212] dark:shadow-[2px_2px_0px_#ffffff]"
+                        : "border-2 border-transparent text-foreground hover:border-black dark:hover:border-white hover:bg-white dark:hover:bg-zinc-800"
                     )}
-                    title="Show 2 Columns"
+                    title="Show 2 Columns (Dual column layout)"
                   >
-                    <LayoutGrid className="h-3.5 w-3.5" />
+                    <Columns2 className="h-3.5 w-3.5 stroke-[2.5]" />
                     <span>2 Cols</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setStudyColumns(3)}
+                    className={cn(
+                      "flex items-center gap-1 rounded-[2px] px-2.5 py-1 text-xs font-black uppercase transition-all cursor-pointer",
+                      studyColumns === 3
+                        ? "bg-[#FFE600] text-black border-2 border-black dark:border-white shadow-[2px_2px_0px_#121212] dark:shadow-[2px_2px_0px_#ffffff]"
+                        : "border-2 border-transparent text-foreground hover:border-black dark:hover:border-white hover:bg-white dark:hover:bg-zinc-800"
+                    )}
+                    title="Show 3 Columns (Widescreen 3-column layout)"
+                  >
+                    <Grid3X3 className="h-3.5 w-3.5 stroke-[2.5]" />
+                    <span>3 Cols</span>
                   </button>
                 </div>
 
                 {/* Checkbox: Hide English & Pronunciation (Hover to reveal) */}
-                <label className="inline-flex items-center gap-2 cursor-pointer rounded-xl border border-border bg-card px-3.5 py-1.5 shadow-sm hover:border-indigo-500/50 transition-colors select-none">
+                <label className="inline-flex items-center gap-2 cursor-pointer rounded-[4px] border-2 border-black dark:border-white bg-[#FAF7F2] dark:bg-[#161619] px-3.5 py-1.5 shadow-[2px_2px_0px_#121212] dark:shadow-[2px_2px_0px_#ffffff] hover:bg-white dark:hover:bg-zinc-800 transition-colors select-none">
                   <input
                     type="checkbox"
                     checked={hideEnglishOnStudy}
                     onChange={(e) => setHideEnglishOnStudy(e.target.checked)}
-                    className="h-4 w-4 rounded border-border text-indigo-600 focus:ring-indigo-500 cursor-pointer accent-indigo-600"
+                    className="h-4 w-4 rounded-[2px] border-2 border-black text-[#18181B] focus:ring-0 cursor-pointer accent-[#FFE600]"
                   />
-                  <span className="text-xs font-extrabold text-foreground flex items-center gap-1.5">
+                  <span className="text-xs font-black uppercase tracking-wider text-foreground flex items-center gap-1.5">
                     {hideEnglishOnStudy ? (
-                      <EyeOff className="h-3.5 w-3.5 text-indigo-600 dark:text-indigo-400" />
+                      <EyeOff className="h-3.5 w-3.5 text-[#FF6B00]" />
                     ) : (
                       <Eye className="h-3.5 w-3.5 text-muted-foreground" />
                     )}
-                    Hide Pronunciation & English (Hover to reveal)
+                    Hide English (Hover)
                   </span>
                 </label>
               </div>
@@ -1180,14 +1196,14 @@ export function VocabularyPracticeView({
 
             {/* Category / Sound Rule Filter Dropdown */}
             {categoriesList.length > 1 && (
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 rounded-2xl border border-amber-500/20 bg-card p-3.5 shadow-sm">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 rounded-[4px] border-2 border-black bg-card p-3 sm:p-3.5 shadow-[3px_3px_0px_#121212]">
                 <div className="flex items-center gap-2.5 min-w-0">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 font-extrabold text-sm shrink-0">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-[3px] bg-[#FFE600] text-black border-2 border-black font-black text-sm shrink-0 shadow-[1px_1px_0px_#121212]">
                     🏷️
                   </span>
                   <div className="flex flex-col min-w-0">
-                    <span className="text-xs font-black text-foreground">Filter by Sound Rule / Category</span>
-                    <span className="text-[10px] text-muted-foreground font-medium">Textbook categories & vowel pronunciation rules</span>
+                    <span className="text-xs font-black uppercase text-foreground">Filter by Sound Rule / Category</span>
+                    <span className="text-[10px] text-muted-foreground font-semibold">Textbook categories & vowel pronunciation rules</span>
                   </div>
                 </div>
 
@@ -1205,24 +1221,33 @@ export function VocabularyPracticeView({
           {/* Grouped Category Sections (Single Dark Header Banner per Category) */}
           <div className="space-y-6">
             {groupedQuestions.map((group, groupIdx) => (
-              <div key={`group-${groupIdx}-${group.category}`} className="rounded-[28px] border border-border bg-card p-5 sm:p-6 shadow-xl space-y-4">
+              <div key={`group-${groupIdx}-${group.category}`} className="rounded-[6px] border-[2.5px] border-black dark:border-white bg-card p-5 sm:p-6 shadow-[5px_5px_0px_#121212] space-y-4">
                 {/* Single Dark Textbook Category Header Box */}
-                <div className="flex items-center justify-between rounded-2xl bg-zinc-900 text-white dark:bg-zinc-950 border border-zinc-800 px-4 py-3 shadow-lg">
+                <div className="flex items-center justify-between rounded-[4px] bg-[#18181B] text-white border-2 border-black px-4 py-3 shadow-[3px_3px_0px_#121212]">
                   <div className="flex items-center gap-3 min-w-0">
-                    <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-indigo-500/20 text-indigo-400 font-black text-xs shrink-0">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-[2px] bg-[#FFE600] text-black font-black text-xs shrink-0 border border-black">
                       #{groupIdx + 1}
                     </span>
-                    <h3 className="text-sm sm:text-base font-black tracking-wide truncate text-white">
+                    <h3 className="text-sm sm:text-base font-black tracking-wide truncate text-white uppercase">
                       {group.category}
                     </h3>
                   </div>
-                  <span className="rounded-full bg-white/10 border border-white/10 px-3 py-0.5 text-[11px] font-extrabold text-indigo-300 shrink-0">
+                  <span className="rounded-[3px] border border-white/20 bg-white/10 px-2.5 py-0.5 text-[10px] font-black uppercase text-zinc-200 shrink-0">
                     {group.items.length} words
                   </span>
                 </div>
 
                 {/* Words Grid under this Category Header */}
-                <div className={cn("grid gap-3 transition-all", studyColumns === 1 ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2")}>
+                <div
+                  className={cn(
+                    "grid gap-3.5 transition-all",
+                    studyColumns === 1
+                      ? "grid-cols-1 max-w-4xl mx-auto"
+                      : studyColumns === 2
+                      ? "grid-cols-1 sm:grid-cols-2"
+                      : "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3"
+                  )}
+                >
                   {group.items.map((q, itemSubIdx) => {
                     const originalIdx = studyQuestions.findIndex((item) => item.id === q.id);
                     const itemIdx = originalIdx >= 0 ? originalIdx : 0;
@@ -1234,56 +1259,77 @@ export function VocabularyPracticeView({
                           setRevealSpelling(true);
                           setDrawerOpen(true);
                         }}
-                        className="cursor-pointer rounded-2xl border border-border bg-background p-4 flex items-center justify-between hover:border-indigo-500 hover:bg-indigo-500/5 transition-all shadow-sm group"
+                        className="cursor-pointer rounded-[4px] border-2 border-black bg-card p-4 flex items-center justify-between hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[4px_4px_0px_#121212] transition-all shadow-[2px_2px_0px_#121212] group"
                       >
                         <div className="flex items-center gap-3 min-w-0 flex-1">
-                          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-extrabold text-xs shrink-0">
+                          <div className="flex h-9 w-9 items-center justify-center rounded-[3px] bg-[#FFE600] text-black border-2 border-black font-black text-xs shrink-0 shadow-[1px_1px_0px_#121212]">
                             #{itemIdx + 1}
                           </div>
                           <div className="space-y-0.5 text-left min-w-0 flex-1">
-                            <span className="text-base font-black text-foreground block group-hover:text-indigo-600 transition-colors leading-tight">
+                            <span className="text-base font-black text-foreground block leading-tight">
                               {q.gujarati}
                             </span>
 
-                             {q.v1_base_form ? (
+                            {q.v1_base_form ? (
                               <div className="mt-2 space-y-1 select-none">
-                                <div className="grid grid-cols-3 gap-1 rounded-xl bg-indigo-500/10 p-2 border border-indigo-500/20 text-center">
+                                <div className="grid grid-cols-3 gap-1 rounded-[4px] bg-[#FAF7F2] dark:bg-zinc-900 p-2 border-2 border-black text-center shadow-[2px_2px_0px_#121212]">
                                   <div className="space-y-0.5">
-                                    <span className="text-[9px] font-black uppercase text-purple-600 dark:text-purple-400 block">V1 (Base)</span>
+                                    <span className="text-[9px] font-black uppercase text-[#FF6B00] block">V1 (Base)</span>
                                     <span className="text-xs font-black text-foreground block">{q.v1_base_form}</span>
-                                    <span className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 block">🗣️ {q.v1_pronunciation_gujarati}</span>
+                                    <span className="text-[10px] font-bold text-foreground block">🗣️ {q.v1_pronunciation_gujarati}</span>
                                   </div>
-                                  <div className="space-y-0.5 border-x border-indigo-500/20 px-0.5">
-                                    <span className="text-[9px] font-black uppercase text-purple-600 dark:text-purple-400 block">V2 (Past)</span>
+                                  <div className="space-y-0.5 border-x-2 border-black px-0.5">
+                                    <span className="text-[9px] font-black uppercase text-[#FF6B00] block">V2 (Past)</span>
                                     <span className="text-xs font-black text-foreground block">{q.v2_past_simple}</span>
-                                    <span className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 block">🗣️ {q.v2_pronunciation_gujarati}</span>
+                                    <span className="text-[10px] font-bold text-foreground block">🗣️ {q.v2_pronunciation_gujarati}</span>
                                   </div>
                                   <div className="space-y-0.5">
-                                    <span className="text-[9px] font-black uppercase text-purple-600 dark:text-purple-400 block">V3 (Participle)</span>
+                                    <span className="text-[9px] font-black uppercase text-[#FF6B00] block">V3 (Participle)</span>
                                     <span className="text-xs font-black text-foreground block">{q.v3_past_participle}</span>
-                                    <span className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 block">🗣️ {q.v3_pronunciation_gujarati}</span>
+                                    <span className="text-[10px] font-bold text-foreground block">🗣️ {q.v3_pronunciation_gujarati}</span>
                                   </div>
                                 </div>
                               </div>
                             ) : hideEnglishOnStudy ? (
-                              <div className="relative w-full mt-1">
-                                <div className="flex flex-col gap-1 transition-all duration-200 opacity-0 group-hover:opacity-100 select-none">
+                              <div
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  toggleStudyReveal(q.id);
+                                }}
+                                className="relative w-full mt-1 cursor-pointer"
+                              >
+                                <div
+                                  className={cn(
+                                    "flex flex-col gap-1 transition-all duration-200 select-none",
+                                    revealedStudyIds[q.id]
+                                      ? "opacity-100"
+                                      : "opacity-0 group-hover:opacity-100"
+                                  )}
+                                >
                                   {q.pronunciation_gujarati && (
                                     <div className="inline-flex">
-                                      <span className="inline-flex items-center rounded-md bg-indigo-500/10 border border-indigo-500/20 px-2 py-0.5 text-[11px] font-extrabold text-indigo-600 dark:text-indigo-400">
+                                      <span className="inline-flex items-center rounded-[2px] bg-[#EFE8DD] dark:bg-zinc-800 border border-black px-2 py-0.5 text-[11px] font-black text-foreground">
                                         🗣️ {q.pronunciation_gujarati}
                                       </span>
                                     </div>
                                   )}
-                                  <span className="text-xs font-extrabold text-indigo-600 dark:text-indigo-400 block leading-tight">
+                                  <span className="text-xs font-black text-foreground block leading-tight">
                                     {q.english}
                                   </span>
                                 </div>
 
-                                <div className="absolute inset-y-0 left-0 flex items-center transition-all duration-200 opacity-100 group-hover:opacity-0 group-hover:pointer-events-none select-none">
-                                  <span className="inline-flex items-center gap-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20 px-2.5 py-1 text-[11px] font-extrabold text-indigo-600 dark:text-indigo-400 whitespace-nowrap">
-                                    <EyeOff className="h-3.5 w-3.5 text-indigo-500 shrink-0" />
-                                    <span>Hover to reveal</span>
+                                <div
+                                  className={cn(
+                                    "absolute inset-y-0 left-0 flex items-center transition-all duration-200 select-none",
+                                    revealedStudyIds[q.id]
+                                      ? "opacity-0 pointer-events-none"
+                                      : "opacity-100 group-hover:opacity-0 group-hover:pointer-events-none"
+                                  )}
+                                >
+                                  <span className="inline-flex items-center gap-1.5 rounded-[2px] bg-[#FFE600] border border-black px-2.5 py-1 text-[11px] font-black uppercase text-black whitespace-nowrap shadow-[1px_1px_0px_#121212]">
+                                    <EyeOff className="h-3.5 w-3.5 text-black shrink-0" />
+                                    <span className="hidden sm:inline">Hover / Tap to reveal</span>
+                                    <span className="sm:hidden">Tap to reveal</span>
                                   </span>
                                 </div>
                               </div>
@@ -1291,12 +1337,12 @@ export function VocabularyPracticeView({
                               <div className="flex flex-col gap-1 mt-1">
                                 {q.pronunciation_gujarati && (
                                   <div className="inline-flex">
-                                    <span className="inline-flex items-center rounded-md bg-indigo-500/10 border border-indigo-500/20 px-2 py-0.5 text-[11px] font-extrabold text-indigo-600 dark:text-indigo-400">
+                                    <span className="inline-flex items-center rounded-[2px] bg-[#EFE8DD] dark:bg-zinc-800 border border-black px-2 py-0.5 text-[11px] font-black text-foreground">
                                       🗣️ {q.pronunciation_gujarati}
                                     </span>
                                   </div>
                                 )}
-                                <span className="text-xs font-extrabold text-indigo-600 dark:text-indigo-400 block leading-tight">
+                                <span className="text-xs font-black text-foreground block leading-tight">
                                   {q.english}
                                 </span>
                               </div>
@@ -1312,11 +1358,11 @@ export function VocabularyPracticeView({
                               speakWord(q.english);
                             }}
                             title="Listen Audio Pronunciation"
-                            className="h-9 w-9 rounded-full bg-indigo-600 text-white flex items-center justify-center hover:bg-indigo-700 transition-colors shadow-md shrink-0"
+                            className="h-10 w-10 sm:h-9 sm:w-9 min-h-[44px] min-w-[44px] rounded-[3px] bg-[#18181B] text-white border-2 border-black flex items-center justify-center shadow-[2px_2px_0px_#121212] hover:bg-black active:translate-x-0.5 active:translate-y-0.5 transition-transform shrink-0"
                           >
                             <Volume2 className="h-4 w-4" />
                           </button>
-                          <span className="text-xs font-extrabold text-muted-foreground group-hover:text-indigo-600 transition-colors">
+                          <span className="text-xs font-black uppercase tracking-wider text-muted-foreground group-hover:text-foreground transition-colors">
                             Details ➔
                           </span>
                         </div>
@@ -1327,13 +1373,12 @@ export function VocabularyPracticeView({
               </div>
             ))}
           </div>
-
           {/* Start Exam Primary CTA */}
           <div className="pt-4 text-center">
             <button
               type="button"
               onClick={() => switchPageMode("exam")}
-              className="w-full max-w-md rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 py-4 text-sm font-black text-white hover:from-purple-700 hover:to-indigo-700 shadow-xl transition-all"
+              className="w-full max-w-md rounded-[4px] bg-[#FFE600] text-black border-2 border-black py-3.5 text-sm font-black uppercase tracking-wider shadow-[4px_4px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 transition-transform"
             >
               <span>I'm Ready! Start Exam Now 🚀</span>
             </button>
@@ -1349,59 +1394,60 @@ export function VocabularyPracticeView({
             <div className="space-y-6 pt-2 text-center">
               {/* Category Badge & Star Bookmark */}
               <div className="flex items-center justify-between">
-                <span className="rounded-full bg-purple-500/10 border border-purple-500/20 px-3.5 py-1 text-xs font-extrabold text-purple-600 dark:text-purple-400">
+                <span className="rounded-[3px] border-2 border-black bg-[#FFE600] text-black px-3.5 py-1 text-xs font-black uppercase shadow-[2px_2px_0px_#121212]">
                   {studyQuestion.category || "Vocabulary"}
                 </span>
 
                 <button
                   type="button"
                   onClick={() => handleFavorite(studyQuestion)}
-                  className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors ${isFav
-                      ? "bg-amber-500/20 border-amber-500 text-amber-500"
-                      : "border-border bg-background text-muted-foreground hover:bg-muted"
-                    }`}
+                  className={`flex h-9 w-9 items-center justify-center rounded-[4px] border-2 border-black transition-transform shadow-[2px_2px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 ${
+                    isFav
+                      ? "bg-[#FFE600] text-black"
+                      : "bg-card text-foreground hover:bg-[#EFE8DD]"
+                  }`}
                 >
-                  <Star className={`h-4 w-4 ${isFav ? "fill-amber-500" : ""}`} />
+                  <Star className={`h-4 w-4 ${isFav ? "fill-black" : ""}`} />
                 </button>
               </div>
 
               {/* Gujarati Word */}
               <div className="space-y-2 py-2">
-                <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest block">
+                <span className="text-xs font-black uppercase tracking-widest text-muted-foreground block">
                   Gujarati Meaning
                 </span>
-                <h2 className="text-4xl font-black text-foreground">
+                <h2 className="text-3xl sm:text-4xl font-black text-foreground">
                   {studyQuestion.gujarati}
                 </h2>
                 {studyQuestion.pronunciation_gujarati && (
-                  <div className="inline-flex items-center gap-1.5 rounded-full bg-indigo-500/10 px-3.5 py-1 text-xs font-extrabold text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 mt-1">
-                    <span>🗣️ Gujarati Pronunciation:</span>
-                    <strong className="text-indigo-700 dark:text-indigo-300 font-black">{studyQuestion.pronunciation_gujarati}</strong>
+                  <div className="inline-flex items-center gap-1.5 rounded-[3px] border-2 border-black bg-[#FAF7F2] dark:bg-zinc-800 px-3 py-1 text-xs font-black text-foreground mt-1 shadow-[1px_1px_0px_#121212]">
+                    <span>🗣️ Pronunciation:</span>
+                    <strong className="font-black text-foreground">{studyQuestion.pronunciation_gujarati}</strong>
                   </div>
                 )}
               </div>
 
               {/* Verb Forms Breakdown or English Spelling */}
               {studyQuestion.v1_base_form ? (
-                <div className="rounded-2xl border border-indigo-500/30 bg-indigo-500/10 p-5 space-y-4">
-                  <span className="text-xs font-extrabold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest block text-center">
+                <div className="rounded-[4px] border-2 border-black bg-[#FAF7F2] dark:bg-zinc-900 p-5 space-y-4 shadow-[3px_3px_0px_#121212]">
+                  <span className="text-xs font-black uppercase tracking-wider text-muted-foreground block text-center">
                     Verb Forms (V1 / V2 / V3) Breakdown
                   </span>
 
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     {/* V1 Base Form */}
-                    <div className="rounded-xl border border-indigo-500/20 bg-background/90 p-3 space-y-1.5 text-center shadow-xs">
-                      <span className="text-[10px] font-black uppercase tracking-wider text-purple-600 dark:text-purple-400 block">
+                    <div className="rounded-[3px] border-2 border-black bg-card p-3 space-y-1.5 text-center shadow-[2px_2px_0px_#121212]">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-[#FF6B00] block">
                         V1 (Base Form)
                       </span>
                       <h4 className="text-xl font-black text-foreground">{studyQuestion.v1_base_form}</h4>
-                      <p className="text-xs font-extrabold text-indigo-600 dark:text-indigo-400">
+                      <p className="text-xs font-bold text-muted-foreground">
                         🗣️ {studyQuestion.v1_pronunciation_gujarati}
                       </p>
                       <button
                         type="button"
                         onClick={() => speakWord(studyQuestion.v1_base_form!)}
-                        className="inline-flex items-center gap-1 rounded-lg bg-indigo-600 text-white px-3 py-1 text-xs font-extrabold hover:bg-indigo-700 transition-colors shadow-xs mt-1"
+                        className="inline-flex items-center gap-1 rounded-[2px] bg-[#FFE600] text-black border border-black px-2.5 py-1 text-xs font-black uppercase shadow-[1px_1px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 mt-1"
                       >
                         <Volume2 className="h-3.5 w-3.5" />
                         <span>Listen</span>
@@ -1409,18 +1455,18 @@ export function VocabularyPracticeView({
                     </div>
 
                     {/* V2 Past Simple */}
-                    <div className="rounded-xl border border-indigo-500/20 bg-background/90 p-3 space-y-1.5 text-center shadow-xs">
-                      <span className="text-[10px] font-black uppercase tracking-wider text-purple-600 dark:text-purple-400 block">
+                    <div className="rounded-[3px] border-2 border-black bg-card p-3 space-y-1.5 text-center shadow-[2px_2px_0px_#121212]">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-[#FF6B00] block">
                         V2 (Past Simple)
                       </span>
                       <h4 className="text-xl font-black text-foreground">{studyQuestion.v2_past_simple}</h4>
-                      <p className="text-xs font-extrabold text-indigo-600 dark:text-indigo-400">
+                      <p className="text-xs font-bold text-muted-foreground">
                         🗣️ {studyQuestion.v2_pronunciation_gujarati}
                       </p>
                       <button
                         type="button"
                         onClick={() => speakWord(studyQuestion.v2_past_simple!)}
-                        className="inline-flex items-center gap-1 rounded-lg bg-indigo-600 text-white px-3 py-1 text-xs font-extrabold hover:bg-indigo-700 transition-colors shadow-xs mt-1"
+                        className="inline-flex items-center gap-1 rounded-[2px] bg-[#FFE600] text-black border border-black px-2.5 py-1 text-xs font-black uppercase shadow-[1px_1px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 mt-1"
                       >
                         <Volume2 className="h-3.5 w-3.5" />
                         <span>Listen</span>
@@ -1428,18 +1474,18 @@ export function VocabularyPracticeView({
                     </div>
 
                     {/* V3 Past Participle */}
-                    <div className="rounded-xl border border-indigo-500/20 bg-background/90 p-3 space-y-1.5 text-center shadow-xs">
-                      <span className="text-[10px] font-black uppercase tracking-wider text-purple-600 dark:text-purple-400 block">
+                    <div className="rounded-[3px] border-2 border-black bg-card p-3 space-y-1.5 text-center shadow-[2px_2px_0px_#121212]">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-[#FF6B00] block">
                         V3 (Past Participle)
                       </span>
                       <h4 className="text-xl font-black text-foreground">{studyQuestion.v3_past_participle}</h4>
-                      <p className="text-xs font-extrabold text-indigo-600 dark:text-indigo-400">
+                      <p className="text-xs font-bold text-muted-foreground">
                         🗣️ {studyQuestion.v3_pronunciation_gujarati}
                       </p>
                       <button
                         type="button"
                         onClick={() => speakWord(studyQuestion.v3_past_participle!)}
-                        className="inline-flex items-center gap-1 rounded-lg bg-indigo-600 text-white px-3 py-1 text-xs font-extrabold hover:bg-indigo-700 transition-colors shadow-xs mt-1"
+                        className="inline-flex items-center gap-1 rounded-[2px] bg-[#FFE600] text-black border border-black px-2.5 py-1 text-xs font-black uppercase shadow-[1px_1px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 mt-1"
                       >
                         <Volume2 className="h-3.5 w-3.5" />
                         <span>Listen</span>
@@ -1448,27 +1494,27 @@ export function VocabularyPracticeView({
                   </div>
                 </div>
               ) : (
-                <div className="rounded-2xl border border-indigo-500/30 bg-indigo-500/10 p-6 space-y-4">
-                  <span className="text-xs font-extrabold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest block">
+                <div className="rounded-[4px] border-2 border-black bg-[#FAF7F2] dark:bg-zinc-900 p-6 space-y-4 shadow-[3px_3px_0px_#121212]">
+                  <span className="text-xs font-black uppercase tracking-wider text-muted-foreground block">
                     English Spelling to Remember
                   </span>
 
                   <div className="flex items-center justify-center gap-3">
-                    <h1 className="text-3xl font-black text-indigo-600 dark:text-indigo-300">
+                    <h1 className="text-3xl font-black text-foreground">
                       {studyQuestion.english}
                     </h1>
                     <button
                       type="button"
                       onClick={() => speakWord(studyQuestion.english)}
                       title="Listen Pronunciation"
-                      className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-white hover:bg-indigo-700 shadow-md transition-colors"
+                      className="flex h-10 w-10 items-center justify-center rounded-[4px] bg-[#FFE600] text-black border-2 border-black shadow-[2px_2px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 transition-transform"
                     >
                       <Volume2 className="h-5 w-5" />
                     </button>
                   </div>
 
                   {studyQuestion.phonetic && (
-                    <p className="text-xs italic text-indigo-700 dark:text-indigo-300 font-semibold">
+                    <p className="text-xs italic text-muted-foreground font-bold">
                       Phonetic: "{studyQuestion.phonetic}"
                     </p>
                   )}
@@ -1477,9 +1523,9 @@ export function VocabularyPracticeView({
 
               {/* Example Sentence */}
               {studyQuestion.example && (
-                <div className="p-4 rounded-2xl bg-muted/50 border border-border text-left">
-                  <span className="text-[11px] font-bold text-muted-foreground block mb-1">Example Sentence:</span>
-                  <p className="text-xs font-medium text-foreground italic">"{studyQuestion.example}"</p>
+                <div className="p-4 rounded-[4px] bg-card border-2 border-black text-left shadow-[2px_2px_0px_#121212]">
+                  <span className="text-[11px] font-black uppercase text-muted-foreground block mb-1">Example Sentence:</span>
+                  <p className="text-xs font-semibold text-foreground italic">"{studyQuestion.example}"</p>
                 </div>
               )}
 
@@ -1489,7 +1535,7 @@ export function VocabularyPracticeView({
                   type="button"
                   disabled={studyIndex === 0}
                   onClick={() => setStudyIndex((prev) => Math.max(0, prev - 1))}
-                  className="flex-1 rounded-2xl border border-border bg-card py-3 text-xs font-bold text-foreground disabled:opacity-40 hover:bg-muted transition-colors"
+                  className="flex-1 rounded-[4px] border-2 border-black bg-card py-2.5 text-xs font-black uppercase text-foreground disabled:opacity-40 hover:bg-[#EFE8DD] shadow-[2px_2px_0px_#121212] transition-colors"
                 >
                   ← Previous Word
                 </button>
@@ -1498,7 +1544,7 @@ export function VocabularyPracticeView({
                   type="button"
                   disabled={studyIndex >= questions.length - 1}
                   onClick={() => setStudyIndex((prev) => Math.min(questions.length - 1, prev + 1))}
-                  className="flex-1 rounded-2xl border border-border bg-card py-3 text-xs font-bold text-foreground disabled:opacity-40 hover:bg-muted transition-colors"
+                  className="flex-1 rounded-[4px] border-2 border-black bg-card py-2.5 text-xs font-black uppercase text-foreground disabled:opacity-40 hover:bg-[#EFE8DD] shadow-[2px_2px_0px_#121212] transition-colors"
                 >
                   Next Word →
                 </button>
@@ -1511,7 +1557,7 @@ export function VocabularyPracticeView({
                     setDrawerOpen(false);
                     switchPageMode("exam");
                   }}
-                  className="w-full rounded-2xl bg-purple-600 py-3.5 text-xs font-extrabold text-white hover:bg-purple-700 shadow-md transition-colors"
+                  className="w-full rounded-[4px] bg-[#FFE600] text-black border-2 border-black py-3 text-xs font-black uppercase tracking-wider shadow-[3px_3px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 transition-transform"
                 >
                   Start Exam Now 🚀
                 </button>
@@ -1527,15 +1573,15 @@ export function VocabularyPracticeView({
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="rounded-2xl border border-indigo-500/40 bg-indigo-500/10 p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg backdrop-blur-md"
+              className="rounded-[6px] border-[2.5px] border-black dark:border-white bg-[#FFE600] text-black p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-[4px_4px_0px_#121212]"
             >
               <div className="flex items-center gap-3.5">
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-600 text-white shadow-md shrink-0 font-bold">
+                <div className="flex h-10 w-10 items-center justify-center rounded-[4px] bg-black text-white border-2 border-black shadow-[2px_2px_0px_#121212] shrink-0 font-bold">
                   <RotateCcw className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-black text-foreground">Unfinished Exam Session Found!</h4>
-                  <p className="text-xs text-muted-foreground font-medium">
+                  <h4 className="text-sm font-black uppercase">Unfinished Exam Session Found!</h4>
+                  <p className="text-xs font-bold opacity-80">
                     You answered {Object.keys(activeDraft.listUserAnswers || {}).length} questions in this session ({formatRelativeTime(new Date(activeDraft.timestamp).toISOString())}).
                   </p>
                 </div>
@@ -1545,15 +1591,15 @@ export function VocabularyPracticeView({
                 <button
                   type="button"
                   onClick={handleStartFreshExam}
-                  className="flex-1 sm:flex-none h-10 rounded-xl border border-border bg-card hover:bg-muted px-4 text-xs font-extrabold text-foreground transition-all shadow-xs"
+                  className="flex-1 sm:flex-none h-10 rounded-[4px] border-2 border-black bg-card hover:bg-[#EFE8DD] px-4 text-xs font-black uppercase tracking-wider text-foreground shadow-[2px_2px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5"
                 >
-                  Start Fresh Exam 🔄
+                  Start Fresh 🔄
                 </button>
 
                 <button
                   type="button"
                   onClick={handleResumeExamDraft}
-                  className="flex-1 sm:flex-none h-10 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white px-5 text-xs font-black shadow-md shadow-indigo-600/30 transition-all"
+                  className="flex-1 sm:flex-none h-10 rounded-[4px] bg-[#18181B] text-white border-2 border-black px-5 text-xs font-black uppercase tracking-wider shadow-[3px_3px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5"
                 >
                   Resume Saved Exam 🚀
                 </button>
@@ -1561,15 +1607,16 @@ export function VocabularyPracticeView({
             </motion.div>
           )}
 
+
           {/* Exam Header & Layout Selector Bar */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-card border border-border p-4 rounded-2xl shadow-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 bg-card border-[2.5px] border-black dark:border-white p-3.5 sm:p-4 rounded-[6px] shadow-[3px_3px_0px_#121212] sm:shadow-[4px_4px_0px_#121212] dark:shadow-[3px_3px_0px_#000] sm:dark:shadow-[4px_4px_0px_#000]">
             <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 font-black text-sm">
+              <span className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-[4px] bg-[#FFE600] text-black border-2 border-black font-black text-sm shadow-[2px_2px_0px_#121212]">
                 📝
               </span>
               <div>
-                <h3 className="text-sm font-black text-foreground">Vocabulary Practice Exam</h3>
-                <p className="text-xs text-muted-foreground">
+                <h3 className="text-sm font-black text-foreground uppercase tracking-tight">Vocabulary Practice Exam</h3>
+                <p className="text-[11px] sm:text-xs text-muted-foreground font-semibold">
                   {examViewMode === "list"
                     ? "Gujarati on left, type English on right & press Enter!"
                     : `Question ${currentIndex + 1} of ${examQuestions.length}`}
@@ -1577,27 +1624,59 @@ export function VocabularyPracticeView({
               </div>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2">
+            {/* Mobile-Only Compact Action Bar: [Start Fresh] [Exam Options ⚙️] [Submit 🏁] */}
+            <div className="flex sm:hidden items-center justify-between gap-2 w-full pt-1">
+              <button
+                type="button"
+                onClick={handleStartFreshExam}
+                className="flex-1 flex items-center justify-center gap-1.5 rounded-[4px] border-2 border-black bg-card hover:bg-[#FF4D4D] hover:text-white px-2.5 py-2.5 text-xs font-black uppercase tracking-wider text-foreground shadow-[2px_2px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 min-h-[44px]"
+                title="Clear current progress and restart exam"
+              >
+                <RotateCcw className="h-4 w-4" />
+                <span>Restart</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setMobileExamOptionsOpen(true)}
+                className="flex-1 flex items-center justify-center gap-1.5 rounded-[4px] border-2 border-black bg-[#FFE600] text-black px-2.5 py-2.5 text-xs font-black uppercase tracking-wider shadow-[2px_2px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 min-h-[44px]"
+              >
+                <SlidersHorizontal className="h-4 w-4" />
+                <span>Options ⚙️</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handleFinishListExam}
+                className="flex-1 flex items-center justify-center gap-1 rounded-[4px] bg-[#22C55E] text-white border-2 border-black px-2.5 py-2.5 text-xs font-black uppercase tracking-wider shadow-[2px_2px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 min-h-[44px]"
+              >
+                <span>Submit 🏁</span>
+              </button>
+            </div>
+
+            {/* Desktop Controls (hidden on mobile < 640px) */}
+            <div className="hidden sm:flex flex-wrap items-center gap-2">
               {/* Start Fresh Exam Button */}
               <button
                 type="button"
                 onClick={handleStartFreshExam}
-                className="flex items-center gap-1.5 rounded-xl border border-border bg-background hover:bg-rose-500/10 hover:border-rose-500/30 px-3 py-2 text-xs font-extrabold text-muted-foreground hover:text-rose-600 dark:hover:text-rose-400 transition-all shadow-xs"
+                className="flex items-center gap-1.5 rounded-[4px] border-2 border-black bg-card hover:bg-[#FF4D4D] hover:text-white px-3 py-2 text-xs font-black uppercase tracking-wider text-foreground transition-colors shadow-[2px_2px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 min-h-[40px]"
                 title="Clear current progress and restart exam from Question 1"
               >
                 <RotateCcw className="h-3.5 w-3.5" />
                 <span>Start Fresh</span>
               </button>
+
               {/* Order Mode Switcher */}
-              <div className="flex items-center gap-1 rounded-xl border border-border bg-background p-1 select-none">
+              <div className="flex items-center gap-1 rounded-[4px] border-2 border-black bg-card p-1 shadow-[2px_2px_0px_#121212] select-none">
                 <button
                   type="button"
                   onClick={handleResetStepByStep}
                   className={cn(
-                    "flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-extrabold transition-all",
+                    "flex items-center gap-1.5 rounded-[2px] px-3 py-1.5 text-xs font-black uppercase transition-all",
                     !isRandomized
-                      ? "bg-purple-600 text-white shadow-sm"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                      ? "bg-[#18181B] text-white shadow-xs"
+                      : "text-foreground hover:bg-[#FFE600] hover:text-black"
                   )}
                   title="Step-by-Step Sequential Order (#1, #2, #3...)"
                 >
@@ -1609,10 +1688,10 @@ export function VocabularyPracticeView({
                   type="button"
                   onClick={handleRandomizeOrder}
                   className={cn(
-                    "flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-extrabold transition-all",
+                    "flex items-center gap-1.5 rounded-[2px] px-3 py-1.5 text-xs font-black uppercase transition-all",
                     isRandomized
-                      ? "bg-purple-600 text-white shadow-sm"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                      ? "bg-[#18181B] text-white shadow-xs"
+                      : "text-foreground hover:bg-[#FFE600] hover:text-black"
                   )}
                   title="Randomize / Shuffle Order"
                 >
@@ -1622,15 +1701,15 @@ export function VocabularyPracticeView({
               </div>
 
               {/* Layout Switcher */}
-              <div className="flex items-center gap-1 rounded-xl border border-border bg-background p-1 select-none">
+              <div className="flex items-center gap-1 rounded-[4px] border-2 border-black bg-card p-1 shadow-[2px_2px_0px_#121212] select-none">
                 <button
                   type="button"
                   onClick={() => setExamViewMode("list")}
                   className={cn(
-                    "flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-extrabold transition-all",
+                    "flex items-center gap-1.5 rounded-[2px] px-3 py-1.5 text-xs font-black uppercase transition-all",
                     examViewMode === "list"
-                      ? "bg-purple-600 text-white shadow-sm"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                      ? "bg-[#18181B] text-white shadow-xs"
+                      : "text-foreground hover:bg-[#FFE600] hover:text-black"
                   )}
                   title="List Exam Mode (Left Gujarati, Right Input)"
                 >
@@ -1642,10 +1721,10 @@ export function VocabularyPracticeView({
                   type="button"
                   onClick={() => setExamViewMode("card")}
                   className={cn(
-                    "flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-extrabold transition-all",
+                    "flex items-center gap-1.5 rounded-[2px] px-3 py-1.5 text-xs font-black uppercase transition-all",
                     examViewMode === "card"
-                      ? "bg-purple-600 text-white shadow-sm"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                      ? "bg-[#18181B] text-white shadow-xs"
+                      : "text-foreground hover:bg-[#FFE600] hover:text-black"
                   )}
                   title="Single Card Exam Mode"
                 >
@@ -1655,20 +1734,20 @@ export function VocabularyPracticeView({
               </div>
 
               {/* Hide Pronunciation Toggle */}
-              <div className="flex items-center gap-2 rounded-xl border border-border bg-background px-3 py-1.5 select-none" title="Hide Gujarati pronunciation during exam to prevent answer hints">
-                <EyeOff className="h-3.5 w-3.5 text-purple-500 shrink-0" />
-                <span className="text-xs font-extrabold text-foreground">Hide Pronunciation</span>
+              <div className="flex items-center gap-2 rounded-[4px] border-2 border-black bg-card px-3 py-1.5 shadow-[2px_2px_0px_#121212] select-none" title="Hide Gujarati pronunciation during exam to prevent answer hints">
+                <EyeOff className="h-3.5 w-3.5 text-[#FF6B00] shrink-0" />
+                <span className="text-xs font-black uppercase tracking-wider text-foreground">Hide Pronunciation</span>
                 <button
                   type="button"
                   onClick={() => setHidePronunciationInExam(!hidePronunciationInExam)}
                   className={cn(
-                    "relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none",
-                    hidePronunciationInExam ? "bg-purple-600" : "bg-muted"
+                    "relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-black transition-colors duration-200 ease-in-out focus:outline-none",
+                    hidePronunciationInExam ? "bg-[#18181B]" : "bg-muted"
                   )}
                 >
                   <span
                     className={cn(
-                      "pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out",
+                      "pointer-events-none inline-block h-3.5 w-3.5 transform rounded-full bg-[#FFE600] shadow-sm transition duration-200 ease-in-out",
                       hidePronunciationInExam ? "translate-x-4" : "translate-x-0"
                     )}
                   />
@@ -1678,32 +1757,151 @@ export function VocabularyPracticeView({
               <button
                 type="button"
                 onClick={handleFinishListExam}
-                className="rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-2 text-xs font-black text-white hover:from-emerald-700 hover:to-teal-700 shadow-md transition-all flex items-center gap-1.5"
+                className="rounded-[4px] bg-[#22C55E] text-white border-2 border-black px-4 py-2 text-xs font-black uppercase tracking-wider shadow-[3px_3px_0px_#121212] transition-transform active:translate-x-0.5 active:translate-y-0.5 flex items-center gap-1.5"
               >
-                <span>Submit & View Results 🏁</span>
+                <span>Submit Results 🏁</span>
               </button>
             </div>
           </div>
+
+          {/* Mobile Exam Options Drawer */}
+          <Drawer
+            open={mobileExamOptionsOpen}
+            onOpenChange={setMobileExamOptionsOpen}
+            title="Exam Options & Preferences"
+            side="right"
+          >
+            <div className="space-y-5 pt-3 select-none">
+              {/* Question Order Setting */}
+              <div className="space-y-2 rounded-[4px] border-2 border-black p-3.5 bg-card shadow-[2px_2px_0px_#121212]">
+                <span className="text-xs font-black uppercase tracking-wider text-foreground block">
+                  Question Order
+                </span>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      handleResetStepByStep();
+                    }}
+                    className={cn(
+                      "flex items-center justify-center gap-1.5 rounded-[3px] border-2 border-black py-2.5 text-xs font-black uppercase transition-all min-h-[44px]",
+                      !isRandomized
+                        ? "bg-[#18181B] text-white"
+                        : "bg-[#FAF7F2] dark:bg-zinc-800 text-foreground"
+                    )}
+                  >
+                    <ListOrdered className="h-4 w-4" />
+                    <span>Sequential</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      handleRandomizeOrder();
+                    }}
+                    className={cn(
+                      "flex items-center justify-center gap-1.5 rounded-[3px] border-2 border-black py-2.5 text-xs font-black uppercase transition-all min-h-[44px]",
+                      isRandomized
+                        ? "bg-[#18181B] text-white"
+                        : "bg-[#FAF7F2] dark:bg-zinc-800 text-foreground"
+                    )}
+                  >
+                    <Shuffle className="h-4 w-4" />
+                    <span>Randomized</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* View Layout Setting */}
+              <div className="space-y-2 rounded-[4px] border-2 border-black p-3.5 bg-card shadow-[2px_2px_0px_#121212]">
+                <span className="text-xs font-black uppercase tracking-wider text-foreground block">
+                  Exam Layout Mode
+                </span>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setExamViewMode("list")}
+                    className={cn(
+                      "flex items-center justify-center gap-1.5 rounded-[3px] border-2 border-black py-2.5 text-xs font-black uppercase transition-all min-h-[44px]",
+                      examViewMode === "list"
+                        ? "bg-[#18181B] text-white"
+                        : "bg-[#FAF7F2] dark:bg-zinc-800 text-foreground"
+                    )}
+                  >
+                    <LayoutList className="h-4 w-4" />
+                    <span>List View</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setExamViewMode("card")}
+                    className={cn(
+                      "flex items-center justify-center gap-1.5 rounded-[3px] border-2 border-black py-2.5 text-xs font-black uppercase transition-all min-h-[44px]",
+                      examViewMode === "card"
+                        ? "bg-[#18181B] text-white"
+                        : "bg-[#FAF7F2] dark:bg-zinc-800 text-foreground"
+                    )}
+                  >
+                    <Sparkles className="h-4 w-4" />
+                    <span>Card View</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Hide Pronunciation Setting */}
+              <div className="flex items-center justify-between rounded-[4px] border-2 border-black p-3.5 bg-card shadow-[2px_2px_0px_#121212]">
+                <div className="space-y-0.5">
+                  <span className="text-xs font-black uppercase tracking-wider text-foreground block">
+                    Hide Pronunciation
+                  </span>
+                  <span className="text-[11px] font-bold text-muted-foreground block">
+                    Prevent hints during quiz
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setHidePronunciationInExam(!hidePronunciationInExam)}
+                  className={cn(
+                    "relative inline-flex h-7 w-12 shrink-0 cursor-pointer rounded-full border-2 border-black transition-colors duration-200 ease-in-out focus:outline-none min-h-[44px] items-center px-0.5",
+                    hidePronunciationInExam ? "bg-[#18181B]" : "bg-muted"
+                  )}
+                >
+                  <span
+                    className={cn(
+                      "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-[#FFE600] border border-black shadow-sm transition duration-200 ease-in-out",
+                      hidePronunciationInExam ? "translate-x-5" : "translate-x-0"
+                    )}
+                  />
+                </button>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setMobileExamOptionsOpen(false)}
+                className="w-full rounded-[4px] bg-[#FFE600] text-black border-2 border-black py-3 text-xs font-black uppercase tracking-wider shadow-[3px_3px_0px_#121212] min-h-[44px]"
+              >
+                Apply & Close
+              </button>
+            </div>
+          </Drawer>
 
           {examViewMode === "list" ? (
             /* LIST EXAM VIEW: LEFT GUJARATI LIST, RIGHT INPUT FIELD */
             <div className="space-y-4">
               {/* Stats Bar */}
-              <div className="flex items-center justify-between text-xs font-extrabold text-muted-foreground px-2">
+              <div className="flex items-center justify-between text-xs font-black uppercase tracking-wider text-muted-foreground px-2">
                 <span>
                   Correct:{" "}
-                  <strong className="text-emerald-600 dark:text-emerald-400">
+                  <strong className="text-[#22C55E]">
                     {Object.values(listStatuses).filter((s) => s === "correct").length}
                   </strong>{" "}
                   / {examQuestions.length}
                 </span>
                 <span>
-                  XP Earned: <strong className="text-amber-500">+{sessionXP} XP</strong>
+                  XP Earned: <strong className="text-foreground">+{sessionXP} XP</strong>
                 </span>
               </div>
 
               {/* Multi-Row List */}
-              <div className="rounded-[28px] border border-border bg-card p-4 sm:p-6 shadow-xl space-y-3">
+              <div className="rounded-[6px] border-[2.5px] border-black dark:border-white bg-card p-4 sm:p-6 shadow-[6px_6px_0px_#121212] dark:shadow-[6px_6px_0px_#000] space-y-3">
                 {examQuestions.map((q, idx) => (
                   <VocabExamListItem
                     key={q.id !== undefined ? `exam-item-${q.id}-${idx}` : `exam-item-${idx}`}
@@ -1729,7 +1927,7 @@ export function VocabularyPracticeView({
                 <button
                   type="button"
                   onClick={handleFinishListExam}
-                  className="w-full max-w-md rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 py-4 text-sm font-black text-white hover:from-purple-700 hover:to-indigo-700 shadow-xl transition-all"
+                  className="w-full max-w-md rounded-[4px] bg-[#FFE600] text-black border-2 border-black py-3.5 text-sm font-black uppercase tracking-wider shadow-[4px_4px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 transition-transform"
                 >
                   Finished Exam? View Full Results 🚀
                 </button>
@@ -1746,12 +1944,12 @@ export function VocabularyPracticeView({
                   </span>
                   <span>{progressPct}% Complete</span>
                 </div>
-                <div className="h-2.5 w-full overflow-hidden rounded-full bg-muted">
+                <div className="h-3 w-full overflow-hidden rounded-[4px] border-2 border-black bg-[#EFE8DD] dark:bg-zinc-800">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${progressPct}%` }}
                     transition={{ duration: 0.3 }}
-                    className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-600"
+                    className="h-full bg-[#FFE600]"
                   />
                 </div>
               </div>
@@ -1760,78 +1958,71 @@ export function VocabularyPracticeView({
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentQuestion.id || currentIndex}
-                  initial={{ opacity: 0, scale: 0.96, y: 15 }}
+                  initial={{ opacity: 0, scale: 0.98, y: 10 }}
                   animate={
                     shake
                       ? { x: [-12, 12, -8, 8, -4, 4, 0], opacity: 1, scale: 1, y: 0 }
                       : { opacity: 1, scale: 1, y: 0 }
                   }
-                  exit={{ opacity: 0, scale: 0.96, y: -15 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 26,
-                  }}
-                  className={`relative my-4 rounded-[32px] border p-8 sm:p-12 shadow-2xl transition-colors bg-card ${
+                  exit={{ opacity: 0, scale: 0.98, y: -10 }}
+                  transition={{ duration: 0.15 }}
+                  className={`relative my-4 rounded-[6px] border-[2.5px] border-black dark:border-white p-8 sm:p-12 shadow-[6px_6px_0px_#121212] dark:shadow-[6px_6px_0px_#000] transition-colors bg-card ${
                     status === "correct"
-                      ? "border-emerald-500 bg-emerald-500/5 shadow-emerald-500/20"
+                      ? "bg-[#22C55E]/10"
                       : status === "wrong"
-                      ? "border-rose-500 bg-rose-500/5 shadow-rose-500/20"
-                      : "border-border"
+                      ? "bg-[#FF4D4D]/10"
+                      : "bg-card"
                   }`}
                 >
                   {/* Card Header: Category & Favorite */}
                   <div className="flex items-center justify-between mb-8">
-                    <span className="rounded-full bg-indigo-500/10 px-3.5 py-1 text-xs font-extrabold text-indigo-600 dark:text-indigo-400">
+                    <span className="rounded-[3px] border-2 border-black bg-[#FFE600] px-3.5 py-1 text-xs font-black uppercase tracking-wider text-black shadow-[2px_2px_0px_#121212]">
                       {currentQuestion.category || "Vocabulary"}
                     </span>
 
                     <motion.button
                       type="button"
-                      whileHover={{ scale: 1.15 }}
-                      whileTap={{ scale: 0.9 }}
+                      whileTap={{ scale: 0.92 }}
                       onClick={() => handleFavorite(currentQuestion)}
-                      className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors ${
+                      className={`flex h-9 w-9 items-center justify-center rounded-[4px] border-2 border-black transition-transform shadow-[2px_2px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 ${
                         isFav
-                          ? "bg-amber-500/20 border-amber-500 text-amber-500"
-                          : "border-border bg-background text-muted-foreground hover:bg-muted"
+                          ? "bg-[#FFE600] text-black"
+                          : "bg-card text-foreground hover:bg-[#EFE8DD]"
                       }`}
                     >
-                      <Star className={`h-4 w-4 ${isFav ? "fill-amber-500" : ""}`} />
+                      <Star className={`h-4 w-4 ${isFav ? "fill-black" : ""}`} />
                     </motion.button>
                   </div>
 
                   {/* Gujarati Display */}
                   <div className="text-center space-y-3 mb-10">
-                    <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest block">
+                    <span className="text-xs font-black uppercase tracking-widest text-[#FF6B00] block">
                       Translate Gujarati Word to English
                     </span>
-                    <h1 className="text-4xl sm:text-6xl font-black text-foreground tracking-wide font-sans">
+                    <h1 className="text-4xl sm:text-6xl font-black text-foreground tracking-tight font-sans">
                       {currentQuestion.gujarati}
                     </h1>
 
                     <div className="flex items-center justify-center gap-2 flex-wrap pt-1">
                       {currentQuestion.pronunciation_gujarati && (!hidePronunciationInExam || status === "correct" || status === "revealed") && (
-                        <span className="inline-flex items-center gap-1.5 rounded-full bg-indigo-500/10 px-3.5 py-1 text-xs font-extrabold text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
+                        <span className="inline-flex items-center gap-1.5 rounded-[3px] border-2 border-black bg-[#FAF7F2] dark:bg-zinc-800 px-3 py-1 text-xs font-black text-foreground">
                           <span>🗣️ Pronunciation:</span>
-                          <strong className="font-black text-indigo-700 dark:text-indigo-300">{currentQuestion.pronunciation_gujarati}</strong>
+                          <strong className="font-black text-foreground">{currentQuestion.pronunciation_gujarati}</strong>
                         </span>
                       )}
-                      <motion.button
+                      <button
                         type="button"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
                         onClick={() => speakWord(currentQuestion.english)}
                         title="Listen Audio Pronunciation"
-                        className="inline-flex items-center gap-1.5 rounded-full bg-indigo-600 text-white px-3.5 py-1 text-xs font-extrabold hover:bg-indigo-700 transition-colors shadow-sm"
+                        className="inline-flex items-center gap-1.5 rounded-[4px] border-2 border-black bg-[#FFE600] text-black px-3.5 py-1 text-xs font-black uppercase tracking-wider shadow-[2px_2px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5"
                       >
                         <Volume2 className="h-3.5 w-3.5" />
                         <span>Listen Audio</span>
-                      </motion.button>
+                      </button>
                     </div>
 
                     {currentQuestion.phonetic && currentQuestion.phonetic !== currentQuestion.pronunciation_gujarati && (!hidePronunciationInExam || status === "correct" || status === "revealed") && (
-                      <p className="text-sm italic text-muted-foreground">
+                      <p className="text-sm italic font-bold text-muted-foreground">
                         Phonetic: "{currentQuestion.phonetic}"
                       </p>
                     )}
@@ -1851,34 +2042,24 @@ export function VocabularyPracticeView({
                         onKeyDown={handleKeyDown}
                         placeholder="Type English spelling... (Press Enter)"
                         disabled={status === "correct"}
-                        className={`w-full rounded-2xl border px-6 py-4 text-center text-xl font-bold text-foreground placeholder:text-muted-foreground/60 outline-none transition-all shadow-inner ${
+                        className={`w-full rounded-[4px] border-2 border-black dark:border-white px-6 py-4 text-center text-xl font-black text-foreground placeholder:text-muted-foreground/60 outline-none transition-all shadow-[3px_3px_0px_#121212] dark:shadow-[3px_3px_0px_#000] ${
                           status === "correct"
-                            ? "border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+                            ? "bg-[#22C55E]/15 text-[#22C55E]"
                             : status === "wrong"
-                            ? "border-rose-500 bg-rose-500/10 text-rose-600 dark:text-rose-400"
-                            : "border-border bg-background focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+                            ? "bg-[#FF4D4D]/15 text-[#FF4D4D]"
+                            : "bg-background focus:border-[#FF6B00]"
                         }`}
                       />
 
                       {status === "correct" && (
-                        <motion.div
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          transition={{ type: "spring", stiffness: 500, damping: 15 }}
-                          className="absolute right-4 top-1/2 -translate-y-1/2 text-emerald-500"
-                        >
+                        <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[#22C55E]">
                           <CheckCircle2 className="h-6 w-6" />
-                        </motion.div>
+                        </div>
                       )}
                       {status === "wrong" && (
-                        <motion.div
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          transition={{ type: "spring", stiffness: 500, damping: 15 }}
-                          className="absolute right-4 top-1/2 -translate-y-1/2 text-rose-500"
-                        >
+                        <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[#FF4D4D]">
                           <XCircle className="h-6 w-6" />
-                        </motion.div>
+                        </div>
                       )}
                     </div>
 
@@ -1889,12 +2070,12 @@ export function VocabularyPracticeView({
                           initial={{ opacity: 0, y: -10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
-                          className="rounded-2xl border border-indigo-500/30 bg-indigo-500/10 p-4 text-center space-y-1"
+                          className="rounded-[4px] border-2 border-black bg-[#FFE600] text-black p-4 text-center space-y-1 shadow-[3px_3px_0px_#121212]"
                         >
-                          <span className="text-xs font-semibold text-indigo-500 block">Correct English Answer:</span>
-                          <span className="text-xl font-black text-foreground">{currentQuestion.english}</span>
+                          <span className="text-xs font-black uppercase tracking-wider block">Correct English Answer:</span>
+                          <span className="text-xl font-black">{currentQuestion.english}</span>
                           {currentQuestion.example && (
-                            <p className="text-xs italic text-muted-foreground pt-1">{currentQuestion.example}</p>
+                            <p className="text-xs font-bold italic pt-1">{currentQuestion.example}</p>
                           )}
                         </motion.div>
                       )}
@@ -1904,7 +2085,7 @@ export function VocabularyPracticeView({
                           initial={{ opacity: 0, y: -10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
-                          className="rounded-2xl border border-rose-500/30 bg-rose-500/10 p-3 text-center text-xs font-bold text-rose-600 dark:text-rose-400 flex items-center justify-center gap-2"
+                          className="rounded-[4px] border-2 border-black bg-[#FF4D4D] text-white p-3 text-center text-xs font-black uppercase flex items-center justify-center gap-2 shadow-[3px_3px_0px_#121212]"
                         >
                           <XCircle className="h-4 w-4" />
                           <span>Incorrect. Try again, reveal answer, or skip!</span>
@@ -1921,37 +2102,33 @@ export function VocabularyPracticeView({
                             variant="primary"
                             size="lg"
                             onClick={checkAnswer}
-                            className="flex-1 min-w-[140px]"
+                            className="flex-1 min-w-[140px] font-black uppercase tracking-wider"
                           >
                             <span>Submit Answer</span>
                           </StatefulButton>
 
-                          <motion.button
+                          <button
                             type="button"
-                            whileHover={{ scale: 1.04, y: -1 }}
-                            whileTap={{ scale: 0.96 }}
                             onClick={handleShowAnswer}
-                            className="inline-flex h-14 items-center gap-1.5 rounded-[18px] border border-border bg-card px-5 text-xs font-bold text-foreground hover:bg-muted transition-colors shadow-xs"
+                            className="inline-flex h-12 items-center gap-1.5 rounded-[4px] border-2 border-black bg-card px-4 text-xs font-black uppercase tracking-wider text-foreground hover:bg-[#EFE8DD] transition-transform active:translate-x-0.5 active:translate-y-0.5 shadow-[2px_2px_0px_#121212]"
                           >
-                            <HelpCircle className="h-4 w-4 text-indigo-500" /> Show Answer
-                          </motion.button>
+                            <HelpCircle className="h-4 w-4" /> Show Answer
+                          </button>
 
-                          <motion.button
+                          <button
                             type="button"
-                            whileHover={{ scale: 1.04, y: -1 }}
-                            whileTap={{ scale: 0.96 }}
                             onClick={handleSkip}
-                            className="inline-flex h-14 items-center gap-1.5 rounded-[18px] border border-border bg-card px-5 text-xs font-bold text-muted-foreground hover:bg-muted transition-colors shadow-xs"
+                            className="inline-flex h-12 items-center gap-1.5 rounded-[4px] border-2 border-black bg-card px-4 text-xs font-black uppercase tracking-wider text-muted-foreground hover:bg-[#EFE8DD] transition-transform active:translate-x-0.5 active:translate-y-0.5 shadow-[2px_2px_0px_#121212]"
                           >
                             <SkipForward className="h-4 w-4" /> Skip
-                          </motion.button>
+                          </button>
                         </>
                       ) : (
                         <StatefulButton
                           variant="success"
                           size="lg"
                           onClick={() => nextQuestion()}
-                          className="w-full"
+                          className="w-full font-black uppercase tracking-wider"
                         >
                           <span>Next Question</span>
                           <ArrowRight className="h-5 w-5" />
@@ -1963,12 +2140,12 @@ export function VocabularyPracticeView({
               </AnimatePresence>
 
               {/* Footer Helper info */}
-              <div className="flex items-center justify-between text-xs text-muted-foreground px-4">
+              <div className="flex items-center justify-between text-xs font-bold text-muted-foreground px-4">
                 <span>
-                  Keyboard shortcuts: <kbd className="rounded border bg-muted px-1.5 py-0.5 font-bold">Enter</kbd> = Submit,{" "}
-                  <kbd className="rounded border bg-muted px-1.5 py-0.5 font-bold">Esc</kbd> = Skip
+                  Shortcuts: <kbd className="rounded-[2px] border-2 border-black bg-[#FFE600] text-black px-1.5 py-0.5 font-black shadow-[1px_1px_0px_#121212]">Enter</kbd> = Submit,{" "}
+                  <kbd className="rounded-[2px] border-2 border-black bg-[#FFE600] text-black px-1.5 py-0.5 font-black shadow-[1px_1px_0px_#121212]">Esc</kbd> = Skip
                 </span>
-                <span>Auto-focus enabled</span>
+                <span className="font-bold">Auto-focus enabled</span>
               </div>
             </div>
           )}
@@ -2029,28 +2206,28 @@ const VocabExamListItem = React.memo(
         initial={{ opacity: 0, y: 5 }}
         animate={{ opacity: 1, y: 0 }}
         className={cn(
-          "rounded-2xl border p-4 sm:p-5 transition-all shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4",
+          "rounded-[4px] border-2 border-black dark:border-white p-4 sm:p-5 transition-all shadow-[3px_3px_0px_#121212] dark:shadow-[3px_3px_0px_#000] flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-card",
           itemStatus === "correct"
-            ? "border-emerald-500/50 bg-emerald-500/5 dark:bg-emerald-500/10"
+            ? "bg-[#22C55E]/10"
             : isBlinking
-              ? "animate-wrong-blink border-rose-500 bg-rose-500/10"
+              ? "animate-wrong-blink bg-[#FF4D4D]/20 border-[#FF4D4D]"
               : itemStatus === "wrong"
-                ? "border-rose-500/40 bg-rose-500/5"
+                ? "bg-[#FF4D4D]/10"
                 : itemStatus === "revealed"
-                  ? "border-indigo-500/40 bg-indigo-500/5"
-                  : "border-border bg-background hover:border-indigo-500/30"
+                  ? "bg-[#FFE600]/20"
+                  : "bg-card hover:bg-[#FAF7F2] dark:hover:bg-zinc-900"
         )}
       >
         {/* Left Side: Index Badge, Gujarati Word, Audio Button */}
         <div className="flex items-center gap-3.5 flex-1 min-w-0">
           <div
             className={cn(
-              "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl font-extrabold text-xs transition-colors",
+              "flex h-9 w-9 shrink-0 items-center justify-center rounded-[3px] font-black text-xs border-2 border-black transition-colors shadow-[1px_1px_0px_#121212]",
               itemStatus === "correct"
-                ? "bg-emerald-500 text-white"
+                ? "bg-[#22C55E] text-white"
                 : itemStatus === "wrong" || isBlinking
-                  ? "bg-rose-500 text-white"
-                  : "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
+                  ? "bg-[#FF4D4D] text-white"
+                  : "bg-[#FFE600] text-black"
             )}
           >
             #{idx + 1}
@@ -2062,24 +2239,24 @@ const VocabExamListItem = React.memo(
                 {q.gujarati}
               </span>
               {q.category && (
-                <span className="inline-flex items-center gap-1 rounded-md bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 text-[11px] font-black text-amber-700 dark:text-amber-300">
+                <span className="inline-flex items-center gap-1 rounded-[2px] bg-[#EFE8DD] dark:bg-zinc-800 border border-black px-2 py-0.5 text-[11px] font-black uppercase text-foreground">
                   🏷️ {q.category}
                 </span>
               )}
               {q.v1_base_form ? (
                 <div className="flex items-center gap-1.5 flex-wrap pt-0.5">
-                  <span className="inline-flex items-center gap-1 rounded-md bg-purple-500/10 border border-purple-500/20 px-2 py-0.5 text-[11px] font-extrabold text-purple-600 dark:text-purple-400">
+                  <span className="inline-flex items-center gap-1 rounded-[2px] bg-[#FFE600]/20 border border-black px-2 py-0.5 text-[11px] font-black text-foreground">
                     ⚡ V1: {q.v1_base_form} ({q.v1_pronunciation_gujarati})
                   </span>
-                  <span className="inline-flex items-center gap-1 rounded-md bg-indigo-500/10 border border-indigo-500/20 px-2 py-0.5 text-[11px] font-extrabold text-indigo-600 dark:text-indigo-400">
+                  <span className="inline-flex items-center gap-1 rounded-[2px] bg-[#EFE8DD] dark:bg-zinc-800 border border-black px-2 py-0.5 text-[11px] font-bold text-foreground">
                     V2: {q.v2_past_simple} ({q.v2_pronunciation_gujarati})
                   </span>
-                  <span className="inline-flex items-center gap-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 text-[11px] font-extrabold text-emerald-600 dark:text-emerald-400">
+                  <span className="inline-flex items-center gap-1 rounded-[2px] bg-[#EFE8DD] dark:bg-zinc-800 border border-black px-2 py-0.5 text-[11px] font-bold text-foreground">
                     V3: {q.v3_past_participle} ({q.v3_pronunciation_gujarati})
                   </span>
                 </div>
               ) : q.pronunciation_gujarati && (!hidePronunciationInExam || itemStatus === "correct" || itemStatus === "revealed") && (
-                <span className="inline-flex items-center rounded-md bg-purple-500/10 border border-purple-500/20 px-2 py-0.5 text-[11px] font-extrabold text-purple-600 dark:text-purple-400">
+                <span className="inline-flex items-center rounded-[2px] bg-[#EFE8DD] dark:bg-zinc-800 border border-black px-2 py-0.5 text-[11px] font-black text-foreground">
                   🗣️ {q.pronunciation_gujarati}
                 </span>
               )}
@@ -2087,13 +2264,13 @@ const VocabExamListItem = React.memo(
                 type="button"
                 onClick={() => onSpeak(q.english)}
                 title="Listen Pronunciation"
-                className="h-7 w-7 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-all shrink-0"
+                className="h-9 w-9 sm:h-8 sm:w-8 min-h-[44px] min-w-[44px] rounded-[3px] bg-[#FFE600] text-black border-2 border-black flex items-center justify-center shadow-[1.5px_1.5px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 transition-transform shrink-0"
               >
-                <Volume2 className="h-3.5 w-3.5" />
+                <Volume2 className="h-4 w-4" />
               </button>
             </div>
             {q.phonetic && q.phonetic !== q.pronunciation_gujarati && (!hidePronunciationInExam || itemStatus === "correct" || itemStatus === "revealed") && (
-              <span className="text-xs italic text-muted-foreground block">
+              <span className="text-xs italic font-bold text-muted-foreground block">
                 Phonetic: "{q.phonetic}"
               </span>
             )}
@@ -2122,20 +2299,20 @@ const VocabExamListItem = React.memo(
                 }
                 disabled={itemStatus === "correct"}
                 className={cn(
-                  "w-full rounded-xl border px-4 py-2.5 text-sm font-bold outline-none transition-all shadow-inner pr-9",
+                  "w-full rounded-[4px] border-2 border-black dark:border-white px-4 py-2 text-sm font-bold outline-none transition-all shadow-[2px_2px_0px_#121212] pr-9",
                   itemStatus === "correct"
-                    ? "border-emerald-500 bg-emerald-500/15 text-emerald-700 dark:text-emerald-300"
+                    ? "bg-[#22C55E]/15 text-[#22C55E]"
                     : isBlinking || itemStatus === "wrong"
-                      ? "border-rose-500 bg-rose-500/15 text-rose-700 dark:text-rose-300"
-                      : "border-border bg-background focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20"
+                      ? "bg-[#FF4D4D]/15 text-[#FF4D4D]"
+                      : "bg-background focus:border-[#FF6B00]"
                 )}
               />
 
               {itemStatus === "correct" && (
-                <CheckCircle2 className="absolute right-2.5 top-1/2 -translate-y-1/2 h-5 w-5 text-emerald-500" />
+                <CheckCircle2 className="absolute right-2.5 top-1/2 -translate-y-1/2 h-5 w-5 text-[#22C55E]" />
               )}
               {(isBlinking || itemStatus === "wrong") && (
-                <XCircle className="absolute right-2.5 top-1/2 -translate-y-1/2 h-5 w-5 text-rose-500" />
+                <XCircle className="absolute right-2.5 top-1/2 -translate-y-1/2 h-5 w-5 text-[#FF4D4D]" />
               )}
             </div>
 
@@ -2144,7 +2321,7 @@ const VocabExamListItem = React.memo(
                 <button
                   type="button"
                   onClick={() => onCheckAnswer(idx)}
-                  className="rounded-xl bg-indigo-600 px-3 py-2 text-xs font-extrabold text-white hover:bg-indigo-700 transition-colors shadow-sm"
+                  className="rounded-[4px] bg-[#FFE600] text-black border-2 border-black px-3 py-2 text-xs font-black uppercase tracking-wider shadow-[2px_2px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 transition-transform"
                   title="Check Answer"
                 >
                   Check
@@ -2152,10 +2329,10 @@ const VocabExamListItem = React.memo(
                 <button
                   type="button"
                   onClick={() => onShowAnswer(idx)}
-                  className="rounded-xl border border-border bg-card p-2 text-xs font-bold text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                  className="rounded-[4px] border-2 border-black bg-card p-2 text-xs font-bold text-foreground shadow-[2px_2px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 transition-transform"
                   title="Show Correct Answer"
                 >
-                  <HelpCircle className="h-4 w-4 text-indigo-500" />
+                  <HelpCircle className="h-4 w-4" />
                 </button>
               </div>
             )}
@@ -2163,17 +2340,17 @@ const VocabExamListItem = React.memo(
 
           {/* Subtitle / Feedback */}
           {itemStatus === "correct" && (
-            <span className="text-[11px] font-extrabold text-emerald-600 dark:text-emerald-400 block pl-1">
+            <span className="text-[11px] font-black uppercase text-[#22C55E] block pl-1">
               ✓ Correct! Jumped to next word.
             </span>
           )}
           {itemStatus === "wrong" && !isBlinking && (
-            <span className="text-[11px] font-extrabold text-rose-500 block pl-1">
+            <span className="text-[11px] font-black uppercase text-[#FF4D4D] block pl-1">
               ✕ Incorrect spelling. Try again & hit Enter!
             </span>
           )}
           {itemStatus === "revealed" && (
-            <span className="text-[11px] font-extrabold text-indigo-600 dark:text-indigo-400 block pl-1">
+            <span className="text-[11px] font-black uppercase text-foreground block pl-1">
               Answer: {q.english}
             </span>
           )}

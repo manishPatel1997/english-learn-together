@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -24,58 +26,68 @@
 
 @layer base {
   :root {
-    --background: #f8fafc;
-    --foreground: #0f172a;
-    --card: #ffffff;
-    --card-foreground: #0f172a;
-    --popover: #ffffff;
-    --popover-foreground: #0f172a;
-    --primary: #4f46e5;
-    --primary-foreground: #ffffff;
-    --secondary: #f1f5f9;
-    --secondary-foreground: #0f172a;
-    --muted: #f1f5f9;
-    --muted-foreground: #64748b;
-    --accent: #e0e7ff;
-    --accent-foreground: #3730a3;
-    --destructive: #ef4444;
-    --destructive-foreground: #ffffff;
-    --border: #e2e8f0;
-    --input: #e2e8f0;
-    --ring: #6366f1;
-    --radius: 1.25rem;
+    /* Neo-Brutalism Warm Cream & Stark Charcoal Palette */
+    --background: #FAF7F2;
+    --foreground: #121212;
+    --card: #FFFFFF;
+    --card-foreground: #121212;
+    --popover: #FFFFFF;
+    --popover-foreground: #121212;
 
-    --success: #10b981;
-    --success-foreground: #ffffff;
-    --warning: #f59e0b;
-    --warning-foreground: #ffffff;
+    /* Punchy accents */
+    --primary: #FFE600;
+    --primary-foreground: #121212;
+    --secondary: #F2EBE1;
+    --secondary-foreground: #121212;
+    --muted: #EFE8DD;
+    --muted-foreground: #4B5563;
+    --accent: #FF6B00;
+    --accent-foreground: #FFFFFF;
+    --destructive: #FF4D4D;
+    --destructive-foreground: #FFFFFF;
+
+    /* Bold borders & sharp corners */
+    --border: #121212;
+    --input: #FFFFFF;
+    --ring: #121212;
+    --radius: 0.25rem;
+
+    --success: #22C55E;
+    --success-foreground: #121212;
+    --warning: #FFE600;
+    --warning-foreground: #121212;
+    --shadow-color: #121212;
   }
 
   .dark {
-    --background: #090d16;
-    --foreground: #f8fafc;
-    --card: #111827;
-    --card-foreground: #f8fafc;
-    --popover: #111827;
-    --popover-foreground: #f8fafc;
-    --primary: #6366f1;
-    --primary-foreground: #ffffff;
-    --secondary: #1f2937;
-    --secondary-foreground: #f8fafc;
-    --muted: #1e293b;
-    --muted-foreground: #94a3b8;
-    --accent: #312e81;
-    --accent-foreground: #e0e7ff;
-    --destructive: #f87171;
-    --destructive-foreground: #ffffff;
-    --border: #1e293b;
-    --input: #1e293b;
-    --ring: #818cf8;
+    /* Neo-Brutalism Dark Charcoal & High-Contrast Light Borders */
+    --background: #121214;
+    --foreground: #F5F5F7;
+    --card: #1A1A1E;
+    --card-foreground: #F5F5F7;
+    --popover: #1A1A1E;
+    --popover-foreground: #F5F5F7;
 
-    --success: #34d399;
-    --success-foreground: #047857;
-    --warning: #fbbf24;
-    --warning-foreground: #78350f;
+    --primary: #FFE600;
+    --primary-foreground: #121212;
+    --secondary: #26262D;
+    --secondary-foreground: #F5F5F7;
+    --muted: #222228;
+    --muted-foreground: #A1A1AA;
+    --accent: #FF6B00;
+    --accent-foreground: #FFFFFF;
+    --destructive: #FF5C5C;
+    --destructive-foreground: #FFFFFF;
+
+    --border: #F4F4F5;
+    --input: #1A1A1E;
+    --ring: #F4F4F5;
+
+    --success: #4ADE80;
+    --success-foreground: #000000;
+    --warning: #FDE047;
+    --warning-foreground: #000000;
+    --shadow-color: #000000;
   }
 }
 
@@ -85,7 +97,7 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Lenis Ultra-Smooth Scrolling Core Styles */
+/* Lenis Smooth Scrolling */
 html.lenis, html.lenis body {
   height: auto;
 }
@@ -109,73 +121,158 @@ html.lenis, html.lenis body {
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   overflow-x: hidden;
 }
 
-/* Glassmorphism & custom utility classes */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(226, 232, 240, 0.6);
+/* Neo-Brutalist Utility Classes */
+.neo-border {
+  border: 2.5px solid var(--border);
 }
 
-.dark .glass-panel {
-  background: rgba(17, 24, 39, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(30, 41, 59, 0.6);
+.neo-border-3 {
+  border: 3px solid var(--border);
+}
+
+.neo-border-sm {
+  border: 2px solid var(--border);
+}
+
+.neo-shadow-sm {
+  box-shadow: 2px 2px 0px var(--border);
+}
+
+.neo-shadow {
+  box-shadow: 4px 4px 0px var(--border);
+}
+
+.neo-shadow-lg {
+  box-shadow: 6px 6px 0px var(--border);
+}
+
+.neo-shadow-xl {
+  box-shadow: 8px 8px 0px var(--border);
+}
+
+/* Tactile Neo-Brutalist Card */
+.neo-card {
+  border: 2.5px solid var(--border);
+  box-shadow: 5px 5px 0px var(--border);
+  border-radius: 4px;
+  background-color: var(--card);
+  color: var(--card-foreground);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.neo-card-interactive {
+  cursor: pointer;
+}
+
+.neo-card-interactive:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0px var(--border);
+}
+
+.neo-card-interactive:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--border);
+}
+
+/* Tactile Neo-Brutalist Button */
+.neo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  border: 2.5px solid var(--border);
+  box-shadow: 4px 4px 0px var(--border);
+  border-radius: 4px;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  user-select: none;
+}
+
+.neo-btn:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px var(--border);
+}
+
+.neo-btn:active:not(:disabled) {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0px var(--border);
+}
+
+.neo-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: 2px 2px 0px var(--border);
+}
+
+/* Tactile Neo-Brutalist Input */
+.neo-input {
+  border: 2.5px solid var(--border);
+  border-radius: 4px;
+  background-color: var(--card);
+  color: var(--foreground);
+  font-weight: 600;
+  transition: box-shadow 0.12s ease;
+}
+
+.neo-input:focus {
+  outline: none;
+  box-shadow: 4px 4px 0px var(--border);
+}
+
+/* Neo-Brutalist Badge */
+.neo-badge {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  border: 2px solid var(--border);
+  box-shadow: 2px 2px 0px var(--border);
+  border-radius: 3px;
+  padding: 0.125rem 0.5rem;
 }
 
 /* Custom Scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--muted);
+  border-left: 2px solid var(--border);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.3);
-  border-radius: 9999px;
+  background: var(--foreground);
+  border: 2px solid var(--background);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.5);
+  background: var(--primary);
 }
 
 /* Keyframes for shake animation */
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
-  20%, 60% { transform: translateX(-8px); }
-  40%, 80% { transform: translateX(8px); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
 }
 
 .animate-shake {
-  animation: shake 0.4s ease-in-out;
+  animation: shake 0.35s ease-in-out;
 }
 
-/* Pulsing background gradient for hero */
-@keyframes pulseGlow {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(1.05); }
-}
-
-.animate-pulse-glow {
-  animation: pulseGlow 6s infinite ease-in-out;
-}
-
-/* Keyframes for wrong answer blink effect */
+/* Neo-brutalist alert blink */
 @keyframes wrongBlink {
-  0%, 100% { background-color: transparent; border-color: rgba(244, 63, 94, 0.4); }
-  25%, 75% { background-color: rgba(244, 63, 94, 0.25); border-color: rgb(244, 63, 94); box-shadow: 0 0 15px rgba(244, 63, 94, 0.4); }
-  50% { background-color: rgba(244, 63, 94, 0.1); border-color: rgba(244, 63, 94, 0.6); }
+  0%, 100% { background-color: transparent; }
+  50% { background-color: rgba(255, 77, 77, 0.25); }
 }
 
 .animate-wrong-blink {
-  animation: wrongBlink 0.6s ease-in-out infinite, shake 0.4s ease-in-out;
+  animation: wrongBlink 0.5s ease-in-out infinite, shake 0.35s ease-in-out;
 }
-

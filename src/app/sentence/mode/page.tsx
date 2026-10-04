@@ -19,7 +19,7 @@ function SentenceModeContent() {
   const selectedTopicsCount = topicsParam ? topicsParam.split(",").length : 0;
 
   return (
-    <div className="space-y-6 max-w-4xl mx-auto py-4 select-none">
+    <div className="space-y-6 w-full pb-12 select-none">
       <SentenceSubNav />
 
       {/* Top Breadcrumb Header */}

@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, X, Send, Bot, User, Key } from "lucide-react";
 import { requestGeminiAI, getStoredGeminiKey, saveStoredGeminiKey } from "@/lib/gemini-client";
 import { FormattedMarkdown } from "./formatted-markdown";
-import { MotionSpinner } from "./loader";
 
 interface Message {
   role: "user" | "ai";
@@ -87,59 +86,59 @@ export function AITutorModal({ isOpen, onClose, initialQuestion }: AITutorModalP
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-md select-none">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 select-none">
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          initial={{ opacity: 0, scale: 0.95, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-4xl lg:max-w-5xl overflow-hidden rounded-[28px] border border-purple-500/40 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 shadow-2xl flex flex-col h-[750px] max-h-[92vh]"
+          exit={{ opacity: 0, scale: 0.95, y: 15 }}
+          className="relative w-full max-w-4xl lg:max-w-5xl overflow-hidden rounded-[6px] border-[3px] border-black dark:border-white bg-[#FAF7F2] dark:bg-[#161619] text-foreground shadow-[3px_3px_0px_#121212] sm:shadow-[6px_6px_0px_#121212] md:shadow-[8px_8px_0px_#121212] dark:shadow-[3px_3px_0px_#ffffff] sm:dark:shadow-[6px_6px_0px_#ffffff] flex flex-col h-[82vh] max-h-[700px] min-h-[420px]"
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-purple-500/20 bg-slate-950 text-white">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-tr from-purple-500 to-indigo-500 text-white shadow-md">
-                <Sparkles className="h-5 w-5" />
+          <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b-2 border-black dark:border-white bg-[#FFE600] text-black">
+            <div className="flex items-center gap-2.5 sm:gap-3">
+              <div className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-[3px] border-2 border-black bg-black text-white shadow-[2px_2px_0px_#000000] shrink-0">
+                <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 stroke-[2.5]" />
               </div>
               <div>
-                <h3 className="text-base font-black text-white flex items-center gap-2">
+                <h3 className="text-sm sm:text-base font-black text-black uppercase flex items-center gap-1.5 sm:gap-2">
                   Gemini AI Tutor
-                  <span className="rounded-full bg-purple-500/30 border border-purple-400/40 px-2 py-0.5 text-[10px] font-bold text-purple-200">
+                  <span className="rounded-[2px] bg-black text-white px-1.5 sm:px-2 py-0.2 text-[9px] sm:text-[10px] font-black uppercase">
                     Free AI
                   </span>
                 </h3>
-                <p className="text-xs text-slate-300 font-medium">Your 24/7 English Learning Assistant</p>
+                <p className="text-[11px] sm:text-xs text-neutral-800 font-bold truncate">24/7 English Learning Assistant</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2">
               <button
                 type="button"
                 onClick={() => setShowKeyInput(!showKeyInput)}
                 title="Configure Gemini API Key"
-                className="p-2 rounded-full border border-slate-700 bg-slate-800 text-slate-200 hover:bg-slate-700 transition-colors"
+                className="h-10 w-10 sm:h-8 sm:w-8 min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 flex items-center justify-center rounded-[3px] border-2 border-black bg-white text-black hover:bg-neutral-100 shadow-[2px_2px_0px_#000000] cursor-pointer"
               >
-                <Key className="h-4 w-4" />
+                <Key className="h-4 w-4 stroke-[2.5]" />
               </button>
               <button
                 type="button"
                 onClick={onClose}
-                className="p-2 rounded-full border border-slate-700 bg-slate-800 text-slate-200 hover:bg-slate-700 transition-colors"
+                className="h-10 w-10 sm:h-8 sm:w-8 min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 flex items-center justify-center rounded-[3px] border-2 border-black bg-white text-black hover:bg-neutral-100 shadow-[2px_2px_0px_#000000] cursor-pointer"
               >
-                <X className="h-4 w-4" />
+                <X className="h-4 w-4 stroke-[3]" />
               </button>
             </div>
           </div>
 
-          {/* Key Configuration Banner if toggled or needed */}
+          {/* Key Configuration Banner */}
           {showKeyInput && (
-            <div className="p-4 bg-purple-950/40 border-b border-purple-500/30 space-y-2">
-              <div className="flex items-center justify-between text-xs font-bold text-purple-300">
+            <div className="p-4 bg-[#EFE8DD] dark:bg-zinc-800 border-b-2 border-black dark:border-white space-y-2">
+              <div className="flex items-center justify-between text-xs font-black uppercase text-foreground">
                 <span>Enter Free Gemini API Key:</span>
                 <a
                   href="https://aistudio.google.com/"
                   target="_blank"
                   rel="noreferrer"
-                  className="underline hover:text-purple-400"
+                  className="underline hover:text-[#FF6B00]"
                 >
                   Get Key from Google AI Studio ↗
                 </a>
@@ -150,12 +149,12 @@ export function AITutorModal({ isOpen, onClose, initialQuestion }: AITutorModalP
                   value={apiKeyInput}
                   onChange={(e) => setApiKeyInput(e.target.value)}
                   placeholder="AIzaSy..."
-                  className="flex-1 rounded-xl border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs text-white outline-none focus:border-purple-500 font-semibold"
+                  className="flex-1 rounded-[3px] border-2 border-black bg-white px-3 py-1.5 text-xs text-black outline-none font-bold shadow-[2px_2px_0px_#121212]"
                 />
                 <button
                   type="button"
                   onClick={handleSaveKey}
-                  className="rounded-xl bg-purple-600 px-4 py-1.5 text-xs font-bold text-white hover:bg-purple-700"
+                  className="rounded-[3px] border-2 border-black bg-[#22C55E] px-4 py-1.5 text-xs font-black text-black uppercase shadow-[2px_2px_0px_#121212] hover:translate-x-0.5 hover:translate-y-0.5 cursor-pointer"
                 >
                   Save
                 </button>
@@ -163,81 +162,62 @@ export function AITutorModal({ isOpen, onClose, initialQuestion }: AITutorModalP
             </div>
           )}
 
-          {/* Chat Messages - Solid Opaque Background */}
-          <div className="flex-1 p-6 overflow-y-auto space-y-4 bg-slate-100 dark:bg-slate-900 scrollbar-thin">
+          {/* Chat Messages */}
+          <div className="flex-1 p-6 overflow-y-auto space-y-4 bg-[#FAF7F2] dark:bg-[#121214] scrollbar-thin">
             {messages.map((m, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 12, scale: 0.97 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ type: "spring", stiffness: 450, damping: 25 }}
                 className={`flex gap-3 ${m.role === "user" ? "justify-end" : "justify-start"}`}
               >
                 {m.role === "ai" && (
-                  <div className="h-8 w-8 rounded-full bg-purple-600 text-white flex items-center justify-center shrink-0 shadow-md">
-                    <Bot className="h-4 w-4" />
+                  <div className="h-8 w-8 rounded-[3px] border-2 border-black bg-[#FFE600] text-black flex items-center justify-center shrink-0 shadow-[2px_2px_0px_#121212]">
+                    <Bot className="h-4 w-4 stroke-[2.5]" />
                   </div>
                 )}
                 <div
-                  className={`max-w-[85%] rounded-2xl p-4 text-xs leading-relaxed ${
+                  className={`max-w-[85%] rounded-[4px] p-4 text-xs leading-relaxed border-2 border-black shadow-[3px_3px_0px_#121212] ${
                     m.role === "user"
-                      ? "bg-purple-600 text-white rounded-br-none shadow-md font-bold whitespace-pre-wrap"
-                      : "bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 border border-slate-300 dark:border-slate-700 shadow-md rounded-bl-none font-medium"
+                      ? "bg-[#22C55E] text-black font-black whitespace-pre-wrap"
+                      : "bg-white dark:bg-zinc-800 text-foreground font-semibold"
                   }`}
                 >
                   {m.role === "ai" ? <FormattedMarkdown content={m.text} /> : m.text}
                 </div>
                 {m.role === "user" && (
-                  <div className="h-8 w-8 rounded-full bg-indigo-600 text-white flex items-center justify-center shrink-0 shadow-md">
-                    <User className="h-4 w-4" />
+                  <div className="h-8 w-8 rounded-[3px] border-2 border-black bg-black text-white flex items-center justify-center shrink-0 shadow-[2px_2px_0px_#121212]">
+                    <User className="h-4 w-4 stroke-[2.5]" />
                   </div>
                 )}
-              </motion.div>
+              </div>
             ))}
 
             {loading && (
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="flex items-center gap-3 text-xs font-bold text-purple-700 dark:text-purple-300 bg-purple-500/20 px-4 py-3 rounded-2xl border border-purple-500/30 max-w-fit shadow-sm"
-              >
-                <div className="flex items-center gap-1">
-                  {[0.1, 0.3, 0.2, 0.4].map((delay, idx) => (
-                    <motion.span
-                      key={idx}
-                      animate={{ height: ["8px", "18px", "8px"] }}
-                      transition={{ repeat: Infinity, duration: 0.8, delay }}
-                      className="w-1 bg-purple-600 rounded-full inline-block"
-                    />
-                  ))}
-                </div>
+              <div className="flex items-center gap-2 text-xs font-black uppercase text-foreground bg-[#FFE600] px-4 py-3 rounded-[3px] border-2 border-black shadow-[3px_3px_0px_#121212] max-w-fit">
                 <span>Gemini AI is analyzing & generating answer...</span>
-              </motion.div>
+              </div>
             )}
           </div>
 
-          {/* Quick Prompts - Solid Border & High Contrast Pills */}
-          <div className="px-6 py-3 border-t border-slate-300 dark:border-slate-800 bg-slate-200 dark:bg-slate-950 flex flex-wrap gap-2">
+          {/* Quick Prompts */}
+          <div className="px-6 py-3 border-t-2 border-black dark:border-white bg-[#EFE8DD] dark:bg-zinc-900 flex flex-wrap gap-2">
             {[
               "Explain 'Whose' vs 'Which'",
               "Difference between 'Has' & 'Have'",
               "How to use past tense correctly?",
             ].map((qp, idx) => (
-              <motion.button
+              <button
                 key={idx}
                 type="button"
-                whileHover={{ scale: 1.04, y: -1 }}
-                whileTap={{ scale: 0.96 }}
                 onClick={() => handleSend(qp)}
-                className="text-[11px] font-black text-purple-800 dark:text-purple-200 bg-purple-500/20 border border-purple-500/40 hover:bg-purple-500/30 px-3.5 py-1.5 rounded-full transition-all shadow-xs"
+                className="text-[10px] font-black uppercase text-black bg-white border-2 border-black hover:bg-[#FFE600] px-3 py-1 rounded-[2px] transition-all shadow-[2px_2px_0px_#121212] cursor-pointer"
               >
                 {qp}
-              </motion.button>
+              </button>
             ))}
           </div>
 
-          {/* Input Box - Solid Opaque Background */}
-          <div className="p-4 border-t border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-950">
+          {/* Input Box */}
+          <div className="p-4 border-t-2 border-black dark:border-white bg-white dark:bg-zinc-900">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -250,17 +230,15 @@ export function AITutorModal({ isOpen, onClose, initialQuestion }: AITutorModalP
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask Gemini AI any English question... (e.g. explain tenses)"
-                className="flex-1 rounded-2xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 p-3.5 text-xs font-bold text-slate-900 dark:text-slate-100 placeholder:text-slate-500 dark:placeholder:text-slate-400 outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+                className="flex-1 rounded-[3px] border-2 border-black bg-white dark:bg-zinc-800 p-3 text-xs font-bold text-foreground placeholder:text-muted-foreground outline-none shadow-[2px_2px_0px_#121212]"
               />
-              <motion.button
+              <button
                 type="submit"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
                 disabled={loading || !input.trim()}
-                className="flex h-11 w-11 items-center justify-center rounded-2xl bg-purple-600 text-white hover:bg-purple-700 disabled:opacity-50 transition-colors shadow-md shadow-purple-600/30"
+                className="flex h-11 w-11 items-center justify-center rounded-[3px] border-2 border-black bg-[#FFE600] text-black hover:bg-[#FACC15] disabled:opacity-50 transition-all shadow-[3px_3px_0px_#121212] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#121212] cursor-pointer"
               >
-                <Send className="h-4 w-4" />
-              </motion.button>
+                <Send className="h-4 w-4 stroke-[3]" />
+              </button>
             </form>
           </div>
         </motion.div>
